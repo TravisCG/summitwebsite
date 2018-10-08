@@ -1,0 +1,487 @@
+<?php
+$servername = "localhost";
+$username = "sciguest";
+$password = "password";
+$dbname = "summitdb";
+$maxID = $_GET['maxid'];
+$minID = $_GET['minid'];
+$minElem = $_GET['mnelem'];
+$maxElem = $_GET['mxelem'];
+$motivePart = $_GET['motive'];
+$motiveName = '\''.$motivePart.'\'';
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT
+antibody.antibody_id AS antiid, 
+antibody.name AS antibody, 
+named_average_deviation.average_deviation_name as avg_name,
+named_average_deviation.deviation_id AS average_deviation_id,
+named_average_deviation.element_num AS element_num, 
+named_average_deviation.average AS average, 
+named_average_deviation.median AS median, 
+named_average_deviation.experiment_experiment_id AS exp_ID, 
+named_average_deviation.consensus_motif_motif_id, 
+named_average_deviation.std_dev AS std_dev, 
+consensus_motif.motif_id, 
+consensus_motif.name AS motive_name, 
+experiment.experiment_id AS exp_IDv2, 
+experiment.name AS exp_name, 
+cell_lines.name AS cell_line,
+s3.avgstd_dev,
+s3.avg_avg,
+s3.avg_elem,
+colour.is_it_cofactor AS factor_type,
+colour.colour_hex
+FROM 
+named_average_deviation
+LEFT JOIN experiment ON experiment.experiment_id = named_average_deviation.experiment_experiment_id 
+LEFT JOIN antibody ON experiment.antibody_antibody_id = antibody.antibody_id 
+LEFT JOIN colour ON colour.antibody_name = antibody.name 
+LEFT JOIN consensus_motif ON named_average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
+LEFT JOIN cell_lines ON experiment.cell_lines_cellline_id = cell_lines.cellline_id 
+LEFT JOIN (SELECT count(name) AS nameCount,name FROM antibody GROUP BY name) s2 ON s2.name = antibody.name 
+LEFT JOIN (SELECT  experiment.antibody_antibody_id, avg(std_dev) as avgstd_dev, avg(average) as avg_avg, avg(element_num) as avg_elem 
+FROM named_average_deviation 
+LEFT JOIN experiment on experiment.experiment_id = named_average_deviation.experiment_experiment_id 
+LEFT JOIN consensus_motif ON named_average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
+WHERE
+named_average_deviation.std_dev <= $maxID 
+&& named_average_deviation.std_dev >= $minID 
+&& named_average_deviation.element_num >= $minElem 
+&& named_average_deviation.element_num <= $maxElem 
+&& consensus_motif.name LIKE $motiveName 
+GROUP BY antibody_antibody_id) s3 ON s3.antibody_antibody_id = experiment.antibody_antibody_id 
+WHERE 
+named_average_deviation.std_dev <= $maxID 
+&& named_average_deviation.std_dev >= $minID 
+&& named_average_deviation.element_num >= $minElem 
+&& named_average_deviation.element_num <= $maxElem 
+&& consensus_motif.name LIKE $motiveName 
+ORDER BY s2.nameCount DESC, antibody.name ASC";
+
+
+
+$sql2 = "SELECT motif_id 
+FROM consensus_motif WHERE name LIKE $motiveName";
+
+$sql6 = "SELECT name, motif_id 
+FROM consensus_motif";
+
+
+$result = $conn->query($sql);
+$result2 = $conn->query($sql2);
+$result6 = $conn->query($sql6);
+
+if ($result->num_rows > 0) {
+    // output data 
+        $jsonData = array();
+//      genrating data into thisrow
+
+while($r = mysqli_fetch_assoc($result)) {
+    $jsonData[] = $r;
+}
+
+} else {
+    echo "0 results found";
+}
+
+
+$jsonData2 = array();
+
+while($r2 = mysqli_fetch_assoc($result2)) {
+    $jsonData2[] = $r2;
+}
+
+while($ew6 = mysqli_fetch_assoc($result6)) {
+    $jsonData6[] = $ew6;}
+$conn->close();
+
+
+$conn->close();
+
+//$column1 = array_column($jsonData, 'cell_line');
+//$column2 = array_column($jsonData, 'antibody');
+//$column3 = array_unique ( array_merge ($column1 , $column2 ));
+
+
+?>
+
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>NAIK Genome Database</title>
+<link href="favicon.png" rel="icon"  type="image/png" />
+<meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121648705-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121648705-1');
+</script>
+
+
+</head>
+<body>
+<div class="container_16">
+<!--topdiv -->
+
+
+
+  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/>
+  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
+  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
+  
+  </a>
+</div>
+
+  <div class="foo">
+    <ul class="navlink">
+        <li><a href="main.html" title="Home" class="active">Home</a></li>
+        <li onclick="glossToggle()"><a title="Standard deviation vs distance >  
+-Average distance: The average of distances between every summit and motif center pair at a given ChIP-seq experiment and consensus motif pair. 
+-Standard deviation (of shift values): Here, it is calculated from the shift values between peak summits and the centers of the consensus motif binding sites, which are closer than 50 bp. 
+Alphabetical by name > 
+    Sorting legends according to the name of ChIP target protein.
+Number of experiment >
+    Sorting legends according to the occurrence of ChIP-seq experiments with same target protein." class="active">Glossary</a></li>
+    </ul>
+        </div>
+
+<script>
+// this will toggle the glossary iframe
+function glossToggle() {
+    var x = document.getElementById("glossary");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+
+
+
+<br>
+ <?php echo " <h4 style='margin:auto;text-align:center;font-size:1.3em;padding-bottom:1.5em;padding-top:8em;'>Consensus motif: ". $motivePart . " </h4>" ?>
+
+<div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:47em;display:none;">
+ <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
+</iframe>
+</div>
+
+  <div id="chart" style="width:84% ;background-color: white;border:1px solid black;height:47em;" >
+</div>
+
+  <div id="chart2" style="width:15%;overflow-y: scroll; background-color: white;border:1px solid black;height:47em;"></div>
+<div  id="chart3" style="width:84%;background-color: white;border:1px solid black;height: 11em; position: relative;">
+</div>
+
+  <div name="chart4"  id="chart4" style="width:15%; background-color: white;height: 11em;border:1px solid black; ">
+<p style="margin-left:5px;margin-top:3px;margin-bottom:0px;">Position weight matrix for selected motif.</p>
+ <?php echo "<img src=\"./logos/" . $motivePart . ".jpg\" style=\"width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;\"  alt=\"No picture available!\" > " ?>
+</div>
+
+<script>
+var margin = {top: 20, right: 20, bottom: 30, left: 60},
+    width = 1400 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+var legendtitle = 420;
+var maxShift = 99;
+var data = <?php echo json_encode($jsonData, JSON_NUMERIC_CHECK);?>;
+var ujtomb = <?php echo json_encode($column3);?>;
+var motive = <?php echo "\"" . $motivePart . "\""; ?>;
+var nestedbyantiagent = d3.nest()
+  .key(function(d) { return d.antibody; })
+  .entries(data);
+var motifid = <?php echo json_encode($jsonData2, JSON_NUMERIC_CHECK);?>;
+
+//the cubes are named here by the antiagents or the cellines
+var antiagentCount = d3.nest()
+  .key(function(d) { return d.antibody; })
+ .key(function(d) { return d.colour_hex; })
+  .rollup(function(v) { return v.length; })
+  .entries(data);
+
+var antiagentCount2 = d3.nest()
+  .key(function(d) { return d.cell_line; })
+ .rollup(function(r) { return r.length; })
+.key(function(d) { return "#444666"; })
+// .key(function(d) { return d.colour_hex; })
+  .entries(data);
+
+
+
+
+/* 
+ * value accessor - returns the value to encode for a given data object.
+ * scale - maps value to a visual display encoding, such as a pixel position.
+ * map function - maps from data value to display value
+ * axis - sets up axis
+ */ 
+
+
+
+
+</script>
+
+
+<script src="urlgetter.js">//this one gets the options out of the url and make them an object
+</script>
+
+
+<script src="drawall.js">//this draws the canvas itself
+</script>
+
+<script src="drawcubes.js">//this draws the cubes next to the canvas
+</script>
+
+<script src="threechosen.js">//this one deals with the three choices in the chart3 div
+</script>
+
+
+<script>
+// lets draw the things we need when the page loads
+var nameOfX = "Distance from " + motive + " center (bp)"
+DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
+DrawAllShizCubes("data", "notnew", "motive");
+choosethree("not_yet_selected");
+
+// this will count the cubes in chart2 so it wont be too long or short
+
+</script>
+
+
+
+
+<script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
+</script>
+
+<script src="buttons.js">//this will make the buttons work
+</script>
+
+<script>
+//this trims the array in this case for the options
+function trimArray(arr)
+{
+    for(i=0;i<arr.length;i++)
+    {
+        arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    }
+    return arr;
+}
+ 
+</script>
+
+<div id="buttons" style="text-align: left;width: 40%;">
+
+<p>Set a motif:</p><br>
+  <select id="formmotive" type="text" value="" placeholder="Type to filter">
+<?php
+//this one puts ALL the options in the select area
+foreach($jsonData6 as $item){
+     echo "<option>" . $item['name'] . "</option>" ;    // process the line read.
+    }
+?>
+
+
+</select>
+
+<p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> <br> 
+<p>Minimum standard deviation</p>
+<form action="#" id="form_field"> <input type="text" id="textboxmin" value="integer please"> 
+</form>
+
+<p>Maximum standard deviation</p>
+
+<form action="#" id="form_field"> <input type="text" id="textboxmax" value="integer please"> 
+</form>
+
+<p>Minimum overlap number between motifs and peaks of experiment</p>
+
+<form action="#" id="form_field"> <input type="text" id="textboxmnelem" value="integer please"> 
+</form>
+
+<p>Maximum overlap number between motifs and peaks of experiment</p>
+
+<form action="#" id="form_field"> <input type="text" id="textboxmxelem" value="integer please"> 
+</form>
+
+<p>When te parameters have been set, this button will refresh the page.</p>
+
+<button id="resend" onclick="doSearch()" style="width: 14em;"><p>Resend Data</p></button>
+
+</div>
+
+
+
+
+<script>
+//these scripts will allow to put all the motives in the select area
+//resultz is the uniqued json data
+var resultz = [];
+
+//we must trim them
+var trimresultz = trimArray(resultz);
+
+        function addOptions(){
+            var select = document.getElementById('formmotive');
+            var option;
+            for (var i = 0; i < trimresultz.length; i++) {
+              option = document.createElement('option');
+              option.text = resultz[i];
+              select.add(option);
+            }
+        };
+addOptions();
+
+var motivefilter = getAllUrlParams().motive;
+</script>
+
+<div id="buttons2" style="text-align: left;width: 40%;">
+  <div style="float: left;width: 23%;height:100%;">
+  </div>
+
+  <p>The following buttons change the display of data. With the following buttons you can change the Y value.</p>
+  <p><b title="Average distance: The average of distances between every summit and motif center pair at a given ChIP-seq experiment and consensus motif pair.">X value:</b> average distance. <br>Set Y value.</p>
+  <button class="yselector" id="y1" onclick="updatestand_dev()" title="Standard deviation (of shift values): Here, it is calculated from the shift values between peak summits and the centers of the consensus motif binding sites, which are closer than 50 bp."> <p>standard deviation</p></button><br><br>
+  <button class="yselector" id="y2" onclick="updateelem_num()"  title="Element (number): The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. "> <p>element number</p></button><br><br>
+  <p><b title="Values (average distance values) of ChIP-seq experiment with same antibody is averaged">X value:</b> average of average distances. <br>Set Y value.</p>
+  <button class="yselector" id="y3" onclick="update_avg_std()" title="Values (average distance values) of ChIP-seq experiment with same antibody is averaged"> <p>average standard deviation</p></button><br><br>
+  <button class="yselector" id="y4" onclick="update_avg_elem()" title="Values (average distance values) of ChIP-seq experiment with same antibody is averaged"> <p>average element numbers</p></button><br><br>
+<br>
+</div>
+<div id="refresh" style="float: right; width:15%;">
+  <div style="float: left;width: 55%;">
+
+<h2>Legend options</h2>
+ <button id="nodotz" onclick="trimthemall()" style="width: 12em;" title="Mask all dots out from scatterplot"> <p>Hide all dots</p></button><br><br>
+  <button id="yesdotz" onclick="" style="width: 12em;" title="Restore all dots to the scatterplot"> <p>Show all dots</p></button><br><br>
+ <p>Legends shown by ChIP-seq antibody</p>
+<p>Choose a sorting method</p>
+    <button onclick="update_alphabet()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
+    <button onclick="update_nonalphabet()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
+ <p>Legends shown by celline</p>
+    <button onclick="update_alphabet_cell()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
+    <button onclick="update_nonalphabet_cell()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+<script>
+// this will give the y1 button a nice shadow
+document.getElementById("y1").style.boxShadow = "4px 6px 8px #555555";
+document.getElementById("y1").style.color = "#111111";
+document.getElementById("y1").style.backgroundColor = "#EEEEEE";
+document.getElementById("y2").style.boxShadow = "1px 2px 3px #555555";
+document.getElementById("y2").style.color = "#DDDDDD";
+document.getElementById("y3").style.boxShadow = "1px 2px 3px #555555";
+document.getElementById("y3").style.color = "#DDDDDD";
+document.getElementById("y4").style.boxShadow = "1px 2px 3px #555555";
+document.getElementById("y4").style.color = "#DDDDDD";
+
+// this function will bind the enter to the resend button
+$(document).keypress(function(e){
+    if (e.which == 13){
+        $("#resend").click();
+    }
+});
+
+
+
+//here we will set the form boxes to be by default what they were in the url originally
+
+var formmaxid = getAllUrlParams().maxid;
+document.getElementById("textboxmax").value = formmaxid;
+
+var formminid = getAllUrlParams().minid;
+document.getElementById("textboxmin").value = formminid;
+
+var formminelem = getAllUrlParams().mnelem;
+document.getElementById("textboxmnelem").value = formminelem;
+
+var formmaxelem = getAllUrlParams().mxelem;
+document.getElementById("textboxmxelem").value = formmaxelem;
+
+var formmotive = <?php echo '"'. $motivePart . '"'; ?>;
+document.getElementById("formmotive").value = formmotive;
+
+
+
+// these will make our legends work (because heroes never die, but the legends sadly do)
+$("#refresh").children().click(function(){
+ $(".legend.new").click(function(event){
+ $('.'+  $(this).data('targets')).fadeToggle("slow");
+});
+});
+
+$("#refresh").children().click(function(){
+  $(".legend").removeClass("new")
+});
+
+
+$(document).ready(function(){
+$(".legend").click(function(event){
+ $('.'+  $(this).data('targets')).fadeToggle("slow");
+});
+});
+
+$(document).ready(function(){
+  $(".legend").removeClass("new")
+
+});
+
+
+
+
+//these two rows will make the chart2 with the cubes fit like a glove
+
+var cubechartheight = $(".legend").length;
+$(document).ready(function() { $('#chart2').on("scroll", function() { $('.cubechart').css('height', cubechartheight * 1.8 + "em")}) });
+</script>
+
+
+<div style="display:inline-block;">
+<p>
+
+MotifView <br>
+In this mode, the average distances between the peak of the reads obtained in a ChIP-seq experiment and a given consensus motif on a scatterplot graph is visualized. Each scatter represents an experiments
+The displayed data can be filtered by the number of overlapping peaks (element number) or by the standard deviation. Data can be also displayed based on the used antibody or cell type. Averages of experiments
+After selecting maximum three experiments, links are available to switch to other views.
+</p>
+
+</div>
+
+<div style="width=100%">
+
+<p>
+Copyright © 2018   Erik Czipa, Mátyás Schiller, Levente Kontra, Tibor Nagy, Júlia Koller,
+Orsolya Pálné Szén, Csaba Papp, László Steiner, Ferenc Marincs and Endre Barta
+
+</p>
+</div>
+
+</body>
+
+</html>

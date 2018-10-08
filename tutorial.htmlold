@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to SummitDB</title>
+<link href="favicon.png" rel="icon"  type="image/png" />
+<link href="slideshow.css" rel="stylesheet" type="text/css" />
+
+
+</style>
+<link href="slider.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+Tutorial:
+<br>
+<br>
+<br>
+
+Motif view
+<br>
+<br>
+
+1. Go to the motif view: Hover on the “Search views” menu and click on the “Motif view” button. 
+<br>
+<br>
+
+2. To simplify the representation of the motif view, we use the POU2F2 motif because it has a relatively small set of overlapping factors. To display the results of POU2F2 click on the dropdown box under the “Set a motif” subtitle. 
+<br>
+<br>
+
+
+3. Click on the “Go to motif view” button to update the page.
+<br>
+<br>
+
+4.  After refreshing, you will see a scatterplot of POU2F2 motif. Filter out the experiments, which overlaps with POU2F2 less then 500 times. Change the number (100 is the default) to 500 under “Minimum overlap number between motifs and peaks of experiment” text. Click ont he „Resend data” button, which will decrease the numper of point to 28. This means that the identified POU2F2 binding sites overlap with peaks from 28 ChIP-seq experiments. If we take a closer look, we can see only 20 colors are represented on the diagram, which is visible on the right-hand legend. It was previously mentioned, that the dots are marked according the target protein of ChIP. In this case we can distinguish 20 different target proteins from the 28 experiments. 
+<br>
+<br>
+
+
+5. To simplify the explanation, let’s separate the distinct target proteins and investigate them one by one. To clear out all of the points from scatterplot, click on the “Clear all dots out” button. As a result we get an empty diagram. To bring back the data we can undo the previous step by clicking on the “Bring all dots back” button, or we can individually choose which data points to display (depending on target protein names) one by one. 
+<br>
+<br>
+
+6. The legend on the right shows, that data from 2 POU2F2 ChIP-seq is available. Clicking on the symbol of POU2F2 experiments (purple square) will make 2 dots appear on the diagram. The points are concentrated between 0 and -1 on the x axis. 
+<br>
+<br>
+
+7. If you hover the cursor on this dot, you can read detailed information about the experiment in the appearing tool tip. According to the descriptions, these data belong to ChIP-seq experiments which derive from lymphoblastoid cells (GM10847 and GM12878 cell lines). The descriptions highlight that the POU2F2 peaks from GM12878 show the highest occupancy on the POU2F2 motif (element number: 4179). It means that 4179 POU2F2 motif can be found in the genome, where the ChIP-seq experiment from GM12878 cells shows peaks (summits). The tooltip provides punctual average position values and standard deviation values as well. The average position is the average distance between the highest ChIP-seq read coverages (peak summits) and the motif centers. The motif centers were used as fix reference points on the genome, and the summits as the centers of protein covered regions. By comparing their positions we can elucidate the position preferences of the protein. According to these position values (1.07 and 1.47) we can conclude that the transcription factor covers the DNA downstream of the POU2F2 motif while binding its own regulatory region. The summit positions show relatively low standard deviation (Lower than 20. This is based on our personal observation) which indicates a close DNA element–protein connection. We suppose that the protein, which binds directly to the DNA is more stabilized (than a co-factor, which bind indirectly to DNA) and is less mobile. This could explain the small variability between protein positions. If we display the P300 data (which consists of 5 experiments) we can see that these protein positions have no side-specific preference, and the standard deviation is significantly higher. It can be, because of the P300 seconder (indirect) binding (it is a co-factor) to the motif through the mediation of POU2F2 proteins. We can observe the same phenomenon in the case of the EBF1 ChIP-seq results. The EBF1 has a different motif from the POU2F2, so we can hypothesize  that these factors connect to the POU2F2 protein which is able to bind directly to the POU2F2 DNA element. 
+<br>
+<br>
+
+
+
+Interoperability between the different views
+<br>
+<br>
+
+The motif view provides a global picture about the transcription factor binding sites and their occupying ChIP-seq signals. It is a genomic bird’s-eye view, which is a useful tool for identifying intriguing phenomena, but in order to properly understand what we are seeing, we need to be able to take a closer look. 
+As it was mentioned in the Help section, the diagram was made to be interactive. The dots on the diagram (which all represent a specific ChIP-seq experiment) can be marked by clicking on them.  
+<br>
+<br>
+
+The attributes (cell line, antibody, SRA ID, element number) of the selected experiments (a maximum of 3 experiments can be selected at the same time) appear below the chart. If you want to investigate the appointed highlighted data, you can choose from the following for further options: 
+If you click on the “to pair shift view” button, it will navigate you to the distance distribution chart of the summit positions (of the selected experiments) compared to the adjusted motif (the same motif, which was displayed in the motif view). 
+To browse the genomic locations of peak-motif co-occurrences in the genome browser, click on the “to the jbrowse” button.
+You can check the frequency of co-occupancy between the selected factors by clicking on the “to Venn diagram” button. This will open a classical logic diagram display mode, where the motif related coappearance of summits can be seen.
+<br>
+<br>
+<br>
+
+
+
+Pair Shift view
+<br>
+<br>
+
+In this example, we will check the relation between the CTCF motif and the summits of two experiments from the MCF7 cell line. 
+1. First, hover on the “Search views” menu and click on the “Pair shift view“ button. 
+<br>
+<br>
+
+2. Select the CTCF motif under “Set a motif”. 
+<br>
+<br>
+
+3. Then we click on the first dropdown box on the upper right and select “MCF7” as the cell type from the list. In the same row, using the next dropdown menu we can pick our target protein. We will choose CTCF from the list. The third option is the experiment name, which you should set to “hs_BreastAdenocarcinoma_MCF7_cancer_CTCF_SRX1091824”.
+<br>
+<br>
+
+4.  In the next row repeat the previous steps, but select RRAD21 as the antibody, and “hs_BreastAdenocarcinoma_MCF7_cancer_RAD21_ERX004452” as the experiment name.
+5. When you have finished setting the parameters, click on the “Resend Data” button.
+<br>
+<br>
+
+6.  The page will update and then the diagram will be displayed. If you selected the CTCF in the first row of dropdown boxes, the distribution curve will be illustrated with red color. The second row’s curve will be blue. If the curves do not fit properly in the diagram, try to set the minimum and maximum values of the axes below the figure. 
+<br>
+<br>
+
+On the picture you can see that the red curve (CTCF) is shifted towards the right-hand side of the CTCF motif, peaking around the -5th base pair from the centre. In contrast, the RAD21 peak is shifted downstream of the motif, and has a local maxima around the +15th basepair. Underlying these considerations was the assumption that the fine positional shifts that may exist between the contact points of cohesin proteins (CTCF, RAD21, SMC1/3 and STAG1/2) may reflect the 3D position of the components within the complex. Since CTCF is the only known specific DNA binder among the components of the CTCF/cohesin complex, we expected that the corresponding ChIP-seq peaks will point to the same position with respect to CTCF motif. In contrast, the fact that we can observe a positional shift suggests that RAD21 proteins occupy conserved – relatively fixed – positions that are close enough to the DNA so as to allow DNA-protein crosslinks to form during the ChIP-seq procedure.
+The JARID1B is known as a histone demethylase enzyme. It is already described that a high fraction of JARID1B peaks overlap with CTCF binding sites in basal breast cancer cells t al., 2014. The relationship between these two factors has also been investigated, as well as their relative effects on each other. According to the knock-down experiments, they found clear evidence for CTCF-JARID1B interactions, which suggests that the two proteins are present in the same complex. 
+7. Following their observations, if we set “hs_BreastAdenocarcinoma_MCF7_cancer_JARID1B_SRX265412” as the third experiment in Pair shift view, we can observe a bell like normal distribution curve, which indicatesfrequent CTCF-JARID1B co-appearance. Comparing this curve with CTCF or RAD21, we can notice that its height is much lower and its width is broader. Consequently, the standard deviation of the positions is higher (20.55). This means that the CTCF motif - JARID1B interaction is far from direct, the enzyme connects to these binding sites through several other proteins.
+
+
+
+</body>
+</html>

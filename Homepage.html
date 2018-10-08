@@ -1,0 +1,136 @@
+
+<html xmlns="">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to SummitDB</title>
+<link href="base.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+* {box-sizing:border-box}
+body {font-family: Times;}
+.mySlides {display:none}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 30%;
+	padding-top: 5%;
+	padding-left: 2%;
+	padding-right: 2%
+}
+
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+</style>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to SummitDB</title>
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+
+</style>
+<link href="slider.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="container_16">
+<!--topdiv -->
+  <a href="Homepage.html"><img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logo"/></a>
+  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
+    <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
+</div> 
+                                                                                           
+ <div class="foo"> 
+    <ul class="navlink">
+    	<li><a href="Homepage.html" title="Home" class="active">Home</a></li>
+        <li><a href="about.html" title="Tools">Tools</a>
+       	  <ul class="subnav">
+        	<li><a href="Motif_view.html" title="Motif view">Motif view</a></li>
+        	<li><a href="Pair_shift_view.html" title="Pairshift view">Pairshift view</a></li>
+        	<li><a href="JBrowse_view.html" title="Jbrowser view">Jbrowser view</a></li>
+        	</ul></li>
+        <li><a href="Documentation.html" title="Documentation">Documentation</a></li>
+        <li><a href="Help.html" title="Help">Help</a></li>
+    </ul>
+	</div>
+  
+  
+ 
+ <g>
+ 
+
+<div class="slideshow-container" style="float: left">
+
+<div class="mySlides fade">
+  <a href="JBrowse_view.html" target="_parent"><img src="JBrowse.png" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+  <a href="Pair_shift_view.html" target="_parent"><img src="Pairshift_view1.png" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+  <a href="Pair_shift_view.html" target="_parent"><img src="Pairshift_view2.png" style="width:100%"></a>
+</div>
+
+<div class="mySlides fade">
+  <a href="Motif_view.html" target="_parent"><img src="TFBS_view.png" style="width:100%"></a>
+</div>
+</div>
+<br>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 5000); // Change image every 2 seconds
+}
+</script>
+<p class="donectxt"><span>Welcome to the SummitDB</span> 
+    The SummitDB is a collection of processed ChIP-seq data. It is intended to provide information about possible direct or indirect interaction between transcription regulatory proteins and their positioning on the genome 
+    <br> 
+    <br> 
+    <span><a href="#">TFBS view:</a> </span>View a genomic region you are interested in. You can check which motifs are involved and what kind of proteins are occupied on this region. Zoom on a motif to examine the identified ChIP-seq summits and their relative distance from the motif centre. The results can be filtered based on cell or protein type. 
+    
+    <span><a href="#">Motif view: </a> </span>Explore the occupied proteins and their position (related to reference points: the centre of motif of interest) on a given motif. If you want to get detailed information about a specific transcription factor motif in global manner, the scatter plots can summarize for you the following information:<br>      
+	-Which ChIP-seq experiments overlap with the given type of motif (globally) and it’s neighbouring 50 base pairs?<br>
+	-What is the frequency of overlaps?<br>
+	-What are the median/average summit positions of each overlapping ChIP-seq experiments around the motif?<br>
+	-What is the standard deviation of summit positions?<br> 
+<span><a href="#">Jbrowser:</a> </span>Browse genomic data including: motif locations, summit positions, ref genes etc. on hg19 reference genome.  The genome browser is a graphical interface for rapid visualization of ChIP-seq data.
+    <span><a href="#">Pair shift view: </a> </span> Check the linkage between two factors with comparing their summit distance distribution around a given motif. The comparison of two ChIP-seq experiments (which derive from the same cell line) can clarify the incidence of co-binding and the possible positioning of proteins. You can compare directly the summit distance distributions of two ChIP-seq experiment in the immediate vicinity of a motif type of interest. This view provides detailed information about the co-binding frequency between two target proteins in a given cell type.    
+    <br><br><br><br>
+    Combine the results of different views. Check in motif view which ChIP-seq experiment shows the biggest overlap with a given motif than compare the its distance distribution with the ChIP-seq experiement of the transcription factor belongs to the motif (and derive from the same cell line) in pair shift view. Examine the individual motif instances where co-binding could be found in Jbrowser.  Zoom on a single motif and investigate in TFBS region view what further factors are colocalized in the defined cell line. 
+   
+</g>
+
+</body>
+</html> 

@@ -1,0 +1,17 @@
+function doSearch() {
+    var formexp1v = '';
+    var formexp1v = parseInt(document.getElementById("formexp1").value) || 100;
+    var formexp2v = '';
+    var formexp2v = parseInt(document.getElementById("formexp2").value) || 12;
+    var formexp3v = '';
+    var formexp3v = parseInt(document.getElementById("formexp3").value) || 500;
+    var motifNamev = <?php echo $motifName; ;>
+
+    //making the input a bit more idiot proof remember to update this link when it goes to a new place
+
+    window.location = "http://genomics.dote.hu/summitdb/motive_view.php?maxid=" + encodeURIComponent(max) + "&minid=" + encodeURIComponent(min) + "&mnelem=" + encodeURIComponent(minelem) + "&mxelem=" + enco$
+
+    return false; // not entirely necessary, but just in case
+};
+ 
+

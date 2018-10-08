@@ -1,0 +1,69 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to SummitDB</title>
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>
+<link href="slider.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+     <div style="background-color:#AB9F9D;height:100%;width:100%;">
+<g>
+<p class="donectxt">
+
+	You can find the semantic description of data or data producing procedure here. If you need more detailed information, please read our manuscript (link)  
+Ezt a szöveget még majd le kell rövidíteni, azt a szöveget másoltam be amit a supplement-hez írtam, illetve a pipelineról egy képet is be kellene rakni) In the
+ChIP-seq data collection we used the NCBI SRA and ENCODE database as source. The compiled dataset consists of 1999 members. We sought to collect experiments with
+different target proteins and cell type origins as many as possible. The procession of downloaded raw data was carried out with an in-house developed ChIP-seq 
+analysis pipeline. This includes among others mapping (BWA), peak calling, tagdirectory creation and data visualization steps. Then the semi-processed data has 
+undergone various processing steps.
+<br><br>
+	Peaksplitter and filtering Identifying peaks with well defined maxima was crucial at the early stage of data processing because the false positively 
+identified peaks could spoil the result of protein position prediction. The peak summit (maxima) shows the highest coverage of the region and are known to 
+more-or-less coincide with the center of corresponding DNA elements in the case of transcription factors. That is the reason why we needed regions where the
+summit position/positions can be clearly defined. Current programs use different strategies for peak prediction (evaluate the peak prediction reproducibility
+or using false discovery rates (FDR) (1)) which dramatically decrease the false positive rates. Unfortunately, the filtering algorithms needed to be differently
+parameterized per experiment which makes the automation of processing large set of data more difficult. To complete the filtration, we developed a pipeline to 
+reduce even further the false positive discovery rate. Firstly, we used PeakSplitter summit predictions, which was developed to split subpeaks (in case of 
+overlapping peaks) and thus gives more accurate local maxima. The peaks of a transcription factors (TFs) usually appear concentrated narrowly, showing more-or-less
+a Gaussian bell curve like shape due to the random fragmentation and their narrow binding surface (especially after extension of reads to the expected fragment 
+length) (MACS). Remarkably high signal and narrow enrichment can refer to insufficient discard of read duplicates or to library preparation artifacts 
+(Bastiaan Star 2014 et. al; Steven R. Head et al. 2014). To avoid false positive results, we pre-filtered the read duplicates (part of our in-house developed 
+ChIP-seq analysis pipeline) and produced a perl script which classify and filter the subpeaks considering their sizes and shapes. The first two parameters are 
+responsible to detect the previously mentioned large signal intensity increase (one base to another). In these calculations, the peaks are considered coverage 
+histograms, and the positions of median, first and third quartile were used.
+<br><br>
+
+	Motif optimization and recovery of their locations Identification of the exact position of transcription factor binding sites served as the basis of 
+our database. These motif instances were not only the collection of regulatory regions but also were used as reference points (the centre of the motif) in summit 
+position analysis. Our primary goal was to create a consensus binding site sets for as many transcription factor as we can. To perform this, we used the JASPAR CORE 
+database which is a “curated, non-redundant set of profiles, derived from published collections of experimentally defined transcription factor binding sites for 
+eukaryotes.” This incorporates 512 non-redundant motif. In the early stages of our analysis, we attempted to pair all motifs with proper ChIP-seq experiments from 
+our collection (valamelyik táblázat). Sevaral motifs lacking NGS data, for historical reason: CORE was built to create familial binding profiles for as many structural 
+classes of transcription factor classes as possible. Large set of motif could be find in literature with no available sequence data. We could connect 281 motifs 
+to at least one ChIP-seq data because several cases no sequence and NGS data was available. These motifs underwent optimization, whereby the peak regions of 
+proper ChIP-seq experiments were scanned to find similar motif enrichments (homer link). The optimized motifs were manually selected to find the most identical ones 
+to the given motifs. This step maximized the number of specific motif instances which were identified in the next step. Numerous tools can be used to find the 
+occurrences of individual motifs. Instead of choosing from the many possibilities, we combined 3 popular methods: HOMER, FIMO and MAST. The positions which were 
+identified by at least two programs (to identical positions) as the exact position was identified at least by two programs Serves as first filtering step. 
+The position which were identified as instance to a given motif at least by two programs, were selected in the first step of filtering. Considering the motif 
+scores (default homer, mast and fimo scores) and the distance of closest summit (using the list of paired motif-ChIP-seq experients) we calculated a weighted 
+motif value. All concerned ChIP-seq peaks were attempted to pair with the closest motif with highest value. The distance cut of was +/- 50 base pair. Then we 
+created non-redundant motif sets with filtering the identical (position, direction) motif occurrences. Even in the case of palindromic sequences we could identify 
+motif directions due the flanking regions and the positional preferences of summits. In the previously mentioned step and in the following analysis the closestBed 
+(feature of bedtools) was used to measure directly the distance between the centre of motifs and summits. The base after the geometric middle serves as centre for 
+motifs whose length is even. 
+
+</p>
+ </g>
+   
+ </div>                                          
+
+
+
+</body>
+</html>
