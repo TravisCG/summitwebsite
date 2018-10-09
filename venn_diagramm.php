@@ -1,8 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "sciguest";
-$password = "password";
-$dbname = "summitdb";
+include("config.php");
+
 $exp1 = $_GET['exp1'];
 $exp1Name = '\''.$exp1.'\'';
 $exp2 = $_GET['exp2'];
@@ -494,7 +492,7 @@ function vennBed() {
     var low_limit = parseInt(document.getElementById("low_limit").value) || -25;
 //making the input a bit more idiot proof remember to update this link when it goes to a new place
 
-    window.location = "http://summit.med.unideb.hu/summitdb/venn_downloads_BE.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive);
+    window.location = "http://summit.med.unideb.hu/summitdb/venn_downloads.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive);
 
     return false; // not entirely necessary, but just in case
 

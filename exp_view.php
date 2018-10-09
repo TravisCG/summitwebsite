@@ -1,8 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "sciguest";
-$password = "password";
-$dbname = "summitdb";
+include("config.php");
+
 $maxID = $_GET['maxid'];
 $minID = $_GET['minid'];
 $minElem = $_GET['mnelem'];

@@ -1,8 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "sciguest";
-$password = "password";
-$dbname = "summitdb";
+include("config.php");
+
 $exp1 = $_GET['exp'];
 $exp1Name = '\''.$exp1.'\'';
 

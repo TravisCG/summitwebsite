@@ -1,8 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "sciguest";
-$password = "password";
-$dbname = "summitdb";
+include("config.php");
+
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
 $motiveplus = $motifid + 100;
