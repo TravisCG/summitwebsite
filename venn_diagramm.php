@@ -1,17 +1,9 @@
 <?php
 include("config.php");
 
-$exp1 = $_GET['exp1'];
-$exp1Name = '\''.$exp1.'\'';
-$exp2 = $_GET['exp2'];
-$exp2Name = '\''.$exp2.'\'';
-$exp3 = $_GET['exp3'];
-$exp3Name = '\''.$exp3.'\'';
-$limit = $_GET['limit'];
-$low_limit = $_GET['low_limit'];
-$complex_id1 = '"' . $motiveplus . $exp1 . '"';
-$complex_id2 = '"' . $motiveplus . $exp2 .  '"';
-$complex_id3 = '"' . $motiveplus . $exp3 .  '"';
+$exp1Name = $_GET['exp1'];
+$exp2Name = $_GET['exp2'];
+$exp3Name = $_GET['exp3'];
 $motifPart = $_GET['motifid'];
 $motifName = '\''.$motifPart.'\'';
 $motifText = $_GET['motive'];
@@ -24,50 +16,39 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//queries
-$sql1 = "SELECT  motifpos_id
-FROM venn_view
-WHERE motif_id= $motifName
-AND experiment_id = $exp1Name
-";
+function fetchAssoc($res) {
+  while( $r = mysqli_fetch_assoc($res)){
+    $assoc[] = $r;
+  }
+  return($assoc);
+}
 
-$sql2 = "SELECT  motifpos_id
-FROM venn_view
-WHERE motif_id= $motifName
-AND experiment_id = $exp2Name
-";
+function getMotifPos($conn, $motifName, $expName){
+  $sql = "SELECT motifpos_id FROM venn_view WHERE motif_id = $motifName AND experiment_id = $expName";
+  $res = $conn->query($sql);
+  $assoc = fetchAssoc($res);
+  return($assoc);
+}
 
-$sql3 = "SELECT  motifpos_id
-FROM venn_view
-WHERE motif_id= $motifName
-AND experiment_id = $exp3Name
-"; 
+function getExpCellAntiBody($conn, $expName){
+  $sql = "SELECT experiment.name, cell_lines.name AS cell_line, antibody.name AS antibody, antibody.antibody_id AS antid, cell_lines.cellline_id AS cellid
+          FROM
+          experiment
+          LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
+          LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id
+          WHERE experiment.experiment_id = $expName";
+  $res = $conn->query($sql);
+  $assoc = fetchAssoc($res);
+  return($assoc);
+}
 
-$sql1start = "SELECT experiment.name, cell_lines.name as cell_line, antibody.name as antibody, antibody.antibody_id as antid, cell_lines.cellline_id as cellid
-FROM
-experiment
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id
-WHERE experiment.experiment_id = $exp1Name
-";
-
-$sql2start = "SELECT experiment.name, cell_lines.name as cell_line, antibody.name as antibody , antibody.antibody_id as antid, cell_lines.cellline_id as cellid
-FROM
-experiment
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id
-WHERE experiment.experiment_id = $exp2Name
-";
-
-$sql3start = "SELECT experiment.name, cell_lines.name as cell_line, antibody.name as antibody, antibody.antibody_id as antid, cell_lines.cellline_id as	cellid
-FROM
-experiment
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id
-WHERE experiment.experiment_id = $exp3Name
-";
-
-
+//TODO: May I need to add motif name and minimum overlap?
+function getAntiBodyFromCell($conn, $cellline){
+  $sql = "SELECT distinct(antibody.name) AS antibody, antibody_id, cellline_id FROM experiment LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id WHERE cell_lines.name = '$cellline';";
+  $res = $conn->query($sql);
+  $assoc = fetchAssoc($res);
+  return($assoc);
+}
 
 $sql4 = "SELECT experiment_id, CONCAT(experiment.name, ' elem_num: ' , average_deviation.element_num)  AS name, antibody_antibody_id AS antibody_id, cell_lines_cellline_id
 FROM experiment
@@ -75,6 +56,7 @@ LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = expe
 WHERE average_deviation.consensus_motif_motif_id = $motifName
 && average_deviation.element_num >= $minElem
 ";
+
 $sql6 = "SELECT name, motif_id 
 FROM consensus_motif";
 
@@ -100,55 +82,30 @@ ORDER BY antibody";
 
 //generating results
 
-$result1 = $conn->query($sql1);
-$result2 = $conn->query($sql2);
-$result3 = $conn->query($sql3);
+$jsonData1 = getMotifPos($conn, $motifName, $exp1Name);
+$jsonData2 = getMotifPos($conn, $motifName, $exp2Name);
+$jsonData3 = getMotifPos($conn, $motifName, $exp3Name);
 $result4 = $conn->query($sql4);
 $result6 = $conn->query($sql6);
 $result7 = $conn->query($sql7);
 $result8 = $conn->query($sql8);
 
-$result1start = $conn->query($sql1start);
-$result2start = $conn->query($sql2start);
-$result3start = $conn->query($sql3start);
+$jsonData1start = getExpCellAntiBody($conn, $exp1Name);
+$jsonData2start = getExpCellAntiBody($conn, $exp2Name);
+$jsonData3start = getExpCellAntiBody($conn, $exp3Name);
 
 
 //genrating data into jsondata
+$jsonData4 = fetchAssoc($result4);
+$jsonData6 = fetchAssoc($result6);
+$jsonData7 = fetchAssoc($result7);
+$jsonData8 = fetchAssoc($result8);
 
-while($r = mysqli_fetch_assoc($result1)) {
-    $jsonData[] = $r;}
-
-while($w = mysqli_fetch_assoc($result2)) {
-    $jsonData2[] = $w;}
-
-while($e = mysqli_fetch_assoc($result3)) {
-    $jsonData3[] = $e;}
-
-while($rs = mysqli_fetch_assoc($result1start)) {
-    $jsonData1start[] = $rs;}
-
-while($ws = mysqli_fetch_assoc($result2start)) {
-    $jsonData2start[] = $ws;}
-
-while($es = mysqli_fetch_assoc($result3start)) {
-    $jsonData3start[] = $es;}
-
-
-while($es = mysqli_fetch_assoc($result4)) {
-    $jsonData4[] = $es;}
-
-while($ew6 = mysqli_fetch_assoc($result6)) {
-    $jsonData6[] = $ew6;}
-
-while($e7 = mysqli_fetch_assoc($result7)) {
-    $jsonData7[] = $e7;}
-
-while($e8 = mysqli_fetch_assoc($result8)) {
-    $jsonData8[] = $e8;}
+$antibody1 = getAntiBodyFromCell($conn, $jsonData1start[0]['cell_line']);
+$antibody2 = getAntiBodyFromCell($conn, $jsonData2start[0]['cell_line']);
+$antibody3 = getAntiBodyFromCell($conn, $jsonData3start[0]['cell_line']);
 
 $conn->close();
-
-
 
 ?>
 
@@ -276,7 +233,7 @@ function glossToggle() {
 </div>
 
 <?php
-$size1 = sizeof($jsonData, JSON_NUMERIC_CHECK);
+$size1 = sizeof($jsonData1, JSON_NUMERIC_CHECK);
 $size2 = sizeof($jsonData2, JSON_NUMERIC_CHECK);
 $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 
@@ -352,7 +309,7 @@ document.getElementById("antiformexp3v2").value = lol3;
 <button class="paired_button" onclick="">Go to selected motif's view</button>
 </a>
 
-<a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifPart ;?>,example_track1,example_track2,example_track3& addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
+<a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifPart ;?>,example_track1,example_track2,example_track3& addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1Name; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2Name; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3Name; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
 <button class="paired_button" onclick="">View in jbrowse</button>
 </a>
 </div>
@@ -383,8 +340,8 @@ var data7 = <?php echo json_encode($jsonData7, JSON_NUMERIC_CHECK);?>;
 var data8 = <?php echo json_encode($jsonData8, JSON_NUMERIC_CHECK);?>;
 
 <?php
-$inter1i2 = sizeof(array_merge($jsonData,$jsonData2)) - sizeof(array_unique(array_merge($jsonData,$jsonData2), SORT_REGULAR));
-$inter1i3 = sizeof(array_merge($jsonData,$jsonData3)) - sizeof(array_unique(array_merge($jsonData,$jsonData3), SORT_REGULAR));
+$inter1i2 = sizeof(array_merge($jsonData1,$jsonData2)) - sizeof(array_unique(array_merge($jsonData1,$jsonData2), SORT_REGULAR));
+$inter1i3 = sizeof(array_merge($jsonData1,$jsonData3)) - sizeof(array_unique(array_merge($jsonData1,$jsonData3), SORT_REGULAR));
 $inter2i3 = sizeof(array_merge($jsonData2,$jsonData3)) - sizeof(array_unique(array_merge($jsonData2,$jsonData3), SORT_REGULAR));
 
 ?>
@@ -400,7 +357,7 @@ if ($size1 === 0 || $size2 === 0 || $size3 === 0){
  echo "0";
 
 } else {
-echo -(sizeof(array_merge($jsonData,$jsonData2,$jsonData3)) - sizeof(array_unique(array_merge($jsonData,$jsonData2,$jsonData3), SORT_REGULAR)) -
+echo -(sizeof(array_merge($jsonData1,$jsonData2,$jsonData3)) - sizeof(array_unique(array_merge($jsonData1,$jsonData2,$jsonData3), SORT_REGULAR)) -
 $inter1i2 - 
 $inter1i3 - 
 $inter2i3);
@@ -528,12 +485,10 @@ foreach($jsonData7 as $item){
 </select>
 
 
-<select disabled id="antiformexp1" type="text" class="two" value="" placeholder="Type to filter" style="background:#ff6666;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
+<select id="antiformexp1" type="text" class="two" value="" placeholder="Type to filter" style="background:#ff6666;">
+<?php
+// Set antibody names by the cell lines (first select box) 
+foreach($antibody1 as $item){
     echo "<option value=".  $item['antibody_id'] . " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
     }
 ?>
@@ -556,7 +511,6 @@ foreach($jsonData4 as $item){
 
 <?php 
 //this one puts ALL the options in the select area
-
 foreach($jsonData7 as $item){
     echo "<option value=".  $item['cell_lines_cellline_id'] .  " class=\"formexp2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
     }
@@ -565,12 +519,10 @@ foreach($jsonData7 as $item){
 
 
 
-<select disabled id="antiformexp2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
-
+<select id="antiformexp2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
 <?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
+// Set antibody names by the cell lines (select left hand side from this box)
+foreach($antibody2 as $item){
     echo "<option value=".  $item['antibody_id'] .  " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
     }
 ?>
@@ -604,12 +556,10 @@ foreach($jsonData7 as $item){
 </select>
 
 
-<select disabled id="antiformexp3" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
-
+<select id="antiformexp3" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
 <?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
+// Set antibody names by the cell lines (select left hand side from this box)
+foreach($antibody3 as $item){
     echo "<option value=".  $item['antibody_id'] .  " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . "  >" . $item['antibody'] . "</option>" ;    // process the line read.
     }
 ?>
