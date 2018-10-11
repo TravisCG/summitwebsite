@@ -505,7 +505,7 @@ foreach($jsonData4 as $item){
 ?>
 
 </select>
-<button class="threeAH2" onclick="jumptoexp1()"> experiment view </button>
+<button class="threeAH2" onclick="jumptoexp('formexp1')"> experiment view </button>
 <br>
 <select id="cellformexp2" type="text" class="four" value="" placeholder="Type to filter" style="background:#6666ff;">
 
@@ -541,7 +541,7 @@ foreach($jsonData4 as $item){
 
 ?>
 </select>
-<button class="sixAH2" onclick="jumptoexp2()"> experiment view </button>
+<button class="sixAH2" onclick="jumptoexp('formexp2')"> experiment view </button>
 <br>
 
 <select id="cellformexp3" type="text" value="" class="seven" placeholder="Type to filter" style="background:#66ff66;">
@@ -575,7 +575,7 @@ foreach($jsonData4 as $item){
 
 ?>
 </select>
-<button class="nineAH2" onclick="jumptoexp3()"> experiment view </button>
+<button class="nineAH2" onclick="jumptoexp('formexp3')"> experiment view </button>
 
 <br>
 <br>
@@ -586,31 +586,11 @@ foreach($jsonData4 as $item){
 <script>
 
 //makes the three jump to experiment view buttons work
-function jumptoexp1() {
-   var firstexp1 = '';
-    var firstexp1 = parseInt(document.getElementById("formexp1").value) || "undefined";
-var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(firstexp1);
-
-window.open(adresshift, '_blank');
+function jumptoexp(expelement) {
+    var expID = parseInt(document.getElementById(expelement).value) || "undefined";
+    var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(expID);
+    window.open(adresshift, '_blank');
 }
-
-function jumptoexp2() {
-   var firstexp2 = '';
-    var firstexp2 = parseInt(document.getElementById("formexp2").value) || "undefined";
-var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(firstexp2);
-
-window.open(adresshift, '_blank');
-}
-
-function jumptoexp3() {
-   var firstexp3 = '';
-    var firstexp3 = parseInt(document.getElementById("formexp3").value) || "undefined";
-var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(firstexp3);
-
-window.open(adresshift, '_blank');
-}
-
-
 
 //this thing will help the preselect trim the experiment selection
 
@@ -750,6 +730,14 @@ $('button#exp3').click(function(){
 
 
 <div>
+<div style="width:100%;height:7em;">
+
+<p>
+Antibody oriented search<br><br>
+In this mode, two or three experiments can be compared as above. Here the seach starts with designating the antibody and the cell type afterwards. 
+</p>
+</div>
+
 <div class="wrapper">
 
 <select disabled id="cellformexp1v2" class="two" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
@@ -787,7 +775,7 @@ foreach($jsonData4 as $item){
 ?>
 
 </select>
-<button class="threeAH2" onclick="jumptoexp1v2()"> experiment view </button>
+<button class="threeAH2" onclick="jumptoexp('formexp1v2')"> experiment view </button>
 <br>
 <select disabled id="cellformexp2v2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
 
@@ -830,7 +818,7 @@ foreach($jsonData4 as $item){
 
 ?>
 </select>
-<button class="sixAH2" onclick="jumptoexp2v2()"> experiment view </button>
+<button class="sixAH2" onclick="jumptoexp('formexp2v2')"> experiment view </button>
 <br>
 
 <select disabled id="cellformexp3v2" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
@@ -866,7 +854,7 @@ foreach($jsonData4 as $item){
 
 ?>
 </select>
-<button class="nineAH2" onclick="jumptoexp3v2()"> experiment view </button>
+<button class="nineAH2" onclick="jumptoexp('formexp3v2')"> experiment view </button>
 
 <br>
 <br>
@@ -875,33 +863,6 @@ foreach($jsonData4 as $item){
 
 
 <script>
-
-//makes the three jump to experiment view buttons work
-function jumptoexp1v2() {
-   var firstexp1v2 = '';
-    var firstexp1v2 = parseInt(document.getElementById("formexp1v2").value) || "undefined";
-var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(firstexp1v2);
-
-window.open(adresshift, '_blank');
-}
-
-function jumptoexp2v2() {
-   var firstexp2v2 = '';
-    var firstexp2v2 = parseInt(document.getElementById("formexp2v2").value) || "undefined";
-var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(firstexp2v2);
-
-window.open(adresshift, '_blank');
-}
-
-function jumptoexp3v2() {
-   var firstexp3v2 = '';
-    var firstexp3v2 = parseInt(document.getElementById("formexp3v2").value) || "undefined";
-var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(firstexp3v2);
-
-window.open(adresshift, '_blank');
-}
-
-
 
 //this thing will help the preselect trim the experiment selection
  $( document ).ready(function() {
@@ -1284,13 +1245,6 @@ var result1i = differenceObjects(data1list, data2list, data3list, function(item1
 </script>
 
 
-<div style="width:100%;height:7em;">
-
-<p>
-Antibody oriented search<br><br>
-In this mode, two or three experiments can be compared as above. Here the seach starts with designating the antibody and the cell type afterwards. 
-</p>
-</div>
 
 
 <div style="width:100%">
