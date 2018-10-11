@@ -107,6 +107,10 @@ $antibody3 = getAntiBodyFromCell($conn, $jsonData3start[0]['cell_line']);
 
 $conn->close();
 
+$size1 = sizeof($jsonData1, JSON_NUMERIC_CHECK);
+$size2 = sizeof($jsonData2, JSON_NUMERIC_CHECK);
+$size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
+
 ?>
 
 <!DOCTYPE html>
@@ -201,101 +205,41 @@ function glossToggle() {
  <table style="width:71%;top:99em;">
 <tr style="color:red;">
     <td>experiment name:</td>
-    <td id="texpName1">not selected</td>
+    <td id="texpName1"><?php echo $jsonData1start[0]["name"];?></td>
     <td>antibody:</td>
-    <td id="tantibody1">not selected</td>
+    <td id="tantibody1"><?php echo $jsonData1start[0]["antibody"];?></td>
     <td>cell line:</td>
-    <td id="tcelline1">not selected</td>
+    <td id="tcelline1"><?php echo $jsonData1start[0]["cell_line"];?></td>
     <td>consensus motif binding sites:</td>
-    <td id="tcons1">not selected</td>
+    <td id="tcons1"><?php echo $size1;?></td>
   </tr>
 <tr style="color:blue;">
     <td>experiment name:</td>
-    <td id="texpName2">not selected</td>
+    <td id="texpName2"><?php echo $jsonData2start[0]["name"];?></td>
     <td>antibody:</td>
-    <td id="tantibody2">not selected</td>
+    <td id="tantibody2"><?php echo $jsonData2start[0]["antibody"];?></td>
     <td>cell line:</td>
-    <td id="tcelline2">not selected</td>
+    <td id="tcelline2"><?php echo $jsonData2start[0]["cell_line"];?></td>
     <td>consensus motif binding sites:</td>
-    <td id="tcons2">not selected</td>
+    <td id="tcons2"><?php echo $size2;?></td>
   </tr>
 <tr style="color:green;">
     <td>experiment name:</td>
-    <td id="texpName3">not selected</td>
+    <td id="texpName3"><?php echo $jsonData3start[0]["name"];?></td>
     <td>antibody:</td>
-    <td id="tantibody3">not selected</td>
+    <td id="tantibody3"><?php echo $jsonData3start[0]["antibody"];?></td>
     <td>cell line:</td>
-    <td id="tcelline3">not selected</td>
+    <td id="tcelline3"><?php echo $jsonData3start[0]["cell_line"];?></td>
     <td>consensus motif binding sites:</td>
-    <td id="tcons3">not selected</td>
+    <td id="tcons3"><?php echo $size3;?> </td>
   </tr>
 </table>
 </div>
 
-<?php
-$size1 = sizeof($jsonData1, JSON_NUMERIC_CHECK);
-$size2 = sizeof($jsonData2, JSON_NUMERIC_CHECK);
-$size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
-
-
-?>
-
-
-
-
 <script>
-//making the colorful table work
-
 var data1start = <?php echo json_encode($jsonData1start);?>;
-
 var data2start = <?php echo json_encode($jsonData2start);?>;
-
 var data3start = <?php echo json_encode($jsonData3start);?>;
-
-var texpName1 = data1start[0].name;
-document.getElementById('texpName1').innerHTML = texpName1;
-var tanti1 = data1start[0].antibody;
-document.getElementById('tantibody1').innerHTML = tanti1;
-var tcell1 = data1start[0].cell_line
-document.getElementById('tcelline1').innerHTML = tcell1;
-document.getElementById('tcons1').innerHTML = <?php echo $size1; ?>;
-
-
-var texpName2 = data2start[0].name;
-document.getElementById('texpName2').innerHTML = texpName2;
-var tanti2 = data2start[0].antibody;
-document.getElementById('tantibody2').innerHTML = tanti2;
-var tcell2 = data2start[0].cell_line
-document.getElementById('tcelline2').innerHTML = tcell2;
-document.getElementById('tcons2').innerHTML = <?php echo $size2; ?>;
-
-
-
-var texpName3 = data3start[0].name;
-document.getElementById('texpName3').innerHTML = texpName3;
-var tanti3 = data3start[0].antibody;
-document.getElementById('tantibody3').innerHTML = tanti3;
-var tcell3 = data3start[0].cell_line
-document.getElementById('tcelline3').innerHTML = tcell3;
-document.getElementById('tcons3').innerHTML = <?php echo $size3; ?>;
-
-
-
-
-var lol1 = data1start[0].antid;
-document.getElementById("antiformexp1").value = lol1;
-var lol2 = data2start[0].antid;
-document.getElementById("antiformexp2").value = lol2;
-var lol3 = data3start[0].antid;
-document.getElementById("antiformexp3").value = lol3;
-
-document.getElementById("antiformexp1v2").value = lol1;
-document.getElementById("antiformexp2v2").value = lol2;
-document.getElementById("antiformexp3v2").value = lol3;
-
-
-
-
 </script>
 
 
@@ -422,7 +366,7 @@ foreach($jsonData6 as $item){
 <p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
 </p><br>
 <button class="paired_button" onclick="doSearchpreShift()">View data in paired shift view</button>
-<button class="paired_button" style="width:18em;"  onclick="vennBed()">Download bed file for genome view</button>
+<button class="paired_button" onclick="vennBed()">Download bed file for genome view</button>
 
 <!-- these id-s and values are here to give the function its standard values, because the venn view does not have upper and lower limits, and the paired shift view does -->
 <br id="limit" value=25><br id="low_limit" value=-25>
