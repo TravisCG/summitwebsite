@@ -152,7 +152,19 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
         window.open(adresshift, '_blank');
     }
 
+    var ajax = new XMLHttpRequest();
+    var expAntiCell;
+    ajax.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            expAntiCell = ajax.resposeText;
+        }
+    };
+
     $( document ).ready(function() {
+
+        ajax.open("GET", "http://summit.med.unideb.hu/summitdb/ajaxexpanticell.php?motifid=<?php echo $motifPart;?>&minelemnum=<?php echo $minElem;?>", true);
+        ajax.send();
+
         $('select#antiformexp1').change(function(){
             $("select#formexp1 option").attr('disabled', false);
             $(  "select#formexp1 " +  "option:not([data-antibody='" +  $("#antiformexp1").val() + "'])" ).attr( "disabled", "disabled" )
@@ -487,8 +499,8 @@ foreach($antibody1 as $item){
 //this one puts ALL the options in the select area
 
 foreach($jsonData4 as $item){
-    echo "<option class=\"cell_unselected\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " disabled=\"false\" >" . $item['name'] . "</option>" ;    // process the line read.
+    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
+    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
     }
 ?>
 
@@ -518,9 +530,9 @@ foreach($antibody2 as $item){
 
 <?php
 //this one puts ALL the options in the select area
-foreach($jsonData4 as $item){
-    echo "<option class=\"cell_unselected\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " disabled=\"false\" >" . $item['name'] . "</option>" ;    // process the line read.
+    foreach($jsonData4 as $item){
+    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
+    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
     }
 
 ?>
@@ -552,8 +564,8 @@ foreach($antibody3 as $item){
 <?php
 
 foreach($jsonData4 as $item){
-    echo "<option class=\"cell_unselected\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " disabled=\"false\" >" . $item['name'] . "</option>" ;    // process the line read.
+    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
+    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
     }
 
 ?>
@@ -673,7 +685,7 @@ foreach($jsonData4 as $item){
 <button class="sixAH2" onclick="jumptoexp('formexp2v2')"> experiment view </button>
 <br>
 
-<select disabled id="cellformexp3v2" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
+<select id="cellformexp3v2" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
 
 <?php 
 //this one puts ALL the options in the select area
@@ -789,7 +801,7 @@ document.getElementById("data1i2i3").innerHTML = intersect1_2_3;
 
 <p>
 VennView<br><br>
-In this mode, two or three experiments can be compared. The values in the sections of the diagram indicates the number of common and specific peaks at a consensus motif binding site. In this view, the con$
+In this mode, two or three experiments can be compared. The values in the sections of the diagram indicates the number of common and specific peaks at a consensus motif binding site.
 </p>
 <br>
 <p>
