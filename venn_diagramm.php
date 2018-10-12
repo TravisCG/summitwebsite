@@ -142,12 +142,9 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <!--topdiv -->
 
 
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
-
+  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
   <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-
-  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/>
-  </a>
+  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
 </div>
 
   <div class="foo">
@@ -259,42 +256,18 @@ var data3start = <?php echo json_encode($jsonData3start);?>;
 </div>
 
 <script>
-var margin = {top: 20, right: 20, bottom: 30, left: 60},
-    width = 1400 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-var legendtitle = 420;
-var maxShift = 99;
-
-var data = <?php 
-echo $size1;
-?>;
-
-var data2 = <?php 
-echo $size2;
-?>;
-
-var data3 = <?php 
-echo $size3;
-?>;
-
+var data = <?php echo $size1;?>;
+var data2 = <?php echo $size2;?>;
+var data3 = <?php echo $size3;?>;
 var data4 = <?php echo json_encode($jsonData4, JSON_NUMERIC_CHECK);?>;
-
 var data7 = <?php echo json_encode($jsonData7, JSON_NUMERIC_CHECK);?>;
-
 var data8 = <?php echo json_encode($jsonData8, JSON_NUMERIC_CHECK);?>;
 
 <?php
 $inter1i2 = sizeof(array_merge($jsonData1,$jsonData2)) - sizeof(array_unique(array_merge($jsonData1,$jsonData2), SORT_REGULAR));
 $inter1i3 = sizeof(array_merge($jsonData1,$jsonData3)) - sizeof(array_unique(array_merge($jsonData1,$jsonData3), SORT_REGULAR));
 $inter2i3 = sizeof(array_merge($jsonData2,$jsonData3)) - sizeof(array_unique(array_merge($jsonData2,$jsonData3), SORT_REGULAR));
-
 ?>
-
-
-
-
-
-
 
 var intersect1_2_3 = <?php 
 if ($size1 === 0 || $size2 === 0 || $size3 === 0){
@@ -310,36 +283,13 @@ $inter2i3);
 
 
 var intersect1_2 = <?php echo $inter1i2; ?>;
-
 var intersect1_3 = <?php echo $inter1i3; ?>;
-
 var intersect2_3 = <?php echo $inter2i3; ?>;
-
-
-
-
-
 var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 </script>
 
 <script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
-
-<script src="buttons.js">//this will make the buttons work
-</script>
-
-<script>
-//this trims the array in this case for the options
-function trimArray(arr)
-{
-    for(i=0;i<arr.length;i++)
-    {
-        arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
-    return arr;
-}
-</script>
-
 
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
@@ -361,56 +311,27 @@ foreach($jsonData6 as $item){
 <form action="#" id="min_field"> <input type="text" id="textboxmnelem" value="100"> 
 </form>
 
-
-
 <p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
 </p><br>
 <button class="paired_button" onclick="doSearchpreShift()">View data in paired shift view</button>
 <button class="paired_button" onclick="vennBed()">Download bed file for genome view</button>
 
-<!-- these id-s and values are here to give the function its standard values, because the venn view does not have upper and lower limits, and the paired shift view does -->
 <br id="limit" value=25><br id="low_limit" value=-25>
 
 <script>//this one works for the venn diagramm bed download
 
-
 function vennBed() {
 
-    var motive = '';
     var skillsSelect = document.getElementById("formmotive");
-    var motive = skillsSelect.options[skillsSelect.selectedIndex].text;
-    var motifid = '';
-    var motifid = parseInt(document.getElementById("formmotive").value);
-    var firstexp1 = '';
-    var firstexp1 = parseInt(document.getElementById("formexp1").value) || "undefined";
-    var secondexp2 = '';
-    var secondexp2 = parseInt(document.getElementById("formexp2").value) || "undefined";
-    var thirdexp3 = '';
-    var thirdexp3 = parseInt(document.getElementById("formexp3").value) || "undefined";
-    var limit = '';
-    var limit = parseInt(document.getElementById("limit").value) || 25;
-    var low_limit = '';
-    var low_limit = parseInt(document.getElementById("low_limit").value) || -25;
-//making the input a bit more idiot proof remember to update this link when it goes to a new place
+    var motive       = skillsSelect.options[skillsSelect.selectedIndex].text;
+    var firstexp1    = parseInt(document.getElementById("formexp1").value) || "undefined";
+    var secondexp2   = parseInt(document.getElementById("formexp2").value) || "undefined";
+    var thirdexp3    = parseInt(document.getElementById("formexp3").value) || "undefined";
 
     window.location = "http://summit.med.unideb.hu/summitdb/venn_downloads.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive);
-
-    return false; // not entirely necessary, but just in case
-
 };
 
-
-
-
-
-
-
-
-
 </script>
-
-
-
 
 <br>
 
@@ -461,8 +382,6 @@ foreach($jsonData7 as $item){
 ?>
 </select>
 
-
-
 <select id="antiformexp2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
 <?php 
 // Set antibody names by the cell lines (select left hand side from this box)
@@ -472,9 +391,7 @@ foreach($antibody2 as $item){
 ?>
 </select>
 
-
-
- <select id="formexp2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
+<select id="formexp2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
 
 <?php
 //this one puts ALL the options in the select area
@@ -498,7 +415,6 @@ foreach($jsonData7 as $item){
     }
 ?>
 </select>
-
 
 <select id="antiformexp3" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
 <?php 
@@ -524,8 +440,6 @@ foreach($jsonData4 as $item){
 <br>
 <br>
 <br>
-
-
 
 <script>
 
@@ -946,28 +860,6 @@ $(document).keypress(function(e){
     }
 });
 
-//here we will set the form boxes to be by default what they were in the url originally
-function arata_formularcell(y,x) {
-        var el = y.querySelectorAll("[data-celline= \'" + x + "\' ]");
-	for(var i = 0; i < el.length; i++) {
-    el[i].classList.remove("cell_unselected");
-}
-}
-
-function arata_formularcell2(y,x) {
-        var el = y.querySelectorAll("[data-celline= \'" + x + "\' ]");
-        for(var i = 0; i < el.length; i++) {
-    el[i].disabled = false;
-}
-}
-
-function arata_formularanti(y,x) {
-        var el = y.querySelectorAll("[data-antibody= \'" + x + "\' ]");
-        for(var i = 0; i < el.length; i++) {
-    el[i].disabled = false;
-}
-} 
-
 var formexp1value = <?php echo  $exp1Name ; ?>;
 document.getElementById("formexp1").value = formexp1value;
 document.getElementById("formexp1v2").value = formexp1value;
@@ -1027,10 +919,6 @@ document.getElementById("data1i2i3").innerHTML = intersect1_2_3;
 
 <script src="dosearchvenn.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
-
-<script src="buttons.js">//this will make the buttons work
-</script>
-
 <div style="width:100%">
 
 <p>
