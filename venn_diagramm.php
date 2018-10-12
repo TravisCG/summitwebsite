@@ -127,17 +127,158 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121648705-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-121648705-1');
 
-  gtag('config', 'UA-121648705-1');
+    // this will toggle the glossary iframe
+    function glossToggle() {
+        var x = document.getElementById("glossary");
+        var y = document.getElementById("chart_venn");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+    }
+
+    //makes the three jump to experiment view buttons work
+    function jumptoexp(expelement) {
+        var expID = parseInt(document.getElementById(expelement).value) || "undefined";
+        var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(expID);
+        window.open(adresshift, '_blank');
+    }
+
+    $( document ).ready(function() {
+        $('select#antiformexp1').change(function(){
+            $("select#formexp1 option").attr('disabled', false);
+            $(  "select#formexp1 " +  "option:not([data-antibody='" +  $("#antiformexp1").val() + "'])" ).attr( "disabled", "disabled" )
+        });
+    
+        $('select#antiformexp2').change(function(){
+            $("select#formexp2 option").attr('disabled', false);
+            $(  "select#formexp2 " +  "option:not([data-antibody='" +  $("#antiformexp2").val() + "'])" ).attr( "disabled", "disabled" )
+        });
+    
+        $('select#antiformexp3').change(function(){
+            $("select#formexp3 option").attr('disabled', false);
+            $(  "select#formexp3 " +  "option:not([data-antibody='" +  $("#antiformexp3").val() + "'])" ).attr( "disabled", "disabled" )
+        });
+    
+        $('#min_field').change(function(){
+            $.minimal =  document.getElementById('min_field')[0].value;
+            $("select#formexp1 option").removeClass("toolittle");
+            $("select#formexp1 " + "option([data-celline > '" + $.minimal + "'])" ).addClass("toolittle");
+        });
+    
+        $('select#cellformexp1').click(function(){
+            $("select#antiformexp1").attr('disabled', false);
+            $("select#formexp1 option").removeClass("cell_unselected");
+            $("select#formexp1 " + "option:not([data-celline='" + $("#cellformexp1").val() + "'])" ).addClass("cell_unselected");
+            $("select#antiformexp1 option").attr('disabled', 'disabled');
+            $(  "select#antiformexp1 " +  "option[data-celline~=\"" +  $("#cellformexp1").val() + "\"]" ).attr( 'disabled', false )
+        });
+    
+        $('select#cellformexp2').click(function(){
+            $("select#antiformexp2").attr('disabled', false);
+            $("select#formexp2 option").removeClass("cell_unselected");
+            $("select#formexp2 " + "option:not([data-celline='" + $("#cellformexp2").val() + "'])" ).addClass("cell_unselected");
+            $("select#antiformexp2 option").attr('disabled', 'disabled');
+            $(  "select#antiformexp2 " +  "option[data-celline~=\"" +  $("#cellformexp2").val() + "\"]" ).attr( 'disabled', false )
+        });
+    
+        $('select#cellformexp3').click(function(){
+            $("select#antiformexp3").attr('disabled', false);
+            $("select#formexp3 option").removeClass("cell_unselected");
+            $("select#formexp3 " + "option:not([data-celline='" + $("#cellformexp3").val() + "'])" ).addClass("cell_unselected");
+            $("select#antiformexp3 option").attr('disabled', 'disabled');
+            $(  "select#antiformexp3 " +  "option[data-celline~=\"" +  $("#cellformexp3").val() + "\"]" ).attr( 'disabled', false )
+        });
+    
+        $('button#exp1').click(function(){
+    	    $("select#formexp1 option").removeClass("cell_unselected");
+            $("select#antiformexp1 option").attr('disabled', false);
+            $("select#formexp1 option").attr('disabled', false);
+        });
+    
+        $('button#exp2').click(function(){
+            $("select#formexp2 option").removeClass("cell_unselected");
+            $("select#antiformexp2 option").attr('disabled', false);
+            $("select#formexp2 option").attr('disabled', false);
+        });
+    
+        $('button#exp3').click(function(){
+            $("select#formexp3 option").removeClass("cell_unselected");
+            $("select#antiformexp3 option").attr('disabled', false);
+            $("select#formexp3 option").attr('disabled', false);
+        });
+
+        //this thing will help the preselect trim the experiment selection
+        $('select#antiformexp1v2').change(function(){
+            $("select#cellformexp1v2").attr('disabled', false);
+            $("select#formexp1v2 option").attr('disabled', false);
+            $(  "select#formexp1v2 " +  "option:not([data-antibody='" +  $("#antiformexp1v2").val() + "'])" ).attr( "disabled", "disabled" );
+            $("select#cellformexp1v2 option").attr('disabled', 'disabled');
+            $(  "select#cellformexp1v2 " +  "option[data-antibody~=\"" +  $("#antiformexp1v2").val() + "\"]" ).attr( 'disabled', false );
+        });
+    
+        $('select#antiformexp2v2').click(function(){
+            $("select#cellformexp2v2").attr('disabled', false);
+            $("select#formexp2v2 option").attr('disabled', false);
+            $(  "select#formexp2v2 " +  "option:not([data-antibody='" +  $("#antiformexp2v2").val() + "'])" ).attr( "disabled", "disabled" );
+            $("select#cellformexp2v2 option").attr('disabled', 'disabled');
+            $(  "select#cellformexp2v2 " +  "option[data-antibody~=\"" +  $("#antiformexp2v2").val() + "\"]" ).attr( 'disabled', false );
+        });
+    
+        $('select#antiformexp3v2').click(function(){
+            $("select#formexp3v2 option").attr('disabled', false);
+            $("select#cellformexp3v2").attr('disabled', false);
+            $(  "select#formexp3v2 " +  "option:not([data-antibody='" +  $("#antiformexp3v2").val() + "'])" ).attr( "disabled", "disabled" );
+            $("select#cellformexp3v2 option").attr('disabled', 'disabled');
+            $(  "select#cellformexp3v2 " +  "option[data-antibody~=\"" +  $("#antiformexp3v2").val() + "\"]" ).attr( 'disabled', false );
+        });
+    
+        $('select#cellformexp1v2').click(function(){
+            $("select#formexp1v2 option").removeClass("cell_unselected");
+            $("select#formexp1v2 " + "option:not([data-celline='" + $("#cellformexp1v2").val() + "'])" ).addClass("cell_unselected");
+        });
+    
+        $('select#cellformexp2v2').change(function(){
+            $("select#formexp2v2 option").removeClass("cell_unselected");
+            $("select#formexp2v2 " + "option:not([data-celline='" + $("#cellformexp2v2").val() + "'])" ).addClass("cell_unselected");
+        });
+    
+        $('select#cellformexp3v2').change(function(){
+            $("select#formexp3v2 option").removeClass("cell_unselected");
+            $("select#formexp3v2 " + "option:not([data-celline='" + $("#cellformexp3v2").val() + "'])" ).addClass("cell_unselected");
+        });
+    
+        $('button#exp1v2').click(function(){
+            $("select#formexp1v2 option").removeClass("cell_unselected");
+            $("select#antiformexp1v2 option").attr('disabled', false);
+            $("select#formexp1v2 option").attr('disabled', false);
+        });
+    
+        $('button#exp2v2').click(function(){
+            $("select#formexp2v2 option").removeClass("cell_unselected");
+            $("select#antiformexp2v2 option").attr('disabled', false);
+            $("select#formexp2v2 option").attr('disabled', false);
+        });
+    
+        $('button#exp3v2').click(function(){
+            $("select#formexp3v2 option").removeClass("cell_unselected");
+            $("select#antiformexp3v2 option").attr('disabled', false);
+            $("select#formexp3v2 option").attr('disabled', false);
+        });
+    
+    }); 
+
 </script>
-
 </head>
-
 <body>
-
 <div class="container_16">
 <!--topdiv -->
 
@@ -159,24 +300,6 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 
 
 <h4 style="margin:auto;text-align:center;font-size:1.3em;padding-bottom:3em;padding-top:10em;">Venn diagramm view</h4>
-
-
-<script>
-// this will toggle the glossary iframe
-function glossToggle() {
-    var x = document.getElementById("glossary");
-    var y = document.getElementById("chart_venn");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-	y.style.display = "none";
-    } else {
-	x.style.display = "none";
-	y.style.display = "block";
-    }
-}
-</script>
-
-
 <div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
 </iframe>
@@ -365,7 +488,7 @@ foreach($antibody1 as $item){
 
 foreach($jsonData4 as $item){
     echo "<option class=\"cell_unselected\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " disabled=\"disabled\" >" . $item['name'] . "</option>" ;    // process the line read.
+    . $item['antibody_id'] . " disabled=\"false\" >" . $item['name'] . "</option>" ;    // process the line read.
     }
 ?>
 
@@ -397,7 +520,7 @@ foreach($antibody2 as $item){
 //this one puts ALL the options in the select area
 foreach($jsonData4 as $item){
     echo "<option class=\"cell_unselected\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " disabled=\"disabled\" >" . $item['name'] . "</option>" ;    // process the line read.
+    . $item['antibody_id'] . " disabled=\"false\" >" . $item['name'] . "</option>" ;    // process the line read.
     }
 
 ?>
@@ -430,7 +553,7 @@ foreach($antibody3 as $item){
 
 foreach($jsonData4 as $item){
     echo "<option class=\"cell_unselected\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " disabled=\"disabled\" >" . $item['name'] . "</option>" ;    // process the line read.
+    . $item['antibody_id'] . " disabled=\"false\" >" . $item['name'] . "</option>" ;    // process the line read.
     }
 
 ?>
@@ -440,141 +563,12 @@ foreach($jsonData4 as $item){
 <br>
 <br>
 <br>
-
-<script>
-
-//makes the three jump to experiment view buttons work
-function jumptoexp(expelement) {
-    var expID = parseInt(document.getElementById(expelement).value) || "undefined";
-    var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(expID);
-    window.open(adresshift, '_blank');
-}
-
-//this thing will help the preselect trim the experiment selection
-
- $( document ).ready(function() {
-$('select#antiformexp1').change(function(){
-$("select#formexp1 option").attr('disabled', false);
-
-$(  "select#formexp1 " +  "option:not([data-antibody='" +  $("#antiformexp1").val() + "'])" )
-	.attr( "disabled", "disabled" )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#antiformexp2').change(function(){
-$("select#formexp2 option").attr('disabled', false);
-
-$(  "select#formexp2 " +  "option:not([data-antibody='" +  $("#antiformexp2").val() + "'])" )
-        .attr( "disabled", "disabled" )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#antiformexp3').change(function(){
-$("select#formexp3 option").attr('disabled', false);
-
-
-$(  "select#formexp3 " +  "option:not([data-antibody='" +  $("#antiformexp3").val() + "'])" )
-        .attr( "disabled", "disabled" )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('#min_field').change(function(){
-
-$.minimal =  document.getElementById('min_field')[0].value;
-alert($.minimal);
-$("select#formexp1 option").removeClass("toolittle");
-$("select#formexp1 " + "option([data-celline > '" + $.minimal + "'])" ).addClass("toolittle");
-
-  });
-});
-
-
-
- $( document ).ready(function() {
-$('select#cellformexp1').click(function(){
-
-$("select#antiformexp1").attr('disabled', false);
-$("select#formexp1 option").removeClass("cell_unselected");
-$("select#formexp1 " + "option:not([data-celline='" + $("#cellformexp1").val() + "'])" ).addClass("cell_unselected");
-
-$("select#antiformexp1 option").attr('disabled', 'disabled');
-$(  "select#antiformexp1 " +  "option[data-celline~=\"" +  $("#cellformexp1").val() + "\"]" )
-        .attr( 'disabled', false )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp2').click(function(){
-
-$("select#antiformexp2").attr('disabled', false);
-$("select#formexp2 option").removeClass("cell_unselected");
-$("select#formexp2 " + "option:not([data-celline='" + $("#cellformexp2").val() + "'])" ).addClass("cell_unselected");
-
-$("select#antiformexp2 option").attr('disabled', 'disabled');
-$(  "select#antiformexp2 " +  "option[data-celline~=\"" +  $("#cellformexp2").val() + "\"]" )
-        .attr( 'disabled', false )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp3').click(function(){
-
-$("select#antiformexp3").attr('disabled', false);
-$("select#formexp3 option").removeClass("cell_unselected");
-$("select#formexp3 " + "option:not([data-celline='" + $("#cellformexp3").val() + "'])" ).addClass("cell_unselected");
-
-$("select#antiformexp3 option").attr('disabled', 'disabled');
-$(  "select#antiformexp3 " +  "option[data-celline~=\"" +  $("#cellformexp3").val() + "\"]" )
-        .attr( 'disabled', false )
-
-  });
-}); 
-//make the buttons work
-
- $( document ).ready(function() {
-$('button#exp1').click(function(){
-	$("select#formexp1 option").removeClass("cell_unselected");
-	$("select#antiformexp1 option").attr('disabled', false);
-	$("select#formexp1 option").attr('disabled', false);
-  });
-}); 
-
- $( document ).ready(function() {
-$('button#exp2').click(function(){
-	$("select#formexp2 option").removeClass("cell_unselected");
-        $("select#antiformexp2 option").attr('disabled', false);
-	$("select#formexp2 option").attr('disabled', false);
-  });
-}); 
-
- $( document ).ready(function() {
-$('button#exp3').click(function(){
-	$("select#formexp3 option").removeClass("cell_unselected");
-        $("select#antiformexp3 option").attr('disabled', false);
-	$("select#formexp3 option").attr('disabled', false);
-  });
-}); 
-
-
-</script>
 <button id="exp1" class="threeAH" >clear selection </button>
 <button id="exp2" class="sixAH" >clear selection </button>
 <button id="exp3" class="nineAH" >clear selection</button>
 
-
 </div>
-
 <br>
-
-
 
 <p>After setting the parameters, click the button below to refresh the page.</p>
 
@@ -598,7 +592,7 @@ In this mode, two or three experiments can be compared as above. Here the seach 
 
 <div class="wrapper">
 
-<select disabled id="cellformexp1v2" class="two" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
+<select id="cellformexp1v2" class="two" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
 
 
 <?php
@@ -635,7 +629,7 @@ foreach($jsonData4 as $item){
 </select>
 <button class="threeAH2" onclick="jumptoexp('formexp1v2')"> experiment view </button>
 <br>
-<select disabled id="cellformexp2v2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
+<select id="cellformexp2v2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
 
 
 <?php
@@ -717,120 +711,6 @@ foreach($jsonData4 as $item){
 <br>
 <br>
 <br>
-
-<script>
-
-//this thing will help the preselect trim the experiment selection
- $( document ).ready(function() {
-$('select#antiformexp1v2').change(function(){
-
-$("select#cellformexp1v2").attr('disabled', false);
-$("select#formexp1v2 option").attr('disabled', false);
-
-$(  "select#formexp1v2 " +  "option:not([data-antibody='" +  $("#antiformexp1v2").val() + "'])" )
-    .attr( "disabled", "disabled" )
-
-$("select#cellformexp1v2 option").attr('disabled', 'disabled');
-$(  "select#cellformexp1v2 " +  "option[data-antibody~=\"" +  $("#antiformexp1v2").val() + "\"]" )
-        .attr( 'disabled', false );
-
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#antiformexp2v2').click(function(){
-
-$("select#cellformexp2v2").attr('disabled', false);
-$("select#formexp2v2 option").attr('disabled', false);
-
-$(  "select#formexp2v2 " +  "option:not([data-antibody='" +  $("#antiformexp2v2").val() + "'])" )
-        .attr( "disabled", "disabled" )
-
-$("select#cellformexp2v2 option").attr('disabled', 'disabled');
-$(  "select#cellformexp2v2 " +  "option[data-antibody~=\"" +  $("#antiformexp2v2").val() + "\"]" )
-        .attr( 'disabled', false );
-
-
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#antiformexp3v2').click(function(){
-
-$("select#formexp3v2 option").attr('disabled', false);
-$("select#cellformexp3v2").attr('disabled', false);
-
-
-
-
-$(  "select#formexp3v2 " +  "option:not([data-antibody='" +  $("#antiformexp3v2").val() + "'])" )
-        .attr( "disabled", "disabled" );
-
-$("select#cellformexp3v2 option").attr('disabled', 'disabled');
-$(  "select#cellformexp3v2 " +  "option[data-antibody~=\"" +  $("#antiformexp3v2").val() + "\"]" )
-        .attr( 'disabled', false );
-
-
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp1v2').click(function(){
-
-$("select#formexp1v2 option").removeClass("cell_unselected");
-$("select#formexp1v2 " + "option:not([data-celline='" + $("#cellformexp1v2").val() + "'])" ).addClass("cell_unselected");
-
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp2v2').change(function(){
-
-$("select#formexp2v2 option").removeClass("cell_unselected");
-$("select#formexp2v2 " + "option:not([data-celline='" + $("#cellformexp2v2").val() + "'])" ).addClass("cell_unselected");
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp3v2').change(function(){
-
-$("select#formexp3v2 option").removeClass("cell_unselected");
-$("select#formexp3v2 " + "option:not([data-celline='" + $("#cellformexp3v2").val() + "'])" ).addClass("cell_unselected");
-  });
-}); 
-//make the buttons work
-
- $( document ).ready(function() {
-$('button#exp1v2').click(function(){
-    $("select#formexp1v2 option").removeClass("cell_unselected");
-    $("select#antiformexp1v2 option").attr('disabled', false);
-    $("select#formexp1v2 option").attr('disabled', false);
-  });
-}); 
-
- $( document ).ready(function() {
-$('button#exp2v2').click(function(){
-    $("select#formexp2v2 option").removeClass("cell_unselected");
-        $("select#antiformexp2v2 option").attr('disabled', false);
-    $("select#formexp2v2 option").attr('disabled', false);
-  });
-}); 
-
- $( document ).ready(function() {
-$('button#exp3v2').click(function(){
-    $("select#formexp3v2 option").removeClass("cell_unselected");
-        $("select#antiformexp3v2 option").attr('disabled', false);
-    $("select#formexp3v2 option").attr('disabled', false);
-  });
-}); 
-
-
-</script>
 <button id="exp1v2" class="threeAH" >clear selection </button>
 <button id="exp2v2" class="sixAH" >clear selection </button>
 <button id="exp3v2" class="nineAH" >clear selection</button>
@@ -846,20 +726,6 @@ $('button#exp3v2').click(function(){
 </div>
 
 <script>
-
-$(document).ready(function(){
-$(".deletefirst").click(function(event){
- $('.'+  $(this).data('targets')).toggle();
-});
-});
-
-// this function will bind the enter to the resend button
-$(document).keypress(function(e){
-    if (e.which == 13){
-        $("#resend").click();
-    }
-});
-
 var formexp1value = <?php echo  $exp1Name ; ?>;
 document.getElementById("formexp1").value = formexp1value;
 document.getElementById("formexp1v2").value = formexp1value;
