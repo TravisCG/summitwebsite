@@ -42,68 +42,61 @@ function getExpCellAntiBody($conn, $expName){
   return($assoc);
 }
 
-//TODO: May I need to add motif name and minimum overlap?
-function getAntiBodyFromCell($conn, $cellline){
-  $sql = "SELECT distinct(antibody.name) AS antibody, antibody_id, cellline_id FROM experiment LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id WHERE cell_lines.name = '$cellline';";
+function getAllExpCellAnti($conn, $motifid, $minelemnum){
+  $sql = "SELECT experiment.name          AS expname,
+                 antibody.name            AS antiname,
+                 cell_lines.name          AS cellname,
+                 cell_lines.cellline_id   AS cellid,
+                 experiment.experiment_id AS expid,
+                 average_deviation.element_num
+          FROM experiment
+               LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = experiment.experiment_id 
+               LEFT JOIN antibody ON experiment.antibody_antibody_id = antibody.antibody_id
+               LEFT JOIN cell_lines ON experiment.cell_lines_cellline_id = cell_lines.cellline_id
+          WHERE average_deviation.consensus_motif_motif_id = $motifid AND
+                average_deviation.element_num >= $minelemnum;";
+
   $res = $conn->query($sql);
   $assoc = fetchAssoc($res);
   return($assoc);
 }
 
-$sql4 = "SELECT experiment_id, CONCAT(experiment.name, ' elem_num: ' , average_deviation.element_num)  AS name, antibody_antibody_id AS antibody_id, cell_lines_cellline_id
-FROM experiment
-LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = experiment.experiment_id
-WHERE average_deviation.consensus_motif_motif_id = $motifName
-&& average_deviation.element_num >= $minElem
-";
+function fillCells($array, $default, $type){
+  $uniq = [];
+  foreach($array as $record){
+     array_push($uniq, $record[$type]);
+  }
+  $uniq = array_unique($uniq);
+
+  foreach($uniq as $record){
+    if($record != $default){
+      echo "<option>" . $record . "</option>";
+    }
+    else{
+      echo '<option selected="selected">' . $record . "</option>";
+    }
+  }
+}
+
 
 $sql6 = "SELECT name, motif_id 
 FROM consensus_motif";
-
-$sql7 = "SELECT distinct cell_lines_cellline_id, cell_lines.name AS cell_line , antibody.antibody_id as antibody
-FROM average_deviation
-LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-LEFT JOIN consensus_motif ON consensus_motif.motif_id = average_deviation.consensus_motif_motif_id
-where consensus_motif.motif_id = $motifName
-&& average_deviation.element_num >= $minElem
-Group by cell_line
-ORDER BY cell_line";
-
-$sql8 = "SELECT DISTINCT antibody.name AS antibody, experiment.antibody_antibody_id AS antibody_id, GROUP_CONCAT(cell_lines.cellline_id SEPARATOR ' ') AS cellline_id
-FROM experiment 
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id 
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-group by antibody_antibody_id, antibody
-
-ORDER BY antibody";
-
 
 //generating results
 
 $jsonData1 = getMotifPos($conn, $motifName, $exp1Name);
 $jsonData2 = getMotifPos($conn, $motifName, $exp2Name);
 $jsonData3 = getMotifPos($conn, $motifName, $exp3Name);
-$result4 = $conn->query($sql4);
 $result6 = $conn->query($sql6);
-$result7 = $conn->query($sql7);
-$result8 = $conn->query($sql8);
 
 $jsonData1start = getExpCellAntiBody($conn, $exp1Name);
 $jsonData2start = getExpCellAntiBody($conn, $exp2Name);
 $jsonData3start = getExpCellAntiBody($conn, $exp3Name);
 
+$allExperiment = getAllExpCellAnti($conn, $motifPart, $minElem);
 
 //genrating data into jsondata
-$jsonData4 = fetchAssoc($result4);
 $jsonData6 = fetchAssoc($result6);
-$jsonData7 = fetchAssoc($result7);
-$jsonData8 = fetchAssoc($result8);
-
-$antibody1 = getAntiBodyFromCell($conn, $jsonData1start[0]['cell_line']);
-$antibody2 = getAntiBodyFromCell($conn, $jsonData2start[0]['cell_line']);
-$antibody3 = getAntiBodyFromCell($conn, $jsonData3start[0]['cell_line']);
 
 $conn->close();
 
@@ -152,140 +145,151 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
         window.open(adresshift, '_blank');
     }
 
-    var ajax = new XMLHttpRequest();
-    var expAntiCell;
-    ajax.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            expAntiCell = ajax.resposeText;
+    // Fill the antibody selects by the specified cell type
+    function fillSelect(afid, selector, data, defaultvalue, selectid, fillid) {
+        var options = "";
+        var resultnames = [];
+
+        for(var i = 0; i < data.length; i++){
+            if(data[i][selectid] == selector){
+                var found = false;
+                for(var j = 0; j < resultnames.length; j++){
+                    if(resultnames[j] == data[i][fillid]){
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    if(data[i][fillid] == defaultvalue){
+                        options = options + '<option selected="selected">' + data[i][fillid] + '</option>';
+                    }
+                    else{
+                        options = options + '<option>' + data[i][fillid] + '</options>';
+                    }
+                    resultnames.push(data[i][fillid]);
+                }
+            }
         }
-    };
+
+        $(afid).empty();
+        $(afid).prepend(options);
+    }
+
+    // Fill the experiment selects by the specified antibody and cell type
+    function fillExpByAntiCell(exid, anti, cell, data, defaultvalue){
+       var options = "";
+       var expnames = [];
+
+       for(var i = 0; i < data.length; i++){
+           if(data[i].cellname == cell && data[i].antiname == anti){
+               var found = false;
+               for(var j = 0; j < expnames.length; j++){
+                   if(expnames[j] == data[i].expname){
+                       found = true;
+                       break;
+                   }
+               }
+               if(!found){
+                   if(data[i].expname == defaultvalue){
+                       options = options + '<option selected="selected" value="' + data[i].expid + '">' + data[i].expname + '</option>';
+                   }
+                   else{
+                       options = options + '<option value="' + data[i].expid + '">' + data[i].expname + '</option>';
+                   }
+                   expnames.push(data[i].expname);
+               }
+           }
+       }
+
+       $(exid).empty();
+       $(exid).prepend(options);
+    }
 
     $( document ).ready(function() {
+        var allExperiment = <?php echo json_encode($allExperiment);?>;
+        var data1start = <?php echo json_encode($jsonData1start);?>;
+        var data2start = <?php echo json_encode($jsonData2start);?>;
+        var data3start = <?php echo json_encode($jsonData3start);?>;
 
-        ajax.open("GET", "http://summit.med.unideb.hu/summitdb/ajaxexpanticell.php?motifid=<?php echo $motifPart;?>&minelemnum=<?php echo $minElem;?>", true);
-        ajax.send();
+        $('#cellformexp1').prepend('<?php fillCells($allExperiment, $jsonData1start[0]["cell_line"], "cellname");?>');
+        $('#cellformexp2').prepend('<?php fillCells($allExperiment, $jsonData2start[0]["cell_line"], "cellname");?>');
+        $('#cellformexp3').prepend('<?php fillCells($allExperiment, $jsonData3start[0]["cell_line"], "cellname");?>');
 
-        $('select#antiformexp1').change(function(){
-            $("select#formexp1 option").attr('disabled', false);
-            $(  "select#formexp1 " +  "option:not([data-antibody='" +  $("#antiformexp1").val() + "'])" ).attr( "disabled", "disabled" )
-        });
-    
-        $('select#antiformexp2').change(function(){
-            $("select#formexp2 option").attr('disabled', false);
-            $(  "select#formexp2 " +  "option:not([data-antibody='" +  $("#antiformexp2").val() + "'])" ).attr( "disabled", "disabled" )
-        });
-    
-        $('select#antiformexp3').change(function(){
-            $("select#formexp3 option").attr('disabled', false);
-            $(  "select#formexp3 " +  "option:not([data-antibody='" +  $("#antiformexp3").val() + "'])" ).attr( "disabled", "disabled" )
-        });
-    
-        $('#min_field').change(function(){
-            $.minimal =  document.getElementById('min_field')[0].value;
-            $("select#formexp1 option").removeClass("toolittle");
-            $("select#formexp1 " + "option([data-celline > '" + $.minimal + "'])" ).addClass("toolittle");
-        });
-    
-        $('select#cellformexp1').click(function(){
-            $("select#antiformexp1").attr('disabled', false);
-            $("select#formexp1 option").removeClass("cell_unselected");
-            $("select#formexp1 " + "option:not([data-celline='" + $("#cellformexp1").val() + "'])" ).addClass("cell_unselected");
-            $("select#antiformexp1 option").attr('disabled', 'disabled');
-            $(  "select#antiformexp1 " +  "option[data-celline~=\"" +  $("#cellformexp1").val() + "\"]" ).attr( 'disabled', false )
-        });
-    
-        $('select#cellformexp2').click(function(){
-            $("select#antiformexp2").attr('disabled', false);
-            $("select#formexp2 option").removeClass("cell_unselected");
-            $("select#formexp2 " + "option:not([data-celline='" + $("#cellformexp2").val() + "'])" ).addClass("cell_unselected");
-            $("select#antiformexp2 option").attr('disabled', 'disabled');
-            $(  "select#antiformexp2 " +  "option[data-celline~=\"" +  $("#cellformexp2").val() + "\"]" ).attr( 'disabled', false )
-        });
-    
-        $('select#cellformexp3').click(function(){
-            $("select#antiformexp3").attr('disabled', false);
-            $("select#formexp3 option").removeClass("cell_unselected");
-            $("select#formexp3 " + "option:not([data-celline='" + $("#cellformexp3").val() + "'])" ).addClass("cell_unselected");
-            $("select#antiformexp3 option").attr('disabled', 'disabled');
-            $(  "select#antiformexp3 " +  "option[data-celline~=\"" +  $("#cellformexp3").val() + "\"]" ).attr( 'disabled', false )
-        });
-    
-        $('button#exp1').click(function(){
-    	    $("select#formexp1 option").removeClass("cell_unselected");
-            $("select#antiformexp1 option").attr('disabled', false);
-            $("select#formexp1 option").attr('disabled', false);
-        });
-    
-        $('button#exp2').click(function(){
-            $("select#formexp2 option").removeClass("cell_unselected");
-            $("select#antiformexp2 option").attr('disabled', false);
-            $("select#formexp2 option").attr('disabled', false);
-        });
-    
-        $('button#exp3').click(function(){
-            $("select#formexp3 option").removeClass("cell_unselected");
-            $("select#antiformexp3 option").attr('disabled', false);
-            $("select#formexp3 option").attr('disabled', false);
-        });
+        fillSelect('#antiformexp1', data1start[0].cell_line, allExperiment, data1start[0].antibody, "cellname", "antiname");
+        fillSelect('#antiformexp2', data2start[0].cell_line, allExperiment, data2start[0].antibody, "cellname", "antiname");
+        fillSelect('#antiformexp3', data3start[0].cell_line, allExperiment, data3start[0].antibody, "cellname", "antiname");
 
-        //this thing will help the preselect trim the experiment selection
-        $('select#antiformexp1v2').change(function(){
-            $("select#cellformexp1v2").attr('disabled', false);
-            $("select#formexp1v2 option").attr('disabled', false);
-            $(  "select#formexp1v2 " +  "option:not([data-antibody='" +  $("#antiformexp1v2").val() + "'])" ).attr( "disabled", "disabled" );
-            $("select#cellformexp1v2 option").attr('disabled', 'disabled');
-            $(  "select#cellformexp1v2 " +  "option[data-antibody~=\"" +  $("#antiformexp1v2").val() + "\"]" ).attr( 'disabled', false );
+        fillExpByAntiCell('#formexp1', data1start[0].antibody, data1start[0].cell_line, allExperiment, data1start[0].name);
+        fillExpByAntiCell('#formexp2', data2start[0].antibody, data2start[0].cell_line, allExperiment, data2start[0].name);
+        fillExpByAntiCell('#formexp3', data3start[0].antibody, data3start[0].cell_line, allExperiment, data3start[0].name);
+
+        $('#cellformexp1').change(function(){
+            fillSelect('#antiformexp1', $('#cellformexp1').val(), allExperiment, "", "cellname", "antiname");
+            fillExpByAntiCell('#formexp1', $('#antiformexp1').val(), $('#cellformexp1').val(), allExperiment);
         });
-    
-        $('select#antiformexp2v2').click(function(){
-            $("select#cellformexp2v2").attr('disabled', false);
-            $("select#formexp2v2 option").attr('disabled', false);
-            $(  "select#formexp2v2 " +  "option:not([data-antibody='" +  $("#antiformexp2v2").val() + "'])" ).attr( "disabled", "disabled" );
-            $("select#cellformexp2v2 option").attr('disabled', 'disabled');
-            $(  "select#cellformexp2v2 " +  "option[data-antibody~=\"" +  $("#antiformexp2v2").val() + "\"]" ).attr( 'disabled', false );
-        });
-    
-        $('select#antiformexp3v2').click(function(){
-            $("select#formexp3v2 option").attr('disabled', false);
-            $("select#cellformexp3v2").attr('disabled', false);
-            $(  "select#formexp3v2 " +  "option:not([data-antibody='" +  $("#antiformexp3v2").val() + "'])" ).attr( "disabled", "disabled" );
-            $("select#cellformexp3v2 option").attr('disabled', 'disabled');
-            $(  "select#cellformexp3v2 " +  "option[data-antibody~=\"" +  $("#antiformexp3v2").val() + "\"]" ).attr( 'disabled', false );
+
+        $('#cellformexp2').change(function(){
+            fillSelect('#antiformexp2', $('#cellformexp2').val(), allExperiment, "", "cellname", "antiname");
+            fillExpByAntiCell('#formexp2', $('#antiformexp2').val(), $('#cellformexp2').val(), allExperiment);
         });
-    
-        $('select#cellformexp1v2').click(function(){
-            $("select#formexp1v2 option").removeClass("cell_unselected");
-            $("select#formexp1v2 " + "option:not([data-celline='" + $("#cellformexp1v2").val() + "'])" ).addClass("cell_unselected");
-        });
-    
-        $('select#cellformexp2v2').change(function(){
-            $("select#formexp2v2 option").removeClass("cell_unselected");
-            $("select#formexp2v2 " + "option:not([data-celline='" + $("#cellformexp2v2").val() + "'])" ).addClass("cell_unselected");
-        });
-    
-        $('select#cellformexp3v2').change(function(){
-            $("select#formexp3v2 option").removeClass("cell_unselected");
-            $("select#formexp3v2 " + "option:not([data-celline='" + $("#cellformexp3v2").val() + "'])" ).addClass("cell_unselected");
-        });
-    
-        $('button#exp1v2').click(function(){
-            $("select#formexp1v2 option").removeClass("cell_unselected");
-            $("select#antiformexp1v2 option").attr('disabled', false);
-            $("select#formexp1v2 option").attr('disabled', false);
-        });
-    
-        $('button#exp2v2').click(function(){
-            $("select#formexp2v2 option").removeClass("cell_unselected");
-            $("select#antiformexp2v2 option").attr('disabled', false);
-            $("select#formexp2v2 option").attr('disabled', false);
-        });
-    
-        $('button#exp3v2').click(function(){
-            $("select#formexp3v2 option").removeClass("cell_unselected");
-            $("select#antiformexp3v2 option").attr('disabled', false);
-            $("select#formexp3v2 option").attr('disabled', false);
-        });
-    
+
+        $('#cellformexp3').change(function(){
+            fillSelect('#antiformexp3', $('#cellformexp3').val(), allExperiment, "", "cellname", "antiname");
+            fillExpByAntiCell('#formexp3', $('#antiformexp3').val(), $('#cellformexp3').val(), allExperiment);
+        });
+
+        $('#antiformexp1').change(function(){
+            fillExpByAntiCell('#formexp1', $('#antiformexp1').val(), $('#cellformexp1').val(), allExperiment);
+        });
+
+        $('#antiformexp2').change(function(){
+            fillExpByAntiCell('#formexp2', $('#antiformexp2').val(), $('#cellformexp2').val(), allExperiment);
+        });
+
+        $('#antiformexp3').change(function(){
+            fillExpByAntiCell('#formexp3', $('#antiformexp3').val(), $('#cellformexp3').val(), allExperiment);
+        });
+
+        $('#antiformexp1v2').prepend('<?php fillCells($allExperiment, $jsonData1start[0]["antibody"], "antiname");?>');
+        $('#antiformexp2v2').prepend('<?php fillCells($allExperiment, $jsonData2start[0]["antibody"], "antiname");?>');
+        $('#antiformexp3v2').prepend('<?php fillCells($allExperiment, $jsonData3start[0]["antibody"], "antiname");?>');
+
+        fillSelect("#cellformexp1v2", data1start[0].antibody, allExperiment, data1start[0].cell_line, "antiname", "cellname");
+        fillSelect("#cellformexp2v2", data2start[0].antibody, allExperiment, data2start[0].cell_line, "antiname", "cellname");
+        fillSelect("#cellformexp3v2", data3start[0].antibody, allExperiment, data3start[0].cell_line, "antiname", "cellname");
+ 
+        fillExpByAntiCell('#formexp1v2', data1start[0].antibody, data1start[0].cell_line, allExperiment, data1start[0].name);
+        fillExpByAntiCell('#formexp2v2', data2start[0].antibody, data2start[0].cell_line, allExperiment, data2start[0].name);
+        fillExpByAntiCell('#formexp3v2', data3start[0].antibody, data3start[0].cell_line, allExperiment, data3start[0].name);
+
+        $('#antiformexp1v2').change(function(){
+            fillSelect('#cellformexp1v2', $('#antiformexp1v2').val(), allExperiment, "", "antiname", "cellname");
+            fillExpByAntiCell('#formexp1v2', $('#antiformexp1v2').val(), $('#cellformexp1v2').val(), allExperiment);
+        });
+
+        $('#antiformexp2v2').change(function(){
+            fillSelect('#cellformexp2v2', $('#antiformexp2v2').val(), allExperiment, "", "antiname", "cellname");
+            fillExpByAntiCell('#formexp2v2', $('#antiformexp2v2').val(), $('#cellformexp2v2').val(), allExperiment);
+        });
+
+        $('#antiformexp3v2').change(function(){
+            fillSelect('#cellformexp3v2', $('#antiformexp3v2').val(), allExperiment, "", "antiname", "cellname");
+            fillExpByAntiCell('#formexp3v2', $('#antiformexp3v2').val(), $('#cellformexp3v2').val(), allExperiment);
+        });
+
+        $('#cellformexp1v2').change(function(){
+            fillExpByAntiCell('#formexp1v2', $('#antiformexp1v2').val(), $('#cellformexp1v2').val(), allExperiment);
+        });
+
+        $('#cellformexp2v2').change(function(){
+            fillExpByAntiCell('#formexp2v2', $('#antiformexp2v2').val(), $('#cellformexp2v2').val(), allExperiment);
+        });
+
+        $('#cellformexp3v2').change(function(){
+            fillExpByAntiCell('#formexp3v2', $('#antiformexp3v2').val(), $('#cellformexp3v2').val(), allExperiment);
+        });
+
+        document.getElementById("formmotive").value = <?php echo '"'. $motifPart . '"'; ?>; 
     }); 
 
 </script>
@@ -308,19 +312,13 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     </ul>
         </div>
 
-
-
-
 <h4 style="margin:auto;text-align:center;font-size:1.3em;padding-bottom:3em;padding-top:10em;">Venn diagramm view</h4>
 <div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
 </iframe>
 </div>
 
-
-
 <div id="chart_venn" style="width:94% ;background-color: white;border:1px solid black;display:block;float:none;" >
-
 
 <div id="circle" style="background-color:red;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
 <div id="circle2" style="background-color:blue;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
@@ -368,13 +366,6 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </table>
 </div>
 
-<script>
-var data1start = <?php echo json_encode($jsonData1start);?>;
-var data2start = <?php echo json_encode($jsonData2start);?>;
-var data3start = <?php echo json_encode($jsonData3start);?>;
-</script>
-
-
   <div name="chart4"  id="chart4" style="width:15%; background-color: white;height: 11em;border:1px solid black; ">
 <p style="margin-left:5px;margin-top:3px;margin-bottom:0px;">Position weight matrix for selected motif.</p>
  <?php echo "<img src=\"./logos/" . $motifText . ".jpg\" style=\"width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;\"  alt=\"No picture available!\" > " ?>
@@ -394,9 +385,6 @@ var data3start = <?php echo json_encode($jsonData3start);?>;
 var data = <?php echo $size1;?>;
 var data2 = <?php echo $size2;?>;
 var data3 = <?php echo $size3;?>;
-var data4 = <?php echo json_encode($jsonData4, JSON_NUMERIC_CHECK);?>;
-var data7 = <?php echo json_encode($jsonData7, JSON_NUMERIC_CHECK);?>;
-var data8 = <?php echo json_encode($jsonData8, JSON_NUMERIC_CHECK);?>;
 
 <?php
 $inter1i2 = sizeof(array_merge($jsonData1,$jsonData2)) - sizeof(array_unique(array_merge($jsonData1,$jsonData2), SORT_REGULAR));
@@ -472,112 +460,45 @@ function vennBed() {
 
 <div style="height:35em;">
 <div class="wrapper">
-
+<!-- Venn 1st circle -->
 <select id="cellformexp1" class="one" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id']  . " class=\"formexp1\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
-
 <select id="antiformexp1" type="text" class="two" value="" placeholder="Type to filter" style="background:#ff6666;">
-<?php
-// Set antibody names by the cell lines (first select box) 
-foreach($antibody1 as $item){
-    echo "<option value=".  $item['antibody_id'] . " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 <select id="formexp1" type="text" value="" class="three" placeholder="Type to filter"  style="background:#ff6666;">
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData4 as $item){
-    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
-    }
-?>
-
 </select>
+
 <button class="threeAH2" onclick="jumptoexp('formexp1')"> experiment view </button>
 <br>
-<select id="cellformexp2" type="text" class="four" value="" placeholder="Type to filter" style="background:#6666ff;">
 
-<?php 
-//this one puts ALL the options in the select area
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id'] .  " class=\"formexp2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
+<!-- Venn 2nd circle -->
+<select id="cellformexp2" type="text" class="four" value="" placeholder="Type to filter" style="background:#6666ff;">
 </select>
 
 <select id="antiformexp2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
-<?php 
-// Set antibody names by the cell lines (select left hand side from this box)
-foreach($antibody2 as $item){
-    echo "<option value=".  $item['antibody_id'] .  " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 <select id="formexp2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
-
-<?php
-//this one puts ALL the options in the select area
-    foreach($jsonData4 as $item){
-    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
-    }
-
-?>
 </select>
 <button class="sixAH2" onclick="jumptoexp('formexp2')"> experiment view </button>
 <br>
 
+<!-- Venn 3rd circle -->
 <select id="cellformexp3" type="text" value="" class="seven" placeholder="Type to filter" style="background:#66ff66;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id'] .  " class=\"formexp2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 <select id="antiformexp3" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
-<?php 
-// Set antibody names by the cell lines (select left hand side from this box)
-foreach($antibody3 as $item){
-    echo "<option value=".  $item['antibody_id'] .  " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . "  >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 <select id="formexp3" type="text" value="" class="nine" placeholder="Type to filter" style="background:#66ff66;">
-<?php
-
-foreach($jsonData4 as $item){
-    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
-    }
-
-?>
 </select>
 <button class="nineAH2" onclick="jumptoexp('formexp3')"> experiment view </button>
 
 <br>
 <br>
 <br>
-<button id="exp1" class="threeAH" >clear selection </button>
-<button id="exp2" class="sixAH" >clear selection </button>
-<button id="exp3" class="nineAH" >clear selection</button>
 
 </div>
 <br>
@@ -587,12 +508,7 @@ foreach($jsonData4 as $item){
 <button id="resend" onclick="doSearchVenn()" style="width: 14em;"><p>Refresh Page</p></button>
 
 </div>
-
-
 <br>
-
-
-
 <div>
 <div style="width:100%;height:7em;">
 
@@ -605,128 +521,40 @@ In this mode, two or three experiments can be compared as above. Here the seach 
 <div class="wrapper">
 
 <select id="cellformexp1v2" class="two" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
-
-
-<?php
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id'] .  " data-antibody=" . "\"" .  $item['antibody'] . "\" class=\"formexp1v2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 
 <select id="antiformexp1v2" type="text" class="one" value="" placeholder="Type to filter" style="background:#ff6666;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
-    echo "<option value=".  $item['antibody_id'] . " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 <select id="formexp1v2" type="text" value="" class="three" placeholder="Type to filter"  style="background:#ff6666;">
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData4 as $item){
-    echo "<option  value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
-    }
-?>
-
 </select>
 <button class="threeAH2" onclick="jumptoexp('formexp1v2')"> experiment view </button>
 <br>
 <select id="cellformexp2v2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
-
-
-<?php
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id'] .  " data-antibody=" . "\"" .  $item['antibody'] . "\" class=\"formexp2v2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
-
-
-
 </select>
-
-
 
 <select id="antiformexp2v2" type="text" class="four" value="" placeholder="Type to filter" style="background:#6666ff;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
-    echo "<option value=".  $item['antibody_id'] .  " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
-
-
- <select id="formexp2v2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
-
-<?php
-//this one puts ALL the options in the select area
-foreach($jsonData4 as $item){
-    echo "<option  value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
-    }
-
-?>
+<select id="formexp2v2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
 </select>
 <button class="sixAH2" onclick="jumptoexp('formexp2v2')"> experiment view </button>
 <br>
 
 <select id="cellformexp3v2" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id'] .  " data-antibody=" . "\"" .  $item['antibody'] . "\" class=\"formexp3v2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
-
 <select id="antiformexp3v2" type="text" value="" class="seven" placeholder="Type to filter" style="background:#66ff66;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
-    echo "<option value=".  $item['antibody_id'] .  " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . "  >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
 </select>
 
 <select id="formexp3v2" type="text" value="" class="nine" placeholder="Type to filter" style="background:#66ff66;">
-<?php
-
-foreach($jsonData4 as $item){
-    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " >" . $item['name'] . "</option>" ;    // process the line read.
-    }
-
-?>
 </select>
 <button class="nineAH2" onclick="jumptoexp('formexp3v2')"> experiment view </button>
 
 <br>
 <br>
 <br>
-<button id="exp1v2" class="threeAH" >clear selection </button>
-<button id="exp2v2" class="sixAH" >clear selection </button>
-<button id="exp3v2" class="nineAH" >clear selection</button>
-
 
 </div>
 <br>
@@ -738,41 +566,6 @@ foreach($jsonData4 as $item){
 </div>
 
 <script>
-var formexp1value = <?php echo  $exp1Name ; ?>;
-document.getElementById("formexp1").value = formexp1value;
-document.getElementById("formexp1v2").value = formexp1value;
-
-var formexp2value = <?php echo  $exp2Name ; ?>;
-document.getElementById("formexp2").value = formexp2value;
-document.getElementById("formexp2v2").value = formexp2value;
-
-var formexp3value = <?php echo  $exp3Name ; ?>;
-document.getElementById("formexp3").value = formexp3value;
-document.getElementById("formexp3v2").value = formexp3value;
-
-var formmotive = <?php echo '"'. $motifPart . '"'; ?>;
-document.getElementById("formmotive").value = formmotive;
-
-var lol1 = data1start[0].antid;
-document.getElementById("antiformexp1").value = lol1;
-var lol2 = data2start[0].antid;
-document.getElementById("antiformexp2").value = lol2;
-var lol3 = data3start[0].antid;
-document.getElementById("antiformexp3").value = lol3;
-
-var lolz1 = data1start[0].cellid;
-document.getElementById("cellformexp1").value = lolz1;
-var lolz2 = data2start[0].cellid;
-document.getElementById("cellformexp2").value = lolz2;
-var lolz3 = data3start[0].cellid;
-document.getElementById("cellformexp3").value = lolz3;
-document.getElementById("antiformexp1v2").value = lol1;
-document.getElementById("antiformexp2v2").value = lol2;
-document.getElementById("antiformexp3v2").value = lol3;
-document.getElementById("cellformexp1v2").value = lolz1;
-document.getElementById("cellformexp2v2").value = lolz2;
-document.getElementById("cellformexp3v2").value = lolz3;
-
 
 var formminelem = getAllUrlParams().mnelem;
 document.getElementById("textboxmnelem").value = formminelem;
