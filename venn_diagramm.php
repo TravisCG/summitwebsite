@@ -470,7 +470,7 @@ function vennBed() {
 <select id="formexp1" type="text" value="" class="three" placeholder="Type to filter"  style="background:#ff6666;">
 </select>
 
-<button class="threeAH2" onclick="jumptoexp('formexp1')"> experiment view </button>
+<button class="threeAH" onclick="jumptoexp('formexp1')"> experiment view </button>
 <br>
 
 <!-- Venn 2nd circle -->
@@ -482,7 +482,7 @@ function vennBed() {
 
 <select id="formexp2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
 </select>
-<button class="sixAH2" onclick="jumptoexp('formexp2')"> experiment view </button>
+<button class="sixAH" onclick="jumptoexp('formexp2')"> experiment view </button>
 <br>
 
 <!-- Venn 3rd circle -->
@@ -494,7 +494,7 @@ function vennBed() {
 
 <select id="formexp3" type="text" value="" class="nine" placeholder="Type to filter" style="background:#66ff66;">
 </select>
-<button class="nineAH2" onclick="jumptoexp('formexp3')"> experiment view </button>
+<button class="nineAH" onclick="jumptoexp('formexp3')"> experiment view </button>
 
 <br>
 <br>
@@ -529,7 +529,7 @@ In this mode, two or three experiments can be compared as above. Here the seach 
 
 <select id="formexp1v2" type="text" value="" class="three" placeholder="Type to filter"  style="background:#ff6666;">
 </select>
-<button class="threeAH2" onclick="jumptoexp('formexp1v2')"> experiment view </button>
+<button class="threeAH" onclick="jumptoexp('formexp1v2')"> experiment view </button>
 <br>
 <select id="cellformexp2v2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
 </select>
@@ -539,7 +539,7 @@ In this mode, two or three experiments can be compared as above. Here the seach 
 
 <select id="formexp2v2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
 </select>
-<button class="sixAH2" onclick="jumptoexp('formexp2v2')"> experiment view </button>
+<button class="sixAH" onclick="jumptoexp('formexp2v2')"> experiment view </button>
 <br>
 
 <select id="cellformexp3v2" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
@@ -550,7 +550,7 @@ In this mode, two or three experiments can be compared as above. Here the seach 
 
 <select id="formexp3v2" type="text" value="" class="nine" placeholder="Type to filter" style="background:#66ff66;">
 </select>
-<button class="nineAH2" onclick="jumptoexp('formexp3v2')"> experiment view </button>
+<button class="nineAH" onclick="jumptoexp('formexp3v2')"> experiment view </button>
 
 <br>
 <br>
