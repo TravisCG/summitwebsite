@@ -207,7 +207,7 @@ while($es = mysqli_fetch_assoc($result3start)) {
 
   <div class="foo">
     <ul class="navlink">
-        <li><a href="main.html" title="Home" class="active">Home</a></li>
+        <li><a href="index.html" title="Home" class="active">Home</a></li>
       <li onclick="glossToggle()"><a title="Venn diagramm>
 Display the overlap information between selected experiments as a Venn diagram. 
 

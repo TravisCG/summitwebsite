@@ -1,8 +1,7 @@
 <?php
 include("config.php");
 
-$exp1 = $_GET['exp'];
-$exp1Name = '\''.$exp1.'\'';
+$exp1Name = '\''.$_GET['exp'].'\'';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,7 +25,6 @@ WHERE experiment_id = $exp1Name
 
 $result1 = $conn->query($sql1);
 
-
 //genrating data into jsondata
 
 while($r = mysqli_fetch_assoc($result1)) {
@@ -43,7 +41,6 @@ $conn->close();
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 <link rel="stylesheet" type="text/css" href="style.css">
 
-
 <style>
 td {font-size:1.2em;}
 </style>
@@ -59,7 +56,7 @@ td {font-size:1.2em;}
   
   
     <td>number of peaks</td>
-    <td id="peakNum">0</td>
+    <td id="peakNum"><?php echo $jsonData[0]["peaks"]?></td>
   </tr>
  <tr>
     <td>antibody</td>
@@ -69,71 +66,34 @@ td {font-size:1.2em;}
 
  <tr>
     <td>cell line</td>
-    <td id="cellLine">0</td>
+    <td id="cellLine"><?php echo $jsonData[0]['cellline'];?></td>
   
     <td>Number of reads</td>
-    <td id="reads">0</td>
+    <td id="reads"><?php echo $jsonData[0]['total_tags'];?></td>
   </tr>
   <tr>
     <td>sra ftp link</td>
-    <td><a href="" id="sraRecord">link</a></td>
+    <td><a href="<?php echo $jsonData[0]['sra_url'];?>" id="sraRecord">link</a></td>
   
     <td>SRX search</td>
-    <td><a href="" id="Record">link</a></td>
+    <td><a id="Record" href="<?php echo $jsonData[0]['record_url'];?>">link</a></td>
   </tr>
  <tr>
     <td>homer denovo motifs</td>
     <td><a href="" id="homer" target="_blank">link</a></td>
   </tr>
 
-
-
 </table> 
 </div>
-
-
 <script>
-//default elements
-var margin = {top: 20, right: 20, bottom: 30, left: 60},
-    width = 1400 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-var legendtitle = 420;
-var maxShift = 99;
 
-var data = <?php 
-echo json_encode($jsonData, JSON_NUMERIC_CHECK); 
-?>;
-
-//stuffing the cells with the data from the mysql query
-
+var data = <?php echo json_encode($jsonData, JSON_NUMERIC_CHECK); ?>;
 
 var val_expName = data[0].name;
 document.getElementById('expName').innerHTML = val_expName;
 
-
-var val_peak = data[0].peaks;
-document.getElementById('peakNum').innerHTML = val_peak;
-
-
-var val_url = data[0].sra_url;
-document.getElementById('sraRecord').href = val_url;
-
-
-var val_recoUrl = data[0].record_url;
-document.getElementById('Record').href = val_recoUrl;
-
-
 var val_antiBod = data[0].antibody;
 document.getElementById('antiBod').innerHTML = val_antiBod;
-
-
-var val_cellLine = data[0].cellline;
-document.getElementById('cellLine').innerHTML = val_cellLine;
-
-
-var val_reads = data[0].total_tags;
-document.getElementById('reads').innerHTML = val_reads;
-
 
 var homera = "denovo/" + val_expName + "/homer/" + val_expName + "_homermotifs_10_13_16/homerResults.html";
 document.getElementById('homer').href = homera;
@@ -141,14 +101,6 @@ document.getElementById('homer').href = homera;
 var motv = "http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" + val_antiBod;
 document.getElementById('motview').href = motv;
 
-var motif = data[0].motif;
-document.getElementById('motif').innerHTML = motif;
-
-
 </script>
-
-
-
 </body>
-
 </html>

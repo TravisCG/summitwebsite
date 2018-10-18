@@ -1,6 +1,20 @@
 <?php
   include('config.php');
 
+  function sql2array($conn, $sql){
+    $res = mysqli_query($conn, $sql);
+    while( $r = mysqli_fetch_assoc($res)){
+      $array[] = $r;
+    }
+    return($array);
+  }
+
+  function motifsbydbsnp($conn){
+    $sql = "select * from motif_pos left join dbsnp on dbsnp.chr = motif_pos.chr";
+    $result = sql2array($conn, $sql);
+    return($result);
+  }
+
   $dbsnpid = $_GET['dbsnp'];
   $chr     = $_GET['chr'];
   $start   = $_GET['start'];
@@ -11,6 +25,9 @@
     die("Connection failed: " . $conn->connect_error);
   }
 
+  if(isset($dbsnpid)){
+     $sql = "select "
+  }
 ?>
 <!DOCTYPE html>
 <html>

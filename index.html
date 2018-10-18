@@ -1,4 +1,63 @@
-<html>
 
-<meta http-equiv="refresh" content="0; URL='http://summit.med.unideb.hu/summitdb/main.html'" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121648705-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121648705-1');
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to SummitDB</title>
+<link href="favicon.png" rel="icon"  type="image/png" />
+<link href="base.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>
+<link href="slider.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="container_16">
+<!--topdiv -->
+<a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/>
+  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
+  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
+
+  </a>
+</div>                                               
+
+  <div class="foo"> 
+    <ul class="navlink">
+    	<li><button id="homebut" onclick="dochange('introduction.html')">Home</button></li>
+        <li><button>Search views</button>
+       	  <ul class="subnav">
+        	<li><button id="motifbut"  onclick="dochange('motif_preview.php')">Motif view</button></li>
+        	<li><button id="pairbut"  onclick="dochange('paired_shift_preview.php?exp1=x&exp2=x&exp3=x&motive=x&motifid=x&limit=25&low_limit=-25&formminid=1&formmaxid=10000&formminelem=1&formmaxelem=12000')">Pairshift view</button></li>
+        	<li><button id="vennbut"  onclick="dochange('venn_preview.php?exp1=1&exp2=2&exp3=3&motive=CTCF&motifid=32&mnelem=1000')">Venn diagramm view</button></li>
+		<li><button id="exbut"  onclick="dochange('experiment_preview.php')">Experiment view</button></li>
+		<li><button id="snpbut" onclick="dochange('dbsnp.php')">dbSNP view</li>
+                <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">Genome view</button></li></a>
+        </ul></li>
+        <li><button id="docbut" onclick="dochange('Documentation.html')" >Documentation</button></li>
+        <li><button id="helbut" onclick="dochange('Help.html')">Help</button></li>
+        <li><button id="tutbut" onclick="dochange('tutorial.html')">Tutorial</button></li>
+        <li><button id="globut" onclick="dochange('glossary.html')">Glossary</button></li>
+    </ul>
+	</div>
+    <g style="height:200%">
+     <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/introduction.html"  frameborder="0" scrolling="yes" >
+</iframe>
+
+
+ 
+</div>
+
+ 
+<script>
+function dochange(target) { document.getElementById("ifrm").src = target};
+</script>
+</body>
 </html>

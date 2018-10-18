@@ -109,7 +109,7 @@ $conn->close();
 
   <div class="foo">
     <ul class="navlink">
-        <li><a href="main.html" title="Home" class="active">Home</a></li>
+        <li><a href="index.html" title="Home" class="active">Home</a></li>
              <li onclick="glossToggle()"><a title="Help" class="active">Glossary</a></li>
     </ul>
         </div>
