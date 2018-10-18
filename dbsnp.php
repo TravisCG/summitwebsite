@@ -26,7 +26,7 @@
   }
 
   if(isset($dbsnpid)){
-     $sql = "select "
+     $sql = "select ";
   }
 ?>
 <!DOCTYPE html>
