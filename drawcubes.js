@@ -1,6 +1,5 @@
 
 function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
-
 var chart2height = $('#chart2 .legend').length;
 // setup fill color
 // a kockak nem itt vannak elnevezve, hanem a motive_viewnél
@@ -81,20 +80,6 @@ else {
       .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
 }
 
-
-
-
-
-
-//add links
-/*  legend.append("a")
-      .attr("xlink:href", function(d) { return "http://summit.med.unideb.hu/summitdb/exp_view.php?maxid=66&minid=1&mnelem=100&mxelem=12345&exp=" + d;} ) 
-      .append("rect")
-      .attr("x", width - 1140)
-      .attr("width", 48)
-      .attr("height", 12)
-      .style("fill", "transparent");
-*/
   //add cube
   legend.append("g")
         .append("rect")
@@ -105,7 +90,6 @@ else {
 	.style("opacity", 0.8);
 // draw legend text
   legend.append("text")
-      .attr("xlink:href", function(d) { return "http://summit.med.unideb.hu/proba/exp_view.php?maxid=66&minid=1&mnelem=100&mxelem=12345&motive=" + d;} )
       .attr("x", width - 1145)
       .attr("y", 9)
       .attr("dy", ".35em")
