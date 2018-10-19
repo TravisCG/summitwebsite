@@ -4,7 +4,6 @@ include("config.php");
 
 $exp = $_GET['exp'];
 $motive = $_GET['motive'];
-$expName = '\''.$exp.'\'';
 $motiveName = '\''.$motive.'\'';
 $filename = $exp . '_' . $motive . '.bed' ;
 $header = "track name=$exp" . "_$motive" . " description=\"overlapping $motive consensus motifs with the $exp peaks\"\n";
@@ -12,8 +11,6 @@ $header = "track name=$exp" . "_$motive" . " description=\"overlapping $motive c
 // Create connection
 $conn = new mysqli($servername, $username, $password);
 // Check connection
-
-// $con=mysqli_connect($host,$user,$password);
 
 mysqli_select_db($conn,$dbname); 
 //To select the database
@@ -24,9 +21,6 @@ header('Content-Type: text/csv; charset=utf-8');
 header("Content-Disposition: attachment; filename=$filename");
 
 $output = fopen('php://output', 'w');
-
-#fputcsv($output, array('Elso', 'Column 2', 'Column 3', 'Column 4' , $motive));
-
 
 fwrite ($output , $header);
 

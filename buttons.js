@@ -55,11 +55,6 @@ function update_nonalphabet_cell() {
     DrawAllShizCubes("data", "new", "cell");
 };
 
-
-function load_downloads(that) {
-     document.getElementById("chart4").innerHTML='<object type="text/html" data=\"downloads.php?exp=\"' + that + '></object>';
-}
-
 //some lazy jquery to fde out some of the legends
 
 $(document).ready(function(){
