@@ -63,6 +63,13 @@ while($ews = mysqli_fetch_assoc($result5)) {
 
 while($ew6 = mysqli_fetch_assoc($result6)) {
     $jsonData6[] = $ew6;}
+
+$jsonData1 = getExpCellAntiBody($conn, $exp1Name);
+$jsonData2 = getExpCellAntiBody($conn, $exp2Name);
+$jsonData3 = getExpCellAntiBody($conn, $exp3Name);
+
+$allExperiment = getAllExpCellAnti($conn, $motifPart, $minElem);
+
 $conn->close();
 ?>
 
@@ -94,7 +101,7 @@ var data5 = <?php echo json_encode($jsonData5, JSON_NUMERIC_CHECK);?>;
 var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 
 $(document).ready(function(){
-  <?php //expJS($allExperiment, $data1, $data2, $data3);?>
+  <?php expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3);?>
 })i
 
 </script>
