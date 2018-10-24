@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("threeexpbox.php");
 
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
@@ -13,10 +14,6 @@ $exp3 = $_GET['exp3'];
 $exp3Name = '\''.$exp3.'\'';
 $limit = $_GET['limit'];
 $low_limit = $_GET['low_limit'];
-$complex_id1 = '"' . $motiveplus . $exp1 . '"';
-$complex_id2 = '"' . $motiveplus . $exp2 .  '"';
-$complex_id3 = '"' . $motiveplus . $exp3 .  '"';
-
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -54,10 +51,6 @@ ORDER BY antibody";
 $result4 = $conn->query($sql4);
 $result5 = $conn->query($sql5);
 $result6 = $conn->query($sql6);
-$result7 = $conn->query($sql7);
-$result8 = $conn->query($sql8);
-
-
 
 //genrating data into jsondata
 
@@ -71,17 +64,6 @@ while($ews = mysqli_fetch_assoc($result5)) {
 while($ew6 = mysqli_fetch_assoc($result6)) {
     $jsonData6[] = $ew6;}
 $conn->close();
-
-while($ew7 = mysqli_fetch_assoc($result7)) {
-    $jsonData7[] = $ew7;}
-$conn->close();
-
-while($ew8 = mysqli_fetch_assoc($result8)) {
-    $jsonData8[] = $ew8;}
-$conn->close();
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -95,66 +77,31 @@ $conn->close();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
-</head>
-
-<body>
-
-<script>
-
-
-var data4 = <?php echo json_encode($jsonData4, JSON_NUMERIC_CHECK);?>;
-var data5 = <?php echo json_encode($jsonData5, JSON_NUMERIC_CHECK);?>;
-var ujtomb = <?php echo json_encode($ujtomb);?>;
-var motive = <?php echo "\"" . $motivePart . "\""; ?>;
-</script>
-
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
 
 <script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
 
-<script src="buttons.js">//this will make the buttons work
-</script>
-
-<script>
-//this trims the array in this case for the options
-function trimArray(arr)
-{
-    for(i=0;i<arr.length;i++)
-    {
-        arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
-    return arr;
-}
-</script>
-<script>
-var formmaxid = getAllUrlParams().formmaxid;
-document.getElementById("textboxmax").value = formmaxid;
-
-var formminid = getAllUrlParams().formminid;
-document.getElementById("textboxmin").value = formminid;
-
-var formminelem = getAllUrlParams().formminelem;
-document.getElementById("textboxamnelem").value = formminelem;
-
-var formmaxelem = getAllUrlParams().formmaxelem;
-document.getElementById("textboxminelem").value = formmaxelem;
-
-</script>
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
 
+<script src="buttons.js">//this will make the buttons work
+</script>
+<script>
+var data4 = <?php echo json_encode($jsonData4, JSON_NUMERIC_CHECK);?>;
+var data5 = <?php echo json_encode($jsonData5, JSON_NUMERIC_CHECK);?>;
+var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 
+$(document).ready(function(){
+  <?php //expJS($allExperiment, $data1, $data2, $data3);?>
+})i
 
-
-<br>
+</script>
+</head>
+<body>
 <div>
 <br>
-<br>
-<br>
-
-
 <p>Set the three experiments. You can narrow down the experiment by choosing the cell line and the antibody for it:</p><br>
 
 <div>
@@ -166,195 +113,7 @@ document.getElementById("textboxminelem").value = formmaxelem;
 
 </div>
 
-
-<div class="wrapper">
-
-<select id="cellformexp1" class="one" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id']  . " class=\"formexp1\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
-</select>
-
-
-<select id="antiformexp1" type="text" class="two" value="" placeholder="Type to filter" style="background:#ff6666;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
-    echo "<option value=".  $item['antibody_id'] . " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
-</select>
-
-<select id="formexp1" type="text" value="" class="three" placeholder="Type to filter" style="background:#ff6666;">
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData4 as $item){
-    echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . ">" . $item['name'] . "</option>" ;    // process the line read.
-    }
-?>
-
-</select>
-
-
-<br>
-<select id="cellformexp2" class="four" type="text" value="" placeholder="Type to filter" style="background:#8282ff;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id']  . " class=\"formexp2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
-</select>
-
-<select id="antiformexp2" type="text" class="five" value="" placeholder="Type to filter" style="background:#8282ff;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
-    echo "<option value=".  $item['antibody_id'] . " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
-
-</select>
-
-<select id="formexp2" type="text" class="six" value="" placeholder="Type to filter" style="background:#8282ff;">
-
-<?php
-//this one puts ALL the options in the select area
-foreach($jsonData4 as $item){
-     echo "<option value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . ">" . $item['name'] . "</option>" ;    // process the line read.
-    }
-?>
-</select>
-
-
-<br>
-<select id="cellformexp3" type="text" value="" class="seven" placeholder="Type to filter" style="background:#66ff66;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData7 as $item){
-    echo "<option value=".  $item['cell_lines_cellline_id'] . " class=\"formexp2\">" . $item['cell_line'] . "</option>" ;    // process the line read.
-    }
-?>
-</select>
-
-
-<select id="antiformexp3" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
-
-<?php 
-//this one puts ALL the options in the select area
-
-foreach($jsonData8 as $item){
-    echo "<option value=".  $item['antibody_id'] . " data-celline=" . "\"" .  $item['cellline_id'] . "\"" . " >" . $item['antibody'] . "</option>" ;    // process the line read.
-    }
-?>
-
-
-
-</select>
-
-<select id="formexp3" type="text" value="" class="nine" placeholder="Type to filter" style="background:#66ff66;">
-<?php
-//this one puts ALL the options in the select area
-foreach($jsonData4 as $item){
-     echo "<option value=". $item['experiment_id'] .  " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . ">" . $item['name'] . "</option>" ;    // process the line read.
-    }
-?>
-</select>
-
-<script>
-//this thing will help the preselect trim the experiment selection
- $( document ).ready(function() {
-$('select#antiformexp1').change(function(){
-$("select#formexp1 option").attr('disabled', false);
-
-$(  "select#formexp1 " +  "option:not([data-antibody='" +  $("#antiformexp1").val() + "'])" )
-	.attr( "disabled", "disabled" )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#antiformexp2').change(function(){
-$("select#formexp2 option").attr('disabled', false);
-
-$(  "select#formexp2 " +  "option:not([data-antibody='" +  $("#antiformexp2").val() + "'])" )
-        .attr( "disabled", "disabled" )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#antiformexp3').change(function(){
-$("select#formexp3 option").attr('disabled', false);
-
-
-$(  "select#formexp3 " +  "option:not([data-antibody='" +  $("#antiformexp3").val() + "'])" )
-        .attr( "disabled", "disabled" )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp1').change(function(){
-
-$("select#formexp1 option").removeClass("cell_unselected");
-$("select#formexp1 " + "option:not([data-celline='" + $("#cellformexp1").val() + "'])" ).addClass("cell_unselected");
-
-$("select#antiformexp1 option").attr('disabled', 'disabled');
-$(  "select#antiformexp1 " +  "option[data-celline~=\"" +  $("#cellformexp1").val() + "\"]" )
-        .attr( 'disabled', false )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp2').change(function(){
-
-$("select#formexp2 option").removeClass("cell_unselected");
-$("select#formexp2 " + "option:not([data-celline='" + $("#cellformexp2").val() + "'])" ).addClass("cell_unselected");
-
-$("select#antiformexp2 option").attr('disabled', 'disabled');
-$(  "select#antiformexp2 " +  "option[data-celline~=\"" +  $("#cellformexp2").val() + "\"]" )
-        .attr( 'disabled', false )
-
-  });
-}); 
-
- $( document ).ready(function() {
-$('select#cellformexp3').change(function(){
-
-$("select#formexp3 option").removeClass("cell_unselected");
-$("select#formexp3 " + "option:not([data-celline='" + $("#cellformexp3").val() + "'])" ).addClass("cell_unselected");
-
-$("select#antiformexp3 option").attr('disabled', 'disabled');
-$(  "select#antiformexp3 " +  "option[data-celline~=\"" +  $("#cellformexp3").val() + "\"]" )
-        .attr( 'disabled', false )
-
-  });
-}); 
-
-
-</script>
-
-
-</div>
+<?php expBoxes();?>
 
 <p>Here you will be able to set the upper and bottom limit of the distance shown. (the parameter set here is the max x and the negative of the minimum x value) </p>
 
@@ -382,108 +141,17 @@ foreach($jsonData6 as $item){
     }
 ?>
 </select>
-<!--
-<p>Minimum standard deviation</p>
-<form action="#"> <input type="text" id="textboxmin" value="integer please">
-</form>
-
-<p>Maximum standard deviation</p>
-
-<form action="#"> <input type="text" id="textboxmax" value="integer please">
-</form>
-
-<p>Minimum overlap number between motifs and peaks of experiment</p>
-
-<form action="#"> <input type="text" id="textboxmnelem" value="integer please">
-</form>
-
-<p>Maximum overlap number between motifs and peaks of experiment</p>
-
-<form action="#"> <input type="text" id="textboxmxelem" value="integer please">
-</form>
--->
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
 <button id="resend" onclick="doSearchpreShift()" style="width: 14em;"><p>Open paired shift view</p></button>
-
-
-<!-- <button class="deletefirst" data-targets="johndoe" style="width: 14em;"><p>Remove first options</p></button> -->
-
 </div>
 
 
 <br>
 <br>
 
-
-
-
-
 <script>
-
-$(document).ready(function(){
-$(".deletefirst").click(function(event){
- $('.'+  $(this).data('targets')).toggle();
-});
-});
-
-//this thing will help the preselect trim the experiment selection
-/*
-$( document ).ready(function() {
-$('select#antiformexp1').change(function(){
-$( "option:not('.'+  $(this).data('targets')) + select#formexp1" ).attr( "disabled", "disabled" )
-.siblings().removeAttr('disabled');
-  });
-});
-*/
-
-
-
-// this function will bind the enter to the resend button
-$(document).keypress(function(e){
-    if (e.which == 13){
-        $("#resend").click();
-    }
-});
-
-//here we will set the form boxes to be by default what they were in the url originally
-
-var formexp1value = <?php echo  $exp1Name ; ?>;
-document.getElementById("formexp1").value = formexp1value;
-
-var formexp2value = <?php echo  $exp2Name ; ?>;
-document.getElementById("formexp2").value = formexp2value;
-
-var formexp3value = <?php echo  $exp3Name ; ?>;
-document.getElementById("formexp3").value = formexp3value;
-
-
-var fexp1anti = "0";
-var fexp1anti = $('#formexp1').find(":selected").attr("data-antibody");
-document.getElementById("antiformexp1").value = fexp1anti;
-
-var fexp2anti = "0";
-var fexp2anti = $('#formexp2').find(":selected").attr("data-antibody");
-document.getElementById("antiformexp2").value = fexp2anti;
-
-var fexp3anti = "0";
-var fexp3anti = $('#formexp3').find(":selected").attr("data-antibody");
-document.getElementById("antiformexp3").value = fexp3anti;
-
-var fexp1cell = "0";
-var fexp1cell = $('#formexp1').find(":selected").attr("data-celline");
-document.getElementById("cellformexp1").value = fexp1cell;
-
-var fexp2cell = "0";
-var fexp2cell = $('#formexp2').find(":selected").attr("data-celline");
-document.getElementById("cellformexp2").value = fexp2cell;
-
-var fexp3cell = "0";
-var fexp3cell = $('#formexp3').find(":selected").attr("data-celline");
-document.getElementById("cellformexp3").value = fexp3cell;
-
-
 
 var formmotive = <?php echo '"'. $motifid . '"'; ?>;
 document.getElementById("formmotive").value = formmotive;
@@ -494,17 +162,8 @@ document.getElementById("limit").value = limit;
 var low_limit = <?php echo  $low_limit ; ?>;
 document.getElementById("low_limit").value = low_limit;
 
-var formmaxid = getAllUrlParams().formmaxid;
-document.getElementById("textboxmax").value = formmaxid;
-
-var formminid = getAllUrlParams().formminid;
-document.getElementById("textboxmin").value = formminid;
-
 var formminelem = getAllUrlParams().formminelem;
 document.getElementById("textboxmnelem").value = formminelem;
-
-var formmaxelem = getAllUrlParams().formmaxelem;
-document.getElementById("textboxmxelem").value = formmaxelem;
 
 </script>
 
