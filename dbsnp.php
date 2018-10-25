@@ -21,15 +21,26 @@
     return($result);
   }
 
-  function drawMotif($motif, $width, $height, $starth){
-    echo('<rect x="0" y="'.$starth.'" width="'.$width.'" height="'.$height.'" style="fill:blue;stroke:red;" />');
+  function drawMotif($motif, $width, $halfh){
+    $third = $halfh / 3;
+    $vstart = $halfh + $third;
+    $vend = $vstart + $third / 2;
+    $halfw = $width / 2;
+
+    echo('<line x1="'.$halfw.'" y1="' . $vstart . '" x2="'.$halfw.'" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />');
+    echo('<text x="'. $halfw .'" y="' . ($vend + 10) . '" text-anchor="middle" style="font:13px sans-serif;">' . $motif[8] . '</text>');
+
+    echo('<rect />');
   }
 
-  function drawAllMotifs($motifs, $width, $cellheight){
-    $height = $cellheight * sizeof($motifs);
+  function drawAllMotifs($motifs, $width, $height){
+    $halfh = $height / 2;
     echo('<svg width="' . $width . '" height="' . $height . '">');
+    echo('<rect x="0" y="0" width="'.$width.'" height="'.$height.'" style="fill:lightblue;storoke:red;" />');
+    echo('<line x1="0" y1="'.$halfh.'" x2="'.$width.'" y2="'.$halfh.'" style="stroke:black;stroke-width=2" />');
+    
     for($i = 0; $i < sizeof($motifs); $i++){
-      drawMotif($m[$i], $width, $cellheight, $i * $cellheight);
+      drawMotif($motifs[$i], $width, $halfh);
     }
     echo("</svg>");
   }
