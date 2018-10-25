@@ -228,7 +228,7 @@ function trimArray(arr)
 
 <p>Set the minimum overlap number between motifs and peaks of experiment</p>
 
-<form action="#" id="form_field"> <input type="text" id="textboxmnelem" value="10"> 
+<form action="#" id="form_field"> <input type="text" id="textboxmnelem" value="1000"> 
 </form>
 
 

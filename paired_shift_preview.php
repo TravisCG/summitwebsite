@@ -4,7 +4,6 @@ include("threeexpbox.php");
 
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
-$motiveplus = $motifid + 100;
 $motiveName = '\''.$motivePart.'\'';
 $exp1 = $_GET['exp1'];
 $exp1Name = '\''.$exp1.'\'';
@@ -14,6 +13,7 @@ $exp3 = $_GET['exp3'];
 $exp3Name = '\''.$exp3.'\'';
 $limit = $_GET['limit'];
 $low_limit = $_GET['low_limit'];
+$formminelem = $_GET['formminelem'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -23,52 +23,21 @@ if ($conn->connect_error) {
 }
 
 //queries
-
-$sql4 = "SELECT experiment_id, experiment.name AS name, antibody_antibody_id AS antibody_id, cell_lines_cellline_id
-FROM experiment";
-
-$sql5 = "SELECT , motif_id 
-FROM consensus_motif WHERE name = $motivePart";
-
 $sql6 = "SELECT name, motif_id 
 FROM consensus_motif";
-
-$sql7 = "SELECT DISTINCT cell_lines_cellline_id, cell_lines.name AS cell_line 
-FROM experiment 
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id 
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-ORDER BY cell_line";
-
-$sql8 = "SELECT DISTINCT  antibody.name AS antibody, experiment.antibody_antibody_id AS antibody_id, GROUP_CONCAT(cell_lines.cellline_id SEPARATOR ' ') AS cellline_id
-FROM experiment 
-LEFT JOIN antibody ON antibody.antibody_id = experiment.antibody_antibody_id 
-LEFT JOIN cell_lines ON cell_lines.cellline_id = experiment.cell_lines_cellline_id
-group by antibody_antibody_id, antibody
-ORDER BY antibody";
-
 //generating results
 
-$result4 = $conn->query($sql4);
-$result5 = $conn->query($sql5);
 $result6 = $conn->query($sql6);
 
 //genrating data into jsondata
-
-while($es = mysqli_fetch_assoc($result4)) {
-    $jsonData4[] = $es;}
-
-while($ews = mysqli_fetch_assoc($result5)) {
-    $jsonData5[] = $ews;}
-
-
 while($ew6 = mysqli_fetch_assoc($result6)) {
     $jsonData6[] = $ew6;}
 
-$jsonData1 = getExpCellAntiBody($conn, $exp1Name);
-$jsonData2 = getExpCellAntiBody($conn, $exp2Name);
-$jsonData3 = getExpCellAntiBody($conn, $exp3Name);
+$jsonData1 = getExpCellAntiBody($conn, $exp1);
+$jsonData2 = getExpCellAntiBody($conn, $exp2);
+$jsonData3 = getExpCellAntiBody($conn, $exp3);
 
-$allExperiment = getAllExpCellAnti($conn, $motifPart, $minElem);
+$allExperiment = getAllExpCellAnti($conn, $motifid, $formminelem);
 
 $conn->close();
 ?>
@@ -83,26 +52,13 @@ $conn->close();
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-
-<script src="urlgetter.js">//this one gets the options out of the url and make them an object
-</script>
-
-<script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
-</script>
-
-<script src="urlgetter.js">//this one gets the options out of the url and make them an object
-</script>
-
-<script src="buttons.js">//this will make the buttons work
-</script>
+<script src="threeexpbox.js"></script>
 <script>
-var data4 = <?php echo json_encode($jsonData4, JSON_NUMERIC_CHECK);?>;
-var data5 = <?php echo json_encode($jsonData5, JSON_NUMERIC_CHECK);?>;
 var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 
 $(document).ready(function(){
   <?php expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3);?>
-})i
+})
 
 </script>
 </head>
@@ -159,19 +115,10 @@ foreach($jsonData6 as $item){
 <br>
 
 <script>
-
-var formmotive = <?php echo '"'. $motifid . '"'; ?>;
-document.getElementById("formmotive").value = formmotive;
-
-var limit = <?php echo  $limit ; ?>;
-document.getElementById("limit").value = limit;
-
-var low_limit = <?php echo  $low_limit ; ?>;
-document.getElementById("low_limit").value = low_limit;
-
-var formminelem = getAllUrlParams().formminelem;
-document.getElementById("textboxmnelem").value = formminelem;
-
+document.getElementById("formmotive").value = <?php echo '"'. $motifid . '"'; ?>;
+document.getElementById("limit").value = <?php echo  $limit ; ?>;
+document.getElementById("low_limit").value = <?php echo  $low_limit ; ?>;
+document.getElementById("textboxmnelem").value = <?php echo $formminelem; ?>;
 </script>
 
 <p>
