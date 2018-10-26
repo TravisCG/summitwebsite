@@ -11,7 +11,7 @@
 
   function motifsbydbsnp($conn, $dbsnpid){
     $sql    = "select * from motif_pos where dbsnp_id = '$dbsnpid';";
-    //$snps   = sql2array($conn, $sql);
+    $snps   = sql2array($conn, $sql);
     $start  = $snps[2] - 50; //SNPs just one nucleotide long, we need a bigger picture.
     $end    = $snps[3] + 50;
     $sql    = "select * from motif_pos left join consensus_motif on (motif_pos.consensus_motif_motif_id = consensus_motif.motif_id) where motif_pos.chr = '"
@@ -30,7 +30,7 @@
     $sql    = "select * from motif_pos left join consensus_motif on (consensus_motif_motif_id = motif_id) where chr = '$chr' and start > $start and end < $end order by start;";
     $motifs = sql2array($conn, $sql);
     $sql    = "select * from dbsnp where chr = '$chr' and start > $start and end < $end";
-    //$snps   = sql2array($conn, $sql);
+    $snps   = sql2array($conn, $sql);
 
     $result           = [];
     $result["motifs"] = $motifs;
