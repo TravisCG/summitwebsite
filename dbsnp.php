@@ -40,15 +40,14 @@
     return($result);
   }
 
-  function drawSNP($snp, $width, $halfh, $gstart, $gend){
+  function drawSNP($snp, $width, $halfh, $gstart, $gend, $textstart){
     $third  = $halfh / 3;
-    $vstart = $halfh + $third;
+    $vstart = $halfh;
     $vend   = $vstart + $third / 2;
     $pos    = ($snp[2] - $gstart) / ($gend - $gstart) * $width;
 
-    //TODO If there are too many SNPs, the labels will collide
     echo('<line x1="' . $pos . '" y1="' . $vstart . '" x2="' . $pos . '" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />');
-    echo('<text x="' . $pos . '" y="' . ($vend + 10) . '" text-anchor="middle" style="font:13px sans-serif;">' . $snp[0] . '</text>');
+    echo('<text x="' . $pos . '" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text>');
   }
 
   function drawMotifs($motif, $width, $halfh, $gstart, $gend, $boxh){
@@ -72,10 +71,16 @@
     echo('<line x1="0" y1="'.$halfh.'" x2="'.$width.'" y2="'.$halfh.'" style="stroke:black;stroke-width=2" />');
     
     for($i = 0; $i < sizeof($feats["snps"]); $i++){
-      drawSNP($feats["snps"][$i], $width, $halfh, $gstart, $gend);
+      if(($i > 0) && ($feats["snps"][$i][2] - $first < 40)){ #This 40 is ad-hoc, need to specify
+        $base = $base + 14;
+      }
+      else {
+        $base = $halfh + ($halfh / 6) + 10;
+        $first = $feats["snps"][$i][3];
+      }
+      drawSNP($feats["snps"][$i], $width, $halfh, $gstart, $gend, $base);
     }
 
-    $base = $halfh;
     for($i = 0; $i < sizeof($feats["motifs"]); $i++){
       if(($i > 0) && ($feats["motifs"][$i][2] < $feats["motifs"][$i-1][3])){
         $base = $base - $motifboxh - $boxsep;
