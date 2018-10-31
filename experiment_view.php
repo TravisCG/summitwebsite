@@ -161,25 +161,6 @@ var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
-
-
-
-<script>
-//this trims the array in this case for the options
-function trimArray(arr)
-{
-    for(i=0;i<arr.length;i++)
-    {
-        arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
-    return arr;
-}
-</script>
-
-
-<script src="urlgetter.js">//this one gets the options out of the url and make them an object
-</script>
-
 <br>
 <iframe name="myIframe" width="96%" height="200px" style="background-color:white;" src="exp_table.php?exp=<?php echo $exp; ?>"></iframe>
 <div>
@@ -303,20 +284,6 @@ $('button#exp1').click(function(){
 });
 });
 
-
-$(document).ready(function(){
-$(".deletefirst").click(function(event){
- $('.'+  $(this).data('targets')).toggle();
-});
-});
-
-// this function will bind the enter to the resend button
-$(document).keypress(function(e){
-    if (e.which == 13){
-        $("#resend").click();
-    }
-});
-
 //here we will set the form boxes to be by default what they were in the url originally
 
 var formexp1value = <?php echo  $exp1Name ; ?>;
@@ -359,110 +326,6 @@ document.getElementById("formmotive").value = formmotive;
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js">
 </script>
-
-<script>
-//this script here will generate us the intersections for the venn diagramm bed file downloads
-
-
-   function intersectionObjects2(a, b, areEqualFunction) {
-        var results = [];
-        
-        for(var i = 0; i < a.length; i++) {
-            var aElement = a[i];
-            var existsInB = _.any(b, function(bElement) { return areEqualFunction(bElement, aElement); });
-
-            if(existsInB) {
-                results.push(aElement);
-            }
-        }
-        
-        return results;
-    }
-
-
-
-function intersectionObjects() {
-        var results = arguments[0];
-        var lastArgument = arguments[arguments.length - 1];
-        var arrayCount = arguments.length;
-        var areEqualFunction = _.isEqual;
-        
-        if(typeof lastArgument === "function") {
-            areEqualFunction = lastArgument;
-            arrayCount--;
-        }
-        
-        for(var i = 1; i < arrayCount ; i++) {
-            var array = arguments[i];
-            results = intersectionObjects2(results, array, areEqualFunction);
-            if(results.length === 0) break;
-        }
-
-        return results;
-    }
-
-
-   function differenceObjects2(a, b, areEqualFunction) {
-        var results = [];
-        
-        for(var i = 0; i < a.length; i++) {
-            var aElement = a[i];
-            var existsInB = _.any(b, function(bElement) { return areEqualFunction(bElement, aElement); });
-
-            if(!existsInB) {
-		var pololo = "#11111";
-		var aElementfinal = aElement.concat(pololo);
-                results.push(aElementfinal);
-            }
-        }
-        
-        return results;
-    }
-
-
-
-function differenceObjects() {
-        var results = arguments[0];
-        var lastArgument = arguments[arguments.length - 1];
-        var arrayCount = arguments.length;
-        var areEqualFunction = _.isEqual;
-
-        if(typeof lastArgument === "function") {
-            areEqualFunction = lastArgument;
-            arrayCount--;
-        }
-
-        for(var i = 1; i < arrayCount ; i++) {
-            var array = arguments[i];
-            results = differenceObjects2(results, array, areEqualFunction);
-            if(results.length === 0) break;
-        }
-
-        return results;
-    }
-
-
-
-
-    var resulti1v2v3 = intersectionObjects(data1list, data2list, data3list, function(item1, item2) {
-        return item1.motifpos_id === item2.motifpos_id;
-    });
-
-    var result1v2 = intersectionObjects(data1list, data2list,  function(item1i, item2i) {
-        return item1i.motifpos_id === item2i.motifpos_id;
-    });
-
-   var result1v2i = differenceObjects(result1v2, resulti1v2v3,  function(item1e, item2e) {
-        return item1e.motifpos_id === item2e.motifpos_id;
-    });
-
-var result1i = differenceObjects(data1list, data2list, data3list, function(item1e, item2e) {
-        return item1e.motifpos_id === item2e.motifpos_id;
-    });
-
-</script>
-
-
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
 

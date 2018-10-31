@@ -391,116 +391,15 @@ var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 <script src="buttons.js">//this will make the buttons work
 </script>
 
-<script>
-//this trims the array in this case for the options
-function trimArray(arr)
-{
-    for(i=0;i<arr.length;i++)
-    {
-        arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
-    return arr;
-}
-</script>
-<script>
-//var formmaxid = getAllUrlParams().formmaxid;
-//document.getElementById("textboxmax").value = formmaxid;
-
-//var formminid = getAllUrlParams().formminid;
-//document.getElementById("textboxmin").value = formminid;
-
-//var formminelem = getAllUrlParams().formminelem;
-//document.getElementById("textboxamnelem").value = formminelem;
-
-//var formmaxelem = getAllUrlParams().formmaxelem;
-//document.getElementById("textboxminelem").value = formmaxelem;
-
-</script>
-
-<script>//this one gets the options out of the url and make them an object
-
-//this will get the parameters from the url and put them in an object to be used later
-
-function getAllUrlParams(url) {
-
-  // get query string from url (optional) or window
-  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
-
-  // we'll store the parameters here
-  var obj = {};
-
-  // if query string exists
-  if (queryString) {
-
-    // stuff after # is not part of query string, so get rid of it
-    queryString = queryString.split('#')[0];
-
-    // split our query string into its component parts
-    var arr = queryString.split('&');
-
-    for (var i=0; i<arr.length; i++) {
-      // separate the keys and the values
-      var a = arr[i].split('=');
-
-      // in case params look like: list[]=thing1&list[]=thing2
-      var paramNum = undefined;
-      var paramName = a[0].replace(/\[\d*\]/, function(v) {
-        paramNum = v.slice(1,-1);
-        return '';
-      });
-
-      // set parameter value (use 'true' if empty)
-      var paramValue = typeof(a[1])==='undefined' ? true : a[1];
-
-      // if parameter name already exists
-      if (obj[paramName]) {
-        // convert value to array (if still string)
-        if (typeof obj[paramName] === 'string') {
-          obj[paramName] = [obj[paramName]];
-        }
-        // if no array index number specified...
-        if (typeof paramNum === 'undefined') {
-          // put the value on the end of the array
-          obj[paramName].push(paramValue);        }
-        // if array index number specified...
-        else {
-          // put the value at that index number
-          obj[paramName][paramNum] = paramValue;
-        }
-      }
-      // if param name doesn't exist yet, set it
-      else {
-        obj[paramName] = paramValue;
-      }
-    }
-  }
-
-  return obj;
-}
-
-
-
-
-</script>
-
-
-
 <br>
 <div style="height:105em;">
 <br>
 <br>
 <p>Minimum overlap number between motifs and peaks of experiment</p>
 
-<form action="#" id="min_field"> <input type="text" id="textboxmnelem" value="100">
+<form action="#" id="min_field"> <input type="text" id="textboxmnelem" value="<?php echo $minelem;?>">
 </form>
 <br>
-<script>
-var formminelem = getAllUrlParams().mnelem;
-document.getElementById("textboxmnelem").value = formminelem;
-</script>
-
-
-
 <p>Set a motif:</p><br>
   <select id="formmotive" type="text" value="" placeholder="Type to filter">
 <?php
@@ -510,11 +409,6 @@ foreach($jsonData6 as $item){
     }
 ?>
 </select>
-
-
-
-
-
 
 <p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
  </p>
@@ -772,27 +666,6 @@ $(  "select#antiformexp3 " +  "option[data-celline~=\"" +  $("#cellformexp3").va
 
 <br>
 
-<!--
-<p>Minimum standard deviation</p>
-<form action="#"> <input type="text" id="textboxmin" value="integer please">
-</form>
-
-<p>Maximum standard deviation</p>
-
-<form action="#"> <input type="text" id="textboxmax" value="integer please">
-</form>
-
-<p>Minimum overlap number between motifs and peaks of experiment</p>
-
-<form action="#"> <input type="text" id="textboxmnelem" value="integer please">
-</form>
-
-<p>Maximum overlap number between motifs and peaks of experiment</p>
-
-<form action="#"> <input type="text" id="textboxmxelem" value="integer please">
-</form>
--->
-
 <p>When te parameters have been set, this button will refresh the page.</p>
 
 <button id="resend" onclick="doSearchShift()" style="width: 14em;"><p>Refresh Page</p></button>
@@ -803,38 +676,7 @@ $(  "select#antiformexp3 " +  "option[data-celline~=\"" +  $("#cellformexp3").va
 
 <br>
 <br>
-
-
-
-
-
 <script>
-
-$(document).ready(function(){
-$(".deletefirst").click(function(event){
- $('.'+  $(this).data('targets')).toggle();
-});
-});
-
-//this thing will help the preselect trim the experiment selection
-/*
-$( document ).ready(function() {
-$('select#antiformexp1').change(function(){
-$( "option:not('.'+  $(this).data('targets')) + select#formexp1" ).attr( "disabled", "disabled" )
-.siblings().removeAttr('disabled');
-  });
-});
-*/
-
-
-
-// this function will bind the enter to the resend button
-$(document).keypress(function(e){
-    if (e.which == 13){
-        $("#resend").click();
-    }
-});
-
 //here we will set the form boxes to be by default what they were in the url originally
 
 var formexp1value = <?php echo  $exp1Name ; ?>;
@@ -879,20 +721,6 @@ document.getElementById("limit").value = limit;
 
 var low_limit = <?php echo  $low_limit ; ?>;
 document.getElementById("low_limit").value = low_limit;
-
-//var formmaxid = getAllUrlParams().formmaxid;
-//document.getElementById("textboxmax").value = formmaxid;
-
-//var formminid = getAllUrlParams().formminid;
-//document.getElementById("textboxmin").value = formminid;
-
-//var formminelem = getAllUrlParams().formminelem;
-//document.getElementById("textboxmnelem").value = formminelem;
-
-//var formmaxelem = getAllUrlParams().formmaxelem;
-//document.getElementById("textboxmxelem").value = formmaxelem;
-
-
 
 //here we will set the form boxes to be by default what they were in the url originally
 function arata_formularcell(y,x) {
@@ -974,24 +802,14 @@ document.getElementById("formmotive").value = formmotiveval;
 PairShiftView
 <br><br>
 In this mode, the frequencies of the different distance values between the motif and peak summit pairs for a given consensus binding site set are displayed in a histogram. To smooth the graph a 5 bp rolling bin was used. No more than three different experiments can be compared. The height of the curves shows the most frequent distance. In the PairShiftView mode, the data range and the consensus motif binding site can be set. An experiment can be also selected  and displayed in the ExperimentView. 
-
-
-
-
 </p>
 <div style="width=100%">
 
 <p>
 Copyright © 2018   Mátyás Schiller, Erik Czipa, Levente Kontra, Tibor Nagy, Júlia Koller,
 Orsolya Pálné Szén, Csaba Papp, László Steiner, Ferenc Marincs and Endre Barta
-
 </p>
 </div>
-
 </div>
-
-
-
 </body>
-
 </html>

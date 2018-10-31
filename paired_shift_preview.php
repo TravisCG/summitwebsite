@@ -53,6 +53,7 @@ $conn->close();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="threeexpbox.js"></script>
+<script src="dosearch.js"></script>
 <script>
 var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 

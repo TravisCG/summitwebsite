@@ -12,11 +12,8 @@ var maxValue = d3.max([  // Find the max value of a list of 3 elements
 
 
 var width2 = "95%";
-//$('#chart').width();
 var w = $('#chart').width() *0.65;
-//1400,
     h = $('#chart').height() *0.85;
-//480;
 
 var x = d3.scale.linear()
     .domain([0, 1])
@@ -31,7 +28,6 @@ var chartlength = Math.max(datafirst.length, datasecond.length, datathird.length
 var chart = d3.select("#chart").append("svg")
     .attr("class", "chart")
     .attr("width", width2)
-// datafirst.length -1)
     .attr("height", h + 200);
 
 var line = d3.svg.line()
@@ -75,26 +71,12 @@ chart.append('svg:path')
  .style("fill", "none")
  .attr("d", movingAverageLine(datafirst));
 
-/* chart.append("svg:path")
- .style("stroke", "#ff0000")
- .style("stroke-width", "5")
- .style("fill", "none")
- .attr("d", line(datafirst));
-*/
-
 chart.append('svg:path')
  .attr('class', 'avg')
  .style("stroke", "#0000cc")
  .style("stroke-width", "5")
  .style("fill", "none")
  .attr("d", movingAverageLine(datasecond));
-
-/* chart.append("svg:path")
- .style("stroke", "#0000aa")
- .style("stroke-width", "5")
- .style("fill", "none")
- .attr("d", line(datasecond));
-*/
 
 chart.append('svg:path')
  .attr('class', 'avg')
@@ -103,12 +85,6 @@ chart.append('svg:path')
  .style("fill", "none")
  .attr("d", movingAverageLine(datathird));
 
-/* chart.append("svg:path")
- .style("stroke", "#00aa00")
- .style("stroke-width", "5")
- .style("fill", "none")
- .attr("d", line(datathird));
-*/
 // setting up the x and the y axis
 chart.append("line")
     .attr("x1", 50)
