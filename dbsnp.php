@@ -10,12 +10,12 @@
   }
 
   function motifsbydbsnp($conn, $dbsnpid){
-    $sql    = "select * from motif_pos where dbsnp_id = '$dbsnpid';";
+    $sql    = "select * from dbsnp where dbsnp_id = '$dbsnpid';";
     $snps   = sql2array($conn, $sql);
-    $start  = $snps[2] - 50; //SNPs just one nucleotide long, we need a bigger picture.
-    $end    = $snps[3] + 50;
+    $start  = $snps[0][2] - 50; //SNPs just one nucleotide long, we need a bigger picture.
+    $end    = $snps[0][3] + 50;
     $sql    = "select * from motif_pos left join consensus_motif on (motif_pos.consensus_motif_motif_id = consensus_motif.motif_id) where motif_pos.chr = '"
-               . $snps[1] . "' and motif_pos.start > $start and motif_pos.end < $end;"; //TODO what about partial overlap?
+               . $snps[0][1] . "' and motif_pos.start > $start and motif_pos.end < $end;";
     $motifs = sql2array($conn, $sql);
 
     $result           = [];
@@ -106,7 +106,7 @@
   if($dbsnpid != ""){
     $motifs = motifsbydbsnp($conn, $dbsnpid);
   }
-  elseif($chr != "" && $start != "" && $end != ""){
+  elseif($chr != "" && $start != "" && $end != "" && $end - $start < 1000){
     $motifs = motifsbyregion($conn, $chr, $start, $end);
   }
 
@@ -126,6 +126,10 @@
          alert("Please set something");
          return false;
       }
+      if(end - start > 1000){
+         alert("Interval too large (>1000)");
+         return false;
+      }
       document.getElementById("dbform").submit();
       return true;
     }
@@ -134,10 +138,11 @@
 <body>
 <form id="dbform" method="get" onsubmit="event.preventDefault();paramcheck();">
 dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/><br />
-Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>"/>
-Start position:<input id="inpstart" type="text" name="start" value="<?php echo $start; ?>"/>
-End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>"/><br />
-<input type="submit" />
+or<br/>
+Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>" size="3" maxlength="2"/>
+Start position:<input id="inpstart" type="text" name="start" value="<?php echo $start; ?>" size="5"/>
+End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/><br />
+<input type="submit" value="Send" />
 </form>
 <div>
 <?php
