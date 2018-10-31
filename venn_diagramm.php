@@ -17,13 +17,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-function getMotifPos($conn, $motifName, $expName){
-  $sql = "SELECT motifpos_id FROM venn_view WHERE motif_id = $motifName AND experiment_id = $expName";
-  $res = $conn->query($sql);
-  $assoc = fetchAssoc($res);
-  return($assoc);
-}
-
 $sql6 = "SELECT name, motif_id 
 FROM consensus_motif";
 
