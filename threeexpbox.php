@@ -39,9 +39,9 @@ function getExpCellAntiBody($conn, $expName){
 }
 
 function getAllExpCellAnti($conn, $motifid, $minelemnum){
-  $sql = "SELECT experiment.name          AS expname,
-                 antibody.name            AS antiname,
-                 cell_lines.name          AS cellname,
+  $sql = "SELECT experiment.name          AS name,
+                 antibody.name            AS antibody,
+                 cell_lines.name          AS cell_line,
                  cell_lines.cellline_id   AS cellid,
                  experiment.experiment_id AS expid,
                  average_deviation.element_num
@@ -58,36 +58,45 @@ function getAllExpCellAnti($conn, $motifid, $minelemnum){
 }
 
 function expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3){
+  if($jsonData1 === NULL){
+    $jsonData1 = $allExperiment[0];
+  }
+  if($jsonData2 === NULL){
+    $jsonData2 = $allExperiment[0];
+  }
+  if($jsonData3 === NULL){
+    $jsonData3 = $allExperiment[0];
+  }
   echo "
         var allExperiment = " . json_encode($allExperiment) . ";
         var data1start = " . json_encode($jsonData1) . ";
         var data2start = " . json_encode($jsonData2) . ";
         var data3start = " . json_encode($jsonData3) . ";
 
-        $('#cellformexp1').prepend('" . fillCells($allExperiment, $jsonData1[0]["cell_line"], "cellname") . "');
-        $('#cellformexp2').prepend('" . fillCells($allExperiment, $jsonData2[0]["cell_line"], "cellname") . "');
-        $('#cellformexp3').prepend('" . fillCells($allExperiment, $jsonData3[0]["cell_line"], "cellname") . "');
+        $('#cellformexp1').prepend('" . fillCells($allExperiment, $jsonData1[0]["cell_line"], "cell_line") . "');
+        $('#cellformexp2').prepend('" . fillCells($allExperiment, $jsonData2[0]["cell_line"], "cell_line") . "');
+        $('#cellformexp3').prepend('" . fillCells($allExperiment, $jsonData3[0]["cell_line"], "cell_line") . "');
 
-        fillSelect('#antiformexp1', data1start[0].cell_line, allExperiment, data1start[0].antibody, \"cellname\", \"antiname\");
-        fillSelect('#antiformexp2', data2start[0].cell_line, allExperiment, data2start[0].antibody, \"cellname\", \"antiname\");
-        fillSelect('#antiformexp3', data3start[0].cell_line, allExperiment, data3start[0].antibody, \"cellname\", \"antiname\");
+        fillSelect('#antiformexp1', data1start[0].cell_line, allExperiment, data1start[0].antibody, \"cell_line\", \"antibody\");
+        fillSelect('#antiformexp2', data2start[0].cell_line, allExperiment, data2start[0].antibody, \"cell_line\", \"antibody\");
+        fillSelect('#antiformexp3', data3start[0].cell_line, allExperiment, data3start[0].antibody, \"cell_line\", \"antibody\");
 
         fillExpByAntiCell('#formexp1', data1start[0].antibody, data1start[0].cell_line, allExperiment, data1start[0].name);
         fillExpByAntiCell('#formexp2', data2start[0].antibody, data2start[0].cell_line, allExperiment, data2start[0].name);
         fillExpByAntiCell('#formexp3', data3start[0].antibody, data3start[0].cell_line, allExperiment, data3start[0].name);
 
         $('#cellformexp1').change(function(){
-            fillSelect('#antiformexp1', $('#cellformexp1').val(), allExperiment, \"\", \"cellname\", \"antiname\");
+            fillSelect('#antiformexp1', $('#cellformexp1').val(), allExperiment, \"\", \"cell_line\", \"antibody\");
             fillExpByAntiCell('#formexp1', $('#antiformexp1').val(), $('#cellformexp1').val(), allExperiment);
         });
 
         $('#cellformexp2').change(function(){
-            fillSelect('#antiformexp2', $('#cellformexp2').val(), allExperiment, \"\", \"cellname\", \"antiname\");
+            fillSelect('#antiformexp2', $('#cellformexp2').val(), allExperiment, \"\", \"cell_line\", \"antibody\");
             fillExpByAntiCell('#formexp2', $('#antiformexp2').val(), $('#cellformexp2').val(), allExperiment);
         });
 
         $('#cellformexp3').change(function(){
-            fillSelect('#antiformexp3', $('#cellformexp3').val(), allExperiment, \"\", \"cellname\", \"antiname\");
+            fillSelect('#antiformexp3', $('#cellformexp3').val(), allExperiment, \"\", \"cell_line\", \"antibody\");
             fillExpByAntiCell('#formexp3', $('#antiformexp3').val(), $('#cellformexp3').val(), allExperiment);
         });
 

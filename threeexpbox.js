@@ -41,22 +41,22 @@
        var expnames = [];
 
        for(var i = 0; i < data.length; i++){
-           if(data[i].cellname == cell && data[i].antiname == anti){
+           if(data[i].cell_line == cell && data[i].antibody == anti){
                var found = false;
                for(var j = 0; j < expnames.length; j++){
-                   if(expnames[j] == data[i].expname){
+                   if(expnames[j] == data[i].name){
                        found = true;
                        break;
                    }
                }
                if(!found){
-                   if(data[i].expname == defaultvalue){
-                       options = options + '<option selected="selected" value="' + data[i].expid + '">' + data[i].expname + '</option>';
+                   if(data[i].name == defaultvalue){
+                       options = options + '<option selected="selected" value="' + data[i].expid + '">' + data[i].name + '</option>';
                    }
                    else{
-                       options = options + '<option value="' + data[i].expid + '">' + data[i].expname + '</option>';
+                       options = options + '<option value="' + data[i].expid + '">' + data[i].name + '</option>';
                    }
-                   expnames.push(data[i].expname);
+                   expnames.push(data[i].name);
                }
            }
        }
