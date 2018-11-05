@@ -140,6 +140,10 @@
   </script>
 </head>
 <body>
+<p>This view helps you to see variations and overlapping regulatory motifs.</p>
+<p>Please specify the dbSNP ID or a genomic region. If both set, only dbSNP will be used. If dbSNP ID is set the final image will be created using 50bp  flanking region. If you would like to see a larger landscape, you can set the
+genomic region manually.</p>
+<p>Caution: The genomic region cannot be larger than 1000bp!</p>
 <form id="dbform" method="get" onsubmit="event.preventDefault();paramcheck();">
 <p>dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/></p>
 <p>or</p>
