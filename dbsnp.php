@@ -40,18 +40,21 @@
     return($result);
   }
 
-  function drawSNP($snp, $width, $halfh, $gstart, $gend, $textstart){
+  function getSVGPos($fpos, $gstart, $gend, $width){
+    return( ($fpos - $gstart) / ($gend - $gstart) * $width );
+  }
+
+  function drawSNP($snp, $pos, $halfh, $textstart){
     $third  = $halfh / 3;
     $vstart = $halfh;
     $vend   = $vstart + $third / 2;
-    $pos    = ($snp[2] - $gstart) / ($gend - $gstart) * $width;
 
     echo('<line x1="' . $pos . '" y1="' . $vstart . '" x2="' . $pos . '" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />');
     echo('<text x="' . $pos . '" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text>');
   }
 
   function drawMotifs($motif, $width, $halfh, $gstart, $gend, $boxh){
-    $pos  = ($motif[2] - $gstart) / ($gend - $gstart) * $width;
+    $pos  = getSVGPos($motif[2], $gstart, $gend, $width);
     $w    = ($motif[3] - $motif[2]) / ($gend - $gstart) * $width;
     $texth = 13;
     $textbline = ($boxh - $texth) / 2;
@@ -71,14 +74,15 @@
     echo('<line x1="0" y1="'.$halfh.'" x2="'.$width.'" y2="'.$halfh.'" style="stroke:black;stroke-width=2" />');
     
     for($i = 0; $i < sizeof($feats["snps"]); $i++){
-      if(($i > 0) && ($feats["snps"][$i][2] - $first < 40)){ #This 40 is ad-hoc, need to specify
+      $pos = getSVGPos($feats["snps"][$i][2], $gstart, $gend, $width);
+      if(($i > 0) && ($pos - $first < 80)){ #This 80 is based on empirical observations
         $base = $base + 14;
       }
       else {
         $base = $halfh + ($halfh / 6) + 10;
-        $first = $feats["snps"][$i][3];
+        $first = getSVGPos($feats["snps"][$i][3], $gstart, $gend, $width);
       }
-      drawSNP($feats["snps"][$i], $width, $halfh, $gstart, $gend, $base);
+      drawSNP($feats["snps"][$i], $pos, $halfh, $base);
     }
 
     for($i = 0; $i < sizeof($feats["motifs"]); $i++){
@@ -137,11 +141,11 @@
 </head>
 <body>
 <form id="dbform" method="get" onsubmit="event.preventDefault();paramcheck();">
-dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/><br />
-or<br/>
-Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>" size="3" maxlength="2"/>
+<p>dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/></p>
+<p>or</p>
+<p>Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>" size="3" maxlength="2"/>
 Start position:<input id="inpstart" type="text" name="start" value="<?php echo $start; ?>" size="5"/>
-End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/><br />
+End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/></p>
 <input type="submit" value="Send" />
 </form>
 <div>

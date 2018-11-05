@@ -80,30 +80,30 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     $( document ).ready(function() {
         <?php expJS($allExperiment, $jsonData1start, $jsonData2start, $jsonData3start);?>
 
-        $('#antiformexp1v2').prepend('<?php echo fillCells($allExperiment, $jsonData1start[0]["antibody"], "antiname");?>');
-        $('#antiformexp2v2').prepend('<?php echo fillCells($allExperiment, $jsonData2start[0]["antibody"], "antiname");?>');
-        $('#antiformexp3v2').prepend('<?php echo fillCells($allExperiment, $jsonData3start[0]["antibody"], "antiname");?>');
+        $('#antiformexp1v2').prepend('<?php echo fillCells($allExperiment, $jsonData1start[0]["antibody"], "antibody");?>');
+        $('#antiformexp2v2').prepend('<?php echo fillCells($allExperiment, $jsonData2start[0]["antibody"], "antibody");?>');
+        $('#antiformexp3v2').prepend('<?php echo fillCells($allExperiment, $jsonData3start[0]["antibody"], "antibody");?>');
 
-        fillSelect("#cellformexp1v2", data1start[0].antibody, allExperiment, data1start[0].cell_line, "antiname", "cellname");
-        fillSelect("#cellformexp2v2", data2start[0].antibody, allExperiment, data2start[0].cell_line, "antiname", "cellname");
-        fillSelect("#cellformexp3v2", data3start[0].antibody, allExperiment, data3start[0].cell_line, "antiname", "cellname");
+        fillSelect("#cellformexp1v2", data1start[0].antibody, allExperiment, data1start[0].cell_line, "antibody", "cell_line");
+        fillSelect("#cellformexp2v2", data2start[0].antibody, allExperiment, data2start[0].cell_line, "antibody", "cell_line");
+        fillSelect("#cellformexp3v2", data3start[0].antibody, allExperiment, data3start[0].cell_line, "antibody", "cell_line");
  
         fillExpByAntiCell('#formexp1v2', data1start[0].antibody, data1start[0].cell_line, allExperiment, data1start[0].name);
         fillExpByAntiCell('#formexp2v2', data2start[0].antibody, data2start[0].cell_line, allExperiment, data2start[0].name);
         fillExpByAntiCell('#formexp3v2', data3start[0].antibody, data3start[0].cell_line, allExperiment, data3start[0].name);
 
         $('#antiformexp1v2').change(function(){
-            fillSelect('#cellformexp1v2', $('#antiformexp1v2').val(), allExperiment, "", "antiname", "cellname");
+            fillSelect('#cellformexp1v2', $('#antiformexp1v2').val(), allExperiment, "", "antibody", "cell_line");
             fillExpByAntiCell('#formexp1v2', $('#antiformexp1v2').val(), $('#cellformexp1v2').val(), allExperiment);
         });
 
         $('#antiformexp2v2').change(function(){
-            fillSelect('#cellformexp2v2', $('#antiformexp2v2').val(), allExperiment, "", "antiname", "cellname");
+            fillSelect('#cellformexp2v2', $('#antiformexp2v2').val(), allExperiment, "", "antibody", "cell_line");
             fillExpByAntiCell('#formexp2v2', $('#antiformexp2v2').val(), $('#cellformexp2v2').val(), allExperiment);
         });
 
         $('#antiformexp3v2').change(function(){
-            fillSelect('#cellformexp3v2', $('#antiformexp3v2').val(), allExperiment, "", "antiname", "cellname");
+            fillSelect('#cellformexp3v2', $('#antiformexp3v2').val(), allExperiment, "", "antibody", "cell_line");
             fillExpByAntiCell('#formexp3v2', $('#antiformexp3v2').val(), $('#cellformexp3v2').val(), allExperiment);
         });
 
