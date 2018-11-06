@@ -269,19 +269,24 @@ ul.navlink li:hover ul.subnav li {
   height: 11em;
   pointer-events: none;
 
-text-align: center;
-background-color: #d9e5f6;
-color: #031023;
-border-radius: 6px;
-padding: 5px 0;
-
+  text-align: center;
+  background-color: #d9e5f6;
+  color: #031023;
+  border-radius: 6px;
+  padding: 5px 0;
 }
 
 div {
+  float: left;
+}
 
-height: 55em;
-float: left;
-
+#chart_venn {
+  height: 55em;
+  width:94%;
+  background-color: white;
+  border:1px solid black;
+  display:block;
+  float:none;
 }
 
 div#buttons {
@@ -292,17 +297,16 @@ float: left;
 }
 
 #header {
-height: 5.3em;
+  height: 5.3em;
 }
 
 .axisRed {
   stroke: white;
   fill: white;
-
 }
 
 img {
-height: 5em;
+  height: 5em;
 }
 
 
@@ -494,7 +498,7 @@ left: 45%;
 position: absolute;
 display: float;
 top: 38em;
-left: 35%;
+left: 38%;
 }
 
 .threechosen {

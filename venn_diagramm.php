@@ -148,7 +148,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </iframe>
 </div>
 
-<div id="chart_venn" style="width:94% ;background-color: white;border:1px solid black;display:block;float:none;" >
+<div id="chart_venn" >
 
 <div id="circle" style="background-color:red;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
 <div id="circle2" style="background-color:blue;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
