@@ -40,8 +40,8 @@
     return($result);
   }
 
-  function getSVGPos($fpos, $gstart, $gend, $width){
-    return( ($fpos - $gstart) / ($gend - $gstart) * $width );
+  function getSVGPos($fpos, $gstart, $gend){
+    return( ($fpos - $gstart) / ($gend - $gstart) * 100 );
   }
 
   function drawSNP($snp, $pos, $halfh, $textstart){
@@ -49,38 +49,38 @@
     $vstart = $halfh;
     $vend   = $vstart + $third / 2;
 
-    echo('<line x1="' . $pos . '" y1="' . $vstart . '" x2="' . $pos . '" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />');
-    echo('<text x="' . $pos . '" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text>');
+    echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />');
+    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text></a>');
   }
 
-  function drawMotifs($motif, $width, $halfh, $gstart, $gend, $boxh){
-    $pos  = getSVGPos($motif[2], $gstart, $gend, $width);
-    $w    = ($motif[3] - $motif[2]) / ($gend - $gstart) * $width;
+  function drawMotifs($motif, $halfh, $gstart, $gend, $boxh){
+    $pos  = getSVGPos($motif[2], $gstart, $gend);
+    $w    = ($motif[3] - $motif[2]) / ($gend - $gstart) * 100;
     $texth = 13;
     $textbline = ($boxh - $texth) / 2;
-    echo('<rect x="' . $pos . '" y="' . ($halfh - $boxh) . '" width="' . $w . '" height="' . $boxh . '" style="fill:pink;stroke:green;"/>');
-    echo('<text x="' . $pos . '" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text>');
+    echo('<rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" style="fill:pink;stroke:green;"/>');
+    echo('<text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text>');
   }
 
-  function drawAllMotifs($feats, $width, $height){
+  function regionView($feats, $height){
     $halfh     = $height / 2;
     $gstart    = $feats["start"];
     $gend      = $feats["end"];
     $motifboxh = 16; // height of motif box
     $boxsep    = 4;  // spacer between motif boxes
 
-    echo('<svg width="' . $width . '" height="' . $height . '">');
-    echo('<rect x="0" y="0" width="'.$width.'" height="'.$height.'" style="fill:lightblue;storoke:red;" />');
-    echo('<line x1="0" y1="'.$halfh.'" x2="'.$width.'" y2="'.$halfh.'" style="stroke:black;stroke-width=2" />');
+    echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
+    echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />');
+    echo('<line x1="0" y1="50%" x2="100%" y2="50%" style="stroke:black;stroke-width=2" />');
     
     for($i = 0; $i < sizeof($feats["snps"]); $i++){
-      $pos = getSVGPos($feats["snps"][$i][2], $gstart, $gend, $width);
-      if(($i > 0) && ($pos - $first < 80)){ #This 80 is based on empirical observations
+      $pos = getSVGPos($feats["snps"][$i][2], $gstart, $gend);
+      if(($i > 0) && ($pos - $first < 7)){ #This 7 is based on empirical observations
         $base = $base + 14;
       }
       else {
         $base = $halfh + ($halfh / 6) + 10;
-        $first = getSVGPos($feats["snps"][$i][3], $gstart, $gend, $width);
+        $first = getSVGPos($feats["snps"][$i][3], $gstart, $gend);
       }
       drawSNP($feats["snps"][$i], $pos, $halfh, $base);
     }
@@ -92,9 +92,14 @@
       else{
         $base = $halfh;
       }
-      drawMotifs($feats["motifs"][$i], $width, $base, $gstart, $gend, $motifboxh);
+      drawMotifs($feats["motifs"][$i], $base, $gstart, $gend, $motifboxh);
     }
     echo("</svg>");
+  }
+
+  function motifView($feats, $height){
+    echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
+    echo('</svg>');
   }
 
   $dbsnpid = $_GET['dbsnp'];
@@ -155,7 +160,7 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
 <div>
 <?php
   if(isset($motifs)){
-    drawAllMotifs($motifs, 700, 300);
+    regionView($motifs, 300);
   }
 ?>
 </div>
