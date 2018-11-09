@@ -13,7 +13,7 @@
     $sql    = "select * from dbsnp where dbsnp_id = '$dbsnpid';";
     $snps   = sql2array($conn, $sql);
     $start  = $snps[0][2] - 50; //SNPs just one nucleotide long, we need a bigger picture.
-    $end    = $snps[0][3] + 50;
+    $end    = $snps[0][2] + 50;
     $sql    = "select * from motif_pos left join consensus_motif on (motif_pos.consensus_motif_motif_id = consensus_motif.motif_id) where motif_pos.chr = '"
                . $snps[0][1] . "' and motif_pos.start > $start and motif_pos.end < $end;";
     $motifs = sql2array($conn, $sql);
@@ -21,6 +21,7 @@
     $result           = [];
     $result["motifs"] = $motifs;
     $result["snps"]   = $snps;
+    $result["chr"]    = $snps[0][1];
     $result["start"]  = $start;
     $result["end"]    = $end;
     return($result);
@@ -29,12 +30,13 @@
   function motifsbyregion($conn, $chr, $start, $end){
     $sql    = "select * from motif_pos left join consensus_motif on (consensus_motif_motif_id = motif_id) where chr = '$chr' and start > $start and end < $end order by start;";
     $motifs = sql2array($conn, $sql);
-    $sql    = "select * from dbsnp where chr = '$chr' and start > $start and end < $end";
+    $sql    = "select * from dbsnp where chr = '$chr' and start > $start and start < $end";
     $snps   = sql2array($conn, $sql);
 
     $result           = [];
     $result["motifs"] = $motifs;
     $result["snps"]   = $snps;
+    $result["chr"]    = $chr;
     $result["start"]  = $start;
     $result["end"]    = $end;
     return($result);
@@ -97,8 +99,79 @@
     echo("</svg>");
   }
 
-  function motifView($feats, $height){
+  function drawReference($conn, $feats){
+    $min = $feats["start"];
+    $max = $feats["end"];
+    $chr = $feats["chr"];
+
+    $sql = "select * from reference where chr = '$chr' and start < $max and end > $min order by start;";
+    $ref = sql2array($conn, $sql);
+
+    $seq = "";
+    for($i = 0; $i < sizeof($ref); $i++){
+      $subseqlen = strlen($ref[$i][3]);
+      $strstart = $min - $ref[$i][1];
+      if($strstart < 0) $strstart = 0;
+      $strend = 0 - ($ref[$i][2] - $max);
+      if($strend > 0) $strend = $subseqlen;
+      $seq = $seq . substr($ref[$i][3], $strstart, $strend);
+    }
+
+    for($i = 0; $i < strlen($seq); $i ++){
+      $pos = $i / strlen($seq) * 100;
+      echo('<text x="'.$pos.'%" y="80%" style="text-anchor:start;font:13px sans-serif;">'.$seq[$i].'</text>');
+    }
+  }
+
+  function drawSNPWithSEQ($feats){
+    $min   = $feats["start"];
+    $max   = $feats["end"] + 1;
+    $snpid = $feats["snps"][0][0];
+    $pos   = $feats["snps"][0][2];
+    $ref   = $feats["snps"][0][3];
+    $alt   = $feats["snps"][0][4];
+
+    for($i = 0; $i < strlen($ref); $i++){
+      $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
+      echo('<text x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>');
+    }
+
+    for($i = 0; $i < strlen($alt); $i++){
+      $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
+      echo('<text x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>');
+    }
+
+    $textpos = ($pos - $min) / ($max - $min) * 100;
+    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>');
+
+  }
+
+  function drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend){
+    $ypos = 70 - $i * 10;
+    for($i = 0; $i < sizeof($matrix); $i++){
+       $xpos = ($mstart + $i - $regstart) / ($regend - $regstart) * 100;
+       echo('<text x="'.$xpos.'%" y="'.$ypos.'%">N</text>');
+    }
+  }
+
+  function drawMotifLogos($conn, $feats){
+    $regstart = $feats["start"];
+    $regend   = $feats["end"] - 1;
+    for($i = 0; $i < sizeof($feats["motifs"]); $i++){
+      $sql    = "select position,probA,probC,probG,probT from pfm left join consensus_motif on (motif_id = consensus_motif_motif_id) where jaspar_code = '".$feats["motifs"][$i][10]."' order by position;";
+      $matrix = sql2array($conn, $sql);
+      $mstart = $feats["motifs"][$i][2];
+      $mend   = $feats["motifs"][$i][3];
+      drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend);
+    }
+  }
+
+  function motifView($conn, $feats, $height){
     echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
+    echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />');
+    drawReference($conn, $feats);
+    drawSNPWithSEQ($feats);
+    drawMotifLogos($conn, $feats);
     echo('</svg>');
   }
 
@@ -123,7 +196,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="dbsnp.css">
   <script type="text/javascript">
     function paramcheck(){
       var dbsnpid = document.getElementById("inpdbsnp").value;
@@ -142,6 +215,7 @@
       document.getElementById("dbform").submit();
       return true;
     }
+    var features = <?php echo json_encode($motifs); ?>;
   </script>
 </head>
 <body>
@@ -160,7 +234,8 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
 <div>
 <?php
   if(isset($motifs)){
-    regionView($motifs, 300);
+    //regionView($motifs, 300);
+    motifView($conn, $motifs, 300);
   }
 ?>
 </div>
