@@ -51,8 +51,8 @@
     $vstart = $halfh;
     $vend   = $vstart + $third / 2;
 
-    echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />');
-    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text></a>');
+    echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />'."\n");
+    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text></a>'."\n");
   }
 
   function drawMotifs($motif, $halfh, $gstart, $gend, $boxh){
@@ -60,8 +60,8 @@
     $w    = ($motif[3] - $motif[2]) / ($gend - $gstart) * 100;
     $texth = 13;
     $textbline = ($boxh - $texth) / 2;
-    echo('<rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" style="fill:pink;stroke:green;"/>');
-    echo('<text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text>');
+    echo('<rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" style="fill:pink;stroke:green;"/>'."\n");
+    echo('<text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text>'."\n");
   }
 
   function regionView($feats, $height){
@@ -71,9 +71,9 @@
     $motifboxh = 16; // height of motif box
     $boxsep    = 4;  // spacer between motif boxes
 
-    echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
-    echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />');
-    echo('<line x1="0" y1="50%" x2="100%" y2="50%" style="stroke:black;stroke-width=2" />');
+    echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">'."\n");
+    echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />'."\n");
+    echo('<line x1="0" y1="50%" x2="100%" y2="50%" style="stroke:black;stroke-width=2" />'."\n");
     
     for($i = 0; $i < sizeof($feats["snps"]); $i++){
       $pos = getSVGPos($feats["snps"][$i][2], $gstart, $gend);
@@ -82,7 +82,7 @@
       }
       else {
         $base = $halfh + ($halfh / 6) + 10;
-        $first = getSVGPos($feats["snps"][$i][3], $gstart, $gend);
+        $first = getSVGPos($feats["snps"][$i][2], $gstart, $gend);
       }
       drawSNP($feats["snps"][$i], $pos, $halfh, $base);
     }
@@ -119,7 +119,7 @@
 
     for($i = 0; $i < strlen($seq); $i ++){
       $pos = $i / strlen($seq) * 100;
-      echo('<text x="'.$pos.'%" y="80%" style="text-anchor:start;font:13px sans-serif;">'.$seq[$i].'</text>');
+      echo('<text x="'.$pos.'%" y="80%" style="text-anchor:start;font:13px sans-serif;">'.$seq[$i].'</text>'."\n");
     }
   }
 
@@ -133,30 +133,33 @@
 
     for($i = 0; $i < strlen($ref); $i++){
       $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-      echo('<text x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>');
+      echo('<text x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
     }
 
     for($i = 0; $i < strlen($alt); $i++){
       $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-      echo('<text x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>');
+      echo('<text x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
     }
 
     $textpos = ($pos - $min) / ($max - $min) * 100;
-    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>');
+    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>'."\n");
 
   }
 
-  function drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend){
-    $ypos = 70 - $i * 10;
+  function drawLogo($matrix, $order, $mstart, $mend, $regstart, $regend){
+    $ypos = 75 - $order * 15;
+    $width = ($mend - $mstart) / ($regend - $regstart) * 100;
+    $xpos  = ($mstart - $regstart) / ($regend - $regstart) * 100;
+    echo('<rect x="'.$xpos.'%" y="'.($ypos - 15).'%" width="'.$width.'%" height="15%" style="stroke:green;fill:none;"/>'."\n");
     for($i = 0; $i < sizeof($matrix); $i++){
-       $xpos = ($mstart + $i - $regstart) / ($regend - $regstart) * 100;
-       echo('<text x="'.$xpos.'%" y="'.$ypos.'%">N</text>');
+       $xpos  = ($mstart + $i - $regstart) / ($regend - $regstart) * 100;
+       echo('<text x="'.$xpos.'%" y="'.$ypos.'%">N</text>'."\n");
     }
   }
 
   function drawMotifLogos($conn, $feats){
     $regstart = $feats["start"];
-    $regend   = $feats["end"] - 1;
+    $regend   = $feats["end"] + 1;
     for($i = 0; $i < sizeof($feats["motifs"]); $i++){
       $sql    = "select position,probA,probC,probG,probT from pfm left join consensus_motif on (motif_id = consensus_motif_motif_id) where jaspar_code = '".$feats["motifs"][$i][10]."' order by position;";
       $matrix = sql2array($conn, $sql);
@@ -167,7 +170,7 @@
   }
 
   function motifView($conn, $feats, $height){
-    echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
+    echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">'."\n");
     echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />');
     drawReference($conn, $feats);
     drawSNPWithSEQ($feats);
@@ -234,7 +237,7 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
 <div>
 <?php
   if(isset($motifs)){
-    //regionView($motifs, 300);
+    regionView($motifs, 300);
     motifView($conn, $motifs, 300);
   }
 ?>
