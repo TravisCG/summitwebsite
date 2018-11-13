@@ -64,8 +64,9 @@
     $w    = ($motif[3] - $motif[2]) / ($gend - $gstart) * 100;
     $texth = 13;
     $textbline = ($boxh - $texth) / 2;
-    echo('<rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" style="fill:pink;stroke:green;"/>'."\n");
-    echo('<text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text>'."\n");
+    $params = "chr=".$motif[1]."&start=".($motif[2]-5)."&end=".($motif[3]+5)."&mv=1";
+    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/dbsnp.php?'.$params.'"><rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" style="fill:pink;stroke:green;"/></a>'."\n");
+    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$motif[9].'" xlink:show="new"><text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text></a>'."\n");
   }
 
   function regionView($feats, $height){
@@ -130,23 +131,25 @@
   function drawSNPWithSEQ($feats){
     $min   = $feats["start"];
     $max   = $feats["end"] + 1;
-    $snpid = $feats["snps"][0][0];
-    $pos   = $feats["snps"][0][2];
-    $ref   = $feats["snps"][0][3];
-    $alt   = $feats["snps"][0][4];
+    for($s = 0; $s < sizeof($feats["snps"]); $s++){
+      $snpid = $feats["snps"][$s][0];
+      $pos   = $feats["snps"][$s][2];
+      $ref   = $feats["snps"][$s][3];
+      $alt   = $feats["snps"][$s][4];
 
-    for($i = 0; $i < strlen($ref); $i++){
-      $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-      echo('<text x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
+      for($i = 0; $i < strlen($ref); $i++){
+        $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
+        echo('<text x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
+      }
+
+      for($i = 0; $i < strlen($alt); $i++){
+        $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
+        echo('<text x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
+      }
+
+      $textpos = ($pos - $min) / ($max - $min) * 100;
+      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>'."\n");
     }
-
-    for($i = 0; $i < strlen($alt); $i++){
-      $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-      echo('<text x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
-    }
-
-    $textpos = ($pos - $min) / ($max - $min) * 100;
-    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>'."\n");
   }
 
   function drawNuc($x, $y, $height, $width, $array, $style){
@@ -251,6 +254,7 @@
   $chr     = $_GET['chr'];
   $start   = $_GET['start'];
   $end     = $_GET['end'];
+  $moview  = $_GET['mv']; // force to show MotifView instead of region view
 
   $conn = new mysqli($servername, $username, $password, $dbname);
   if ($conn->connect_error) {
@@ -316,7 +320,7 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
 <div>
 <?php
   if(isset($motifs)){
-    if($dbsnpid == "" || $overlap == false){
+    if( ($dbsnpid == "" || $overlap == false) && $moview != 1){
       regionView($motifs, SVGH);
     } else {
       motifView($conn, $motifs, SVGH);

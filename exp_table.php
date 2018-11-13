@@ -29,6 +29,11 @@ $result1 = $conn->query($sql1);
 while($r = mysqli_fetch_assoc($result1)) {
     $jsonData[] = $r;}
 
+$sql2 = "select count(*) as c from consensus_motif where name = '" . $jsonData[0]["antibody"] . "'";
+$res  = $conn->query($sql2);
+$r    = mysqli_fetch_assoc($res);
+$count= $r["c"];
+
 $conn->close();
 
 ?>
@@ -60,7 +65,13 @@ td {font-size:1.2em;}
  <tr>
     <td>antibody</td>
     <td id="antiBod"><?php echo $jsonData[0]["antibody"];?></td>
-    <td><a href="<?php echo "http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" . $jsonData[0]["antibody"];?>" id="motview" target="_blank">link to motif view if antibody and consensus motif is the same</a></td>
+    <td><?php 
+  if($count > 0){
+    echo '<a href="' . 'http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=' . $jsonData[0]["antibody"] . '" id="motview" target="_blank">link to motif view if antibody and consensus motif is the same</a>';
+  } else {
+    echo '';
+  }
+   ?></td>
   </tr>
 
  <tr>
