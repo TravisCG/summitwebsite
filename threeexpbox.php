@@ -1,4 +1,5 @@
 <?php
+include('dbutil.php');
 
 function fillCells($array, $default, $type){
   $uniq = [];
@@ -17,13 +18,6 @@ function fillCells($array, $default, $type){
     }
   }
   return($options);
-}
-
-function fetchAssoc($res) {
-  while( $r = mysqli_fetch_assoc($res)){
-    $assoc[] = $r;
-  }
-  return($assoc);
 }
 
 function getExpCellAntiBody($conn, $expName){

@@ -1,17 +1,10 @@
 <?php
   include('config.php');
+  include('dbutil.php');
   define("SVGW", 1200); // SVG viewport X limit
   define("SVGH", 300);  // SVG viewport Y limit
   define("NUCW", 45);   // Nucleotide width in logo
   define("NUCH", 100);  // Nucleotide height in logo
-
-  function sql2array($conn, $sql){
-    $res = mysqli_query($conn, $sql);
-    while( $r = mysqli_fetch_array($res, MYSQLI_NUM)){
-      $array[] = $r;
-    }
-    return($array);
-  }
 
   function motifsbydbsnp($conn, $dbsnpid){
     $sql    = "select * from dbsnp where dbsnp_id = '$dbsnpid';";
@@ -301,7 +294,17 @@
       document.getElementById("dbform").submit();
       return true;
     }
+
     var features = <?php echo json_encode($motifs); ?>;
+
+    document.addEventListener("DOMContentLoaded", function(event){
+      // Get experiment by SNP
+      document.getElementById("getexp").onclick = function(){
+         snpid = document.getElementById("inpdbsnp").value;
+         window.open("expbysnp.php?dbsnp=" + snpid, '_blank');
+      }
+    });
+
   </script>
 </head>
 <body>
@@ -310,7 +313,7 @@
 genomic region manually.</p>
 <p>Caution: The genomic region cannot be larger than 1000bp!</p>
 <form id="dbform" method="get" onsubmit="event.preventDefault();paramcheck();">
-<p>dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/></p>
+<p>dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/><button id="getexp">Get experiments overlap with this SNP</button></p>
 <p>or</p>
 <p>Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>" size="3" maxlength="2"/>
 Start position:<input id="inpstart" type="text" name="start" value="<?php echo $start; ?>" size="5"/>
