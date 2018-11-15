@@ -9,10 +9,13 @@
   function motifsbydbsnp($conn, $dbsnpid){
     $sql    = "select * from dbsnp where dbsnp_id = '$dbsnpid';";
     $snps   = sql2array($conn, $sql);
+    $chr    = $snps[0][1];
     $start  = $snps[0][2] - 50; //SNPs just one nucleotide long, we need a bigger picture.
     $end    = $snps[0][2] + 50;
+    $sql    = "select *,0 from dbsnp where chr = '$chr' and start > $start and start < $end;";
+    $snps   = sql2array($conn, $sql);
     $sql    = "select * from motif_pos left join consensus_motif on (motif_pos.consensus_motif_motif_id = consensus_motif.motif_id) where motif_pos.chr = '"
-               . $snps[0][1] . "' and motif_pos.start > $start and motif_pos.end < $end;";
+               . "$chr' and motif_pos.start > $start and motif_pos.end < $end;";
     $motifs = sql2array($conn, $sql);
 
     $result           = [];
@@ -27,7 +30,7 @@
   function motifsbyregion($conn, $chr, $start, $end){
     $sql    = "select * from motif_pos left join consensus_motif on (consensus_motif_motif_id = motif_id) where chr = '$chr' and start > $start and end < $end order by start;";
     $motifs = sql2array($conn, $sql);
-    $sql    = "select * from dbsnp where chr = '$chr' and start > $start and start < $end";
+    $sql    = "select *,0 from dbsnp where chr = '$chr' and start > $start and start < $end";
     $snps   = sql2array($conn, $sql);
 
     $result           = [];
@@ -125,23 +128,29 @@
     $min   = $feats["start"];
     $max   = $feats["end"] + 1;
     for($s = 0; $s < sizeof($feats["snps"]); $s++){
-      $snpid = $feats["snps"][$s][0];
-      $pos   = $feats["snps"][$s][2];
-      $ref   = $feats["snps"][$s][3];
-      $alt   = $feats["snps"][$s][4];
+      $snpid   = $feats["snps"][$s][0];
+      $pos     = $feats["snps"][$s][2];
+      $ref     = $feats["snps"][$s][3];
+      $alt     = $feats["snps"][$s][4];
+      $overlap = $feats["snps"][$s][5];
+
+      $class   = 'class="single"';
+      if($overlap == "1"){
+         $class = 'class="overlap"';
+      }
 
       for($i = 0; $i < strlen($ref); $i++){
         $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
+        echo('<text '.$class.' x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
       }
 
       for($i = 0; $i < strlen($alt); $i++){
         $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
+        echo('<text '.$class.' x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
       }
 
       $textpos = ($pos - $min) / ($max - $min) * 100;
-      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>'."\n");
+      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text '.$class.'x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>'."\n");
     }
   }
 
@@ -259,12 +268,11 @@
     $overlap = false;
     for($i = 0; $i < sizeof($motifs["motifs"]); $i++){
       for($j = 0; $j < sizeof($motifs["snps"]); $j++){
-        if($motifs["motifs"][$i][2] < $motifs["snps"][$j][2] && $motifs["motifs"][$i][3] > $motifs["snps"][$j][2]){
+        if($motifs["motifs"][$i][2] <= $motifs["snps"][$j][2] && $motifs["motifs"][$i][3] >= $motifs["snps"][$j][2]){
+          $motifs["snps"][$j][5] = "1";
           $overlap = true;
-          break;
         }
       }
-      if($overlap == true) break;
     }
   }
   elseif($chr != "" && $start != "" && $end != "" && $end - $start < 1000){
@@ -296,12 +304,26 @@
     }
 
     var features = <?php echo json_encode($motifs); ?>;
+    var overlapswitch = false;
 
     document.addEventListener("DOMContentLoaded", function(event){
       // Get experiment by SNP
       document.getElementById("getexp").onclick = function(){
          snpid = document.getElementById("inpdbsnp").value;
          window.open("expbysnp.php?dbsnp=" + snpid, '_blank');
+      }
+
+      document.getElementById("overlaptoggle").onclick = function(){
+         elements = document.getElementsByClassName("single");
+         overlapswitch = !overlapswitch;
+         for(var i = 0; i < elements.length; i++){
+           if(overlapswitch == true){
+             elements[i].style.visibility = "hidden";
+           }
+           else{
+             elements[i].style.visibility = "visible";
+           }
+         }
       }
     });
 
@@ -327,6 +349,7 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
       regionView($motifs, SVGH);
     } else {
       motifView($conn, $motifs, SVGH);
+      echo('<button id="overlaptoggle">Toggle overlapping SNPs</button>');
     }
   }
 ?>

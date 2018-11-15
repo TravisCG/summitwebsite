@@ -21,8 +21,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="dbsnp.css">
 </head>
 <body>
+<div class="container_16">
+  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
+  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
+  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
+</div>
+<div class="foo">
+    <ul class="navlink">
+        <li><a href="index.html" title="Home" class="active">Home</a></li>
+        <li onclick="glossToggle()"><a title="Help" class="active">Glossary</a></li>
+    </ul>
+</div>
+
+<p>List of experiments which overlap with the following SNP: <?php echo($snpid);?></p>
+<div id="explist">
 <?php
 
   foreach($res as $record){
@@ -31,5 +47,6 @@
     echo("</p>\n");
   }
 ?>
+</div>
 </body>
 </html>

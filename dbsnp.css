@@ -18,3 +18,11 @@ html, body {
 .nucC {
   fill: rgb(14.509804%,36.078431%,60%);
 }
+
+#explist {
+  margin: auto;
+  width: 600px;
+  text-align: center;
+  float: none;
+}
+
