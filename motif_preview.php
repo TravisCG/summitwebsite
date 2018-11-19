@@ -51,7 +51,7 @@ foreach($jsonData6 as $item){
 ?>
 </select>
 <p>When te parameters have been set, this button will refresh the page.</p>
-<button id="resend" onclick="dopreSearch()" style="width: 14em;"><p>Go to motif view</p></button>
+<button id="resend" onclick="doSearch('_blank')" style="width: 14em;"><p>Go to motif view</p></button>
 </div>
 <div style="width:48%;float:right;">
 <p>

@@ -250,11 +250,12 @@ echo json_encode($jsonData3, JSON_NUMERIC_CHECK);
 <div style="height:105em;">
 <br>
 <br>
-<p>Minimum overlap number between motifs and peaks of experiment</p>
+<p>Minimum overlap number between motifs and peaks of experiment: <?php echo $minelem;?></p>
 
 <form action="#" id="min_field"> <input type="text" id="textboxmnelem" value="<?php echo $minelem;?>">
 </form>
 <br>
+
 <p>Set a motif:</p><br>
   <select id="formmotive" type="text" value="" placeholder="Type to filter">
 <?php
@@ -298,7 +299,7 @@ foreach($jsonData6 as $item){
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
-<button id="resend" onclick="doSearchShift()" style="width: 14em;"><p>Refresh Page</p></button>
+<button id="resend" onclick="doSearchShift('_self')" style="width: 14em;"><p>Refresh Page</p></button>
 </div>
 <br>
 <br>

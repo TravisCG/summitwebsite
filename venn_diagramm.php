@@ -266,7 +266,7 @@ foreach($jsonData6 as $item){
 
 <p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
 </p><br>
-<button class="paired_button" onclick="doSearchpreShift()">View data in paired shift view</button>
+<button class="paired_button" onclick="doSearchShift('_blank')">View data in paired shift view</button>
 <button class="paired_button" onclick="vennBed()">Download bed file for genome view</button>
 
 <br id="limit" value=25><br id="low_limit" value=-25>
