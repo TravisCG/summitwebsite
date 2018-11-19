@@ -120,13 +120,14 @@
 
     for($i = 0; $i < strlen($seq); $i ++){
       $pos = $i / strlen($seq) * 100;
-      echo('<text x="'.$pos.'%" y="80%" style="text-anchor:start;font:13px sans-serif;">'.$seq[$i].'</text>'."\n");
+      echo('<text x="'.$pos.'%" y="70%" style="text-anchor:start;font:13px sans-serif;">'.$seq[$i].'</text>'."\n");
     }
   }
 
   function drawSNPWithSEQ($feats){
-    $min   = $feats["start"];
-    $max   = $feats["end"] + 1;
+    $min         = $feats["start"];
+    $max         = $feats["end"] + 1;
+    $prevtextpos = 0;
     for($s = 0; $s < sizeof($feats["snps"]); $s++){
       $snpid   = $feats["snps"][$s][0];
       $pos     = $feats["snps"][$s][2];
@@ -141,16 +142,23 @@
 
       for($i = 0; $i < strlen($ref); $i++){
         $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text '.$class.' x="'.$textpos.'%" y="85%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
+        echo('<text '.$class.' x="'.$textpos.'%" y="75%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
       }
 
       for($i = 0; $i < strlen($alt); $i++){
         $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text '.$class.' x="'.$textpos.'%" y="90%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
+        echo('<text '.$class.' x="'.$textpos.'%" y="80%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
       }
 
       $textpos = ($pos - $min) / ($max - $min) * 100;
-      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text '.$class.'x="' . $textpos . '%" y="95%" style="font:13px sans-serif;">' . $snpid . '</text></a>'."\n");
+      if($textpos - $prevtextpos < 5){ // This 5 is based on empirical observations
+        $ypos = $ypos + 3;
+      }
+      else{
+        $ypos = 83;
+        $prevtextpos = $textpos;
+      }
+      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text '.$class.'x="' . $textpos . '%" y="'.$ypos.'%" text-anchor="middle" style="font:9px sans-serif;">' . $snpid . '</text></a>'."\n");
     }
   }
 
@@ -194,10 +202,9 @@
 
   function drawLogo($matrix, $order, $mstart, $mend, $regstart, $regend){
     // you have 15% height for every motif
-    $ypos = 75 - $order * 15 - 15;
+    $ypos = 65 - $order * 15 - 15;
     $width = ($mend - $mstart) / ($regend - $regstart) * 100;
     $xpos  = ($mstart - $regstart) / ($regend - $regstart) * 100;
-    //echo('<rect x="'.$xpos.'%" y="' . $ypos .'%" width="'.$width.'%" height="15%" style="stroke:green;fill:none;"/>'."\n");
     $ypos = $ypos * SVGH / 100;
     $nucw = $width / sizeof($matrix) / 100 * SVGW;
     for($i = 0; $i < sizeof($matrix); $i++){
