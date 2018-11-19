@@ -5,44 +5,38 @@
 <title>Welcome to SummitDB</title>
 </head>
 <body>
-  
-    <g>
-   
-    <p class="donectxt">
-    <br>
-    
-   <b> About SummitDB:</b><br><br>
-
+<b> About SummitDB:</b>
+<p class="donectxt">
 The main goal of analysing ChIP-seq experiments to identify regions in the genome where we can find more sequencing reads (tags) than we would expect to see by chance. These regions are named as peak regions due to appearance of visualized distribution of mapped tags.  
 The peak’s summit (maxima) shows the highest coverage of the region and are known to more-or-less coincide with the center of corresponding DNA elements in the case of transcription factors.
 These summits correlate with the accurate contact positions of the proteins on the DNA and can be used to determine the topological arrangements of the binding proteins relative to the strand-specific transcription factor binding sites (transcription factor binding motifs (TFBMs)). Earlier we showed (Nagy et al. BMC Genomics, 2016) that the exact positions of DNA binding proteins on the DNA can be extracted from the ChIP-seq data by identifying the peak summit positions.
-Our goal was to create a global database about the location of identified Transcriptional regulatory elements (TREs) and positional information of the of the co-bound regulatory proteins (using publicly available ChIP-seq data, targeting as much proteins as we can). The investigation of a global picture of different transcription factors and cofactors could identify unknown networks between proteins in transcription regulation. Using the database, we can browse co-bound proteins on TREs and get information about their positioning relative to each other and the bound transcription factor motif.<br><br>
-
-
-    <b>Using SummitDB</b><br><br>
-
+</p>
+<p class="donectxt">
+Our goal was to create a global database about the location of identified Transcriptional regulatory elements (TREs) and positional information of the of the co-bound regulatory proteins (using publicly available ChIP-seq data, targeting as much proteins as we can). The investigation of a global picture of different transcription factors and cofactors could identify unknown networks between proteins in transcription regulation. Using the database, we can browse co-bound proteins on TREs and get information about their positioning relative to each other and the bound transcription factor motif.
+</p>
+<b>Using SummitDB</b>
+<p class="donectxt">
 We can browse database results in local or global manner. Locally we can investigate a specific genomic point of interest and check what kind of TF motif can be located there and what kind of proteins are possibly involved in occupying it. The global analysis can show the most frequently co-bound factors on a given motif type. We can enrich information about the preferred position of the proteins and their co-binding frequency. Conclusions can be drawn about the binding (direct or indirect) from the distribution of position frequency.
-<br><br>
-<b>Motif view</b><br>
+</p>
+<b>Motif view</b>
+<p class="donectxt">
 Short description: Find average/median protein positional and occupancy frequency information on a set of a given transcription factor binding site. 
 The motif view shows the average/median position of occupied proteins on the instances of a given transcription factor motif (on the whole or a portion of consensus motif set). The reference point is marked as zero and it represents the centre of the motif. The scatter plots provide information about the frequencies of co-occupancies and the distance distribution standard deviations of distinct proteins as well. The latter can correlate with the physical distance between the protein and the DNA (direct or indirect binding). Every dote represent a ChIP-seq experiment which are colored by type of target protein. The depicted points can be filtered based on the cell type/cell line or target proteins. 
-<br><br><br>
-<b>Pair shift view</b><br>
-
+</p>
+<b>Pair shift view</b>
+<p>
 Short description: Tool to compare distance distribution of summits of two ChIP-seq experiment around a given transcription factor motif. 
-
+</p>
+<p class="donectxt">
 This view provides detailed information about the co-binding frequency between two target proteins in a given cell type. Based on available ChIP-seq experiments you can investigate the cell specific linkage between two factors. Choose a motif and a cell line/type in which you are interested. Set two eligible target proteins from the list and check the details of distance distributions. You can opt for box blot or histogram display to visualize the summit frequencies on every base pair around the reference point. The reference point (“0”) represents the central base of the certain motif.  If you prefer to see the concrete distance between the summits, you can set the summit positions of one experiment as reference point.  In this case the histogram will show the direct distance distributions between the summits, in the nearby of the defined motif type. 
-
-<br><br><br>
-<b>TFBS region view</b><br>
+</p>
+<b>TFBS region view</b>
+<p class="donectxt">
 The TFBS region view can help you to analyze a specific section of the genom (e.g.: a promoter of a gene) to enrich information related to transcription factors. You can check which motifs are involved on this locus and you can browse between detected ChIP-seq summits. The results can be separated depending on which cell type or proteins are you looking for. 
-<br><br><br>
-<b>Jbrowse</b><br>
+</p>
+<b>Jbrowse</b>
+<p class="donectxt">
 The JBrowse is a well-known Genome Browse (link) which we utilized to visualize genomic data. It provides rapid interface to explore epigenomic data manually. 
-
-    </g>
-
- 
-
+</p>
 </body>
 </html>

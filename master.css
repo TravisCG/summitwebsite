@@ -74,18 +74,14 @@ outline:0;
 
 }
 
-g{
-margin-left: 5%;
-	overflow: auto;
-
-	width: 90%;
-	height:auto;
-	background-color:#AB9F9D;	
-	display: block;
-	text-align: justify;
-	z-index: 1;
-	
-	
+#iframeparent {
+  margin-left: 5%;
+  width: 90%;
+  overflow: auto;
+  height: auto;
+  display: block;
+  background-color:#AB9F9D;
+  z-index: 1;
 }
 iframe{
 	width:100%;
@@ -312,6 +308,3 @@ ul.navlink li:hover ul.subnav li {
 	width: 100%;
 }
 
-
-
-/
