@@ -291,7 +291,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="dbsnp.css">
+  <link rel="stylesheet" type="text/css" href="dbsnp.css" />
+  <link rel="stylesheet" type="text/css" href="master.css" />
   <script type="text/javascript">
     function paramcheck(){
       var dbsnpid = document.getElementById("inpdbsnp").value;
@@ -335,12 +336,15 @@
       }
     });
 
+  function dochange(target) { window.open(target,"_self");};
+
   </script>
 </head>
 <body>
 <?php
   show_header();
 ?>
+<div id="dbsnpform">
 <p>This view helps you to see variations and overlapping regulatory motifs.</p>
 <p>Please specify the dbSNP ID or a genomic region. If both set, only dbSNP will be used. If dbSNP ID is set the final image will be created using 50bp  flanking region. If you would like to see a larger landscape, you can set the
 genomic region manually.</p>
@@ -353,6 +357,7 @@ Start position:<input id="inpstart" type="text" name="start" value="<?php echo $
 End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/></p>
 <input type="submit" value="Send" />
 </form>
+</div>
 <div>
 <?php
   if(isset($motifs)){

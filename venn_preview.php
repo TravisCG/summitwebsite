@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 include("threeexpbox.php");
+include("templates/header.php");
 
 $exp1 = $_GET['exp1'];
 $exp1Name = '\''.$exp1.'\'';
@@ -46,7 +47,8 @@ $conn->close();
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="threeexpbox.js"></script>
@@ -54,13 +56,15 @@ $conn->close();
   $(document).ready(function(){
     <?php expJS($allExperiment, $jsonData1start, $jsonData2start, $jsonData3start);?>
   });
+
+function dochange(target) { window.open(target,"_self");};
 </script>
 </head>
 
 <body>
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
-
+<?php show_header();?>
 <br>
 <div>
 <br>

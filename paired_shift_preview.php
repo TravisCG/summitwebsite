@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 include("threeexpbox.php");
+include("templates/header.php");
 
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
@@ -50,6 +51,7 @@ $conn->close();
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="master.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="threeexpbox.js"></script>
@@ -60,10 +62,11 @@ var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 $(document).ready(function(){
   <?php expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3);?>
 })
-
+function dochange(target) { window.open(target,"_self");};
 </script>
 </head>
 <body>
+<?php show_header();?>
 <div>
 <br>
 <p>Set the three experiments. You can narrow down the experiment by choosing the cell line and the antibody for it:</p><br>
@@ -108,7 +111,7 @@ foreach($jsonData6 as $item){
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
-<button id="resend" onclick="doSearchpreShift()" style="width: 14em;"><p>Open paired shift view</p></button>
+<button id="resend" onclick="doSearchShift('_self')" style="width: 14em;"><p>Open paired shift view</p></button>
 </div>
 
 

@@ -12,14 +12,14 @@ function show_header(){
 
 <div class="foo"> 
   <ul class="navlink">
-    <li><button id="homebut" onclick="dochange('introduction.html')">Home</button></li>
+    <li><button id="homebut" onclick="dochange('index.php')">Home</button></li>
     <li><button>Search views</button>
     <ul class="subnav">
       <li><button id="motifbut"  onclick="dochange('motif_preview.php')">Motif view</button></li>
       <li><button id="pairbut"  onclick="dochange('paired_shift_preview.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&limit=25&low_limit=-25&formminelem=1000')">Pairshift view</button></li>
       <li><button id="vennbut"  onclick="dochange('venn_preview.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&mnelem=1000')">Venn diagramm view</button></li>
       <li><button id="exbut"  onclick="dochange('experiment_preview.php')">Experiment view</button></li>
-      <li><button id="snpbut" onclick="dochange('dbsnp.php')">dbSNP view</li>
+      <li><button id="snpbut" onclick="dochange('dbsnp.php')">dbSNP view</button></li>
       <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">Genome view</button></li></a>
     </ul></li>
     <li><button id="docbut" onclick="dochange('Documentation.html')" >Documentation</button></li>

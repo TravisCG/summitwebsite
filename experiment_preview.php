@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("templates/header.php");
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -55,13 +56,17 @@ $conn->close();
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-
+<script>
+function dochange(target) { window.open(target,"_self");};
+</script>
 </head>
 
 <body>
+<?php show_header();?>
 <div>
 <br>
 <br>

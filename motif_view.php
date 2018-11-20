@@ -147,7 +147,7 @@ $conn->close();
 
   <div class="foo">
     <ul class="navlink">
-        <li><a href="index.html" title="Home" class="active">Home</a></li>
+        <li><a href="index.php" title="Home" class="active">Home</a></li>
         <li onclick="glossToggle()"><a title="Standard deviation vs distance >  
 In this mode, the average distances between the peak of the reads obtained in ChIP-seq experiments and a given consensus motif on a scatterplot is visualized. Each scatter represents an experiment. Circles represent transcription factors with defined binding sites, while triangles represent co-factors and other indirectly bound proteins. Different colors indicate the antibody used in the immunoprecipitation. The X-axis shows the average distances of peak summits and the center of the binding sites for all overlapping peaks. The Y-axis shows either the number of peaks overlapping the binding motifs (elements). In default mode, the standard deviation of the shift values (distances) between the peak summits and motif centers. The scatterplot representation is available for all consensus binding motif sets. The displayed data can be filtered by the number of overlapping peaks (element number) or by the standard deviation. Data can be also displayed based on the used antibody or cell type. The mean value of the average distances of peak summits obtained by the same antibody in different experiments can be also calculated and shown. After selecting maximum three experiments, links are available to switch to other views. 
 
