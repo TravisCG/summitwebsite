@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("templates/header.php");
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -23,11 +24,16 @@ $conn->close();
 <title>NAIK Genome Database</title>
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
+<script>
+function dochange(target) { window.open(target,"_self");};
+</script>
+</head>
+<body>
+<?php show_header();?>
 <div id="buttons" style="text-align: left;width: 40%;">
 <p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> <br> 
 <p>Minimum standard deviation</p>

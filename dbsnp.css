@@ -26,3 +26,7 @@ html, body {
   float: none;
 }
 
+#dbsnpform {
+  width: 90%;
+  margin-left: 5%;
+}
