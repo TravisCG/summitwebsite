@@ -1,6 +1,7 @@
 <?php
   include('config.php');
   include('dbutil.php');
+  include('templates/header.php');
   define("SVGW", 1200); // SVG viewport X limit
   define("SVGH", 300);  // SVG viewport Y limit
   define("NUCW", 45);   // Nucleotide width in logo
@@ -337,6 +338,9 @@
   </script>
 </head>
 <body>
+<?php
+  show_header();
+?>
 <p>This view helps you to see variations and overlapping regulatory motifs.</p>
 <p>Please specify the dbSNP ID or a genomic region. If both set, only dbSNP will be used. If dbSNP ID is set the final image will be created using 50bp  flanking region. If you would like to see a larger landscape, you can set the
 genomic region manually.</p>
