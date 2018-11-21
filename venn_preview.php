@@ -64,22 +64,15 @@ function dochange(target) { window.open(target,"_self");};
 <body>
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
-<?php show_header();?>
-<br>
-<div>
-<br>
-<br>
-<br>
+<?php show_full_navigation();?>
 
-
-<p>Set the three experiments. You can narrow down the experiment by choosing the cell line and the antibody for it:</p><br>
-
+<div id="maincontent">
+<p>Set the three experiments. You can narrow down the experiment by choosing the cell line and the antibody for it:</p>
 <p>Set the minimum overlap number between motifs and peaks of experiment</p>
 
-<form action="#" id="form_field"> <input type="text" id="textboxmnelem" value="1000"> 
+<form action="#" id="form_field">
+  <input type="text" id="textboxmnelem" value="1000" />
 </form>
-<br>
-
 <div>
 
 <?php expBoxes();?>
@@ -93,17 +86,10 @@ foreach($jsonData6 as $item){
     }
 ?>
 </select>
-
-<br>
-<p>When te parameters have been set, this button will refresh the page.</p>
+<p>When the parameters have been set, this button will refresh the page.</p>
 
 <button id="resend" onclick="doSearchpreVenn()" style="width: 14em;"><p>Open venn diagramm view</p></button>
 
-</div>
-
-
-<br>
-<br>
 </div>
 <script>
 var formmotive = <?php echo '"'. $motifPart . '"'; ?>;
@@ -118,7 +104,7 @@ document.getElementById("formmotive").value = formmotive;
 VennView<br><br>
 In this mode, two or three experiment can be compared. The values in the sections of the diagram indicates the number  of overlapping peaks at the consensus motif binding sites of a given motif. Considering one TFBS in a genome (among the thousands defined in the Consensus motif binding site set) it can overlap (between 50bp at both sides) one, any of the two or all three experiments examined in this view. In the Venn diagram, we count these occurrences. In this view, the consensus motif and the experiment can be selected.
 </p>
-
+</div>
 </body>
 
 </html>

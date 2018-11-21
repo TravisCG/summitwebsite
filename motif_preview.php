@@ -33,7 +33,9 @@ function dochange(target) { window.open(target,"_self");};
 </script>
 </head>
 <body>
-<?php show_header();?>
+<?php show_full_navigation();?>
+
+<div id="maincontent">
 <div id="buttons" style="text-align: left;width: 40%;">
 <p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> <br> 
 <p>Minimum standard deviation</p>
@@ -66,6 +68,7 @@ In this mode, the average distances between the peak of the reads obtained in a 
 The displayed data can be filtered by the number of overlapping peaks (element number) or by the standard deviation. Data can be also displayed based on the used antibody or cell type. Averages of experiments obtained by the same antibody in different experiments can be also calculated and shown.
 After selecting maximum three experiments, links are available to switch to other views.  
 </p>
+</div>
 </div>
 </body>
 </html>

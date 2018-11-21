@@ -1,6 +1,8 @@
 <?php
 include("config.php");
 include("threeexpbox.php");
+include("templates/header.php");
+include("templates/footer.php");
 
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
@@ -114,22 +116,7 @@ $conn->close();
 </script>
 </head>
 <body>
-
-
-<div class="container_16">
-<!--topdiv -->
-
-  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
-  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
-
-  </a>
-</div>
-
-  <div class="foo">
-    <ul class="navlink">
-        <li><a href="index.php" title="Home" class="active">Home</a></li>
-      <li onclick="glossToggle()"><a title="Venn diagramm>
+<?php show_small_navigation("Venn diagramm>
 Display the overlap information between selected experiments as a Venn diagram. 
 
 To jbrowser>
@@ -137,10 +124,8 @@ Browse the genomic data of selected experiments in genome browser.
 
  Experiment view>
  Read the details of selected ChIP-seq experiment in Experiment view. 
-" class="active">Glossary</a></li>
-    </ul>
-        </div>
-	<?php echo " <h4 style='margin:auto;text-align:center;font-size:1.3em;padding-bottom:2em;padding-top:9em;'>	Shift values are shown using the ". $motiveName . " motif's center as point zero.</h4><br>" ?>
+");?>
+<h4 style='margin:auto;text-align:center;font-size:1.3em;padding-bottom:2em;padding-top:9em;'>Shift values are shown using the  <?php echo $motiveName;?> motif's center as point zero.</h4>
 
 <script>
 // this	will toggle the	glossary iframe
@@ -323,13 +308,7 @@ PairShiftView
 <br><br>
 In this mode, the frequencies of the different distance values between the motif and peak summit pairs for a given consensus binding site set are displayed in a histogram. To smooth the graph a 5 bp rolling bin was used. No more than three different experiments can be compared. The height of the curves shows the most frequent distance. In the PairShiftView mode, the data range and the consensus motif binding site can be set. An experiment can be also selected  and displayed in the ExperimentView. 
 </p>
-<div style="width=100%">
-
-<p>
-Copyright © 2018   Mátyás Schiller, Erik Czipa, Levente Kontra, Tibor Nagy, Júlia Koller,
-Orsolya Pálné Szén, Csaba Papp, László Steiner, Ferenc Marincs and Endre Barta
-</p>
-</div>
+<?php show_footer();?>
 </div>
 </body>
 </html>

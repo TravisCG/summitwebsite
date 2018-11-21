@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 include("threeexpbox.php");
+include("templates/header.php");
 
 $exp1Name = $_GET['exp1'];
 $exp2Name = $_GET['exp2'];
@@ -125,23 +126,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </script>
 </head>
 <body>
-<div class="container_16">
-<!--topdiv -->
-
-
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
-  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
-</div>
-
-  <div class="foo">
-    <ul class="navlink">
-        <li><a href="index.php" title="Home" class="active">Home</a></li>
-        <li onclick="glossToggle()"><a title="Help" class="active">Glossary</a></li>
-
-    </ul>
-        </div>
-
+<?php show_small_navigation("Help");?>
 <h4 style="margin:auto;text-align:center;font-size:1.3em;padding-bottom:3em;padding-top:10em;">Venn diagramm view</h4>
 <div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">

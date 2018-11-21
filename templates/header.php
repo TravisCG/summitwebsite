@@ -1,6 +1,6 @@
 <?php
 
-function show_header(){
+function show_full_navigation(){
   echo <<<TEMPHEAD
 <div class="container_16">
 <!--topdiv -->
@@ -30,6 +30,22 @@ function show_header(){
 </div>
 TEMPHEAD;
 
+}
+
+function show_small_navigation($title){
+  echo <<<SMALLNAV
+<div class="container_16">
+  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
+  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
+  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
+</div>
+<div class="foo">
+    <ul class="navlink">
+        <li><a href="index.php" title="Home" class="active">Home</a></li>
+        <li onclick="glossToggle()"><a title="$title" class="active">Glossary</a></li>
+    </ul>
+</div>
+SMALLNAV;
 }
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 include("config.php");
+include("templates/header.php");
+include("templates/footer.php");
 
 $maxID = $_GET['maxid'];
 $minID = $_GET['minid'];
@@ -133,22 +135,7 @@ $conn->close();
 
 </head>
 <body>
-<div class="container_16">
-<!--topdiv -->
-
-
-
-  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/>
-  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
-  
-  </a>
-</div>
-
-  <div class="foo">
-    <ul class="navlink">
-        <li><a href="index.php" title="Home" class="active">Home</a></li>
-        <li onclick="glossToggle()"><a title="Standard deviation vs distance >  
+<?php show_small_navigation("Standard deviation vs distance >  
 In this mode, the average distances between the peak of the reads obtained in ChIP-seq experiments and a given consensus motif on a scatterplot is visualized. Each scatter represents an experiment. Circles represent transcription factors with defined binding sites, while triangles represent co-factors and other indirectly bound proteins. Different colors indicate the antibody used in the immunoprecipitation. The X-axis shows the average distances of peak summits and the center of the binding sites for all overlapping peaks. The Y-axis shows either the number of peaks overlapping the binding motifs (elements). In default mode, the standard deviation of the shift values (distances) between the peak summits and motif centers. The scatterplot representation is available for all consensus binding motif sets. The displayed data can be filtered by the number of overlapping peaks (element number) or by the standard deviation. Data can be also displayed based on the used antibody or cell type. The mean value of the average distances of peak summits obtained by the same antibody in different experiments can be also calculated and shown. After selecting maximum three experiments, links are available to switch to other views. 
 
 
@@ -173,9 +160,7 @@ X value: average of average distances. Set Y value. > Use these two buttons to s
 Alphabetical by name > 
     Sorting legends according to the name of ChIP target protein.
 Number of experiment >
-    Sorting legends according to the occurrence of ChIP-seq experiments with same target protein." class="active">Glossary</a></li>
-    </ul>
-        </div>
+    Sorting legends according to the occurrence of ChIP-seq experiments with same target protein.");?>
 
 <script>
 // this will toggle the glossary iframe
@@ -488,18 +473,7 @@ In this mode, the average distances between the peak of the reads obtained in a 
 The displayed data can be filtered by the number of overlapping peaks (element number) or by the standard deviation. Data can be also displayed based on the used antibody or cell type. Averages of experiments
 After selecting maximum three experiments, links are available to switch to other views.
 </p>
-
 </div>
-
-<div style="width=100%">
-
-<p>
-Copyright © 2018   Erik Czipa, Mátyás Schiller, Levente Kontra, Tibor Nagy, Júlia Koller,
-Orsolya Pálné Szén, Csaba Papp, László Steiner, Ferenc Marincs and Endre Barta
-
-</p>
-</div>
-
+<?php show_footer();?>
 </body>
-
 </html>

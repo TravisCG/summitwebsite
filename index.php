@@ -22,7 +22,7 @@
 </head>
 <body>
 <?php
-  show_header();
+  show_full_navigation();
 ?>
 <div id="introduction">
 

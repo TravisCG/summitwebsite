@@ -289,10 +289,7 @@ div {
 }
 
 div#buttons {
-
-height: 85em;
-float: left;
-
+  float: left;
 }
 
 #header {
@@ -318,10 +315,9 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 1.1em;
-    border-radius: 4px;
+    border-radius: 3px;
     width: 14em;
     font-size: 1.2em;
-
 }
 
 button:hover {

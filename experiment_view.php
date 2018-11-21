@@ -1,5 +1,7 @@
 <?php
 include("config.php");
+include('templates/header.php');
+include('templates/footer.php');
 
 $exp = $_GET['exp'];
 $expName = '\''.$exp.'\'';
@@ -95,28 +97,8 @@ $conn->close();
 </head>
 
 <body>
-<div class="container_16">
-<!--topdiv -->
-
-
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
-
-  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-
-  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/>
-  </a>
-</div>
-
-  <div class="foo">
-    <ul class="navlink">
-        <li><a href="index.php" title="Home" class="active">Home</a></li>
-             <li onclick="glossToggle()"><a title="Help" class="active">Glossary</a></li>
-    </ul>
-        </div>
-
-	<?php echo " <h2 style='text-align: center;margin-left: 12em;'>	The white window will show the details of the selected experiments.</h1><br>" ?>
-
-
+<?php show_small_navigation("Help");?>
+<h2 style='text-align: center;margin-left: 12em;'>The white window will show the details of the selected experiments.</h1><br>
 <script>
 // this will toggle the glossary iframe
 function glossToggle() {
@@ -346,17 +328,7 @@ Experiments incorporated into ChIPSummitDB can be searched for display.
 
 </p>
 </div>
-
-
-
-<div style="width:100%">
-<p>
-Copyright © 2018   Mátyás Schiller, Erik Czipa, Levente Kontra, Tibor Nagy, Júlia Koller,
-Orsolya Pálné Szén, Csaba Papp, László Steiner, Ferenc Marincs and Endre Barta
-
-</p>
-</div>
-
+<?php show_footer();?>
 </body>
 
 </html>

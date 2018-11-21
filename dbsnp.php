@@ -342,9 +342,9 @@
 </head>
 <body>
 <?php
-  show_header();
+  show_full_navigation();
 ?>
-<div id="dbsnpform">
+<div id="maincontent">
 <p>This view helps you to see variations and overlapping regulatory motifs.</p>
 <p>Please specify the dbSNP ID or a genomic region. If both set, only dbSNP will be used. If dbSNP ID is set the final image will be created using 50bp  flanking region. If you would like to see a larger landscape, you can set the
 genomic region manually.</p>

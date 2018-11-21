@@ -66,16 +66,11 @@ function dochange(target) { window.open(target,"_self");};
 </head>
 
 <body>
-<?php show_header();?>
-<div>
-<br>
-<br>
-<br>
-<br>
+<?php show_full_navigation();?>
 
+<div id="maincontent">
 <p>After selecting the cell line and the antibody, the corresponding experiments appears in a separate box and can be selected for displaying in the Experiment view.</p>
 
-<div>
 <div class="wrapper">
 
 <select id="cellformexp1" class="one" type="text" value="" placeholder="Type to filter" style="background:#cccccc;">
@@ -131,12 +126,6 @@ foreach($jsonData4 as $item){
     }
 ?>
 </div>
-
-<br>
-<br>
-</div>
-<br>
-<br>
 </div>
 <p>
 ExperimentView<br><br>
@@ -146,7 +135,7 @@ In this mode, the details of any  ChIP-seq experiment can be seen.
 <br>The result of the HOMER denovo motif prediction can be also seen. 
 <br>Experiments incorporated into ChIPSummitDB can be searched for display. 
 </p>
-
+</div>
 </body>
 
 </html>

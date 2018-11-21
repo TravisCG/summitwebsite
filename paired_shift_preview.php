@@ -66,8 +66,8 @@ function dochange(target) { window.open(target,"_self");};
 </script>
 </head>
 <body>
-<?php show_header();?>
-<div>
+<?php show_full_navigation();?>
+<div id="maincontent">
 <br>
 <p>Set the three experiments. You can narrow down the experiment by choosing the cell line and the antibody for it:</p><br>
 
