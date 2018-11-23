@@ -52,14 +52,30 @@ function getAllExpCellAnti($conn, $motifid, $minelemnum){
 }
 
 function expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3){
-  if($jsonData1 === NULL){
-    $jsonData1 = $allExperiment[0];
+  $a = false;
+  $b = false;
+  $c = false;
+
+  foreach($allExperiment as $ex){
+    if($ex["name"] === $jsonData1[0]["name"]){
+      $a = true;
+    }
+    if($ex["name"] === $jsonData2[0]["name"]){
+      $b = true;
+    }
+    if($ex["name"] === $jsonData3[0]["name"]){
+      $c = true;
+    }
   }
-  if($jsonData2 === NULL){
-    $jsonData2 = $allExperiment[0];
+
+  if($jsonData1 === NULL || $a == false){
+    $jsonData1 = [$allExperiment[0]];
   }
-  if($jsonData3 === NULL){
-    $jsonData3 = $allExperiment[0];
+  if($jsonData2 === NULL || $b == false){
+    $jsonData2 = [$allExperiment[0]];
+  }
+  if($jsonData3 === NULL || $c == false){
+    $jsonData3 = [$allExperiment[0]];
   }
   echo "
         var allExperiment = " . json_encode($allExperiment) . ";
