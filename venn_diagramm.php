@@ -147,7 +147,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <p id="data2i3">placeholder</p>
 <p id="data1i2i3">placeholder</p>
 
- <table style="width:71%;top:99em;">
+ <table style="width:90%;top:99em;">
 <tr style="color:red;">
     <td>experiment name:</td>
     <td id="texpName1"><?php echo $jsonData1start[0]["name"];?></td>
