@@ -45,15 +45,10 @@ $conn->close();
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 <link rel="stylesheet" type="text/css" href="style.css">
 
-<style>
-td {font-size:1.2em;}
-</style>
-</head>
-
-<body style="background-color: white;">
+<body class="whiteboard">
 
 <div>
- <table style="width:75%">
+ <table class="exptable">
   <tr>
     <td>experiment name</td>
     <td id="expName"><?php echo $jsonData[0]["name"];?></td>

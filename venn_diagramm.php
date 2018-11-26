@@ -2,6 +2,7 @@
 include("config.php");
 include("threeexpbox.php");
 include("templates/header.php");
+include("templates/footer.php");
 
 $exp1Name = $_GET['exp1'];
 $exp2Name = $_GET['exp2'];
@@ -129,15 +130,15 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <?php show_small_navigation("Help");?>
 <h4 style="margin:auto;text-align:center;font-size:1.3em;padding-bottom:3em;padding-top:10em;">Venn diagramm view</h4>
 <div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;">
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
+ <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
 </iframe>
 </div>
 
 <div id="chart_venn" >
 
-<div id="circle" style="background-color:red;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
-<div id="circle2" style="background-color:blue;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
-<div id="circle3" style="background-color:green;width:28% ;height:31em;opacity:0.5;border-radius: 50%;"></div>
+<div id="circle" class="venn_circle"></div>
+<div id="circle2" class="venn_circle"></div>
+<div id="circle3" class="venn_circle"></div>
 
 <p id="data">placeholder</p>
 <p id="data2">placeholder</p>
@@ -365,17 +366,9 @@ document.getElementById("data1i2i3").innerHTML = intersect1_2_3;
 <script src="dosearchvenn.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
 <div style="width:100%">
-
-<p>
-VennView<br><br>
-In this mode, two or three experiments can be compared. The values in the sections of the diagram indicates the number of common and specific peaks at a consensus motif binding site.
-</p>
-<br>
-<p>
-Copyright © 2018    Mátyás Schiller,  Erik Czipa, Levente Kontra, Tibor Nagy, Júlia Koller,
-Orsolya Pálné Szén, Csaba Papp, László Steiner, Ferenc Marincs and Endre Barta
-</p>
+<p>VennView</p>
+<p>In this mode, two or three experiments can be compared. The values in the sections of the diagram indicates the number of common and specific peaks at a consensus motif binding site.</p>
 </div>
-
+<?php show_footer();?>
 </body>
 </html>

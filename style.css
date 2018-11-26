@@ -405,26 +405,37 @@ top: 32em;
 left: 50%;
 }
 
+.venn_circle {
+  position: absolute;
+  display: float;
+  opacity: 0.5;
+  border-radius: 50%;
+  width: 28%;
+  height: 31em;
+}
 
 #circle {
-position: absolute;
-display: float;
-top: 28em;
-left: 30%;
+  top: 28em;
+  left: 30%;
+  background-color:red;
 }
 
 #circle2 {
-position: absolute;
-display: float;
-top: 28em;
-left: 45%;
+  top: 28em;
+  left: 45%;
+  background-color:blue;
 }
 
 #circle3 {
-position: absolute;
-display: float;
-top: 38em;
-left: 38%;
+  top: 38em;
+  left: 38%;
+  background-color:green;
+}
+
+#ifrm{
+  width:100% ;
+  background-color: white;
+  height:100%;
 }
 
 .threechosen {
@@ -435,4 +446,17 @@ padding: 0.5em;
 .paired_button {
 height: 3em;
 padding: 0.2em;
+}
+
+/* exp_table.php */
+.exptable {
+  width: 75%;
+}
+
+.exptable td {
+  font-size: 1.2em;
+}
+
+.whiteboard {
+  background-color: white;
 }
