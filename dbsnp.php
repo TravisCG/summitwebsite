@@ -52,8 +52,14 @@
     $vstart = $halfh;
     $vend   = $vstart + $third / 2;
 
-    echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />'."\n");
-    echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;">' . $snp[0] . '</text></a>'."\n");
+    if($snp[5] == 1){
+      echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />'."\n");
+      echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/dbsnp.php?dbsnp='.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;fill:red;">' . $snp[0] . '</text></a>'."\n");
+    }
+    else{
+      echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:blue;stroke-width=4;" />'."\n");
+      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;fill:blue;">' . $snp[0] . '</text></a>'."\n");
+    }
   }
 
   function drawMotifs($motif, $halfh, $gstart, $gend, $boxh){
@@ -128,7 +134,7 @@
   function drawSNPWithSEQ($feats){
     $min         = $feats["start"];
     $max         = $feats["end"] + 1;
-    $prevtextpos = 0;
+    $prevtextpos = -100;
     for($s = 0; $s < sizeof($feats["snps"]); $s++){
       $snpid   = $feats["snps"][$s][0];
       $pos     = $feats["snps"][$s][2];
@@ -273,18 +279,19 @@
 
   if($dbsnpid != ""){
     $motifs = motifsbydbsnp($conn, $dbsnpid);
-    $overlap = false;
-    for($i = 0; $i < sizeof($motifs["motifs"]); $i++){
-      for($j = 0; $j < sizeof($motifs["snps"]); $j++){
-        if($motifs["motifs"][$i][2] <= $motifs["snps"][$j][2] && $motifs["motifs"][$i][3] >= $motifs["snps"][$j][2]){
-          $motifs["snps"][$j][5] = "1";
-          $overlap = true;
-        }
-      }
-    }
   }
   elseif($chr != "" && $start != "" && $end != "" && $end - $start < 1001){
     $motifs = motifsbyregion($conn, $chr, $start, $end);
+  }
+
+  $overlap = false;
+  for($i = 0; $i < sizeof($motifs["motifs"]); $i++){
+    for($j = 0; $j < sizeof($motifs["snps"]); $j++){
+      if($motifs["motifs"][$i][2] <= $motifs["snps"][$j][2] && $motifs["motifs"][$i][3] >= $motifs["snps"][$j][2]){
+        $motifs["snps"][$j][5] = "1";
+        $overlap = true;
+      }
+    }
   }
 
 ?>
