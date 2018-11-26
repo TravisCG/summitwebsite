@@ -283,7 +283,7 @@
       }
     }
   }
-  elseif($chr != "" && $start != "" && $end != "" && $end - $start < 1000){
+  elseif($chr != "" && $start != "" && $end != "" && $end - $start < 1001){
     $motifs = motifsbyregion($conn, $chr, $start, $end);
   }
 
@@ -299,13 +299,16 @@
       var chr     = document.getElementById("inpchr").value;
       var start   = document.getElementById("inpstart").value;
       var end     = document.getElementById("inpend").value;
+      var msgbox  = document.getElementById("msgbox");
 
       if(dbsnpid == "" && (chr == "" || start == "" || end == "")){
-         alert("Please set something");
+         msgbox.innerHTML = "Please set something";
+         msgbox.style.visibility = "visible";
          return false;
       }
       if(end - start > 1000){
-         alert("Interval too large (>1000)");
+         msgbox.innerHTML = "Interval too large (>1000)";
+         msgbox.style.visibility = "visible";
          return false;
       }
       document.getElementById("dbform").submit();
@@ -354,7 +357,7 @@ genomic region manually.</p>
 <p>or</p>
 <p>Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>" size="3" maxlength="2"/>
 Start position:<input id="inpstart" type="text" name="start" value="<?php echo $start; ?>" size="5"/>
-End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/></p>
+End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/> <span id="msgbox"></span></p>
 <input type="submit" value="Send" />
 </form>
 </div>
