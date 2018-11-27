@@ -128,8 +128,8 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </head>
 <body>
 <?php show_small_navigation("Help");?>
-<h4 style="margin:auto;text-align:center;font-size:1.3em;padding-bottom:3em;padding-top:10em;">Venn diagramm view</h4>
-<div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;">
+<h4>Venn diagramm view</h4>
+<div id="glossary">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
 </iframe>
 </div>
@@ -148,8 +148,8 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <p id="data2i3">placeholder</p>
 <p id="data1i2i3">placeholder</p>
 
- <table style="width:90%;top:99em;">
-<tr style="color:red;">
+<table class="venn_table">
+<tr class="exp1">
     <td>experiment name:</td>
     <td id="texpName1"><?php echo $jsonData1start[0]["name"];?></td>
     <td>antibody:</td>
@@ -159,7 +159,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     <td>consensus motif binding sites:</td>
     <td id="tcons1"><?php echo $size1;?></td>
   </tr>
-<tr style="color:blue;">
+<tr class="exp2">
     <td>experiment name:</td>
     <td id="texpName2"><?php echo $jsonData2start[0]["name"];?></td>
     <td>antibody:</td>
@@ -169,7 +169,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     <td>consensus motif binding sites:</td>
     <td id="tcons2"><?php echo $size2;?></td>
   </tr>
-<tr style="color:green;">
+<tr class="exp3">
     <td>experiment name:</td>
     <td id="texpName3"><?php echo $jsonData3start[0]["name"];?></td>
     <td>antibody:</td>
@@ -182,19 +182,18 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </table>
 </div>
 
-  <div name="chart4"  id="chart4" style="width:15%; background-color: white;height: 11em;border:1px solid black; ">
-<p style="margin-left:5px;margin-top:3px;margin-bottom:0px;">Position weight matrix for selected motif.</p>
- <?php echo "<img src=\"./logos/" . $motifText . ".jpg\" style=\"width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;\"  alt=\"No picture available!\" > " ?>
-</div>
+<div id="motifbuttons" >
+  <div name="chart4"  id="chart4">
+    <p>Position weight matrix for selected motif.</p>
+    <?php echo "<img src=\"./logos/" . $motifText . ".jpg\" alt=\"No picture available!\" > " ?>
+  </div>
+  <a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=<?php echo $motifText;?>">
+  <button class="paired_button" onclick="">Go to selected motif's view</button>
+  </a>
 
-<div style="height:5em;padding:0.5em;">
-<a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=<?php echo $motifText;?>">
-<button class="paired_button" onclick="">Go to selected motif's view</button>
-</a>
-
-<a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifPart ;?>,example_track1,example_track2,example_track3& addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1Name; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2Name; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3Name; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
-<button class="paired_button" onclick="">View in jbrowse</button>
-</a>
+  <a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifPart ;?>,example_track1,example_track2,example_track3& addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1Name; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2Name; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3Name; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
+  <button class="paired_button" onclick="">View in jbrowse</button>
+  </a>
 </div>
 
 <script>
@@ -234,9 +233,9 @@ var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 </script>
 
 
-<div style="width:100%;height:95em;">
+<div>
 <br>
-<p style="grid-column:1;">Set a motif:</p>
+<p>Set a motif:</p>
   <select id="formmotive" type="text" value="" placeholder="Type to filter">
 <?php
 //this one puts ALL the options in the select area
@@ -274,70 +273,65 @@ function vennBed() {
 
 <br>
 
-<div style="height:35em;">
+<div>
 <?php expBoxes(); ?>
 <br>
 
 <p>After setting the parameters, click the button below to refresh the page.</p>
 
-<button id="resend" onclick="doSearchVenn()" style="width: 14em;"><p>Refresh Page</p></button>
+<button id="resend" onclick="doSearchVenn()"><p>Refresh Page</p></button>
 
 </div>
 <br>
 <div>
-<div style="width:100%;height:7em;">
-
-<p>
-Antibody oriented search<br><br>
-In this mode, two or three experiments can be compared as above. Here the seach starts with designating the antibody and the cell type afterwards. 
-</p>
+  <p>
+  Antibody oriented search<br><br>
+  In this mode, two or three experiments can be compared as above. Here the seach starts with designating the antibody and the cell type afterwards. 
+  </p>
 </div>
 
 <div class="wrapper">
 
-<select id="cellformexp1v2" class="two" type="text" value="" placeholder="Type to filter" style="background:#ff6666;">
+<select id="cellformexp1v2" class="two exp1" type="text" value="" placeholder="Type to filter">
 </select>
 
-
-<select id="antiformexp1v2" type="text" class="one" value="" placeholder="Type to filter" style="background:#ff6666;">
+<select id="antiformexp1v2" type="text" class="one exp1" value="" placeholder="Type to filter">
 </select>
 
-<select id="formexp1v2" type="text" value="" class="three" placeholder="Type to filter"  style="background:#ff6666;">
+<select id="formexp1v2" type="text" value="" class="three exp1" placeholder="Type to filter">
 </select>
 <button class="threeAH" onclick="jumptoexp('formexp1v2')"> experiment view </button>
 <br>
-<select id="cellformexp2v2" type="text" class="five" value="" placeholder="Type to filter" style="background:#6666ff;">
+<select id="cellformexp2v2" type="text" class="five exp2" value="" placeholder="Type to filter">
 </select>
 
-<select id="antiformexp2v2" type="text" class="four" value="" placeholder="Type to filter" style="background:#6666ff;">
+<select id="antiformexp2v2" type="text" class="four exp2" value="" placeholder="Type to filter">
 </select>
 
-<select id="formexp2v2" type="text" class="six" value=""  placeholder="Type to filter" style="background:#6666ff;">
+<select id="formexp2v2" type="text" class="six exp2" value=""  placeholder="Type to filter">
 </select>
 <button class="sixAH" onclick="jumptoexp('formexp2v2')"> experiment view </button>
 <br>
 
-<select id="cellformexp3v2" type="text" value="" class="eight" placeholder="Type to filter" style="background:#66ff66;">
+<select id="cellformexp3v2" type="text" value="" class="eight exp3" placeholder="Type to filter">
 </select>
 
-<select id="antiformexp3v2" type="text" value="" class="seven" placeholder="Type to filter" style="background:#66ff66;">
+<select id="antiformexp3v2" type="text" value="" class="seven exp3" placeholder="Type to filter">
 </select>
 
-<select id="formexp3v2" type="text" value="" class="nine" placeholder="Type to filter" style="background:#66ff66;">
+<select id="formexp3v2" type="text" value="" class="nine exp3" placeholder="Type to filter">
 </select>
 <button class="nineAH" onclick="jumptoexp('formexp3v2')"> experiment view </button>
 
 <br>
 <br>
 <br>
-
 </div>
 <br>
 <p>After setting the parameters, click the button below to refresh the page.</p>
 
-<button id="resend2" onclick="doSearchVenn2()" style="width: 14em;"><p>Refresh Page</p></button>
+<button id="resend2" onclick="doSearchVenn2()" ><p>Refresh Page</p></button>
 
-</div>
 </div>
 
 <script>
@@ -365,7 +359,7 @@ document.getElementById("data1i2i3").innerHTML = intersect1_2_3;
 
 <script src="dosearchvenn.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
-<div style="width:100%">
+<div>
 <p>VennView</p>
 <p>In this mode, two or three experiments can be compared. The values in the sections of the diagram indicates the number of common and specific peaks at a consensus motif binding site.</p>
 </div>

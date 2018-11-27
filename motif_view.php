@@ -105,11 +105,6 @@ $conn->close();
 
 $conn->close();
 
-//$column1 = array_column($jsonData, 'cell_line');
-//$column2 = array_column($jsonData, 'antibody');
-//$column3 = array_unique ( array_merge ($column1 , $column2 ));
-
-
 ?>
 
 <!DOCTYPE html>
@@ -118,7 +113,8 @@ $conn->close();
 <title>NAIK Genome Database</title>
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="motif.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
@@ -177,23 +173,20 @@ function glossToggle() {
 
 
 <br>
- <?php echo " <h4 style='margin:auto;text-align:center;font-size:1.3em;padding-bottom:1.5em;padding-top:8em;'>Consensus motif: ". $motivePart . " </h4>" ?>
+ <?php echo " <h4>Consensus motif: ". $motivePart . " </h4>" ?>
 
-<div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:47em;display:none;">
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
+<div id="glossary">
+ <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes">
 </iframe>
 </div>
 
-  <div id="chart" style="width:84% ;background-color: white;border:1px solid black;height:47em;" >
-</div>
+<div id="motifchart1"></div>
+<div id="motifchart2"></div>
+<div  id="motifchart3"></div>
 
-  <div id="chart2" style="width:15%;overflow-y: scroll; background-color: white;border:1px solid black;height:47em;"></div>
-<div  id="chart3" style="width:84%;background-color: white;border:1px solid black;height: 11em; position: relative;">
-</div>
-
-  <div name="chart4"  id="chart4" style="width:15%; background-color: white;height: 11em;border:1px solid black; ">
-<p style="margin-left:5px;margin-top:3px;margin-bottom:0px;">Position weight matrix for selected motif.</p>
- <?php echo "<img src=\"./logos/" . $motivePart . ".jpg\" style=\"width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;\"  alt=\"No picture available!\" > " ?>
+<div name="chart4"  id="motifchart4">
+<p>Position weight matrix for selected motif.</p>
+ <?php echo "<img src=\"./logos/" . $motivePart . ".jpg\" alt=\"No picture available!\" > " ?>
 </div>
 
 <script>
@@ -287,7 +280,7 @@ function trimArray(arr)
  
 </script>
 
-<div id="buttons" style="text-align: left;width: 40%;">
+<div id="mbuttons">
 
 <p>Set a motif:</p><br>
   <select id="formmotive" type="text" value="" placeholder="Type to filter">
@@ -323,7 +316,7 @@ foreach($jsonData6 as $item){
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
-<button id="resend" onclick="doSearch('_self')" style="width: 14em;"><p>Refresh Page</p></button>
+<button id="resend" onclick="doSearch('_self')" ><p>Refresh Page</p></button>
 
 </div>
 
@@ -352,9 +345,7 @@ addOptions();
 var motivefilter = getAllUrlParams().motive;
 </script>
 
-<div id="buttons2" style="text-align: left;width: 40%;">
-  <div style="float: left;width: 23%;height:100%;">
-  </div>
+<div id="buttons2">
 
   <p>The following buttons change the display of data. With the following buttons you can change the Y value.</p>
   <p><b title="Average distance: The average of distances between every summit and motif center pair at a given ChIP-seq experiment and consensus motif pair.">X value:</b> average distance. <br>Set Y value.</p>
@@ -365,12 +356,10 @@ var motivefilter = getAllUrlParams().motive;
   <button class="yselector" id="y4" onclick="update_avg_elem()" title="The average value of the element numbers obtained for the same antibody in different experiments."> <p>average element numbers</p></button><br><br>
 <br>
 </div>
-<div id="refresh" style="float: right; width:15%;">
-  <div style="float: left;width: 55%;">
+<div id="refresh">
 
-
- <button id="nodotz" onclick="trimthemall()" style="width: 12em;" title="Mask all dots out from scatterplot"> <p>Hide all scatter</p></button><br><br>
-  <button id="yesdotz" onclick="" style="width: 12em;" title="Restore all dots to the scatterplot"> <p>Show all scatter</p></button><br><br>
+ <button id="nodotz" onclick="trimthemall()" title="Mask all dots out from scatterplot"> <p>Hide all scatter</p></button><br><br>
+  <button id="yesdotz" onclick="" title="Restore all dots to the scatterplot"> <p>Show all scatter</p></button><br><br>
 <h2>Plot options</h2>
  <p>Switch the legend to antibody (default view)  and sort by using the two buttons below.</p>
 <p>Choose a sorting method</p>
@@ -379,15 +368,6 @@ var motivefilter = getAllUrlParams().motive;
  <p>Switch the legend to cell line and sort by using the two buttons below.</p>
     <button onclick="update_alphabet_cell()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
     <button onclick="update_nonalphabet_cell()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
-
-
-
-
-</div>
-
-
-
-
 
 </div>
 
@@ -455,9 +435,6 @@ $(document).ready(function(){
 
 });
 
-
-
-
 //these two rows will make the chart2 with the cubes fit like a glove
 
 var cubechartheight = $(".legend").length;
@@ -465,7 +442,7 @@ $(document).ready(function() { $('#chart2').on("scroll", function() { $('.cubech
 </script>
 
 
-<div style="display:inline-block;">
+<div>
 <p>
 
 MotifView <br>

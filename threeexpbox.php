@@ -128,36 +128,36 @@ function expBoxes(){
   echo "
     <div class=\"wrapper\">
 
-      <select id=\"cellformexp1\" class=\"one\" type=\"text\" value=\"\" placeholder=\"Type to filter\" style=\"background:#ff6666;\">
+      <select id=\"cellformexp1\" class=\"one exp1\" type=\"text\" value=\"\" placeholder=\"Type to filter\">
       </select>
 
-      <select id=\"antiformexp1\" type=\"text\" class=\"two\" value=\"\" placeholder=\"Type to filter\" style=\"background:#ff6666;\">
+      <select id=\"antiformexp1\" type=\"text\" class=\"two exp1\" value=\"\" placeholder=\"Type to filter\">
       </select>
 
-      <select id=\"formexp1\" type=\"text\" value=\"\" class=\"three\" placeholder=\"Type to filter\"  style=\"background:#ff6666;\">
+      <select id=\"formexp1\" type=\"text\" value=\"\" class=\"three exp1\" placeholder=\"Type to filter\">
       </select>
 
       <button class=\"threeAH\" onclick=\"jumptoexp('formexp1')\"> experiment view </button>
       <br>
 
-      <select id=\"cellformexp2\" type=\"text\" class=\"four\" value=\"\" placeholder=\"Type to filter\" style=\"background:#6666ff;\">
+      <select id=\"cellformexp2\" type=\"text\" class=\"four exp2\" value=\"\" placeholder=\"Type to filter\">
       </select>
 
-      <select id=\"antiformexp2\" type=\"text\" class=\"five\" value=\"\" placeholder=\"Type to filter\" style=\"background:#6666ff;\">
+      <select id=\"antiformexp2\" type=\"text\" class=\"five exp2\" value=\"\" placeholder=\"Type to filter\">
       </select>
 
-      <select id=\"formexp2\" type=\"text\" class=\"six\" value=\"\"  placeholder=\"Type to filter\" style=\"background:#6666ff;\">
+      <select id=\"formexp2\" type=\"text\" class=\"six exp2\" value=\"\"  placeholder=\"Type to filter\">
       </select>
       <button class=\"sixAH\" onclick=\"jumptoexp('formexp2')\"> experiment view </button>
       <br>
 
-      <select id=\"cellformexp3\" type=\"text\" value=\"\" class=\"seven\" placeholder=\"Type to filter\" style=\"background:#66ff66;\">
+      <select id=\"cellformexp3\" type=\"text\" value=\"\" class=\"seven exp3\" placeholder=\"Type to filter\">
       </select>
 
-      <select id=\"antiformexp3\" type=\"text\" value=\"\" class=\"eight\" placeholder=\"Type to filter\" style=\"background:#66ff66;\">
+      <select id=\"antiformexp3\" type=\"text\" value=\"\" class=\"eight exp3\" placeholder=\"Type to filter\">
       </select>
 
-      <select id=\"formexp3\" type=\"text\" value=\"\" class=\"nine\" placeholder=\"Type to filter\" style=\"background:#66ff66;\">
+      <select id=\"formexp3\" type=\"text\" value=\"\" class=\"nine exp3\" placeholder=\"Type to filter\">
       </select>
       <button class=\"nineAH\" onclick=\"jumptoexp('formexp3')\"> experiment view </button>
 

@@ -125,7 +125,7 @@ Browse the genomic data of selected experiments in genome browser.
  Experiment view>
  Read the details of selected ChIP-seq experiment in Experiment view. 
 ");?>
-<h4 style='margin:auto;text-align:center;font-size:1.3em;padding-bottom:2em;padding-top:9em;'>Shift values are shown using the  <?php echo $motiveName;?> motif's center as point zero.</h4>
+<h4>Shift values are shown using the  <?php echo $motiveName;?> motif's center as point zero.</h4>
 
 <script>
 // this	will toggle the	glossary iframe
@@ -140,15 +140,15 @@ function glossToggle() {
 </script>
 
 
-<div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;">
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
+<div id="glossary" >
+ <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes">
 </iframe>
 </div>
 
-<div id="chart" style="width:94% ;background-color: white;border:1px solid black;display:block;float:none;height:60em;" >
+<div id="chart" >
 
- <table style="width:75%;top:99em;">
-<tr style="color:red;">
+ <table class="venntable">
+<tr class="exp1">
     <td>experiment name:</td>
     <td id="texpName1"><?php echo $expData1[0]["name"];?></td>
     <td>antibody:</td>
@@ -159,7 +159,7 @@ function glossToggle() {
     <td id="telementnum1"><?php echo sizeof($pos1, JSON_NUMERIC_CHECK);?></td>
 
   </tr>
-<tr style="color:blue;">
+<tr class="exp2">
     <td>experiment name:</td>
     <td id="texpName2"><?php echo $expData2[0]["name"];?></td>
     <td>antibody:</td>
@@ -170,7 +170,7 @@ function glossToggle() {
     <td id="telementnum2"><?php echo sizeof($pos2, JSON_NUMERIC_CHECK);?></td>
 
   </tr>
-<tr style="color:green;">
+<tr class="exp3">
     <td>experiment name:</td>
     <td id="texpName3"><?php echo $expData3[0]["name"]; ?></td>
     <td>antibody:</td>
@@ -184,9 +184,9 @@ function glossToggle() {
 
 </div>
 
-<div name="logo_chart"  id="logo_chart" style="width:94%; background-color: white;height: 8em;border:1px solid black; ">
-	<?php echo "<img src=\"./logos/" . $motivePart . ".jpg\" style=\"width:15%;height:95%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;float:left;\"> " ?>
-<p style="float:left">Position weight matrix of selected motif.</p>
+<div name="logo_chart"  id="logo_chart">
+	<?php echo "<img src=\"./logos/" . $motivePart . ".jpg\"> " ?>
+<p>Position weight matrix of selected motif.</p>
 </div>
 
 <script>
@@ -232,7 +232,7 @@ echo json_encode($jsonData3, JSON_NUMERIC_CHECK);
 </script>
 
 <br>
-<div style="height:105em;">
+<div>
 <br>
 <br>
 <p>Minimum overlap number between motifs and peaks of experiment: <?php echo $minelem;?></p>
@@ -262,9 +262,9 @@ foreach($jsonData6 as $item){
 
 
 <br>
-<div style="height:67em;">
+<div>
 
-<div class="wrapper1" style="height:4em;">
+<div class="wrapper1">
 <p class="one">cell type</p>
 <p class="two">antibody</p>
 <p class="three">experiment name</p>
@@ -284,7 +284,7 @@ foreach($jsonData6 as $item){
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
-<button id="resend" onclick="doSearchShift('_self')" style="width: 14em;"><p>Refresh Page</p></button>
+<button id="resend" onclick="doSearchShift('_self')" ><p>Refresh Page</p></button>
 </div>
 <br>
 <br>
@@ -300,7 +300,7 @@ document.getElementById("limit").value = limit;
 var low_limit = <?php echo  $low_limit ; ?>;
 document.getElementById("low_limit").value = low_limit;
 </script>
-<div style="width:100%;">
+<div>
 
 <br><br><br><br>
 <p>

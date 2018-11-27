@@ -9,7 +9,9 @@ font-size: 1.3em;
 
 }
 
-
+h4 {
+  margin:auto;text-align:center;font-size:1.3em;padding-bottom:1.5em;padding-top:8em;
+}
 
 /*-----exp view-----*/
 text {
@@ -226,10 +228,6 @@ ul.navlink li:hover ul.subnav li {
   padding: 5px 0;
 }
 
-div {
-  float: left;
-}
-
 #chart_venn {
   height: 55em;
   width:94%;
@@ -283,7 +281,7 @@ a {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 0.3em;
   grid-auto-rows: minmax(1em, auto);
-  height: 2em;
+  height: 4em;
   width: 100%;
 }
 
@@ -460,3 +458,86 @@ padding: 0.2em;
 .whiteboard {
   background-color: white;
 }
+
+/* venn_diagram.php */
+#glossary {
+  width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;
+}
+
+#chart4 {
+  width:15%; background-color: white;height: 11em;border:1px solid black;
+  float: left;
+  margin-right: 5px;
+}
+
+#chart4 p {
+  margin-left:5px;margin-top:3px;margin-bottom:0px;
+}
+
+#chart4 img {
+  width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;
+}
+
+#venntable {
+  width:90%;top:99em;
+}
+
+.exp1 {
+  background: #ff6666;
+}
+
+.exp2 {
+  background: #6666ff;
+}
+
+.exp3 {
+  background: #66ff66;
+}
+
+#motifbuttons {
+  height:11em;
+  padding-top: 1em;
+}
+
+/* pairshift_view.php */
+#chart {
+  width:94% ;background-color: white;border:1px solid black;display:block;float:none;height:60em;
+}
+
+#logo_chart {
+  width:94%; background-color: white;height: 8em;border:1px solid black;
+}
+
+#logo_chart p {
+  float: left;
+}
+
+#logo_chart img {
+  width:15%;height:95%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;float:left;
+}
+
+/* motif_view.php */
+#motifchart1 {
+  width:84% ;background-color: white;border:1px solid black;height:47em;
+  float: left;
+}
+
+#motifchart2 {
+  width:15%;overflow-y: scroll; background-color: white;border:1px solid black;height:47em;
+}
+
+#motifchart3 {
+  width:84%;background-color: white;border:1px solid black;height: 11em; position: relative;
+}
+
+#motifchart4 {
+  width:15%; background-color: white;height: 11em;border:1px solid black;
+}
+
+#motifchart4 p {
+  margin-left:5px;margin-top:3px;margin-bottom:0px;
+}
+#motifchart4 img {
+  width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;
+}
+

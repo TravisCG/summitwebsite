@@ -1,6 +1,6 @@
 
 function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
-var chart2height = $('#chart2 .legend').length;
+var chart2height = $('#motifchart2 .legend').length;
 // setup fill color
 // a kockak nem itt vannak elnevezve, hanem a motive_viewnél
   var cValue = function(d) { return d.tokmindegy;},
@@ -34,7 +34,7 @@ if (motiveOrCelline == "motive"){
 
 
 // add the graph canvas to the body of the webpage
-  var svg = d3.select("#chart2").append("svg")
+  var svg = d3.select("#motifchart2").append("svg")
     .attr("width", 250 )
     .attr("height", 2500 )
     .attr("class","cubechart" )

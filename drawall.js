@@ -28,13 +28,13 @@ document.querySelector(".red1").style.strokeWidth= "4";
 
 
 function DrawAllShizStand_dev(argy, argx, namey, namex){
-var width2 = $('#chart').width();
+var width2 = $('#motifchart1').width();
 
 d3.select(window).on('resize', resize); 
 
 function resize() {
     // update width
-    width = parseInt(d3.select('#chart').style('width'), 10);
+    width = parseInt(d3.select('#motifchart1').style('width'), 10);
 
     // reset x range
  //   x.range([0, width]);
@@ -63,14 +63,14 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
  //   .attr("transform", "translate(100px , 0 )");
 
 // add the graph canvas to the body of the webpage
-  var svg = d3.select("#chart").append("svg")
+  var svg = d3.select("#motifchart1").append("svg")
 //    .attr("width", width + margin.left + margin.right + legendtitle)
     .attr("width", "95%")
     .attr("height", "99%")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 // add the tooltip area to the webpage
-  var tooltip = d3.select("#chart").append("div")
+  var tooltip = d3.select("#motifchart1").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 

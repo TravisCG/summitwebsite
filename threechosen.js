@@ -61,7 +61,7 @@ d3.selectAll(".threechosen").remove();
 
 
 
-var svgthree = d3.select("#chart3").append("text")
+var svgthree = d3.select("#motifchart3").append("text")
 .html(function(d) { return "<div style=\"height:7em;padding:0.4em;font-size:0.7em;\">You flagged the following experiments (cell line, antibody, <a style=\"color:black;\"title=\"The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. \">element number</a>): <br/> The blue buttons will help navigating to the other views.<br>Click on the buttons to open <br> the \'experiment view\' for more details <br>about the Chip-seq data. </div>"})
 .attr("class", "threechosen");
 
@@ -77,7 +77,7 @@ var wordvenn = "to venn diagram";
 
 
 
-var holdertwo = d3.select("#chart3")
+var holdertwo = d3.select("#motifchart3")
       .append("svg")
       .attr("width", "24em")
       .attr("height", "8em")
@@ -160,7 +160,7 @@ holdertwo.append("text")
 
 
 
-var holderthree = d3.select("#chart3")
+var holderthree = d3.select("#motifchart3")
       .append("svg")
       .attr("width", "17em")    
       .attr("height", "8em")
@@ -202,7 +202,7 @@ holderthree.append("text")
     .text(word)
 // paired shift view part
 
-var holdershift = d3.select("#chart3")
+var holdershift = d3.select("#motifchart3")
       .append("svg")
       .attr("width", "15em")
       .attr("height", "8.5em")
@@ -237,7 +237,7 @@ holdershift.append("svg:title")
      .text("Check the distance distribution of selected experiments in frequency histogram. \n \nBrowse the genomic data of selected experiments in genome browser. \n \nDisplay the overlap information between selected experiments as a Venn diagram. Download genomic data of the last selected experiment in BED format.")
 //jbrowse part
 
-var holderjb = d3.select("#chart3")
+var holderjb = d3.select("#motifchart3")
       .append("svg")
       .attr("width", "11em")    
       .attr("height", "8em")
@@ -273,7 +273,7 @@ holdershift.append("text")
 
 //venn diagramm part
 
-var holdervenn = d3.select("#chart3")
+var holdervenn = d3.select("#motifchart3")
       .append("svg")
       .attr("width", "13em")
       .attr("height", "8em")

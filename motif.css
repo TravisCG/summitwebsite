@@ -1,0 +1,17 @@
+div {
+  float: left;
+}
+
+#mbuttons {
+  text-align: left;width: 40%;
+}
+
+#buttons2 {
+  text-align: left;width: 40%;
+}
+
+#refresh {
+  float: right; width:15%;
+}
+
+
