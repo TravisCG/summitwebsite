@@ -59,6 +59,7 @@ ul{
 	margin-bottom: 0;
 	
 }
+
 a{
 text-decoration:none;
 outline:0;
@@ -191,20 +192,6 @@ float:left;
 	z-index: 100;
 	
 
-}
-ul.navlink li a{
-padding-top:3%;
-line-height:auto;
-color:#DDDBF1;
-background-color:#3C4F76;
-
-	padding-right:0%;
-	text-decoration: none;
-	display: block; 
-	padding-bottom: 3%;
-	text-align:center;
-
-	
 }
 
 ul.navlink li button{
