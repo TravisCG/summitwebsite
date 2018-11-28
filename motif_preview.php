@@ -36,7 +36,7 @@ function dochange(target) { window.open(target,"_self");};
 <?php show_full_navigation();?>
 
 <div id="maincontent">
-<div id="buttons" style="text-align: left;width: 40%;">
+<div id="buttons" class="halfdiv" >
 <p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> <br> 
 <p>Minimum standard deviation</p>
 <form action="#" id="form_field">
@@ -59,9 +59,9 @@ foreach($jsonData6 as $item){
 ?>
 </select>
 <p>When te parameters have been set, this button will refresh the page.</p>
-<button id="resend" onclick="doSearch('_blank')" style="width: 14em;"><p>Go to motif view</p></button>
+<button id="resend" onclick="doSearch('_blank')" ><p>Go to motif view</p></button>
 </div>
-<div style="width:48%;float:right;">
+<div id="motifdesc">
 <p>
 MotifView <br>
 In this mode, the average distances between the peak of the reads obtained in a ChIP-seq experiment and a given consensus motif on a scatterplot graph is visualized. Each scatter represents an experiment. Circles represent transcription factors with defined binding sites, while triangles represent co-factors and other indirectly bound proteins. Different colors indicate the antibody used in the immune precipitation. The X-axis shows the average distances of peak summits and the center of the binding sites for all overlapping peaks. The Y-axis shows either the number of overlapping peaks (elements) or, in default mode, the standard deviation of the shift values (distances) between the peak summits and motif centers. This scatterplot representation is available for all consensus binding motif sets.

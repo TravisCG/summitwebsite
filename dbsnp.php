@@ -53,13 +53,18 @@
     $vend   = $vstart + $third / 2;
 
     if($snp[5] == 1){
-      echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:red;stroke-width=4;" />'."\n");
-      echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/dbsnp.php?dbsnp='.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;fill:red;">' . $snp[0] . '</text></a>'."\n");
+      $classl = "overlapl";
+      $classt = "overlapt";
+      $href   = "http://summit.med.unideb.hu/summitdb/dbsnp.php?dbsnp=";
     }
     else{
-      echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" style="stroke:blue;stroke-width=4;" />'."\n");
-      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" style="font:13px sans-serif;fill:blue;">' . $snp[0] . '</text></a>'."\n");
+      $classl = "nonoverlapl";
+      $classt = "nonoverlapt";
+      $href   = "https://www.ncbi.nlm.nih.gov/snp/";
     }
+    echo('<line x1="' . $pos . '%" y1="' . $vstart . '" x2="' . $pos . '%" y2="' . $vend . '" class="'.$classl.'" />'."\n");
+    echo('<a xlink:href="'.$href.$snp[0].'" xlink:show="new"><text x="' . $pos . '%" y="' . $textstart . '" class="'.$classt.'" >' . $snp[0] . '</text></a>'."\n");
+
   }
 
   function drawMotifs($motif, $halfh, $gstart, $gend, $boxh){
@@ -68,8 +73,8 @@
     $texth = 13;
     $textbline = ($boxh - $texth) / 2;
     $params = "chr=".$motif[1]."&start=".($motif[2]-5)."&end=".($motif[3]+5)."&mv=1";
-    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/dbsnp.php?'.$params.'"><rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" style="fill:pink;stroke:green;"/></a>'."\n");
-    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$motif[9].'" xlink:show="new"><text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" style="font:' . $texth . 'px sans-serif;">' . $motif[9] . '</text></a>'."\n");
+    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/dbsnp.php?'.$params.'"><rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" class="motifrect"/></a>'."\n");
+    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$motif[9].'" xlink:show="new"><text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" class="motiflabel">' . $motif[9] . '</text></a>'."\n");
   }
 
   function regionView($feats, $height){
@@ -80,8 +85,8 @@
     $boxsep    = 4;  // spacer between motif boxes
 
     echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">'."\n");
-    echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />'."\n");
-    echo('<line x1="0" y1="50%" x2="100%" y2="50%" style="stroke:black;stroke-width=2" />'."\n");
+    echo('<rect x="0" y="0" width="100%" height="100%" class="canvas" />'."\n");
+    echo('<line x1="0" y1="50%" x2="100%" y2="50%" class="refline" />'."\n");
     
     for($i = 0; $i < sizeof($feats["snps"]); $i++){
       $pos = getSVGPos($feats["snps"][$i][2], $gstart, $gend);
@@ -127,7 +132,7 @@
 
     for($i = 0; $i < strlen($seq); $i ++){
       $pos = $i / strlen($seq) * 100;
-      echo('<text x="'.$pos.'%" y="70%" style="text-anchor:start;font:13px sans-serif;">'.$seq[$i].'</text>'."\n");
+      echo('<text x="'.$pos.'%" y="70%" id="refseq" >'.$seq[$i].'</text>'."\n");
     }
   }
 
@@ -142,19 +147,19 @@
       $alt     = $feats["snps"][$s][4];
       $overlap = $feats["snps"][$s][5];
 
-      $class   = 'class="single"';
+      $class   = 'single';
       if($overlap == "1"){
-         $class = 'class="overlap"';
+         $class = 'overlap';
       }
 
       for($i = 0; $i < strlen($ref); $i++){
         $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text '.$class.' x="'.$textpos.'%" y="75%" style="fill:green;font:13px sans-serif">'.$ref[$i].'</text>'."\n");
+        echo('<text class="'.$class.' refallele" x="'.$textpos.'%" y="75%" >'.$ref[$i].'</text>'."\n");
       }
 
       for($i = 0; $i < strlen($alt); $i++){
         $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text '.$class.' x="'.$textpos.'%" y="80%" style="fill:red;font:13px sans-serif">'.$alt[$i].'</text>'."\n");
+        echo('<text class="'.$class.' altallele" x="'.$textpos.'%" y="80%" >'.$alt[$i].'</text>'."\n");
       }
 
       $textpos = ($pos - $min) / ($max - $min) * 100;
@@ -165,7 +170,7 @@
         $ypos = 83;
         $prevtextpos = $textpos;
       }
-      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text '.$class.'x="' . $textpos . '%" y="'.$ypos.'%" text-anchor="middle" style="font:9px sans-serif;">' . $snpid . '</text></a>'."\n");
+      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text class="'.$class.' snplabel" x="' . $textpos . '%" y="'.$ypos.'%" >' . $snpid . '</text></a>'."\n");
     }
   }
 
@@ -259,7 +264,7 @@
 
   function motifView($conn, $feats, $height){
     echo('<svg width="100%" height="'.$height.'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 '.SVGW.' '.SVGH.'" preserveAspectRatio="none">'."\n");
-    echo('<rect x="0" y="0" width="100%" height="100%" style="fill:lightblue;storoke:red;" />');
+    echo('<rect x="0" y="0" width="100%" height="100%" class="canvas" />');
     drawReference($conn, $feats);
     drawSNPWithSEQ($feats);
     drawMotifLogos($conn, $feats);

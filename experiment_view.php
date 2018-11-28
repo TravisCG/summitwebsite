@@ -98,7 +98,7 @@ $conn->close();
 
 <body>
 <?php show_small_navigation("Help");?>
-<h2 style='text-align: center;margin-left: 12em;'>The white window will show the details of the selected experiments.</h1><br>
+<h4>The white window will show the details of the selected experiments.</h4>
 <script>
 // this will toggle the glossary iframe
 function glossToggle() {
@@ -115,8 +115,8 @@ function glossToggle() {
 </script>
 
 
-<div id="glossary" style="width:99% ;background-color: white;border:1px solid black;height:55em;display:none;z-index: 11;">
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" style="width:100% ;background-color: white;height:100%;">
+<div id="glossary" >
+ <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
 </iframe>
 </div>
 
@@ -144,22 +144,11 @@ var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
 <br>
-<iframe name="myIframe" width="96%" height="200px" style="background-color:white;" src="exp_table.php?exp=<?php echo $exp; ?>"></iframe>
-<div>
-<br>
-<br>
-<br>
+<iframe name="myIframe" width="96%" height="200px" class="whiteboard" src="exp_table.php?exp=<?php echo $exp; ?>"></iframe>
 
-
-<br>
-
-
-
-
-<div>
 <div class="wrapper">
 
-<select id="cellformexp1" class="one" type="text" value="" placeholder="Type to filter" style="background:#cccccc;">
+<select id="cellformexp1" class="one dropdown" type="text" value="" placeholder="Type to filter" >
 
 <?php 
 //this one puts ALL the options in the select area
@@ -171,7 +160,7 @@ foreach($jsonData7 as $item){
 </select>
 
 
-<select id="antiformexp1" type="text" class="two" value="" placeholder="Type to filter" style="background:#cccccc;">
+<select id="antiformexp1" type="text" class="two dropdown" value="" placeholder="Type to filter" >
 
 <?php 
 //this one puts ALL the options in the select area
@@ -236,7 +225,7 @@ function myFunction() {
 
 <button id="exp1" class="threeAH" >clear choices </button>
 
-<div class="six" style="overflow-y: scroll;background:#cccccc;">
+<div class="six dropdown" id="explist" >
 <ul id="myUL">
 <?php 
 //this one puts ALL the options in the select area
@@ -251,9 +240,6 @@ foreach($jsonData4 as $item){
 
 <br><br>
 
-</div>
-
-<br><br>
 </div>
 <script>
 
@@ -316,7 +302,7 @@ document.getElementById("formmotive").value = formmotive;
 </script>
 
 
-<div style="width:30%">
+<div id="expdesc" >
 <p>
 ExperimentView
 <br>

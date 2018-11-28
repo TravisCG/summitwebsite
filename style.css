@@ -541,3 +541,24 @@ padding: 0.2em;
   width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;
 }
 
+/* experiment_view */
+.dropdown {
+  background:#cccccc;
+}
+
+#explist {
+  overflow-y: scroll;
+}
+
+#expdesc {
+  width: 30%;
+}
+
+.halfdiv {
+  width: 40%;
+}
+
+#motifdesc {
+  width:48%;
+  float:right;
+}

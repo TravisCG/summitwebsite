@@ -31,3 +31,62 @@ html, body {
   border: 1px solid red;
   color: red;
 }
+
+.canvas {
+  fill:lightblue;
+  storoke:red;
+}
+
+.refline {
+  stroke:black;
+  stroke-width=2;
+}
+
+#refseq {
+  text-anchor:start;
+  font:13px sans-serif;
+}
+
+.refallele {
+  fill:green;
+  font:13px sans-serif;
+}
+
+.altallele {
+  fill:red;
+  font:13px sans-serif;
+}
+
+.snplabel {
+  font:9px sans-serif;
+  text-anchor: middle;
+}
+
+.nonoverlapl {
+  stroke:blue;
+  stroke-width=4;
+}
+
+.overlapl {
+  stroke:red;
+  stroke-width=4;
+}
+
+.nonoverlapt {
+  font:13px sans-serif;
+  fill:blue;
+}
+
+.overlapt {
+  font:13px sans-serif;
+  fill:red;
+}
+
+.motifrect {
+  fill:pink;
+  stroke:green;
+}
+
+.motiflabel {
+  font: 13px sans-serif;
+}

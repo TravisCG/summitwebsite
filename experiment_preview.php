@@ -73,7 +73,7 @@ function dochange(target) { window.open(target,"_self");};
 
 <div class="wrapper">
 
-<select id="cellformexp1" class="one" type="text" value="" placeholder="Type to filter" style="background:#cccccc;">
+<select id="cellformexp1" class="one dropdown" type="text" value="" placeholder="Type to filter" >
 
 <?php 
 //this one puts ALL the options in the select area
@@ -85,7 +85,7 @@ foreach($jsonData7 as $item){
 </select>
 
 
-<select id="antiformexp1" type="text" class="two" value="" placeholder="Type to filter" style="background:#cccccc;">
+<select id="antiformexp1" type="text" class="two dropdown" value="" placeholder="Type to filter" >
 
 <?php 
 //this one puts ALL the options in the select area
@@ -116,7 +116,7 @@ $( document ).ready(function() {
 </script>
 
 
-<div class="three" style="overflow-y: scroll;background:#cccccc;">
+<div class="three dropdown" id="explist" >
 <?php 
 //this one puts ALL the options in the select area
 
