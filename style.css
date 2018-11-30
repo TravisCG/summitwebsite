@@ -15,18 +15,14 @@ h4 {
 
 /*-----exp view-----*/
 text {
-font-size: 1.3em;
-}
-p {
-font-size: 1.3em;
+  font-size: 1.3em;
 }
 
 a.visible {
-display: block;
+  display: block;
 }
 
 body {
-  font: 0.9em serif;
  background-color: #DDDBF1;
 }
 
