@@ -122,7 +122,7 @@ $( document ).ready(function() {
 
 foreach($jsonData4 as $item){
     echo "<a class=\"formexp1 visible\" value=". $item['experiment_id'] . " data-celline=". $item['cell_lines_cellline_id']. " data-antibody=" 
-    . $item['antibody_id'] . " href=\"experiment_view.php?exp=" .$item['experiment_id'] . "\" target=\"_blank\" " . ">" . $item['name'] . "</a>" ;    // process the line read.
+    . $item['antibody_id'] . " href=\"experiment_view.php?exp=" .$item['experiment_id'] . "\" target=\"_self\" " . ">" . $item['name'] . "</a>" ;    // process the line read.
     }
 ?>
 </div>

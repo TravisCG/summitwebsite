@@ -114,6 +114,7 @@ $conn->close();
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 <link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <link rel="stylesheet" type="text/css" href="motif.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -124,39 +125,15 @@ $conn->close();
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-121648705-1');
+
+  function dochange(target) { window.open(target,"_self");};
 </script>
 
 
 </head>
 <body>
-<?php show_small_navigation("Standard deviation vs distance >  
-In this mode, the average distances between the peak of the reads obtained in ChIP-seq experiments and a given consensus motif on a scatterplot is visualized. Each scatter represents an experiment. Circles represent transcription factors with defined binding sites, while triangles represent co-factors and other indirectly bound proteins. Different colors indicate the antibody used in the immunoprecipitation. The X-axis shows the average distances of peak summits and the center of the binding sites for all overlapping peaks. The Y-axis shows either the number of peaks overlapping the binding motifs (elements). In default mode, the standard deviation of the shift values (distances) between the peak summits and motif centers. The scatterplot representation is available for all consensus binding motif sets. The displayed data can be filtered by the number of overlapping peaks (element number) or by the standard deviation. Data can be also displayed based on the used antibody or cell type. The mean value of the average distances of peak summits obtained by the same antibody in different experiments can be also calculated and shown. After selecting maximum three experiments, links are available to switch to other views. 
-
-
-This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. > In the boxes below the maximum and minimum average deviation values of the displayed dots can be changed. Use integers. 
-
-When te parameters have been set, this button will refresh the page. > After setting the parameters, click the button below to refresh the page.
-
-You flagged… > The following experiments were selected 
-The blue buttons will help navigating to the other views. > Click the blue buttons to navigate to other views
-
-
-Venn diagram glossary > Display the data of the selected experiments as a Venn diagram
-
-X value: average of average distances.  > X value: mean of the average distances. 
-
-X value: average distance. Set Y value. > Use these two buttons to set the Y value if X shows the average distance. 
-
-X value: average of average distances. Set Y value. > Use these two buttons to set the Y value if X shows the mean of the average distances
-
--Average distance: The average of distances between every summit and motif center pair at a given ChIP-seq experiment and consensus motif pair. 
--Standard deviation (of shift values): Here, it is calculated from the shift values between peak summits and the centers of the consensus motif binding sites, which are closer than 50 bp. 
-Alphabetical by name > 
-    Sorting legends according to the name of ChIP target protein.
-Number of experiment >
-    Sorting legends according to the occurrence of ChIP-seq experiments with same target protein.");?>
+<?php show_full_navigation();?>
 
 <script>
 // this will toggle the glossary iframe

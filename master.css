@@ -1,12 +1,5 @@
 /* this is the master css we will use for styling */
 
-head{
-	width: 76%;
-	display: block;
-	background-color:#383F51;
-	height: auto;
-}
-
 body{
 margin:0;	
 padding:0;
@@ -26,6 +19,7 @@ color:#383F51;
 	display: block;
 	clear: both;
 }
+
 .foo{
 	float: left;
 	display: block;
@@ -52,29 +46,12 @@ display:block;
 	
 }
 
-ul{
-	list-style: none;
-	padding: 0;
-	margin-right: 0;
-	margin-bottom: 0;
-	
-}
-
 a{
 text-decoration:none;
 outline:0;
 	padding-bottom: 0%;
 	
 	color:#3C4F76;
-
-}
-
-li{
-text-decoration:none;
-outline:0;
-        padding-bottom: 0%;
-
-        color:#3C4F76;
 
 }
 
@@ -170,46 +147,6 @@ img {
   }
 }
 
-ul.navlink{
-	float:left;
-	font-size: 1.5em;
-	margin-left: 5%;
-	display: block;
-	list-style: none;
-	padding-bottom: 3%;
-	width:100%;
-	text-align: left;
-
-}
-ul.navlink li{
-float:left;
-	width:15%;
-		 -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  position: relative;
-  overflow: hidden;
-	z-index: 100;
-	
-
-}
-
-ul.navlink li button{
-padding-top:3%;
-line-height:auto;
-color:#DDDBF1;
-background-color:#3C4F76;
-width:100%;
-        padding-right:0%;
-        text-decoration: none;
-        display: block; 
-        padding-bottom: 3%;
-        text-align:center;
-	font-size:1em;
-	font-family:serif;
-}
-
-
 ul.navlink li:before {
   content: "";
   position: absolute;
@@ -249,4 +186,3 @@ ul.navlink li:hover ul.subnav li {
 	background-color:#2D2D2D;
 	width: 100%;
 }
-

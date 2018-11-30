@@ -53,7 +53,8 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="threeexpbox.js"></script>
@@ -124,10 +125,12 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
         document.getElementById("formmotive").value = <?php echo '"'. $motifPart . '"'; ?>; 
     }); 
 
+  function dochange(target) { window.open(target,"_self");};
+
 </script>
 </head>
 <body>
-<?php show_small_navigation("Help");?>
+<?php show_full_navigation();?>
 <h4>Venn diagramm view</h4>
 <div id="glossary">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >

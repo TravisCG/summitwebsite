@@ -16,8 +16,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to SummitDB</title>
 <link href="favicon.png" rel="icon"  type="image/png" />
+<link href="style.css" rel="stylesheet" type="text/css" />
 <link href="master.css" rel="stylesheet" type="text/css" />
-<link href="tooltip.css" rel="stylesheet" type="text/css" />
+<link href="emphasize.css" rel="stylesheet" type="text/css" />
 <link href="slideshow.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -80,37 +81,37 @@ function showSlides() {
 </script>
 
 <div>
-<h4>About ChIPSummitDB</h4>
+<h3>About ChIPSummitDB</h3>
 <p>ChIPSummitDB is a comprehensive database of transcription factor binding sites verified by human 
 <a href="#" title="An experiment using the ChIP-seq technique with the following important parameters: 
 the type of the cell and/or tissue, the antibody used for the IP, make/model of the sequencing instrument,
- type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth" class="tooltip">ChIP-seq experiments</a>
+ type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth" class="emphasize">ChIP-seq experiments</a>
  and their distances (positions) relative to the peak summits defined by the ChIP-seq reads.
-The database is a collection of the genomic positions of the consensus binding sites of each analyzed <a href="#" title="TF: Transcription Factor. In this database, TF is used for any protein which can be immune‑precipitated together with its bound DNA, and if a specific binding site from the literature could be assigned to it." class="tooltip"><span>TF</span></a> (group). Furthermore, the database displays the overlapping peaks for these <a href="#" title="One of the motifs from the Consensus motif binding site set" class="tooltip">consensus binding site</a> motifs.
-The database can predict the topological relations of different proteins at a given <a href="#" title=" Consensus binding site: One of the motifs from the Consensus motif binding site set." class="tooltip"><span>consensus binding site</span></a> by measuring the motif center – <a href="#" title="Peak summit: The genomic (absolute) or the TFBS-related (as the distance or shift value to the middle of a TFBS) position of the highest (maxima) point of a peak. One peak region can have more than one peak summit. We use PeakSplitter to determine them.
-" class="tooltip">peak summit</a> distances.</p>
+The database is a collection of the genomic positions of the consensus binding sites of each analyzed <a href="#" title="TF: Transcription Factor. In this database, TF is used for any protein which can be immune‑precipitated together with its bound DNA, and if a specific binding site from the literature could be assigned to it." class="emphasize"><span>TF</span></a> (group). Furthermore, the database displays the overlapping peaks for these <a href="#" title="One of the motifs from the Consensus motif binding site set" class="emphasize">consensus binding site</a> motifs.
+The database can predict the topological relations of different proteins at a given <a href="#" title=" Consensus binding site: One of the motifs from the Consensus motif binding site set." class="emphasize"><span>consensus binding site</span></a> by measuring the motif center – <a href="#" title="Peak summit: The genomic (absolute) or the TFBS-related (as the distance or shift value to the middle of a TFBS) position of the highest (maxima) point of a peak. One peak region can have more than one peak summit. We use PeakSplitter to determine them.
+" class="emphasize">peak summit</a> distances.</p>
 
-<h4>Data views in ChIPSummitDB</h4>
+<h3>Data views in ChIPSummitDB</h3>
 <p>ExperimentView shows detailed data for each <a href="#" title="ChIP-seq experiment: An experiment using the ChIP-seq technique with the following important parameters: the type of the cell and/or tissue, the antibody used for the IP, make/model of the sequencing instrument, type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth 
-" class="tooltip"><span>ChIP-seq experiment</span></a> downloaded from the <a href="https://www.ncbi.nlm.nih.gov/sra"  title="SRA Database">SRA database</a>.</p>
+" class="emphasize"><span>ChIP-seq experiment</span></a> downloaded from the <a href="https://www.ncbi.nlm.nih.gov/sra"  title="SRA Database">SRA database</a>.</p>
 <p>MotifView shows the average ChIP-seq <a href="#" title="Peak summit: The genomic (absolute) or the TFBS-related (as the distance or shift value to the middle of a TFBS) position of the highest (maxima) point of a peak. One peak region can have more than one peak summit. We use PeakSplitter to determine them.
-" class="tooltip">peak summit</a> vs. motif center distances between each consensus motif binding site set and the ChIP-seq experiments by a scatterplot graph. The displayed values can be filtered by different parameters</p>
-<p>PairShiftView shows a distribution graph of the distance between the <a href="#" title="The genomic (absolute) or the TFBS-related (as the distance or shift value to the middle of a TFBS) position of the highest (maxima) point of a peak. One peak region can have more than one peak summit. We use PeakSplitter to determine them." class="tooltip">  peak summit</a> and the center of the motif  for maximum three selected <a href="#" title="An experiment using the ChIP-seq technique with the following important parameters: 
+" class="emphasize">peak summit</a> vs. motif center distances between each consensus motif binding site set and the ChIP-seq experiments by a scatterplot graph. The displayed values can be filtered by different parameters</p>
+<p>PairShiftView shows a distribution graph of the distance between the <a href="#" title="The genomic (absolute) or the TFBS-related (as the distance or shift value to the middle of a TFBS) position of the highest (maxima) point of a peak. One peak region can have more than one peak summit. We use PeakSplitter to determine them." class="emphasize">  peak summit</a> and the center of the motif  for maximum three selected <a href="#" title="An experiment using the ChIP-seq technique with the following important parameters: 
 the type of the cell and/or tissue, the antibody used for the IP, make/model of the sequencing instrument, 
- type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth" class="tooltip">ChIP-seq experiments</a>.</p>
-<p>VennView shows the numbers of the common  peaks at a given <a href="#" title="One of the motifs from the Consensus motif binding site set" class="tooltip">consensus binding site set</a> for maximum three <a href="#" title="ChIP-seq experiment: An experiment using the ChIP-seq technique with the following important parameters: the type of the cell and/or tissue, the antibody used for the IP, make/model of the sequencing instrument, type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth 
-" class="tooltip"><span>ChIP-seq experiment</span></a> by a Venn diagram.</p>
+ type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth" class="emphasize">ChIP-seq experiments</a>.</p>
+<p>VennView shows the numbers of the common  peaks at a given <a href="#" title="One of the motifs from the Consensus motif binding site set" class="emphasize">consensus binding site set</a> for maximum three <a href="#" title="ChIP-seq experiment: An experiment using the ChIP-seq technique with the following important parameters: the type of the cell and/or tissue, the antibody used for the IP, make/model of the sequencing instrument, type of the sequencing (single‑end or paired-end), sequenced read length and sequencing depth 
+" class="emphasize"><span>ChIP-seq experiment</span></a> by a Venn diagram.</p>
 <p>GenomeView visualizes the consensus binding site sets and the whole or overlapping peak sets in the <a href="https://jbrowse.org/" title="JBrowse Genome Browser">JBrowse genome browser</a>.</p>
 
-<h4>Data download</h4>
+<h3>Data download</h3>
 <p>Different peak sets can be downloaded in “bedfile” format.</p>
 
-<h4>Citing ChIPSummitDB</h4>
+<h3>Citing ChIPSummitDB</h3>
 <p>The manuscript describing this database will be submitted soon. Until acceptance, Please cite the following  paper firstly describing the idea and the underlying methods behind ChIPSummitDB.
  <a href="https://scholar.google.hu/scholar?oi=bibs&cluster=8378628083884756002&btnI=1&hl=en">Motif oriented high-resolution analysis of ChIP-seq data reveals the topological order of CTCF and cohesin proteins on DNA</a>
 G Nagy, E Czipa, L Steiner, T Nagy, S Pongor, L Nagy… - <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2940-7">BMC genomics </a>, 2016</p>
 
-<h4>Details about the views in ChIPSummitDB</h4>
+<h3>Details about the views in ChIPSummitDB</h3>
 
 <h5>MotifView</h5>
 <p>In this mode, the average distances between the peak of the reads obtained in a ChIP-seq experiment and a given consensus motif on a scatterplot graph is visualized. Each scatter represents an experiment. Circles represent transcription factors with defined binding sites, while triangles represent co-factors and other indirectly bound proteins. Different colors indicate the antibody used in the immune precipitation. The X-axis shows the average distances of peak summits and the center of the binding sites for all overlapping peaks. The Y-axis shows either the number of overlapping peaks (elements) or, in default mode, the standard deviation of the shift values (distances) between the peak summits and motif centers. This scatterplot representation is available for all consensus binding motif sets.</p>

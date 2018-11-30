@@ -1,9 +1,9 @@
-.tooltip{
+.emphasize{
    			display: inline;
     		position: relative;
 		}
 
-.tooltip:hover:before{
+.emphasize:hover:before{
     		border: solid;
     		border-color: transparent;
     		border-width: 6px 6px 0 6px;
@@ -17,6 +17,6 @@
 
 
 		
-a.tooltip {
+a.emphasize {
 color: #444444;
 }

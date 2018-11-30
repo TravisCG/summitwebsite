@@ -96,7 +96,8 @@ $conn->close();
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <script src="jquery.js"></script>
 <script src="d3.js"></script>
 <script src="threeexpbox.js"></script>
@@ -116,7 +117,7 @@ $conn->close();
 </script>
 </head>
 <body>
-<?php show_small_navigation("Venn diagramm>
+<?php show_full_navigation("Venn diagramm>
 Display the overlap information between selected experiments as a Venn diagram. 
 
 To jbrowser>
@@ -137,6 +138,8 @@ function glossToggle() {
 	x.style.display = "none";
     }
 }
+
+function dochange(target) { window.open(target,"_self");};
 </script>
 
 

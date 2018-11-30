@@ -114,6 +114,7 @@ img {
 ul.navlink{
         float:left;
         font-size: 1.5em;
+        margin-left: 5%;
         display: block;
         list-style: none;
         padding-bottom: 3%;
@@ -150,7 +151,6 @@ background-color:#3C4F76;
 
 ul.navlink li button{
 padding-top:3%;
-line-height:auto;
 color:#DDDBF1;
 background-color:#3C4F76;
 width:100%;

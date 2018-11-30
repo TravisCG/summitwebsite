@@ -82,7 +82,8 @@ $conn->close();
 <link href="favicon.png" rel="icon"  type="image/png" />
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
 <link rel="stylesheet" type="text/css" href="textsearch.css">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="master.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -93,11 +94,13 @@ $conn->close();
   gtag('js', new Date());
 
   gtag('config', 'UA-121648705-1');
+
+  function dochange(target) { window.open(target,"_self");};
 </script>
 </head>
 
 <body>
-<?php show_small_navigation("Help");?>
+<?php show_full_navigation("Help");?>
 <h4>The white window will show the details of the selected experiments.</h4>
 <script>
 // this will toggle the glossary iframe

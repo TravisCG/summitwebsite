@@ -1,6 +1,7 @@
 <?php
   include('config.php');
   include('dbutil.php');
+  include('templates/header.php');
   $snpid = $_GET['dbsnp'];
 
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,21 +23,14 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="master.css">
   <link rel="stylesheet" type="text/css" href="dbsnp.css">
+  <script>
+    function dochange(target) { window.open(target,"_self");};
+  </script>
 </head>
 <body>
-<div class="container_16">
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
-  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-  <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
-</div>
-<div class="foo">
-    <ul class="navlink">
-        <li><a href="index.php" title="Home" class="active">Home</a></li>
-        <li onclick="glossToggle()"><a title="Help" class="active">Glossary</a></li>
-    </ul>
-</div>
-
+<?php show_full_navigation(); ?>
 <p>List of experiments which overlap with the following SNP: <?php echo($snpid);?></p>
 <div id="explist">
 <?php
