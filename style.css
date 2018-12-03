@@ -1,21 +1,9 @@
-
-
-option {
-font-size: 1.3em;
-
-}
-select {
-font-size: 1.3em;
-
-}
-
 h4 {
-  margin:auto;text-align:center;font-size:1.3em;padding-bottom:1.5em;padding-top:8em;
-}
-
-/*-----exp view-----*/
-text {
-  font-size: 1.3em;
+  margin:auto;
+  text-align:center;
+  font-size:1.3em;
+  padding-bottom:1.5em;
+  padding-top:8em;
 }
 
 a.visible {
@@ -29,22 +17,25 @@ body {
 /*-----erik stuff-----*/
 .container_16{
         background-color:#383F51;
-        width: 100%;
+        width: 90%;
         float:left;
         height: auto;
+        margin-left: 5%;
         display: block;
         clear: both;
-	height: 5em;
 }
+
 .foo{
         float: left;
         display: block;
         clear: both;
-        width: 100%;
-        height: 4.8em;
+        width: 90%;
+        height: 75px;
+        margin-left: 5%;
         background-color: #3C4F76;
 
 }
+
 ul{
         list-style: none;
         padding: 0;
@@ -74,26 +65,27 @@ img.logo{
 margin:0% 0% 0% 5%;
 float:left;
 display:inline;
-width:10%;
+width:15%;
 }
 
 img.logo2{
 margin-right: 5%;
 float:right;
 display:inline;
-width:10%;
+width:15%;
 }
 
 img.logomid{
-display:inline;
-width:20%;
-margin-left:25%;
-margin-right:15%;
+  display:inline;
+  width:29%;
+  margin-left:15%;
+  margin-right:15%;
 }
-
+/*
 img {
   width: 50%;
-}
+  height: 5em;
+}*/
 
 @-webkit-keyframes round {
   25% {
@@ -109,7 +101,6 @@ img {
 
 ul.navlink{
         float:left;
-        font-size: 1.5em;
         margin-left: 5%;
         display: block;
         list-style: none;
@@ -155,7 +146,7 @@ width:100%;
         display: block; 
         padding-bottom: 3%;
         text-align:center;
-        font-size:1em;
+        font-size: 26px;
         font-family:serif;
 }
 ul.navlink li:before {
@@ -225,12 +216,14 @@ ul.navlink li:hover ul.subnav li {
 }
 
 #chart_venn {
-  height: 55em;
-  width:94%;
+  width:90vw;
+  height:40vw;
   background-color: white;
   border:1px solid black;
   display:block;
   float:none;
+  margin-left: 5%;
+  position: relative;
 }
 
 div#buttons {
@@ -242,11 +235,6 @@ div#buttons {
   fill: white;
 }
 
-img {
-  height: 5em;
-}
-
-
 button {
     background-color: #777777; /* Grey */
     border: none;
@@ -255,10 +243,8 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1.1em;
     border-radius: 3px;
     width: 14em;
-    font-size: 1.2em;
 }
 
 button:hover {
@@ -359,71 +345,73 @@ a.cell_unselected  {
 }
 
 #data {
-position: absolute;
-top: 27em;
-left: 35%;
+  position: absolute;
+  top: 13vw;
+  left: 35vw;
 }
 
 #data2 {
-position: absolute;
-top: 27em;
-left: 65%;
+  position: absolute;
+  top: 13vw;
+  left: 53vw;
 }
 
 #data3 {
-position: absolute;
-top: 45em;
-left: 50%;
+  position: absolute;
+  top: 31vw;
+  left: 44vw;
 }
 
 #data1i2 {
-position: absolute;
-top: 25em;
-left: 50%;
+  position: absolute;
+  top: 13vw;
+  left: 44vw;
 }
 
 #data1i3 {
-position: absolute;
-top: 34em;
-left: 40%;
+  position: absolute;
+  top: 23vw;
+  left: 38vw;
 }
 #data2i3 {
-position: absolute;
-top: 36em;
-left: 58%;
+  position: absolute;
+  top: 23vw;
+  left: 50vw;
 }
 
 #data1i2i3 {
-position: absolute;
-top: 32em;
-left: 50%;
+  position: absolute;
+  top: 20vw;
+  left: 44vw;
 }
 
 .venn_circle {
-  position: absolute;
   display: float;
   opacity: 0.5;
   border-radius: 50%;
-  width: 28%;
-  height: 31em;
+  width: 20vw;
+  height: 20vw;
 }
 
 #circle {
-  top: 28em;
-  left: 30%;
+  top: 8vw;
+  left: 30vw;
   background-color:red;
+  position: absolute;
 }
 
 #circle2 {
-  top: 28em;
-  left: 45%;
+  top: 8vw;
+  left: 40vw;
   background-color:blue;
+  position: absolute;
 }
 
 #circle3 {
-  top: 38em;
-  left: 38%;
+  top: 18vw;
+  left: 35vw;
   background-color:green;
+  position: absolute;
 }
 
 #ifrm{
@@ -445,10 +433,6 @@ padding: 0.2em;
 /* exp_table.php */
 .exptable {
   width: 75%;
-}
-
-.exptable td {
-  font-size: 1.2em;
 }
 
 .whiteboard {

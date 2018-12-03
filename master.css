@@ -1,34 +1,9 @@
-/* this is the master css we will use for styling */
-
 body{
-margin:0;	
-padding:0;
-background-color:#DDDBF1;
-color:#383F51;
-	height: auto;
-	
-
-}
-
-.container_16{
-	background-color:#383F51;
-	width: 90%;
-	float:left;
-	height: auto;
-	margin-left: 5%;
-	display: block;
-	clear: both;
-}
-
-.foo{
-	float: left;
-	display: block;
-	clear: both;
-	width: 90%;
-	height: 75px;
-	margin-left: 5%;
-	background-color: #3C4F76;
-
+  margin:0;	
+  padding:0;
+  background-color:#DDDBF1;
+  color:#383F51;
+  height: auto;
 }
 
 .navbutton {
@@ -36,23 +11,11 @@ color:#383F51;
   border-radius: 0px;
 }
 
-
-img{
-padding:0;
-margin:0;
-border:none;
-display:block;
-
-	
-}
-
 a{
-text-decoration:none;
-outline:0;
-	padding-bottom: 0%;
-	
-	color:#3C4F76;
-
+  text-decoration:none;
+  outline:0;
+  padding-bottom: 0%;
+  color:#3C4F76;
 }
 
 #introduction {
@@ -67,122 +30,29 @@ outline:0;
 }
 
 iframe{
-	width:100%;
-	height: 100%;
+  width:100%;
+  height: 100%;
 }
 
 d{
-	float: left;
-	position: relative;
-	display: inline-block;
-	left:0%;
-	width: 30%;
-	height: 10%;
-	background-color:#AB9F9D;
-	
+  float: left;
+  position: relative;
+  display: inline-block;
+  left:0%;
+  width: 30%;
+  height: 10%;
+  background-color:#AB9F9D;	
 }
+
 p.donectxt{
-	padding-left: 3%;
-	padding-right: 3%;
-	font-size:1.4em;
-	background-color:#AB9F9D;
-	z-index: 1;
-}
-
-
-p.donectxt span{
-display:block;
-color:#3C4F76;
-font-weight:bold;
-background-color:inherit;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 .container_19{
-	background-color:#AB9F9D;
-	width: 50%;
-	display: block;
-	float: left;
-	height: 450px;
-	}
-
-
-
-
-/*--------------top div-------------------*/
-
-img.logo{
-margin:0% 0% 0% 5%;
-float:left;
-display:inline;
-width:15%;
-}
-
-img.logo2{
-margin-right: 5%;
-float:right;
-display:inline;
-width:15%;
-}
-
-img.logomid{
-display:inline;
-width:29%;
-margin-left:15%;
-margin-right:15%;
-}
-
-img {
+  background-color:#AB9F9D;
   width: 50%;
-}
-
-@-webkit-keyframes round {
-  25% {
-    opacity: 1;
-    z-index: 1;
-  }
-  40% {
-    opacity: 0;
-	  z-index: 1;
-	  
-  }
-}
-
-ul.navlink li:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  right: 50%;
-  top:0%;
-  background: #DDDBF1;
-  height: 4px;
-  -webkit-transition-property: left, right;
-  transition-property: left, right;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-	
-}
-ul.navlink li:hover:before, ul.navlink li:focus:before, ul.navlink li:active:before {
-  left: 0;
-  right: 0;
-	z-index: 100;
-}
-
-ul.subnav li {
-	display: none;
-		position: relative;
-}
-ul.subnav ul {
-		position: absolute;
-}
-ul.navlink li:hover ul.subnav li {
-	float: none;
-	color: #675C5C;
-	background-color: #161616;
-	display: block;
-	z-index:100;
-	background-color:#2D2D2D;
-	width: 100%;
+  display: block;
+  float: left;
+  height: 450px;
 }
