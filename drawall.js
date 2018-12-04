@@ -1,27 +1,27 @@
 function redcircle(x) {
 
+  var selection3 = document.querySelector('.red3') !== null;
+  if (selection3) {
+    document.querySelector(".red3").style.stroke = "grey";
+    document.querySelector(".red3").style.strokeWidth= "1";
+    document.querySelector(".red3").classList.remove('red3');
+  }
 
-var selection3 = document.querySelector('.red3') !== null;
-if (selection3) {
-document.querySelector(".red3").style.stroke = "grey";
-document.querySelector(".red3").style.strokeWidth= "1";
-document.querySelector(".red3").classList.remove('red3');
-}
-var selection2 = document.querySelector('.red2') !== null;
-if (selection2) {
-document.querySelector(".red2").classList.add('red3');
-document.querySelector(".red2").classList.remove('red2');
-}
+  var selection2 = document.querySelector('.red2') !== null;
+  if (selection2) {
+    document.querySelector(".red2").classList.add('red3');
+    document.querySelector(".red2").classList.remove('red2');
+  }
 
-var selection1 = document.querySelector('.red1') !== null;
-if (selection1) {
-document.querySelector(".red1").classList.add('red2');
-document.querySelector(".red1").classList.remove('red1');
-}
-document.querySelector(x).classList.add('red1');
-document.querySelector(".red1").style.stroke = "black";
-document.querySelector(".red1").style.strokeWidth= "4";
+  var selection1 = document.querySelector('.red1') !== null;
+  if (selection1) {
+    document.querySelector(".red1").classList.add('red2');
+    document.querySelector(".red1").classList.remove('red1');
+  }
 
+  document.querySelector(x).classList.add('red1');
+  document.querySelector(".red1").style.stroke = "black";
+  document.querySelector(".red1").style.strokeWidth= "4";
 }
 
 
@@ -35,11 +35,6 @@ d3.select(window).on('resize', resize);
 function resize() {
     // update width
     width = parseInt(d3.select('#motifchart1').style('width'), 10);
-
-    // reset x range
- //   x.range([0, width]);
-
-    // do the actual resize...
 }
 
 

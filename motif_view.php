@@ -229,7 +229,7 @@ var antiagentCount2 = d3.nest()
 var nameOfX = "Distance from " + motive + " center (bp)"
 DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
 DrawAllShizCubes("data", "notnew", "motive");
-choosethree("not_yet_selected");
+choosethree("Not yet selected");
 
 // this will count the cubes in chart2 so it wont be too long or short
 

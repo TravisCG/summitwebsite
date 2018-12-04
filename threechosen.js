@@ -1,8 +1,8 @@
 // this script will add the three choices to chart3 and make a download button , a jbrowse link and an exp_view link
 
-var firstChoice = "not_yet_selected";
-var secondChoice =  "not_yet_selected";
-var thirdChoice =  "not_yet_selected";
+var firstChoice = "Not yet selected";
+var secondChoice =  "Not yet selected";
+var thirdChoice =  "Not yet selected";
 
 var firstIndex = "not_yet_selected";
 var secondIndex = "not_yet_selected";
@@ -79,7 +79,7 @@ var wordvenn = "to venn diagram";
 
 var holdertwo = d3.select("#motifchart3")
       .append("svg")
-      .attr("width", "24em")
+      .attr("width", "15em")
       .attr("height", "8em")
       .attr("class", "threechosen");
 // draw a rectangle for the downloads
@@ -91,7 +91,7 @@ return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + firstIn
     .attr("x", "0.1em")
     .attr("y", "0em")
     .attr("height", "2.5em")
-    .attr("width", "23.4em")
+    .attr("width", "15em")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
     .attr("ry", "0.3em")
@@ -104,7 +104,7 @@ return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + secondI
     .attr("x", "0.1em")
     .attr("y", "2.7em")
     .attr("height", "2.5em")
-    .attr("width", "23.4em")
+    .attr("width", "15em")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
     .attr("ry", "0.6em")
@@ -117,7 +117,7 @@ return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" +  thirdI
     .attr("x", "0.1em")
     .attr("y", "5.4em")
     .attr("height", "2.5em")
-    .attr("width", "23.4em")
+    .attr("width", "15em")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
     .attr("ry", "0.3em")
@@ -125,39 +125,36 @@ return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" +  thirdI
 
 // draw text on the screen
 holdertwo.append("text")
-    .attr("x", "9.3em")
-    .attr("y", "0.8em")
+    .attr("x", "7.55em")
+    .attr("y", "0em")
     .style("fill", "black")
-    .style("font-size", "1.3em")
-    .attr("dy", ".35em")
+    .style("font-size", "1em")
+    .attr("dy", "1.6em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
     .text( firstChoice )
 
 // draw text on the screen
 holdertwo.append("text")
-    .attr("x", "9.3em")
-    .attr("y", "2.9em")
+    .attr("x", "7.55em")
+    .attr("y", "2.7em")
     .style("fill", "black")
-    .style("font-size", "1.3em")
-    .attr("dy", ".35em")
+    .style("font-size", "1em")
+    .attr("dy", "1.6em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
     .text( secondChoice )
 
 // draw text on the screen
 holdertwo.append("text")
-    .attr("x", "9.3em")
-    .attr("y", "5.2em")
+    .attr("x", "7.55em")
+    .attr("y", "5.4em")
     .style("fill", "black")
-    .style("font-size", "1.3em")
-    .attr("dy", ".35em")
+    .style("font-size", "1.0em")
+    .attr("dy", "1.6em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
-    .text( thirdChoice )
-
-
-
+    .text( thirdChoice );
 
 
 var holderthree = d3.select("#motifchart3")
@@ -171,35 +168,65 @@ holderthree.append("a")
     .append("rect")  
     .attr("x", "3.1em")
     .attr("y", "2.9em")
-    .attr("height", "3em")
+    .attr("height", "2.5em")
     .attr("width", "13.4em")
-    .style("stroke", "blue")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
     .attr("ry", "0.3em")
+    .append("title")
+    .text("Download genomic data of the last selected experiemnt in BED format");
+
 // draw text on the screen
 holderthree.append("text")
-    .attr("x", "9.3em")
+    .attr("x", "9.8em")
     .attr("y", "1em")
     .style("fill", "black")
     .style("font-size", "1em")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
-    .text("More views to browse.")
-holderthree.append("svg:title")
-     .text("Download genomic data of the last selected experiment in BED format.")
+    .text("More views to browse.");
 
+holderthree.append("rect")
+    .attr("id", "clearExp")
+    .attr("x", "3.1em")
+    .attr("y", "5.5em")
+    .attr("height", "2.5em")
+    .attr("width", "13.4em")
+    .attr("fill", "tomato")
+    .attr("rx", "0.3em")
+    .attr("ry", "0.3em")
+    .on("click", function(){
+       whichone = 1;
+       for(i = 1; i < 4; i++){
+         choosethree("Not yet selected");
+         var point = document.querySelector(".red" + i);
+         if(point != null){
+           point.style.stroke = "grey";
+           point.style.strokeWidth = 1;
+           point.classList.remove("red" + i);
+         }
+       }
+    });
 
 holderthree.append("text")
-    .attr("x", "8.9em")
-    .attr("y", "4em")
+    .attr("x", "9.8em")
+    .attr("y", "5.5em")
+    .attr("text-anchor", "middle")
+    .attr("dy", "1.7em")
+    .style("font-size", "1em")
+    .style("pointer-events", "none")
+    .text("Clear all selected");
+
+holderthree.append("text")
+    .attr("x", "9.8em")
+    .attr("y", "4.4em")
     .style("fill", "black")
-    .style("font-size", "1.1em")
+    .style("font-size", "1em")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
-    .text(word)
+    .text(word);
 // paired shift view part
 
 var holdershift = d3.select("#motifchart3")
@@ -227,7 +254,7 @@ holdershift.append("text")
     .attr("x", "5.4em")
     .attr("y", "1.3em")
     .style("fill", "black")
-    .style("font-size", "1.1em")
+    //.style("font-size", "1.1em")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
@@ -262,7 +289,7 @@ holdershift.append("text")
     .attr("x", "5.4em")
     .attr("y", "3.8em")
     .style("fill", "black")
-    .style("font-size", "1.1em")
+    //.style("font-size", "1.1em")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
@@ -298,7 +325,7 @@ holdershift.append("text")
     .attr("x", "5.4em")
     .attr("y", "6.3em")
     .style("fill", "black")
-    .style("font-size", "1.1em")
+    //.style("font-size", "1.1em")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
