@@ -62,7 +62,7 @@ d3.selectAll(".threechosen").remove();
 
 
 var svgthree = d3.select("#motifchart3").append("text")
-.html(function(d) { return "<div style=\"height:7em;padding:0.4em;font-size:0.7em;\">You flagged the following experiments (cell line, antibody, <a style=\"color:black;\"title=\"The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. \">element number</a>): <br/> The blue buttons will help navigating to the other views.<br>Click on the buttons to open <br> the \'experiment view\' for more details <br>about the Chip-seq data. </div>"})
+.html(function(d) { return "<div id=\"mfunchelp\" >You flagged the following experiments (cell line, antibody, <a title=\"The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. \">element number</a>): <br/> The blue buttons will help navigating to the other views.<br>Click on the buttons to open <br> the \'experiment view\' for more details <br>about the Chip-seq data. </div>"})
 .attr("class", "threechosen");
 
 

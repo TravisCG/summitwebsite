@@ -502,18 +502,19 @@ padding: 0.2em;
 }
 
 #motifchart3 {
-  width:84%;background-color: white;border:1px solid black;height: 11em; position: relative;
+  width:84%;background-color: white;border:1px solid black;height:11em;position: relative;
+  overflow: auto;
 }
 
 #motifchart4 {
-  width:15%; background-color: white;height: 11em;border:1px solid black;
+  width:15%; background-color: white;height:11em;border:1px solid black;
 }
 
 #motifchart4 p {
   margin-left:5px;margin-top:3px;margin-bottom:0px;
 }
 #motifchart4 img {
-  width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;
+  width:95%;height:61%;opacity=30%;margin-right: 1px;margin-top: 1px;
 }
 
 /* experiment_view */

@@ -20,8 +20,6 @@ $complex_id1 = '"' . $motiveplus . $exp1 . '"';
 $complex_id2 = '"' . $motiveplus . $exp2 .  '"';
 $complex_id3 = '"' . $motiveplus . $exp3 .  '"';
 $minelem = $_GET['mnelem'];
-$minName = '\''.$minelem.'\'';
-
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -287,9 +285,11 @@ foreach($jsonData6 as $item){
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
-<button id="resend" onclick="doSearchShift('_self')" ><p>Refresh Page</p></button>
+<button id="resend" onclick="doSearchShift('_self', '')" ><p>Refresh Page</p></button>
 </div>
 <br>
+<?php expBoxesCell(); ?>
+<button id="resend2" onclick="doSearchShift('_self', 'v2')"><p>Refresh Page</p></button>
 <br>
 <script>
 //here we will set the form boxes to be by default what they were in the url originally

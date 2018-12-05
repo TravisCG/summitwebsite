@@ -16,13 +16,13 @@ function doSearch(wname) {
     return false; // not entirely necessary, but just in case
 };
 
-function doSearchShift(wname) {
+function doSearchShift(wname, suffix) {
     var skillsSelect = document.getElementById("formmotive");
     var motive = skillsSelect.options[skillsSelect.selectedIndex].text;
     var motifid = parseInt(document.getElementById("formmotive").value);
-    var firstexp1 = parseInt(document.getElementById("formexp1").value) || "undefined";
-    var secondexp2 = parseInt(document.getElementById("formexp2").value) || "undefined";
-    var thirdexp3 = parseInt(document.getElementById("formexp3").value) || "undefined";
+    var firstexp1 = parseInt(document.getElementById("formexp1" + suffix).value) || "undefined";
+    var secondexp2 = parseInt(document.getElementById("formexp2" + suffix).value) || "undefined";
+    var thirdexp3 = parseInt(document.getElementById("formexp3" + suffix).value) || "undefined";
     var limit = parseInt(document.getElementById("limit").value) || 25;
     var low_limit = parseInt(document.getElementById("low_limit").value) || -25;
     var minelem = parseInt(document.getElementById("min_field")[0].value) || 25;
@@ -35,3 +35,4 @@ function doSearchShift(wname) {
     return false; // not entirely necessary, but just in case
 
 };
+

@@ -159,7 +159,7 @@ function glossToggle() {
 
 <div id="motifchart1"></div>
 <div id="motifchart2"></div>
-<div  id="motifchart3"></div>
+<div id="motifchart3"></div>
 
 <div name="chart4"  id="motifchart4">
 <p>Position weight matrix for selected motif.</p>

@@ -14,4 +14,12 @@ div {
   float: right; width:15%;
 }
 
+#mfunchelp {
+  width:20em;
+  padding:0.4em;
+  font-size:0.7em;
+}
 
+#mfunchelp a {
+  color: black;
+}

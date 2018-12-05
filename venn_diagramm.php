@@ -83,45 +83,6 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     $( document ).ready(function() {
         <?php expJS($allExperiment, $jsonData1start, $jsonData2start, $jsonData3start);?>
 
-        $('#antiformexp1v2').prepend('<?php echo fillCells($allExperiment, $jsonData1start[0]["antibody"], "antibody");?>');
-        $('#antiformexp2v2').prepend('<?php echo fillCells($allExperiment, $jsonData2start[0]["antibody"], "antibody");?>');
-        $('#antiformexp3v2').prepend('<?php echo fillCells($allExperiment, $jsonData3start[0]["antibody"], "antibody");?>');
-
-        fillSelect("#cellformexp1v2", data1start[0].antibody, allExperiment, data1start[0].cell_line, "antibody", "cell_line");
-        fillSelect("#cellformexp2v2", data2start[0].antibody, allExperiment, data2start[0].cell_line, "antibody", "cell_line");
-        fillSelect("#cellformexp3v2", data3start[0].antibody, allExperiment, data3start[0].cell_line, "antibody", "cell_line");
- 
-        fillExpByAntiCell('#formexp1v2', data1start[0].antibody, data1start[0].cell_line, allExperiment, data1start[0].name);
-        fillExpByAntiCell('#formexp2v2', data2start[0].antibody, data2start[0].cell_line, allExperiment, data2start[0].name);
-        fillExpByAntiCell('#formexp3v2', data3start[0].antibody, data3start[0].cell_line, allExperiment, data3start[0].name);
-
-        $('#antiformexp1v2').change(function(){
-            fillSelect('#cellformexp1v2', $('#antiformexp1v2').val(), allExperiment, "", "antibody", "cell_line");
-            fillExpByAntiCell('#formexp1v2', $('#antiformexp1v2').val(), $('#cellformexp1v2').val(), allExperiment);
-        });
-
-        $('#antiformexp2v2').change(function(){
-            fillSelect('#cellformexp2v2', $('#antiformexp2v2').val(), allExperiment, "", "antibody", "cell_line");
-            fillExpByAntiCell('#formexp2v2', $('#antiformexp2v2').val(), $('#cellformexp2v2').val(), allExperiment);
-        });
-
-        $('#antiformexp3v2').change(function(){
-            fillSelect('#cellformexp3v2', $('#antiformexp3v2').val(), allExperiment, "", "antibody", "cell_line");
-            fillExpByAntiCell('#formexp3v2', $('#antiformexp3v2').val(), $('#cellformexp3v2').val(), allExperiment);
-        });
-
-        $('#cellformexp1v2').change(function(){
-            fillExpByAntiCell('#formexp1v2', $('#antiformexp1v2').val(), $('#cellformexp1v2').val(), allExperiment);
-        });
-
-        $('#cellformexp2v2').change(function(){
-            fillExpByAntiCell('#formexp2v2', $('#antiformexp2v2').val(), $('#cellformexp2v2').val(), allExperiment);
-        });
-
-        $('#cellformexp3v2').change(function(){
-            fillExpByAntiCell('#formexp3v2', $('#antiformexp3v2').val(), $('#cellformexp3v2').val(), allExperiment);
-        });
-
         document.getElementById("formmotive").value = <?php echo '"'. $motifPart . '"'; ?>; 
     }); 
 
@@ -292,44 +253,7 @@ function vennBed() {
   In this mode, two or three experiments can be compared as above. Here the seach starts with designating the antibody and the cell type afterwards. 
   </p>
 </div>
-
-<div class="wrapper">
-
-<select id="cellformexp1v2" class="two exp1" type="text" value="" placeholder="Type to filter">
-</select>
-
-<select id="antiformexp1v2" type="text" class="one exp1" value="" placeholder="Type to filter">
-</select>
-
-<select id="formexp1v2" type="text" value="" class="three exp1" placeholder="Type to filter">
-</select>
-<button class="threeAH" onclick="jumptoexp('formexp1v2')"> experiment view </button>
-<br>
-<select id="cellformexp2v2" type="text" class="five exp2" value="" placeholder="Type to filter">
-</select>
-
-<select id="antiformexp2v2" type="text" class="four exp2" value="" placeholder="Type to filter">
-</select>
-
-<select id="formexp2v2" type="text" class="six exp2" value=""  placeholder="Type to filter">
-</select>
-<button class="sixAH" onclick="jumptoexp('formexp2v2')"> experiment view </button>
-<br>
-
-<select id="cellformexp3v2" type="text" value="" class="eight exp3" placeholder="Type to filter">
-</select>
-
-<select id="antiformexp3v2" type="text" value="" class="seven exp3" placeholder="Type to filter">
-</select>
-
-<select id="formexp3v2" type="text" value="" class="nine exp3" placeholder="Type to filter">
-</select>
-<button class="nineAH" onclick="jumptoexp('formexp3v2')"> experiment view </button>
-
-<br>
-<br>
-<br>
-</div>
+<?php expBoxesCell(); ?>
 <br>
 <p>After setting the parameters, click the button below to refresh the page.</p>
 
