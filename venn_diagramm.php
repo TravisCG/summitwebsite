@@ -112,37 +112,35 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <p id="data2i3">placeholder</p>
 <p id="data1i2i3">placeholder</p>
 
-<table class="venn_table">
-<tr class="exp1">
-    <td>experiment name:</td>
-    <td id="texpName1"><?php echo $jsonData1start[0]["name"];?></td>
-    <td>antibody:</td>
-    <td id="tantibody1"><?php echo $jsonData1start[0]["antibody"];?></td>
-    <td>cell line:</td>
-    <td id="tcelline1"><?php echo $jsonData1start[0]["cell_line"];?></td>
-    <td>consensus motif binding sites:</td>
-    <td id="tcons1"><?php echo $size1;?></td>
-  </tr>
-<tr class="exp2">
-    <td>experiment name:</td>
-    <td id="texpName2"><?php echo $jsonData2start[0]["name"];?></td>
-    <td>antibody:</td>
-    <td id="tantibody2"><?php echo $jsonData2start[0]["antibody"];?></td>
-    <td>cell line:</td>
-    <td id="tcelline2"><?php echo $jsonData2start[0]["cell_line"];?></td>
-    <td>consensus motif binding sites:</td>
-    <td id="tcons2"><?php echo $size2;?></td>
-  </tr>
-<tr class="exp3">
-    <td>experiment name:</td>
-    <td id="texpName3"><?php echo $jsonData3start[0]["name"];?></td>
-    <td>antibody:</td>
-    <td id="tantibody3"><?php echo $jsonData3start[0]["antibody"];?></td>
-    <td>cell line:</td>
-    <td id="tcelline3"><?php echo $jsonData3start[0]["cell_line"];?></td>
-    <td>consensus motif binding sites:</td>
-    <td id="tcons3"><?php echo $size3;?> </td>
-  </tr>
+<table class="venntable">
+  <thead>
+    <tr>
+      <td>Experiment name</td>
+      <td>Antibody</td>
+      <td>Cell line</td>
+      <td>Consensus motif binding sites</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="exp1">
+      <td id="texpName1"><?php echo $jsonData1start[0]["name"];?></td>
+      <td id="tantibody1"><?php echo $jsonData1start[0]["antibody"];?></td>
+      <td id="tcelline1"><?php echo $jsonData1start[0]["cell_line"];?></td>
+      <td id="tcons1"><?php echo $size1;?></td>
+    </tr>
+    <tr class="exp2">
+      <td id="texpName2"><?php echo $jsonData2start[0]["name"];?></td>
+      <td id="tantibody2"><?php echo $jsonData2start[0]["antibody"];?></td>
+      <td id="tcelline2"><?php echo $jsonData2start[0]["cell_line"];?></td>
+      <td id="tcons2"><?php echo $size2;?></td>
+    </tr>
+    <tr class="exp3">
+      <td id="texpName3"><?php echo $jsonData3start[0]["name"];?></td>
+      <td id="tantibody3"><?php echo $jsonData3start[0]["antibody"];?></td>
+      <td id="tcelline3"><?php echo $jsonData3start[0]["cell_line"];?></td>
+      <td id="tcons3"><?php echo $size3;?> </td>
+    </tr>
+  </tbody>
 </table>
 </div>
 
@@ -197,7 +195,7 @@ var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 </script>
 
 
-<div>
+<div id="maincontent">
 <br>
 <p>Set a motif:</p>
   <select id="formmotive" type="text" value="" placeholder="Type to filter">
@@ -216,7 +214,7 @@ foreach($jsonData6 as $item){
 <p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
 </p><br>
 <button class="paired_button" onclick="doSearchShift('_blank')">View data in paired shift view</button>
-<button class="paired_button" onclick="vennBed()">Download bed file for genome view</button>
+<button class="paired_button" onclick="vennBed()">Download BED file</button>
 
 <br id="limit" value=25><br id="low_limit" value=-25>
 
@@ -258,9 +256,6 @@ function vennBed() {
 <p>After setting the parameters, click the button below to refresh the page.</p>
 
 <button id="resend2" onclick="doSearchVenn2()" ><p>Refresh Page</p></button>
-
-</div>
-
 <script>
 
 var formminelem = getAllUrlParams().mnelem;
@@ -289,6 +284,7 @@ document.getElementById("data1i2i3").innerHTML = intersect1_2_3;
 <div>
 <p>VennView</p>
 <p>In this mode, two or three experiments can be compared. The values in the sections of the diagram indicates the number of common and specific peaks at a consensus motif binding site.</p>
+</div>
 </div>
 <?php show_footer();?>
 </body>

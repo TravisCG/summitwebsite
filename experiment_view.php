@@ -149,7 +149,7 @@ var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 <br>
 <iframe name="myIframe" width="96%" height="200px" class="whiteboard" src="exp_table.php?exp=<?php echo $exp; ?>"></iframe>
 
-<div class="wrapper">
+<div id="maincontent" class="wrapper">
 
 <select id="cellformexp1" class="one dropdown" type="text" value="" placeholder="Type to filter" >
 
@@ -240,9 +240,6 @@ foreach($jsonData4 as $item){
 ?>
 </ul>
 </div>
-
-<br><br>
-
 </div>
 <script>
 

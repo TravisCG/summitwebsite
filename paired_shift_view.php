@@ -148,39 +148,35 @@ function dochange(target) { window.open(target,"_self");};
 
 <div id="chart" >
 
- <table class="venntable">
-<tr class="exp1">
-    <td>experiment name:</td>
-    <td id="texpName1"><?php echo $expData1[0]["name"];?></td>
-    <td>antibody:</td>
-    <td id="tantibody1"><?php echo $expData1[0]["antibody"];?></td>
-    <td>cell line:</td>
-    <td id="tcelline1"><?php echo $expData1[0]["cell_line"]?></td>
-    <td>element number:</td>
-    <td id="telementnum1"><?php echo sizeof($pos1, JSON_NUMERIC_CHECK);?></td>
-
-  </tr>
-<tr class="exp2">
-    <td>experiment name:</td>
-    <td id="texpName2"><?php echo $expData2[0]["name"];?></td>
-    <td>antibody:</td>
-    <td id="tantibody2"><?php echo $expData2[0]["antibody"];?></td>
-    <td>cell line:</td>
-    <td id="tcelline2"><?php echo $expData2[0]["cell_line"];?></td>
-    <td>element number:</td>
-    <td id="telementnum2"><?php echo sizeof($pos2, JSON_NUMERIC_CHECK);?></td>
-
-  </tr>
-<tr class="exp3">
-    <td>experiment name:</td>
-    <td id="texpName3"><?php echo $expData3[0]["name"]; ?></td>
-    <td>antibody:</td>
-    <td id="tantibody3"><?php echo $expData3[0]["antibody"]; ?></td>
-    <td>cell line:</td>
-    <td id="tcelline3"><?php echo $expData3[0]["cell_line"]; ?></td>
-    <td>element number:</td>
-    <td id="telementnum3"><?php echo sizeof($pos3, JSON_NUMERIC_CHECK);?></td>
-  </tr>
+<table class="venntable">
+  <thead>
+    <tr>
+      <td>Experiment name</td>
+      <td>Antibody</td>
+      <td>Cell line</td>
+      <td>Element number</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="exp1">
+      <td id="texpName1"><?php echo $expData1[0]["name"];?></td>
+      <td id="tantibody1"><?php echo $expData1[0]["antibody"];?></td>
+      <td id="tcelline1"><?php echo $expData1[0]["cell_line"]?></td>
+      <td id="telementnum1"><?php echo sizeof($pos1, JSON_NUMERIC_CHECK);?></td>
+    </tr>
+    <tr class="exp2">
+      <td id="texpName2"><?php echo $expData2[0]["name"];?></td>
+      <td id="tantibody2"><?php echo $expData2[0]["antibody"];?></td>
+      <td id="tcelline2"><?php echo $expData2[0]["cell_line"];?></td>
+      <td id="telementnum2"><?php echo sizeof($pos2, JSON_NUMERIC_CHECK);?></td>
+    </tr>
+    <tr class="exp3">
+      <td id="texpName3"><?php echo $expData3[0]["name"]; ?></td>
+      <td id="tantibody3"><?php echo $expData3[0]["antibody"]; ?></td>
+      <td id="tcelline3"><?php echo $expData3[0]["cell_line"]; ?></td>
+      <td id="telementnum3"><?php echo sizeof($pos3, JSON_NUMERIC_CHECK);?></td>
+    </tr>
+  </tbody>
 </table>
 
 </div>
@@ -233,7 +229,7 @@ echo json_encode($jsonData3, JSON_NUMERIC_CHECK);
 </script>
 
 <br>
-<div>
+<div id="maincontent">
 <br>
 <br>
 <p>Minimum overlap number between motifs and peaks of experiment: <?php echo $minelem;?></p>
@@ -303,15 +299,13 @@ document.getElementById("limit").value = limit;
 var low_limit = <?php echo  $low_limit ; ?>;
 document.getElementById("low_limit").value = low_limit;
 </script>
-<div>
-
-<br><br><br><br>
+<br>
 <p>
 PairShiftView
 <br><br>
 In this mode, the frequencies of the different distance values between the motif and peak summit pairs for a given consensus binding site set are displayed in a histogram. To smooth the graph a 5 bp rolling bin was used. No more than three different experiments can be compared. The height of the curves shows the most frequent distance. In the PairShiftView mode, the data range and the consensus motif binding site can be set. An experiment can be also selected  and displayed in the ExperimentView. 
 </p>
-<?php show_footer();?>
 </div>
+<?php show_footer();?>
 </body>
 </html>

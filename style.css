@@ -216,7 +216,7 @@ ul.navlink li:hover ul.subnav li {
 }
 
 #chart_venn {
-  width:90vw;
+  width:90%;
   height:40vw;
   background-color: white;
   border:1px solid black;
@@ -239,7 +239,7 @@ button {
     background-color: #777777; /* Grey */
     border: none;
     color: white;
-    padding: 0.2em, 0.2em;
+    padding: 0.2em 0.2em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -421,8 +421,7 @@ a.cell_unselected  {
 }
 
 .paired_button {
-height: 3em;
-padding: 0.2em;
+  height: 3em;
 }
 
 /* exp_table.php */
@@ -453,8 +452,8 @@ padding: 0.2em;
   width:95%;height:61%;opacity=30%;margin-left: 1em;margin-right: 1px;margin-top: 1px;
 }
 
-#venntable {
-  width:90%;top:99em;
+.venntable {
+  margin: auto;
 }
 
 .exp1 {
@@ -472,15 +471,19 @@ padding: 0.2em;
 #motifbuttons {
   height:11em;
   padding-top: 1em;
+  width: 90%;
+  margin-left: 5%;
 }
 
 /* pairshift_view.php */
 #chart {
-  width:94% ;background-color: white;border:1px solid black;display:block;float:none;height:60em;
+  width:90% ;background-color: white;border:1px solid black;display:block;float:none;height:60em;
+  margin-left: 5%;
 }
 
 #logo_chart {
-  width:94%; background-color: white;height: 8em;border:1px solid black;
+  width:90%; background-color: white;height: 8em;border:1px solid black;
+  margin-left: 5%;
 }
 
 #logo_chart p {
@@ -528,6 +531,7 @@ padding: 0.2em;
 
 #expdesc {
   width: 30%;
+  margin-left: 5%;
 }
 
 .halfdiv {
