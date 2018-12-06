@@ -1,11 +1,20 @@
-
+<?php 
+  include("templates/header.php");
+  include("templates/footer.php");
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="stylesheet" type="text/css" href="master.css" />
 <title>Welcome to SummitDB</title>
+<script>
+ function dochange(target) { window.open(target,"_self");}; 
+</script>
 </head>
 <body>
+<?php show_full_navigation();?>
+<div id="maincontent">
 <b> About SummitDB:</b>
 <p class="donectxt">
 The main goal of analysing ChIP-seq experiments to identify regions in the genome where we can find more sequencing reads (tags) than we would expect to see by chance. These regions are named as peak regions due to appearance of visualized distribution of mapped tags.  
@@ -39,5 +48,7 @@ The TFBS region view can help you to analyze a specific section of the genom (e.
 <p class="donectxt">
 The JBrowse is a well-known Genome Browse (link) which we utilized to visualize genomic data. It provides rapid interface to explore epigenomic data manually. 
 </p>
+</div>
+<?php show_footer(); ?>
 </body>
 </html>
