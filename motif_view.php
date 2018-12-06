@@ -419,7 +419,7 @@ $(document).ready(function() { $('#chart2').on("scroll", function() { $('.cubech
 </script>
 
 
-<div>
+<div id="maincontent">
 <p>
 
 MotifView <br>

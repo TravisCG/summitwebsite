@@ -374,7 +374,7 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
 <input type="submit" value="Send" />
 </form>
 </div>
-<div>
+<div id="maincontent">
 <?php
   if(isset($motifs)){
     if( ($dbsnpid == "" || $overlap == false) && $moview != 1){

@@ -31,16 +31,18 @@
 </head>
 <body>
 <?php show_full_navigation(); ?>
-<p>List of experiments which overlap with the following SNP: <?php echo($snpid);?></p>
-<div id="explist">
-<?php
+<div id="maincontent">
+  <h4>List of experiments overlap with <?php echo($snpid);?></h4>
+  <div id="explist">
+  <?php
 
-  foreach($res as $record){
-    echo('<p>');
-    echo('<a href="http://summit.med.unideb.hu/summitdb/experiment_view.php?exp='.$record[0].'">'.$record[1].'</a>');
-    echo("</p>\n");
-  }
-?>
+    foreach($res as $record){
+      echo('<p>');
+      echo('<a href="http://summit.med.unideb.hu/summitdb/experiment_view.php?exp='.$record[0].'">'.$record[1].'</a>');
+      echo("</p>\n");
+    }
+  ?>
+  </div>
 </div>
 </body>
 </html>

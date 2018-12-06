@@ -4,14 +4,16 @@ div {
 
 #mbuttons {
   text-align: left;width: 40%;
+  margin-left: 5%;
 }
 
 #buttons2 {
-  text-align: left;width: 40%;
+  text-align: left;width: 30%;
 }
 
 #refresh {
   float: right; width:15%;
+  margin-right: 5%;
 }
 
 #mfunchelp {

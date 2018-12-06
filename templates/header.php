@@ -25,7 +25,7 @@ function show_full_navigation(){
     <li><button id="docbut" class="navbutton" onclick="dochange('Documentation.html')" >Documentation</button></li>
     <li><button id="helbut" class="navbutton" onclick="dochange('Help.html')">Help</button></li>
     <li><button id="tutbut" class="navbutton" onclick="dochange('tutorial.html')">Tutorial</button></li>
-    <li><button id="globut" class="navbutton" onclick="dochange('glossary.html')">Glossary</button></li>
+    <li><button id="globut" class="navbutton" onclick="dochange('glossary.php')">Glossary</button></li>
   </ul>
 </div>
 TEMPHEAD;

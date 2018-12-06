@@ -496,8 +496,9 @@ a.cell_unselected  {
 
 /* motif_view.php */
 #motifchart1 {
-  width:84% ;background-color: white;border:1px solid black;height:47em;
+  width:75% ;background-color: white;border:1px solid black;height:47em;
   float: left;
+  margin-left: 5%;
 }
 
 #motifchart2 {
@@ -505,8 +506,9 @@ a.cell_unselected  {
 }
 
 #motifchart3 {
-  width:84%;background-color: white;border:1px solid black;height:11em;position: relative;
+  width:75%;background-color: white;border:1px solid black;height:11em;position: relative;
   overflow: auto;
+  margin-left: 5%;
 }
 
 #motifchart4 {
