@@ -272,7 +272,7 @@ a {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 0.3em;
   grid-auto-rows: minmax(1em, auto);
-  height: 12em;
+  height: 8em;
   width: 100%;
 }
 
