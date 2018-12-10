@@ -1,7 +1,7 @@
 <?php
 include("config.php");
 
-$exp1Name = '\''.$_GET['exp'].'\'';
+$expID = $_GET['exp'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,7 +17,7 @@ FROM experiment
 LEFT JOIN cell_lines ON experiment.cell_lines_cellline_id = cell_lines.cellline_id
 LEFT JOIN antibody ON experiment.antibody_antibody_id = antibody.antibody_id
 LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = experiment.experiment_id
-WHERE experiment_id = $exp1Name
+WHERE experiment_id = $expID
 ";
 
 //generating results
@@ -86,6 +86,10 @@ $conn->close();
  <tr>
     <td>homer denovo motifs</td>
     <td><a href="<?php echo "denovo/" . $jsonData[0]["name"] . "/homer/" . $jsonData[0]["name"] . "_homermotifs_10_13_16/homerResults.html";?>" id="homer" target="_blank">link</a></td>
+  </tr>
+  <tr>
+    <td>Genome view</td>
+    <td><a href="http://summit.med.unideb.hu/jbrowse/?loc=chr11%3A8937800..115533288&tracks=DNA%2Cucsc-known-genes%2Cexp-<?php echo $expID;?>" target="_blank">link</a></td>
   </tr>
 
 </table> 
