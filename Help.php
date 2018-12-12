@@ -44,6 +44,10 @@ This view provides detailed information about the co-binding frequency between t
 <p class="donectxt">
 The TFBS region view can help you to analyze a specific section of the genom (e.g.: a promoter of a gene) to enrich information related to transcription factors. You can check which motifs are involved on this locus and you can browse between detected ChIP-seq summits. The results can be separated depending on which cell type or proteins are you looking for. 
 </p>
+<b>dbSNP view</b>
+<p class="donectxt">
+Using this view the user be able to find nucleotide variations which overlap with a TFBS motif. There are two ways to find such an SNP. The first one is to specify the desired SNP using a <a href="https://www.ncbi.nlm.nih.gov/snp">dbsnp id</a> or define the genomic region of interest. If the user set both the website use the dbsnp id. The current version cannot handle region larger than 1000 nucleotides. It is also possible to list experiments which has an overlapping peak with the specified SNP.
+</p>
 <b>Jbrowse</b>
 <p class="donectxt">
 The JBrowse is a well-known Genome Browse (link) which we utilized to visualize genomic data. It provides rapid interface to explore epigenomic data manually. 
