@@ -36,22 +36,22 @@ function update_avg_elem() {
 };
 
 function update_alphabet() {
-    d3.selectAll("#chart2 svg").remove();
+    d3.selectAll("#motifchart2 svg").remove();
     DrawAllShizCubes("sorteddata", "new", "motive");
 };
 
 function update_nonalphabet() {
-    d3.selectAll("#chart2 svg", "new").remove();
+    d3.selectAll("#motifchart2 svg", "new").remove();
     DrawAllShizCubes("data", "new", "motive");
 };
 
 function update_alphabet_cell() {
-    d3.selectAll("#chart2 svg").remove();
+    d3.selectAll("#motifchart2 svg").remove();
     DrawAllShizCubes("sorteddata", "new", "cell");
 };
 
 function update_nonalphabet_cell() {
-    d3.selectAll("#chart2 svg", "new").remove();
+    d3.selectAll("#motifchart2 svg", "new").remove();
     DrawAllShizCubes("data", "new", "cell");
 };
 
