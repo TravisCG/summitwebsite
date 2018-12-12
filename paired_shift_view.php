@@ -279,7 +279,7 @@ foreach($jsonData6 as $item){
 
 <br>
 
-<p>When te parameters have been set, this button will refresh the page.</p>
+<p>When the parameters have been set, this button will refresh the page.</p>
 
 <button id="resend" onclick="doSearchShift('_self', '')" ><p>Refresh Page</p></button>
 </div>

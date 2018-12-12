@@ -415,7 +415,7 @@ $(document).ready(function(){
 //these two rows will make the chart2 with the cubes fit like a glove
 
 var cubechartheight = $(".legend").length;
-$(document).ready(function() { $('#chart2').on("scroll", function() { $('.cubechart').css('height', cubechartheight * 1.8 + "em")}) });
+$(document).ready(function() { $('#motifchart2').on("scroll", function() { $('.cubechart').css('height', cubechartheight * 1.8 + "em")}) });
 </script>
 
 

@@ -87,9 +87,9 @@ function expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3){
         $('#cellformexp2').prepend('" . fillCells($allExperiment, $jsonData2[0]["cell_line"], "cell_line") . "');
         $('#cellformexp3').prepend('" . fillCells($allExperiment, $jsonData3[0]["cell_line"], "cell_line") . "');
 
-        fillSelect('#antiformexp1', data1start[0].cell_line, allExperiment, data1start[0].antibody, \"cell_line\", \"antibody\");
-        fillSelect('#antiformexp2', data2start[0].cell_line, allExperiment, data2start[0].antibody, \"cell_line\", \"antibody\");
-        fillSelect('#antiformexp3', data3start[0].cell_line, allExperiment, data3start[0].antibody, \"cell_line\", \"antibody\");
+        fillSelect('#antiformexp1', data1start[0].cell_line, allExperiment, data1start[0].antibody, 'cell_line', \"antibody\");
+        fillSelect('#antiformexp2', data2start[0].cell_line, allExperiment, data2start[0].antibody, 'cell_line', \"antibody\");
+        fillSelect('#antiformexp3', data3start[0].cell_line, allExperiment, data3start[0].antibody, 'cell_line', \"antibody\");
 
         fillExpByAntiCell('#formexp1', data1start[0].antibody, data1start[0].cell_line, allExperiment, data1start[0].name);
         fillExpByAntiCell('#formexp2', data2start[0].antibody, data2start[0].cell_line, allExperiment, data2start[0].name);
