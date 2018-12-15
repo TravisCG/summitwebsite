@@ -254,8 +254,8 @@
         $sql = "select probA,probC,probG,probT from pfm left join consensus_motif on (motif_id = consensus_motif_motif_id) where jaspar_code = '".$feats["motifs"][$i][10]."' order by position asc;";
       }
       $matrix = sql2array($conn, $sql);
-      $mstart = $feats["motifs"][$i][2];
-      $mend   = $feats["motifs"][$i][3];
+      $mstart = $feats["motifs"][$i][2] + 1;
+      $mend   = $feats["motifs"][$i][3] + 1;
       echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$feats["motifs"][$i][9].'" xlink:show="new">');
       drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend);
       echo('</a>');

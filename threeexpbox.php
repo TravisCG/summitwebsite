@@ -122,9 +122,9 @@ function expJS($allExperiment, $jsonData1, $jsonData2, $jsonData3){
             fillExpByAntiCell('#formexp3', $('#antiformexp3').val(), $('#cellformexp3').val(), allExperiment);
         });
 
-        $('#antiformexp1v2').prepend('" . fillCells($allExperiment, $jsonData1start[0]["antibody"], "antibody") . "');
-        $('#antiformexp2v2').prepend('" . fillCells($allExperiment, $jsonData2start[0]["antibody"], "antibody") . "');
-        $('#antiformexp3v2').prepend('" . fillCells($allExperiment, $jsonData3start[0]["antibody"], "antibody") . "');
+        $('#antiformexp1v2').prepend('" . fillCells($allExperiment, $jsonData1[0]["antibody"], "antibody") . "');
+        $('#antiformexp2v2').prepend('" . fillCells($allExperiment, $jsonData2[0]["antibody"], "antibody") . "');
+        $('#antiformexp3v2').prepend('" . fillCells($allExperiment, $jsonData3[0]["antibody"], "antibody") . "');
 
         fillSelect('#cellformexp1v2', data1start[0].antibody, allExperiment, data1start[0].cell_line, 'antibody', 'cell_line');
         fillSelect('#cellformexp2v2', data2start[0].antibody, allExperiment, data2start[0].cell_line, 'antibody', 'cell_line');
