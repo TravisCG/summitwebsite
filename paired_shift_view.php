@@ -283,7 +283,14 @@ foreach($jsonData6 as $item){
 
 <button id="resend" onclick="doSearchShift('_self', '')" ><p>Refresh Page</p></button>
 </div>
-<br>
+<p>If you want to start the selection and filtering the experiment list via antibody name, then use the following panels. Select the experiments in the rows of boxes below. Set from left to right: name of antibody > cell type > experiment. Then click on “Refresh Page” button to refresh the page.</p>
+
+<div class="wrapper1">
+<p class="one">antibody</p>
+<p class="two">cell type</p>
+<p class="three">experiment name</p>
+</div>
+
 <?php expBoxesCell(); ?>
 <button id="resend2" onclick="doSearchShift('_self', 'v2')"><p>Refresh Page</p></button>
 <br>

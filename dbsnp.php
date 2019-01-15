@@ -362,6 +362,8 @@
 ?>
 <div id="maincontent">
 <p>This view helps you to see variations and overlapping regulatory motifs.</p>
+<p>If you search by a dbSNP ID, you can see the reference variation, the alternate nucleotides and (if present) the overlapping sequence logos. Every SNP has an ID and a link to the original dbSNP page. Please keep in mind, the dbSNP page contains information about the latest genome, while this website has information about hg19! The motif logo is also clickable and you can reach the corrisponding motif page.</p>
+<p>The other way to see the genomic landscape is to specify a region. Because in this case the genomic region can be large, only a schematic view will be seen. The variations marked as lines (red colour indicates overlapping with motifs) and motifs drawn as rectangles. Both the variations and the motifs clickable. The SNP ID link is the same as described above, but the motif has two links! If you click to the name, you can see the the motif view, but any other click inside the rectangle work like a zoom. You can see the nucleotides and the motif logo.</p>
 <p>Please specify the dbSNP ID or a genomic region. If both set, only dbSNP will be used. If dbSNP ID is set the final image will be created using 50bp  flanking region. If you would like to see a larger landscape, you can set the
 genomic region manually.</p>
 <p>Caution: The genomic region cannot be larger than 1000bp!</p>

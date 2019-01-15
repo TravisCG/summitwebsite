@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("dbutil.php");
 
 $expID = $_GET['exp'];
 
@@ -20,14 +21,17 @@ LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = expe
 WHERE experiment_id = $expID
 ";
 
+$sql2 = "select distinct(name) from peak left join summit on (peak_peak_id = peak_id) left join motif_pos on (motif_pos_motifpos_id = motifpos_id) left join consensus_motif on (consensus_motif_motif_id = motif_id) where experiment_experiment_id = $expID";
+
+$overlapmotifs = sql2array($conn, $sql2);
+
 //generating results
 
 $result1 = $conn->query($sql1);
 
 //genrating data into jsondata
 
-while($r = mysqli_fetch_assoc($result1)) {
-    $jsonData[] = $r;}
+$jsonData = fetchAssoc($result1);
 
 $sql2 = "select count(*) as c from consensus_motif where name = '" . $jsonData[0]["antibody"] . "'";
 $res  = $conn->query($sql2);
@@ -94,5 +98,11 @@ $conn->close();
 
 </table> 
 </div>
+<p>Overlapping motfs:</p>
+<?php
+  foreach($overlapmotifs as $motif){
+    echo "<a href=\"http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" . $motif[0] . "\" target=\"_blank\">" . $motif[0] . "</a><br />";
+  }
+?>
 </body>
 </html>
