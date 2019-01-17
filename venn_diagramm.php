@@ -92,7 +92,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </head>
 <body>
 <?php show_full_navigation();?>
-<h4>Venn diagramm view</h4>
+<h4>Venn diagram view</h4>
 <div id="glossary">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
 </iframe>
@@ -149,6 +149,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     <p>Position weight matrix for selected motif.</p>
     <?php echo "<img src=\"./logos/" . $motifText . ".jpg\" alt=\"No picture available!\" > " ?>
   </div>
+  The following buttons will navigate you to different views of currently plotted data.<br />
   <a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=<?php echo $motifText;?>">
   <button class="paired_button" onclick="">Go to selected motif's view</button>
   </a>
@@ -156,6 +157,8 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
   <a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifPart ;?>,example_track1,example_track2,example_track3& addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1Name; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2Name; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3Name; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
   <button class="paired_button" onclick="">View in jbrowse</button>
   </a>
+  <button class="paired_button" onclick="doSearchShift('_blank')">View data in paired shift view</button>
+  <button class="paired_button" onclick="vennBed()">Download BED file</button>
 </div>
 
 <script>
@@ -212,13 +215,11 @@ foreach($jsonData6 as $item){
 </form>
 
 <p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
-</p><br>
-<button class="paired_button" onclick="doSearchShift('_blank')">View data in paired shift view</button>
-<button class="paired_button" onclick="vennBed()">Download BED file</button>
+</p>
+<br id="limit" value=25>
+<br id="low_limit" value=-25>
 
-<br id="limit" value=25><br id="low_limit" value=-25>
-
-<script>//this one works for the venn diagramm bed download
+<script>//this one works for the venn diagram bed download
 
 function vennBed() {
 
@@ -232,8 +233,6 @@ function vennBed() {
 };
 
 </script>
-
-<br>
 
 <div>
 <?php expBoxes(); ?>

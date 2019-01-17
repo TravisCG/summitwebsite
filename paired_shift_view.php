@@ -115,7 +115,7 @@ $conn->close();
 </script>
 </head>
 <body>
-<?php show_full_navigation("Venn diagramm>
+<?php show_full_navigation("Venn diagram>
 Display the overlap information between selected experiments as a Venn diagram. 
 
 To jbrowser>
@@ -227,10 +227,15 @@ echo json_encode($jsonData3, JSON_NUMERIC_CHECK);
 
 <script src="buttons.js">//this will make the buttons work
 </script>
-
-<br>
+<br />
 <div id="maincontent">
-<br>
+The following buttons will navigate you to different views of currently plotted data.
+<button class="paired_button" onclick="doSearchpreVenn()">View data in venn diagram</button>
+<a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifid; ?>,example_track1&example_track2&example_track3 addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
+<button class="paired_button" onclick="">View data in jbrowse</button>
+</a>
+
+
 <br>
 <p>Minimum overlap number between motifs and peaks of experiment: <?php echo $minelem;?></p>
 
@@ -248,17 +253,8 @@ foreach($jsonData6 as $item){
 ?>
 </select>
 
-<p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. 
- </p>
+<p>Select the experiments in the rows of boxes below. Set from left to right: cell type > name of antibody > experiment. Then click on “Resend data” button to refresh the page. </p>
 
-<button class="paired_button" onclick="doSearchpreVenn()">View data in venn diagramm</button>
-
-<a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-<?php echo $motifid; ?>,example_track1&example_track2&example_track3 addStores={        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp1; ?>.bed%22}        %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp2; ?>.bed%22} %22example_track1%22:{%22type%22:%22JBrowse/Store/SeqFeature/BED%22,%22baseUrl%22:%22.%22,%22urlTemplate%22:%22{dataRoot}/summits/summit-<?php echo $exp3; ?>.bed%22} }& addTracks=[   {%22label%22:%22example_track1%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track1%22} {%22label%22:%22example_track2%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track2%22} {%22label%22:%22example_track3%22,%22type%22:%22JBrowse/View/Track/CanvasFeatures%22,%22store%22:%22example_track3%22}]%22">
-<button class="paired_button" onclick="">View data in jbrowse</button>
-</a>
-
-
-<br>
 <div>
 
 <div class="wrapper1">

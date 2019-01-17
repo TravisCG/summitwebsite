@@ -147,7 +147,6 @@ var motive = <?php echo "\"" . $motifPart . "\""; ?>;
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
 <br>
-<iframe name="myIframe" width="96%" height="200px" class="whiteboard" src="exp_table.php?exp=<?php echo $exp; ?>"></iframe>
 
 <div id="maincontent" class="wrapper">
 
@@ -241,6 +240,7 @@ foreach($jsonData4 as $item){
 </ul>
 </div>
 </div>
+<iframe name="myIframe" width="96%" height="200px" class="whiteboard" src="exp_table.php?exp=<?php echo $exp; ?>"></iframe>
 <script>
 
 //this will make clearing button get back the options after the preselections

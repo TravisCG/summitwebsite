@@ -50,7 +50,7 @@
 	<a  target="_blank" href="http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=1666&exp2=2734&exp3=2750&motive=CTCF&motifid=32">
 	    <img src="slide3.png" class="slideimg">
 	</a>
-    <div class="text">Venn diagramm view</div>
+    <div class="text">Venn diagram view</div>
   </div>
 
  <div class="mySlides fade">

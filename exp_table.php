@@ -21,7 +21,7 @@ LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = expe
 WHERE experiment_id = $expID
 ";
 
-$sql2 = "select distinct(name) from peak left join summit on (peak_peak_id = peak_id) left join motif_pos on (motif_pos_motifpos_id = motifpos_id) left join consensus_motif on (consensus_motif_motif_id = motif_id) where experiment_experiment_id = $expID";
+$sql2 = "select name,count(*) as c from peak left join summit on (peak_peak_id = peak_id) left join motif_pos on (motif_pos_motifpos_id = motifpos_id) left join consensus_motif on (consensus_motif_motif_id = motif_id) where experiment_experiment_id = $expID group by name order by c desc";
 
 $overlapmotifs = sql2array($conn, $sql2);
 
@@ -98,11 +98,24 @@ $conn->close();
 
 </table> 
 </div>
-<p>Overlapping motfs:</p>
+<p>Overlapping motifs:</p>
+<table>
+  <thead>
+    <tr>
+      <th>Motif name</th>
+      <th>Number of overlap</th>
+    </tr>
+  </thead>
+  <tbody>
 <?php
   foreach($overlapmotifs as $motif){
-    echo "<a href=\"http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" . $motif[0] . "\" target=\"_blank\">" . $motif[0] . "</a><br />";
+    echo "<tr>\n";
+    echo "<td><a href=\"http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" . $motif[0] . "\" target=\"_blank\">" . $motif[0] . "</a></td>";
+    echo "<td>" . $motif[1] . "</td>\n";
+    echo "</tr>\n";
   }
 ?>
+  </tbody>
+</table>
 </body>
 </html>
