@@ -21,7 +21,7 @@ LEFT JOIN average_deviation ON average_deviation.experiment_experiment_id = expe
 WHERE experiment_id = $expID
 ";
 
-$sql2 = "select name,count(*) as c from peak left join summit on (peak_peak_id = peak_id) left join motif_pos on (motif_pos_motifpos_id = motifpos_id) left join consensus_motif on (consensus_motif_motif_id = motif_id) where experiment_experiment_id = $expID group by name order by c desc";
+$sql2 = "select name,count(*) as c from peak inner join summit on (peak_peak_id = peak_id) inner join motif_pos on (motif_pos_motifpos_id = motifpos_id) inner join consensus_motif on (consensus_motif_motif_id = motif_id) where experiment_experiment_id = $expID group by name order by c desc";
 
 $overlapmotifs = sql2array($conn, $sql2);
 
@@ -47,7 +47,8 @@ $conn->close();
 <meta charset="utf-8">
 <title>NAIK Genome Database</title>
 <meta name="Description" content="A database containing genomic data that was analysed and meta analysed by the Bioinformatics Research Group of the NAIK MBK.">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="exp.css" />
 
 <body class="whiteboard">
 

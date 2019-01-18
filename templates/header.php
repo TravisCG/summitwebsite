@@ -17,7 +17,7 @@ function show_full_navigation(){
     <ul class="subnav">
       <li><button id="motifbut" class="navbutton"  onclick="dochange('motif_preview.php')">Motif view</button></li>
       <li><button id="pairbut"  class="navbutton" onclick="dochange('paired_shift_view.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&limit=25&low_limit=-25&mnelem=1000')">Pairshift view</button></li>
-      <li><button id="vennbut" class="navbutton" onclick="dochange('venn_diagramm.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&mnelem=1000')">Venn diagramm view</button></li>
+      <li><button id="vennbut" class="navbutton" onclick="dochange('venn_diagramm.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&mnelem=1000')">Venn diagram view</button></li>
       <li><button id="exbut" class="navbutton" onclick="dochange('experiment_preview.php')">Experiment view</button></li>
       <li><button id="snpbut" class="navbutton" onclick="dochange('dbsnp.php')">dbSNP view</button></li>
       <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">Genome view</button></li></a>
