@@ -157,9 +157,12 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
   <a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?loc=chr10%3A46391892..47806389&tracks=DNA%2Cucsc-known-genes%2Cmot-<?php echo $motifPart;?>%2Cexp-<?php echo $exp1Name;?>%2Cexp-<?php echo $exp2Name;?>%2Cexp-<?php echo $exp3Name;?>&highlight=">
   <button class="paired_button" onclick="">View in jbrowse</button>
   </a>
-  <button class="paired_button" onclick="doSearchShift('_blank')">View data in paired shift view</button>
+  <button class="paired_button" onclick="doSearchShift('_blank', '')">View data in paired shift view</button>
   <button class="paired_button" onclick="vennBed()">Download BED file</button>
 </div>
+
+<script src="urlgetter.js">//this one gets the options out of the url and make them an object
+</script>
 
 <script>
 var data = <?php echo $size1;?>;
@@ -189,12 +192,6 @@ var intersect1_2 = <?php echo $inter1i2; ?>;
 var intersect1_3 = <?php echo $inter1i3; ?>;
 var intersect2_3 = <?php echo $inter2i3; ?>;
 var motive = <?php echo "\"" . $motifPart . "\""; ?>;
-</script>
-
-<script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
-</script>
-
-<script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
 
 
@@ -275,7 +272,8 @@ document.getElementById("data1i2i3").innerHTML = intersect1_2_3;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js">
 </script>
 
-<script src="urlgetter.js">//this one gets the options out of the url and make them an object
+
+<script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
 
 <script src="dosearchvenn.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
