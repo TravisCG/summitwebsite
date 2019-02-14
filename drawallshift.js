@@ -61,29 +61,68 @@ var movingAverageLine = d3.svg.line()
     .y(function(d,i) { return y(d.count/maxValue*90)+10; })
     .interpolate(movingAvg(5));
 
-
-
-
 chart.append('svg:path')
  .attr('class', 'avg')
  .style("stroke", "#bb0000")
  .style("stroke-width", "5")
  .style("fill", "none")
- .attr("d", movingAverageLine(datafirst));
+ .attr("d", movingAverageLine(datafirst))
+ .on('mouseover', function(){
+    chart.select("#actualpos").remove();
+    chart.append("line")
+       .attr("id", "actualpos")
+       .attr("x1", d3.mouse(this)[0] + 1) //this little shift prevents the mouseout event
+       .attr("y1", d3.mouse(this)[1] + 1) //fire too early
+       .attr("x2", d3.mouse(this)[0])
+       .attr("y2", y(0/maxValue*90)-2)
+       .attr("stroke-width", "2")
+       .attr("stroke", "black");
+  })
+ .on('mouseout', function(){
+    chart.select("#actualpos").remove();
+  });
 
 chart.append('svg:path')
  .attr('class', 'avg')
  .style("stroke", "#0000cc")
  .style("stroke-width", "5")
  .style("fill", "none")
- .attr("d", movingAverageLine(datasecond));
+ .attr("d", movingAverageLine(datasecond))
+ .on('mouseover', function(){
+    chart.select("#actualpos").remove();
+    chart.append("line")
+         .attr("id", "actualpos")
+         .attr("x1", d3.mouse(this)[0] + 1) //this little shift prevents the mouseout event
+         .attr("y1", d3.mouse(this)[1] + 1) //fire too early
+         .attr("x2", d3.mouse(this)[0])
+         .attr("y2", y(0/maxValue*90)-2)
+         .attr("stroke-width", "2")
+         .attr("stroke", "black");
+  })
+ .on('mouseout', function(){
+    chart.select("#actualpos").remove();
+  });
 
 chart.append('svg:path')
  .attr('class', 'avg')
  .style("stroke", "#00cc00")
  .style("stroke-width", "5")
  .style("fill", "none")
- .attr("d", movingAverageLine(datathird));
+ .attr("d", movingAverageLine(datathird))
+ .on("mouseover", function(){
+    chart.select("#actualpos").remove();
+    chart.append("line")
+         .attr("id", "actualpos")
+         .attr("x1", d3.mouse(this)[0] + 1) //this little shift prevents the mouseout event
+         .attr("y1", d3.mouse(this)[1] + 1) //fire too early
+         .attr("x2", d3.mouse(this)[0])
+         .attr("y2", y(0/maxValue*90)-2)
+         .attr("stroke-width", "2")
+         .attr("stroke", "black");
+  })
+ .on("mouseout", function(){
+    chart.select("#actualpos").remove();
+  });
 
 // setting up the x and the y axis
 chart.append("line")

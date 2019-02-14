@@ -71,7 +71,7 @@ var widththree = "15em";
 var heightthree = "4em";
 var word = "download last selected";
 var wordshift = "to paired shifts";
-var wordjbrowse = "to the jbrowse";
+var wordjbrowse = "to the genome view";
 var wordvenn = "to venn diagram";
 
 
@@ -272,8 +272,16 @@ var holderjb = d3.select("#motifchart3")
 // draw a button for the jbrowse
 holdershift.append("a")
     .attr("xlink:href", function(d) {
+if(secondAvgName == "not_yet_selected"){
+  secondAvgName = firstAvgName;
+  secondIndex = firstIndex;
+}
+if(typeof thirdAvgName === "undefined"){
+  thirdAvgName = secondAvgName;
+  thirdIndex = secondIndex;
+}
+
 return "http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-" + motifid[0].motif_id + "," + firstAvgName + "," + secondAvgName + "," + thirdAvgName +"&addStores={\"" + firstAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + firstIndex + ".gff3\"},\"" + secondAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + secondIndex + ".gff3\"},\"" + thirdAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + thirdIndex + ".gff3\"}}&addTracks=[{\"label\":\"" + firstAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + firstAvgName + "\"},{\"label\":\"" + secondAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + secondAvgName + "\"},{\"label\":\"" + thirdAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + thirdAvgName + "\"}]";})
-//return "http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-" + motifid[0].motif_id + "," + firstAvgName + "," + secondAvgName + "," + thirdAvgName + "&addStores={        \"" + firstAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/BED\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/beds/" + firstIndex + ".bed\"},        \"" + secondAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/BED\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/beds/" + secondIndex + ".bed\"},        \"" + thirdAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/BED\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/beds/" + thirdIndex + ".bed\"}}&addTracks=[                {\"label\":\"" + firstAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + firstAvgName + "\"},        {\"label\":\"" + secondAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + secondAvgName + "\"},        {\"label\":\"" + thirdAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + thirdAvgName + "\"}]";})
     .attr("target", "_blank")
     .append("rect")  
     .attr("x", "0.1em")
