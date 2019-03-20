@@ -173,7 +173,6 @@ var margin = {top: 20, right: 20, bottom: 30, left: 60},
 var legendtitle = 420;
 var maxShift = 99;
 var data = <?php echo json_encode($jsonData, JSON_NUMERIC_CHECK);?>;
-var ujtomb = <?php echo json_encode($column3);?>;
 var motive = <?php echo "\"" . $motivePart . "\""; ?>;
 var nestedbyantiagent = d3.nest()
   .key(function(d) { return d.antibody; })
