@@ -6,7 +6,6 @@ include("templates/footer.php");
 
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
-$motiveplus = $motifid + 100;
 $motiveName = '\''.$motivePart.'\'';
 $exp1 = $_GET['exp1'];
 $exp1Name = '\''.$exp1.'\'';
@@ -16,9 +15,6 @@ $exp3 = $_GET['exp3'];
 $exp3Name = '\''.$exp3.'\'';
 $limit = $_GET['limit'];
 $low_limit = $_GET['low_limit'];
-$complex_id1 = '"' . $motiveplus . $exp1 . '"';
-$complex_id2 = '"' . $motiveplus . $exp2 .  '"';
-$complex_id3 = '"' . $motiveplus . $exp3 .  '"';
 $minelem = $_GET['mnelem'];
 
 // Create connection
@@ -30,22 +26,25 @@ if ($conn->connect_error) {
 
 //queries
 $sql ="SELECT distance, count 
-FROM new_paired_shift_view
-where paired_shift_id = $complex_id1
+FROM paired_shift_view
+where experiment_experiment_id = $exp1
+and consensus_motif_motif_id = $motifid
 && distance <= $limit +2
 && distance >=  $low_limit -2
 ORDER BY distance"; 
 
 $sql2 = "SELECT distance, count 
-FROM new_paired_shift_view
-where paired_shift_id = $complex_id2
+FROM paired_shift_view
+where experiment_experiment_id = $exp2
+and consensus_motif_motif_id = $motifid
 && distance <= $limit + 2
 && distance >=  $low_limit - 2
 ORDER BY distance";
 
 $sql3 = "SELECT distance, count 
-FROM new_paired_shift_view
-where paired_shift_id = $complex_id3
+FROM paired_shift_view
+where experiment_experiment_id = $exp3
+and consensus_motif_motif_id = $motifid
 && distance <= $limit + 2
 && distance >=  $low_limit - 2
 ORDER BY distance";
