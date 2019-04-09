@@ -246,7 +246,7 @@
   function drawMotifLogos($conn, $feats){
     $regstart = $feats["start"];
     $regend   = $feats["end"] + 1;
-    for($i = 0; $i < sizeof($feats["motifs"]); $i++){
+    for($i=sizeof($feats["motifs"])-1; $i >= 0; $i--){ # I need it for the drawing order
       if($feats["motifs"][$i][4] == "-"){
         $sql = "select probT,probG,probC,probA from pfm left join consensus_motif on (motif_id = consensus_motif_motif_id) where jaspar_code = '".$feats["motifs"][$i][10]."' order by position desc;";
       }
@@ -258,6 +258,11 @@
       $mend   = $feats["motifs"][$i][3] + 1;
       echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$feats["motifs"][$i][9].'" xlink:show="new">');
       drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend);
+      //TODO create function
+      $x = ($mstart - $regstart) / ($regend - $regstart) * 100;
+      $y = 65 - $i * 15 - 15;
+      echo('<rect class="motifname" fill="lightblue" x="'.$x.'%" y="'.($y-5).'%" width="80" height="20"/>');
+      echo('<text x="'.$x.'%" y="'.$y.'%" class="motifname">'.$feats["motifs"][$i][9].'</text>');
       echo('</a>');
     }
   }
@@ -375,8 +380,8 @@ Start position:<input id="inpstart" type="text" name="start" value="<?php echo $
 End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/> <span id="msgbox"></span></p>
 <input type="submit" value="Send" />
 </form>
-</div>
-<div id="maincontent">
+<!--</div>
+<div id="maincontent"> -->
 <?php
   if(isset($motifs)){
     if( ($dbsnpid == "" || $overlap == false) && $moview != 1){

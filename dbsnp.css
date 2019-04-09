@@ -90,3 +90,11 @@ html, body {
 .motiflabel {
   font: 13px sans-serif;
 }
+
+.motifname {
+  visibility: hidden;
+}
+
+a:hover .motifname {
+  visibility: visible;
+}

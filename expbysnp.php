@@ -14,7 +14,7 @@
   $chr = $res[0][1];
   $pos = $res[0][2];
 
-  $sql = "select experiment_id, name from peak left join experiment on (experiment_id = experiment_experiment_id) where chromosome = '".$chr."' and start < ".$pos." and end > ".$pos.";";
+  $sql = "select experiment_id, name from peak left join experiment on (experiment_id = experiment_experiment_id) where chr = '".$chr."' and start < ".$pos." and end > ".$pos.";";
   $res = sql2array($conn, $sql);
 
   $conn->close();
