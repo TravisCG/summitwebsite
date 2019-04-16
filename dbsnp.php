@@ -152,14 +152,15 @@
          $class = 'overlap';
       }
 
+      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new">');
       for($i = 0; $i < strlen($ref); $i++){
         $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text class="'.$class.' refallele" x="'.$textpos.'%" y="75%" >'.$ref[$i].'</text>'."\n");
+        echo('<text class="'.$class.' refallele motifname" x="'.$textpos.'%" y="75%" >'.$ref[$i].'</text>'."\n");
       }
 
       for($i = 0; $i < strlen($alt); $i++){
         $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text class="'.$class.' altallele" x="'.$textpos.'%" y="80%" >'.$alt[$i].'</text>'."\n");
+        echo('<text class="'.$class.' altallele motifname" x="'.$textpos.'%" y="80%" >'.$alt[$i].'</text>'."\n");
       }
 
       $textpos = ($pos - $min) / ($max - $min) * 100;
@@ -170,7 +171,7 @@
         $ypos = 83;
         $prevtextpos = $textpos;
       }
-      echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new"><text class="'.$class.' snplabel" x="' . $textpos . '%" y="'.$ypos.'%" >' . $snpid . '</text></a>'."\n");
+      echo('<text class="'.$class.' snplabel" x="' . $textpos . '%" y="'.$ypos.'%" >' . $snpid . '</text></a>'."\n");
     }
   }
 
@@ -243,6 +244,13 @@
     }
   }
 
+  function drawMotifToolTip($mstart, $order, $regstart, $regend, $motifname){
+    $x = ($mstart - $regstart) / ($regend - $regstart) * 100;
+    $y = 65 - $order * 15 - 15;
+    echo('<rect class="motifname" fill="lightblue" x="'.$x.'%" y="'.($y-5).'%" width="80" height="20"/>');
+    echo('<text x="'.$x.'%" y="'.$y.'%" class="motifname" textlength="80">'.$motifname.'</text>');
+  }
+
   function drawMotifLogos($conn, $feats){
     $regstart = $feats["start"];
     $regend   = $feats["end"] + 1;
@@ -258,11 +266,7 @@
       $mend   = $feats["motifs"][$i][3] + 1;
       echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$feats["motifs"][$i][9].'" xlink:show="new">');
       drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend);
-      //TODO create function
-      $x = ($mstart - $regstart) / ($regend - $regstart) * 100;
-      $y = 65 - $i * 15 - 15;
-      echo('<rect class="motifname" fill="lightblue" x="'.$x.'%" y="'.($y-5).'%" width="80" height="20"/>');
-      echo('<text x="'.$x.'%" y="'.$y.'%" class="motifname">'.$feats["motifs"][$i][9].'</text>');
+      drawMotifToolTip($mstart, $i, $regstart, $regend, $feats["motifs"][$i][9]);
       echo('</a>');
     }
   }
@@ -368,7 +372,8 @@
 <div id="maincontent">
 <p>This view helps you to see variations and overlapping regulatory motifs.</p>
 <p>If you search by a dbSNP ID, you can see the reference variation, the alternate nucleotides and (if present) the overlapping sequence logos. Every SNP has an ID and a link to the original dbSNP page. Please keep in mind, the dbSNP page contains information about the latest genome, while this website has information about hg19! The motif logo is also clickable and you can reach the corrisponding motif page.</p>
-<p>The other way to see the genomic landscape is to specify a region. Because in this case the genomic region can be large, only a schematic view will be seen. The variations marked as lines (red colour indicates overlapping with motifs) and motifs drawn as rectangles. Both the variations and the motifs clickable. The SNP ID link is the same as described above, but the motif has two links! If you click to the name, you can see the the motif view, but any other click inside the rectangle work like a zoom. You can see the nucleotides and the motif logo.</p>
+<p>The other way to see the genomic landscape is to specify a region. Because in this case the genomic region can be large, only a schematic view will be seen. The variations marked as lines (red colour indicates overlapping with motifs) and motifs drawn as rectangles. Both the variations and the motifs clickable. The SNP ID link is the same as described above, but the motif has two links! If you click to the name, you will be navigated to the Motif View page, but any other click inside the rectangle work like a zoom. You can see the nucleotides and the motif logo after the page reloaded.</p>
+<p>In this zoomed mode if you hoover the mouse overt the SNP, you can see the reference nucleotides in green and the alternative allele in red.</p>
 <p>Please specify the dbSNP ID or a genomic region. If both set, only dbSNP will be used. If dbSNP ID is set the final image will be created using 50bp  flanking region. If you would like to see a larger landscape, you can set the
 genomic region manually.</p>
 <p>Caution: The genomic region cannot be larger than 1000bp!</p>
