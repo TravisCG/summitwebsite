@@ -155,12 +155,12 @@
       echo('<a xlink:href="https://www.ncbi.nlm.nih.gov/snp/'.$snpid.'" xlink:show="new">');
       for($i = 0; $i < strlen($ref); $i++){
         $textpos = ( ($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text class="'.$class.' refallele motifname" x="'.$textpos.'%" y="75%" >'.$ref[$i].'</text>'."\n");
+        echo('<text class="refallele motifname" x="'.$textpos.'%" y="75%" >'.$ref[$i].'</text>'."\n");
       }
 
       for($i = 0; $i < strlen($alt); $i++){
         $textpos = (($pos + $i) - $min) / ($max - $min) * 100;
-        echo('<text class="'.$class.' altallele motifname" x="'.$textpos.'%" y="80%" >'.$alt[$i].'</text>'."\n");
+        echo('<text class="altallele motifname" x="'.$textpos.'%" y="80%" >'.$alt[$i].'</text>'."\n");
       }
 
       $textpos = ($pos - $min) / ($max - $min) * 100;
