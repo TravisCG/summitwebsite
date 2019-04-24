@@ -90,6 +90,7 @@ chart.append('svg:path')
  .attr("d", movingAverageLine(datasecond))
  .on('mouseover', function(){
     chart.select("#actualpos").remove();
+    chart.select("#posxy").remove();
     chart.append("line")
          .attr("id", "actualpos")
          .attr("x1", d3.mouse(this)[0] + 1) //this little shift prevents the mouseout event
@@ -98,9 +99,15 @@ chart.append('svg:path')
          .attr("y2", y(0/maxValue*90)-2)
          .attr("stroke-width", "2")
          .attr("stroke", "black");
+    chart.append("text")
+         .attr("id", "posxy")
+         .attr("x", d3.mouse(this)[0] - 10)
+         .attr("y", d3.mouse(this)[1] - 10)
+         .text( ((d3.mouse(this)[0] - 870) / chartlength * 2.9).toFixed(2) );
   })
  .on('mouseout', function(){
     chart.select("#actualpos").remove();
+    chart.select("#posxy").remove();
   });
 
 chart.append('svg:path')
@@ -111,6 +118,7 @@ chart.append('svg:path')
  .attr("d", movingAverageLine(datathird))
  .on("mouseover", function(){
     chart.select("#actualpos").remove();
+    chart.select("#posxy").remove();
     chart.append("line")
          .attr("id", "actualpos")
          .attr("x1", d3.mouse(this)[0] + 1) //this little shift prevents the mouseout event
@@ -119,9 +127,15 @@ chart.append('svg:path')
          .attr("y2", y(0/maxValue*90)-2)
          .attr("stroke-width", "2")
          .attr("stroke", "black");
+    chart.append("text")
+         .attr("id", "posxy")
+         .attr("x", d3.mouse(this)[0] - 10)
+         .attr("y", d3.mouse(this)[1] - 10)
+         .text( ((d3.mouse(this)[0] - 870) / chartlength * 2.9).toFixed(2) );
   })
  .on("mouseout", function(){
     chart.select("#actualpos").remove();
+    chart.select("#posxy").remove();
   });
 
 // setting up the x and the y axis
@@ -143,90 +157,13 @@ chart.append("line")
 
 
 // the numbers to the chart are added here
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",870)
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("0");
-    
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(5)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+5");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(-5)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("-5");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(10)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+10");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(-10)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("-10");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(15)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+15");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(-15)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("-15");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(20)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+20");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(-20)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("-20");
-
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(25)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+25");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(-25)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("-25");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(30)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+30");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(-30)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("-30");
-
-chart.append("text")
-    .attr("class", "label")
-    .attr("x",function(d) { return x(35)/(chartlength*0.9)+870; })
-    .attr("y",function(d,i) { return y(0/maxValue*90)+25; })
-    .text("+35");
+for(xpos = -30; xpos < 30; xpos += 5){
+  chart.append("text")
+      .attr("class", "label")
+      .attr("x", x(xpos) / (chartlength * 0.9) + 870)
+      .attr("y", y(0/maxValue*90)+25)
+      .text(xpos);
+}
 
 chart.append("text")
     .attr("class", "label")
