@@ -69,6 +69,7 @@ chart.append('svg:path')
  .attr("d", movingAverageLine(datafirst))
  .on('mouseover', function(){
     chart.select("#actualpos").remove();
+    chart.select("#posxy").remove();
     chart.append("line")
        .attr("id", "actualpos")
        .attr("x1", d3.mouse(this)[0] + 1) //this little shift prevents the mouseout event
@@ -77,9 +78,15 @@ chart.append('svg:path')
        .attr("y2", y(0/maxValue*90)-2)
        .attr("stroke-width", "2")
        .attr("stroke", "black");
+    chart.append("text")
+         .attr("id", "posxy")
+         .attr("x", d3.mouse(this)[0] - 10)
+         .attr("y", d3.mouse(this)[1] - 10)
+         .text( ((d3.mouse(this)[0] - 870) / chartlength * 2.9).toFixed(2) );
   })
  .on('mouseout', function(){
     chart.select("#actualpos").remove();
+    chart.select("#posxy").remove();
   });
 
 chart.append('svg:path')
