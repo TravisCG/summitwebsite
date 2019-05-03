@@ -29,24 +29,24 @@ $sql ="SELECT distance, count
 FROM paired_shift_view
 where experiment_experiment_id = $exp1
 and consensus_motif_motif_id = $motifid
-&& distance <= $limit +2
-&& distance >=  $low_limit -2
+&& distance <= $limit
+&& distance >=  $low_limit
 ORDER BY distance"; 
 
 $sql2 = "SELECT distance, count 
 FROM paired_shift_view
 where experiment_experiment_id = $exp2
 and consensus_motif_motif_id = $motifid
-&& distance <= $limit + 2
-&& distance >=  $low_limit - 2
+&& distance <= $limit
+&& distance >=  $low_limit
 ORDER BY distance";
 
 $sql3 = "SELECT distance, count 
 FROM paired_shift_view
 where experiment_experiment_id = $exp3
 and consensus_motif_motif_id = $motifid
-&& distance <= $limit + 2
-&& distance >=  $low_limit - 2
+&& distance <= $limit
+&& distance >=  $low_limit
 ORDER BY distance";
 
 $sql6 = "SELECT name, motif_id 
@@ -111,6 +111,8 @@ $conn->close();
   $(document).ready(function(){
     <?php expJS($allExperiment, $expData1, $expData2, $expData3);?>
   })
+  var xlowlimit = <?php echo $low_limit;?>;
+  var xhilimit  = <?php echo $limit;?>;
 </script>
 </head>
 <body>
