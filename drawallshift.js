@@ -19,10 +19,31 @@ var chart = d3.select("#chart").append("svg")
     .attr("width", width2)
     .attr("height", h + 200);
 
+movingAvg = function(n) {
+    return function (points) {
+        points = points.map(function(each, index, array) {
+            var to = index + n - 1;
+            var subSeq, sum;
+            if (to < points.length) {
+                subSeq = array.slice(index, to + 1);
+                sum = subSeq.reduce(function(a,b) { return [a[0] + b[0], a[1] + b[1]]; });
+                return sum.map(function(each) { return each / n; });
+            }
+            return undefined;
+        });
+
+ points = points.filter(function(each) { return typeof each !== 'undefined' });
+        // Transform the points into a base line
+        pathDesc = d3.svg.line().interpolate("basis")(points)
+        //                 // Remove the extra "M"
+        return pathDesc.slice(1, pathDesc.length);
+        }
+}
+
 var movingAverageLine = d3.svg.line()
     .x(function(d) {return xax(d.distance); })
     .y(function(d) {return yax(d.count);})
-    .interpolate("cardinal");
+    .interpolate(movingAvg(5));
 
 chart.append('svg:path')
  .attr('class', 'avg')
