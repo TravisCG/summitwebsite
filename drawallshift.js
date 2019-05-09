@@ -150,14 +150,14 @@ chart.append("line")
 for(xpos = xlowlimit; xpos < xhilimit; xpos += 5){
   chart.append("text")
       .attr("class", "label")
-      .attr("x", xax(xpos) - 9)
-      .attr("y", yax(0)+25)
+      .attr("x", xax(xpos) - 9*(''+Math.abs(xpos)).length)
+      .attr("y", yax(0)+35)
       .text(xpos);
 
   chart.append("line")
       .attr("x1", xax(xpos))
       .attr("x2", xax(xpos))
-      .attr("y1", yax(0) - 5)
+      .attr("y1", yax(0))
       .attr("y2", yax(0) + 5)
       .attr("stroke-width", 2)
       .attr("stroke", "black");
@@ -193,7 +193,7 @@ for(ypos = 0; ypos < maxValue; ypos += step){
 
   chart.append("line")
       .attr("x1", 65)
-      .attr("x2", 75)
+      .attr("x2", 70)
       .attr("y1", yax(markpos))
       .attr("y2", yax(markpos))
       .attr("stroke-width", 2)

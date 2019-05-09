@@ -196,6 +196,7 @@ ul.navlink li:hover ul.subnav li {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+  stroke-width: 2px;
 }
 
 .dot {
@@ -543,4 +544,9 @@ a.cell_unselected  {
 #motifdesc {
   width:48%;
   float:right;
+}
+
+.label {
+  font-size: 30px;
+  font-weight: bold;
 }

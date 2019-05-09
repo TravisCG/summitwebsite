@@ -80,15 +80,21 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0, 600 )")
+      .style("font-size", "30px")
+      .style("font-weight", "bold")
       .call(xAxis)
     .append("text")
       .attr("class", "label")
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
+      .style("font-size","30px")
+      .style("font-weight", "bold")
       .text(namex); // y-axis
   svg.append("g")
       .attr("class", "y axis")
+      .style("font-size", "30px")
+      .style("font-weight", "bold")
       .call(yAxis)
     .append("text")
       .attr("class", "label")
@@ -96,6 +102,8 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
+      .style("font-size", "30px")
+      .style("font-weight", "bold")
       .text(namey);
 
 
@@ -119,7 +127,7 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 	}
                 else {
             return "circle";
-        }}))
+        }}).size(192))
   .style("fill", function(d) { return d.colour_hex;})
 //  .on("click",  window.open("https://www.w3schools.com"))
   .style("opacity", function(d) {
@@ -131,11 +139,6 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
                         }
     }
 )
-  .attr("r",3.5)
-
-
-
-
 .on("mouseover", function(d) {
 
 if(argx == "average"){
@@ -184,9 +187,6 @@ tooltip.transition()
 .on("click", function(d) {choosethree( d.cell_line + ", " + d.antibody + ", " + d.element_num, d.average_deviation_id,  d.exp_ID, d.avg_name);
 //redcircle function goes under
 redcircle( "#dot_" + d.exp_ID);
-//alert('"' + "#dot_" + d.exp_ID + '"');
-
-;
 })
 ;
 
