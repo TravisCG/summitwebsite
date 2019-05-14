@@ -9,7 +9,7 @@ var width2 = "95%";
 var w = $('#chart').width() *0.65;
     h = $('#chart').height() *0.85;
 
-var xax = d3.scale.linear().domain([xlowlimit,xhilimit]).range([70,1442]);
+var xax = d3.scale.linear().domain([xlowlimit,xhilimit]).range([80,1442]);
 var yax = d3.scale.linear().domain([0, maxValue]).range([h, 0]);
 
 var chartlength = Math.max(data.length, data2.length, data3.length);
@@ -139,9 +139,9 @@ chart.append("line")
     .attr("stroke", "black");
 
 chart.append("line")
-    .attr("x1", 70)
+    .attr("x1", 80)
     .attr("y1", yax(0)+15)
-    .attr("x2", 70)
+    .attr("x2", 80)
     .attr("y2", yax(maxValue))
     .attr("stroke-width", 2)
     .attr("stroke", "black");
@@ -187,13 +187,14 @@ for(ypos = 0; ypos < maxValue; ypos += step){
   var markpos = Math.round(ypos);
   chart.append("text")
       .attr("class", "label")
-      .attr("x", 14)
+      .attr("x", 75)
       .attr("y", yax(markpos) + 5)
+      .attr("text-anchor", "end")
       .text(markpos);
 
   chart.append("line")
-      .attr("x1", 65)
-      .attr("x2", 70)
+      .attr("x1", 75)
+      .attr("x2", 80)
       .attr("y1", yax(markpos))
       .attr("y2", yax(markpos))
       .attr("stroke-width", 2)
