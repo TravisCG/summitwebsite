@@ -550,3 +550,7 @@ a.cell_unselected  {
   font-size: 30px;
   font-weight: bold;
 }
+
+.boldtxt {
+  font-weight: bold;
+}

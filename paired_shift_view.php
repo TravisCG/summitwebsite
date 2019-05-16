@@ -233,7 +233,7 @@ echo json_encode($jsonData3, JSON_NUMERIC_CHECK);
 The following buttons will navigate you to different views of currently plotted data.
 <button class="paired_button" onclick="doSearchpreVenn()">View data in venn diagram</button>
 <a target="_black" href="http://summit.med.unideb.hu/jbrowse/index.html?loc=chr10%3A46391892..47806389&tracks=DNA%2Cucsc-known-genes%2Cmot-<?php echo $motifid;?>%2Cexp-<?php echo $exp1;?>%2Cexp-<?php echo $exp2;?>%2Cexp-<?php echo $exp3;?>&highlight=">
-<button class="paired_button" onclick="">View data in jbrowse</button>
+<button class="paired_button" onclick="">Genome view</button>
 </a>
 
 

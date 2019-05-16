@@ -5,9 +5,8 @@ function show_full_navigation(){
 <div class="container_16">
 <!--topdiv -->
 <a href="https://www.edu.unideb.hu/"><img src="University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
-  <img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/>
-  <a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/>
-  </a>
+<a href="http://summit.med.unideb.hu/summitdb/"><img src="logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/></a>
+<a href="http://www.naik.hu/en/"><img src="naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
 </div>                                               
 
 <div class="foo"> 
