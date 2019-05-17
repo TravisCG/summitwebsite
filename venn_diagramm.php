@@ -92,7 +92,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 </head>
 <body>
 <?php show_full_navigation();?>
-<h4>Venn diagram view</h4>
+<h4>VennView</h4>
 <div id="glossary">
  <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
 </iframe>
@@ -151,13 +151,13 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
   </div>
   The following buttons will navigate you to different views of currently plotted data.<br />
   <a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=<?php echo $motifText;?>">
-  <button class="paired_button" onclick="">Go to selected motif's view</button>
+  <button class="paired_button" onclick="">MotifView</button>
   </a>
 
   <a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?loc=chr10%3A46391892..47806389&tracks=DNA%2Cucsc-known-genes%2Cmot-<?php echo $motifPart;?>%2Cexp-<?php echo $exp1Name;?>%2Cexp-<?php echo $exp2Name;?>%2Cexp-<?php echo $exp3Name;?>&highlight=">
-  <button class="paired_button" onclick="">Genome view</button>
+  <button class="paired_button" onclick="">GenomeView</button>
   </a>
-  <button class="paired_button" onclick="doSearchShift('_blank', '')">View data in paired shift view</button>
+  <button class="paired_button" onclick="doSearchShift('_blank', '')">View data in PairedShiftView</button>
   <button class="paired_button" onclick="vennBed()">Download BED file</button>
 </div>
 

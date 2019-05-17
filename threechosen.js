@@ -272,7 +272,7 @@ var holderjb = d3.select("#motifchart3")
 // draw a button for the jbrowse
 holdershift.append("a")
     .attr("xlink:href", function(d) {
-if(secondAvgName == "not_yet_selected"){
+if(secondAvgName == "not_yet_selected" || typeof secondAvgName === "undefined"){
   secondAvgName = firstAvgName;
   secondIndex = firstIndex;
 }
@@ -280,7 +280,6 @@ if(typeof thirdAvgName === "undefined"){
   thirdAvgName = secondAvgName;
   thirdIndex = secondIndex;
 }
-
 return "http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-" + motifid[0].motif_id + "," + firstAvgName + "," + secondAvgName + "," + thirdAvgName +"&addStores={\"" + firstAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + firstIndex + ".gff3\"},\"" + secondAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + secondIndex + ".gff3\"},\"" + thirdAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + thirdIndex + ".gff3\"}}&addTracks=[{\"label\":\"" + firstAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + firstAvgName + "\"},{\"label\":\"" + secondAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + secondAvgName + "\"},{\"label\":\"" + thirdAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + thirdAvgName + "\"}]";})
     .attr("target", "_blank")
     .append("rect")  

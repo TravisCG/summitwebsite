@@ -14,12 +14,12 @@ function show_full_navigation(){
     <li><button id="homebut" class="navbutton" onclick="dochange('index.php')">Home</button></li>
     <li><button class="navbutton" >Search views</button>
     <ul class="subnav">
-      <li><button id="motifbut" class="navbutton"  onclick="dochange('motif_preview.php')">Motif view</button></li>
-      <li><button id="pairbut"  class="navbutton" onclick="dochange('paired_shift_view.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&limit=25&low_limit=-25&mnelem=1000')">Pairshift view</button></li>
-      <li><button id="vennbut" class="navbutton" onclick="dochange('venn_diagramm.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&mnelem=1000')">Venn diagram view</button></li>
-      <li><button id="exbut" class="navbutton" onclick="dochange('experiment_preview.php')">Experiment view</button></li>
-      <li><button id="snpbut" class="navbutton" onclick="dochange('dbsnp.php')">dbSNP view</button></li>
-      <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">Genome view</button></li></a>
+      <li><button id="motifbut" class="navbutton"  onclick="dochange('motif_preview.php')">MotifView</button></li>
+      <li><button id="pairbut"  class="navbutton" onclick="dochange('paired_shift_view.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&limit=25&low_limit=-25&mnelem=1000')">PairShiftView</button></li>
+      <li><button id="vennbut" class="navbutton" onclick="dochange('venn_diagramm.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&mnelem=1000')">VennView</button></li>
+      <li><button id="exbut" class="navbutton" onclick="dochange('experiment_preview.php')">ExperimentView</button></li>
+      <li><button id="snpbut" class="navbutton" onclick="dochange('dbsnp.php')">dbSNPView</button></li>
+      <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">GenomeView</button></li></a>
     </ul></li>
     <li><button id="docbut" class="navbutton" onclick="dochange('Documentation.html')" >Documentation</button></li>
     <li><button id="helbut" class="navbutton" onclick="dochange('Help.php')">Help</button></li>

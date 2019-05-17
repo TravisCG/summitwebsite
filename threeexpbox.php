@@ -176,7 +176,7 @@ function expBoxes(){
       <select id=\"formexp1\" type=\"text\" value=\"\" class=\"three exp1\" placeholder=\"Type to filter\">
       </select>
 
-      <button class=\"threeAH\" onclick=\"jumptoexp('formexp1')\"> experiment view </button>
+      <button class=\"threeAH\" onclick=\"jumptoexp('formexp1')\"> ExperimentView </button>
       <br>
 
       <select id=\"cellformexp2\" type=\"text\" class=\"four exp2\" value=\"\" placeholder=\"Type to filter\">
@@ -187,7 +187,7 @@ function expBoxes(){
 
       <select id=\"formexp2\" type=\"text\" class=\"six exp2\" value=\"\"  placeholder=\"Type to filter\">
       </select>
-      <button class=\"sixAH\" onclick=\"jumptoexp('formexp2')\"> experiment view </button>
+      <button class=\"sixAH\" onclick=\"jumptoexp('formexp2')\"> ExperimentView </button>
       <br>
 
       <select id=\"cellformexp3\" type=\"text\" value=\"\" class=\"seven exp3\" placeholder=\"Type to filter\">
@@ -198,7 +198,7 @@ function expBoxes(){
 
       <select id=\"formexp3\" type=\"text\" value=\"\" class=\"nine exp3\" placeholder=\"Type to filter\">
       </select>
-      <button class=\"nineAH\" onclick=\"jumptoexp('formexp3')\"> experiment view </button>
+      <button class=\"nineAH\" onclick=\"jumptoexp('formexp3')\"> ExperimentView </button>
 
       <br>
     </div>
@@ -217,7 +217,7 @@ function expBoxesCell(){
 
       <select id="formexp1v2" type="text" value="" class="three exp1" placeholder="Type to filter">
       </select>
-      <button class="threeAH" onclick="jumptoexp('formexp1v2')"> experiment view </button>
+      <button class="threeAH" onclick="jumptoexp('formexp1v2')"> ExperimentView </button>
       <br>
 
       <select id="cellformexp2v2" type="text" class="five exp2" value="" placeholder="Type to filter">
@@ -228,7 +228,7 @@ function expBoxesCell(){
 
       <select id="formexp2v2" type="text" class="six exp2" value=""  placeholder="Type to filter">
       </select>
-      <button class="sixAH" onclick="jumptoexp('formexp2v2')"> experiment view </button>
+      <button class="sixAH" onclick="jumptoexp('formexp2v2')"> ExperimentView </button>
       <br>
 
       <select id="cellformexp3v2" type="text" value="" class="eight exp3" placeholder="Type to filter">
@@ -239,7 +239,7 @@ function expBoxesCell(){
 
       <select id="formexp3v2" type="text" value="" class="nine exp3" placeholder="Type to filter">
       </select>
-      <button class="nineAH" onclick="jumptoexp('formexp3v2')"> experiment view </button>
+      <button class="nineAH" onclick="jumptoexp('formexp3v2')"> ExperimentView </button>
 
    </div>
 
