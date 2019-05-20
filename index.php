@@ -91,10 +91,11 @@ The database can predict the topological relationships of different proteins at 
 <h3>Data views in ChIPSummitDB</h3>
 <p>Data can be displayed using the following views:</p>
 <p><span class="boldtxt">ExperimentView</span> shows detailed data for each ChIP-seq experiment downloaded from the SRA database.</p>
-<p><span class="boldtxt">MotifView</span> shows the average ChIP-seq peak summit vs. motif center distances between each consensus motif binding site set and the ChIP-seq experiments using a scatterplot graph. The displayed values can be filtered by different parameters.</p>
+<p><span class="boldtxt">MotifView</span>shows the average ChIP-seq peak summit vs. motif center distances between each consensus motif binding site set and the ChIP-seq experiments using a scatterplot graph. The displayed values can be filtered by different parameters.</p>
 <p><span class="boldtxt">PairShiftView</span> shows a distribution graph of the distance between the peak summit and the center of the motif for a maximum of three selected ChIP-seq experiments.</p>
-<p><span class="boldtxt">VennView</span> shows the numbers of common peaks at a given consensus binding site set for a maximum of three ChIP-seq experiments using a Venn diagram.</p>
+<p><span class="boldtxt">VennDiagramView</span> shows the numbers of common peaks at a given consensus binding site set for a maximum of three ChIP-seq experiments using a Venn diagram.</p>
 <p><span class="boldtxt">GenomeView</span> visualizes the consensus binding site sets and the whole or overlapping peak sets in the JBrowse genome browser.</p>
+<p><span class="boldtxt">dbSNPView</span>This view helps you to see variations and overlapping regulatory motifs.</p>
 
 <h3>Data download</h3>
 <p>Different peak sets can be downloaded in “bedfile” format.</p>
@@ -115,11 +116,14 @@ G Nagy, E Czipa, L Steiner, T Nagy, S Pongor, L Nagy… - <a href="https://bmcg
 <p>In this mode, the frequencies of the different distance values between the motif and peak summit pairs for a given consensus binding site set are displayed in a histogram. To smooth the graph, a 5 bp rolling bin was used. No more than three different experiments can be compared. The maximum value of the curves shows the most frequent distance, which is the same as the value shown on the X-axis in the MotifView.</p>
 <p>In the PairShiftView mode, the data range and the consensus motif binding site set can be changed. There is also a possibility to select an experiment and see it in the ExperimentView.</p>
 
-<h5>VennView</h5>
+<h5>VennDiagramView</h5>
 <p>In this mode, two or three experiments can be compared. The values in the sections of the diagram indicate the number of overlapping peaks at the consensus motif binding sites for a given motif. One TFBS in a genome (among the thousands defined in the Consensus motif binding site set) can overlap (between 50bp at both sides) any of the two or all three experiments examined in this view. In the Venn diagram, we count these occurrences. In this view, the consensus motif and the experiment can be selected.</p>
 
 <h5>ExperimentView</h5>
 <p>In this mode, the details of any ChIP-seq experiment can be seen. The displayed information includes the SRA links, the number of reads, the antibody used, the mapped reads, and the number of peaks. The result of the HOMER de novo motif prediction can also be seen. Experiments incorporated into ChIPSummitDB can be searched for display.</p>
+
+<h5>dbSNPView</h5>
+<p>This view helps you to see variations and overlapping regulatory motifs based on dbSNP.</p>
 
 </div>
 
