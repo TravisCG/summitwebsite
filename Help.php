@@ -1,3 +1,7 @@
+<?php
+include("templates/header.php");
+include("templates/footer.php");
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -22,19 +26,15 @@
 		p.cjk { font-family: "Noto Sans CJK SC Regular"; so-language: zh-CN }
 		p.ctl { font-family: "Lohit Devanagari"; so-language: hi-IN }
 	</style>
-	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="master.css" rel="stylesheet" type="text/css" />
+	<script>
+		function dochange(target) { window.open(target,"_self");};
+	</script>
 </head>
-<body lang="hu-HU" text="#00000a" dir="ltr">
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt"><span lang="en-US"><b>Help
-page</b></span></font></font></p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
+<body lang="hu-HU" text="#00000a" dir="ltr" style="background-color: white;">
+<?php show_full_navigation();?>
+<h4>Help page</h4>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>MotifView</b></span></font></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
@@ -415,5 +415,6 @@ The genomic region cannot be larger than 1000bp!</font></p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><br/>
 
 </p>
+<?php show_footer();?>
 </body>
 </html>

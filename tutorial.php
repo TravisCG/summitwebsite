@@ -1,3 +1,7 @@
+<?php
+include("templates/header.php");
+include("templates/footer.php");
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -24,17 +28,14 @@
 		a:link { color: #0000ff }
 	</style>
 	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="master.css" rel="stylesheet" type="text/css" />
+	<script>
+		function dochange(target) { window.open(target,"_self");}
+	</script>
 </head>
-<body lang="hu-HU" link="#0000ff" dir="ltr">
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>Tutorial:</b></span></font></p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
+<body lang="hu-HU" link="#0000ff" dir="ltr" style="background-color:white;">
+<?php show_full_navigation();?>
+<h4>Tutorial</h4>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>MotifView</b></span></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
@@ -1030,12 +1031,6 @@ experiments at a consensus motif binding site in the VennDiagramView.
 	are switched. </span></font></font>
 	</p>
 </ol>
-<p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><br/>
-
-</p>
+<?php show_footer();?>
 </body>
 </html>

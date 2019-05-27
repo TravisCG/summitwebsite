@@ -1,3 +1,7 @@
+<?php
+  include("templates/header.php");
+  include("templates/footer.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +43,13 @@
 	<meta name="ScaleCrop" content="false"/>
 	<meta name="ShareDoc" content="false"/>
 	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="master.css" />
+	<script>
+		function dochange(target) { window.open(target,"_self");};
+	</script>
 </head>
-<body lang="hu-HU" text="#00000a" link="#0000ff" dir="ltr">
+<body lang="hu-HU" text="#00000a" link="#0000ff" dir="ltr" style="background-color:white;">
+<?php show_full_navigation();?>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%"><a name="_GoBack"></a>
 <font color="#000000"><font face="Arial, serif"><font size="5" style="font-size: 20pt"><span lang="en-US"><b>Supplementary
 Material</b></span></font></font></font></p>
@@ -667,5 +676,6 @@ Bioinformatics. 2010;26. </font>
 <br/>
 
 </p>
+<?php show_footer();?>
 </body>
 </html>

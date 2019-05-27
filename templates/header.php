@@ -21,9 +21,9 @@ function show_full_navigation(){
       <li><button id="snpbut" class="navbutton" onclick="dochange('dbsnp.php')">dbSNPView</button></li>
       <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">GenomeView</button></li></a>
     </ul></li>
-    <li><button id="docbut" class="navbutton" onclick="dochange('Documentation.html')" >Documentation</button></li>
+    <li><button id="docbut" class="navbutton" onclick="dochange('Documentation.php')" >Documentation</button></li>
     <li><button id="helbut" class="navbutton" onclick="dochange('Help.php')">Help</button></li>
-    <li><button id="tutbut" class="navbutton" onclick="dochange('tutorial.html')">Tutorial</button></li>
+    <li><button id="tutbut" class="navbutton" onclick="dochange('tutorial.php')">Tutorial</button></li>
     <li><button id="globut" class="navbutton" onclick="dochange('glossary.php')">Glossary</button></li>
   </ul>
 </div>

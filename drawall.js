@@ -127,7 +127,7 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 	}
                 else {
             return "circle";
-        }}).size(192))
+        }}).size(60))
   .style("fill", function(d) { return d.colour_hex;})
 //  .on("click",  window.open("https://www.w3schools.com"))
   .style("opacity", function(d) {
