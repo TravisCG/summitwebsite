@@ -255,7 +255,7 @@ this analysis, the semi-processed data</span></font></font><font color="#000000"
 were further analyzed. </span></font></font>
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
- <img src="images/documentation1.jpg" name="Kép 27" width="391" height="589"/>
+ <img src="images/documentation1.jpg" name="Kép 27" width="50%" height="50%"/>
 
 </p>
 <p style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
@@ -299,7 +299,7 @@ et al., 2014; Steven R. Head et al. 2014). </span></font></font>
 
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
-<img src="images/documentation2.jpg" name="Kép 8" hspace="1" vspace="1" width="554" height="266" border="0"/>
+<img src="images/documentation2.jpg" name="Kép 8" hspace="1" vspace="1" width="50%" height="50%" border="0"/>
 </p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
@@ -349,7 +349,7 @@ step in the ChIP-seq analysis pipeline and </span></font></font><font color="#00
 a Perl script, which classified and filtered the sub&#8209;peaks
 based on their size and shape. </span></span></font></font>
 </p>
-<img src="images/documentation3.jpg" name="Kép 9" hspace="11" width="348" height="516"/>
+<img src="images/documentation3.jpg" name="Kép 9" hspace="11" width="50%" height="50%"/>
 <p class="western" align="justify" style="line-height: 100%">
 <span id="Frame2" dir="ltr" style="float: left; width: 3.95in; border: none; padding: 0in; background: #ffffff">
 	<p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">

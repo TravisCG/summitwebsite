@@ -101,9 +101,10 @@ The database can predict the topological relationships of different proteins at 
 <p>Different peak sets can be downloaded in “bedfile” format.</p>
 
 <h3>Citing ChIPSummitDB</h3>
-<p>The manuscript describing this database will be submitted soon. Until acceptance, please cite the following paper which first described the idea and the underlying methods behind ChIPSummitDB.
- <a href="https://scholar.google.hu/scholar?oi=bibs&cluster=8378628083884756002&btnI=1&hl=en">Motif oriented high-resolution analysis of ChIP-seq data reveals the topological order of CTCF and cohesin proteins on DNA</a>
+<p>The manuscript describing this database will be submitted soon. Until acceptance, please cite the following paper which first described the idea and the underlying methods behind ChIPSummitDB.</p>
+<p> <a href="https://scholar.google.hu/scholar?oi=bibs&cluster=8378628083884756002&btnI=1&hl=en">Motif oriented high-resolution analysis of ChIP-seq data reveals the topological order of CTCF and cohesin proteins on DNA</a>
 G Nagy, E Czipa, L Steiner, T Nagy, S Pongor, L Nagy… - <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2940-7">BMC genomics </a>, 2016</p>
+<p><a href="https://www.biorxiv.org/content/10.1101/652420v1">ChIPSummitDB: A ChIP-seq-based database of human transcription factor binding sites and the topological arrangements of the proteins bound to them.</a> E Czipa, M Schiller, T Nagy, L Kontra, L Steiner, J Koller, O Palne-Szen, E Barta - bioRXiv, 2019</p>
 
 <h3>Details about the views in ChIPSummitDB</h3>
 

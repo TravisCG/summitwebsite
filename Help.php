@@ -105,7 +105,7 @@ displayed dots </span><span lang="en-US">can</span><span lang="en-US">
 
 </p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<img src="images/help1.jpg" name="Kép 52" align="left" hspace="11" vspace="1" width="390" height="539" border="0"/>
+<img src="images/help1.jpg" name="Kép 52" align="left" hspace="11" vspace="1" border="0"/>
 <br/>
 
 </p>
@@ -255,7 +255,7 @@ View</b></span></font></font></p>
 <br/>
 
 </p>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><span lang="en-US">T<img src="images/help1.jpg" name="Kép 53" align="left" hspace="11" width="383" height="540" border="0"/>
+<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><span lang="en-US">T<img src="images/help2.jpg" name="Kép 53" align="left" hspace="11" border="0"/>
 he
 MotifView displays the statistical data (occurrence frequency,
 average/median distance related to the motif, and distance standard

@@ -102,9 +102,6 @@ button. </span></font></font></font>
 	the TF’s name (for example “5 P300”).</span></font> 
 </font></font></p>
 </ol>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-	<img src="images/tutorial4.jpg" name="Kép 9" width="492" height="853" border="0"/>
-</p>
 <ol start="5">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">For
@@ -115,7 +112,7 @@ button. </span></font></font></font>
 	TF’s name.</span></font></font></font></p>
 </ol>
 <p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
-<img src="images/tutorial5.jpg" name="Kép 10"  hspace="12" vspace="1" width="507" height="290" border="0"/>
+<img src="images/tutorial4.jpg" name="Kép 10"  hspace="12" vspace="1" width="507" height="290" border="0"/>
 <br/>
 
 </p>
@@ -125,7 +122,7 @@ button. </span></font></font></font>
 	legend in the right-hand side window shows that data from two POU2F2
 	ChIP-seq experiments are available. After hiding all scatters, click
 	on the purple square next to POU2F2 and two scatters will appear in
-	the graph area. </span></font></font></font><img src="images/tutorial6.jpg" name="Kép 11"  hspace="12" vspace="1" width="507" height="232" border="0"/>
+	the graph area. </span></font></font></font><img src="images/tutorial5.jpg" name="Kép 11"  hspace="12" vspace="1" width="507" height="232" border="0"/>
 
 	</p>
 </ol>
@@ -171,7 +168,7 @@ button. </span></font></font></font>
 	</p>
 </ol>
 <p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
-<img src="images/tutorial7.jpg" name="Kép 12"  hspace="12" vspace="1" width="507" height="232" border="0"/>
+<img src="images/tutorial6.jpg" name="Kép 12"  hspace="12" vspace="1" width="507" height="232" border="0"/>
 </p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
@@ -196,7 +193,7 @@ of three scatters can be selected.</span></font><font face="Arial, serif">
 </font>
 </p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<img src="images/tutorial8.jpg" name="Kép 13" align="bottom" width="507" height="231" border="0"/>
+<img src="images/tutorial7.jpg" name="Kép 13" align="bottom" width="507" height="231" border="0"/>
 </p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US">After
 selecting scatters, certain information (cell line, antibody, and
@@ -426,7 +423,7 @@ will be shown as an example.  </span></font>
 	</p>
 </ol>
 <p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
-<img src="images/tutorial23.jpg" name="Kép 71" width="554" height="332" border="0"/>
+<img src="images/tutorial22b.jpg" name="Kép 71" width="554" height="332" border="0"/>
 </p>
 <ol start="6">
 	<li/>
@@ -437,7 +434,7 @@ will be shown as an example.  </span></font>
 	for settings. If the curves do not fit inside the diagram, then
 	adjust the minimum and maximum values of the axes below the graph.</span></font></font></font></p>
 </ol>
-<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial24.jpg" name="Kép 31" align="bottom" hspace="1" width="378" height="853" border="0"/>
+<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial23.jpg" name="Kép 31" align="bottom" hspace="1" width="378" height="853" border="0"/>
 </font></p>
 <p class="western" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
 <font face="Arial, serif"><span lang="en-US">The page will be updated
@@ -538,7 +535,7 @@ knock-down experiments, they found clear evidence for CTCF-JARID1B
 interactions, which suggests that the two proteins are present in the
 same complex.</span></font></font> </font></font>
 </p>
-<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial25.jpg" name="Kép 32" align="bottom" vspace="1" width="507" height="541" border="0"/>
+<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial24.jpg" name="Kép 32" align="bottom" vspace="1" width="507" height="541" border="0"/>
 </font></p>
 <ol start="7">
 	<li/>
@@ -563,7 +560,7 @@ same complex.</span></font></font> </font></font>
 	</p>
 </ol>
 <p style="margin-left: 0.5in; margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<font color="#00000a"><img src="images/tutorial26.jpg" name="Kép 35" align="bottom" width="507" height="541" border="0"/>
+<font color="#00000a"><img src="images/tutorial25.jpg" name="Kép 35" align="bottom" width="507" height="541" border="0"/>
 </font></p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>dbSNPView</b></span></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
@@ -581,7 +578,7 @@ same complex.</span></font></font> </font></font>
 on the “Search views” menu and then click the “dbSNPView”
 button. </span></font></font></font>
 </p>
-<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial27.jpg" name="Image1" align="bottom" width="464" height="183" border="0"/>
+<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial26.jpg" name="Image1" align="bottom" width="464" height="183" border="0"/>
 </font></p>
 <ol start="2">
 	<li/>
@@ -593,7 +590,7 @@ button. </span></font></font></font>
 </font></font></p>
 </ol>
 <p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
-<img src="images/tutorial28.jpg" name="Image2" align="bottom" width="486" height="149" border="0"/>
+<img src="images/tutorial27.jpg" name="Image2" align="bottom" width="486" height="149" border="0"/>
 </p>
 <ol start="3">
 	<li/>
@@ -606,7 +603,7 @@ button. </span></font></font></font>
 	</p>
 </ol>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<img src="images/tutorial29.jpg" name="Image3"  width="464" height="233" border="0"/>
+<img src="images/tutorial28.jpg" name="Image3"  width="464" height="233" border="0"/>
 <br/>
 
 </p>
@@ -626,7 +623,7 @@ button. </span></font></font></font>
 <br/>
 
 </p>
-<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial30.jpg" name="Image4" align="bottom" width="486" height="243" border="0"/>
+<p style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%"><font color="#00000a"><img src="images/tutorial29.jpg" name="Image4" align="bottom" width="486" height="243" border="0"/>
 </font></p>
 <p lang="en-US" style="margin-left: 1in; margin-bottom: 0in; line-height: 100%">
 <br/>
@@ -643,7 +640,7 @@ button. </span></font></font></font>
 </font></font></p>
 </ol>
 <p lang="en-US" style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-		<img src="images/tutorial31.jpg" name="Image5" align="bottom" width="486" height="233" border="0"/>
+		<img src="images/tutorial30.jpg" name="Image5" align="bottom" width="486" height="233" border="0"/>
 </p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>ExperimentView</b></span></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
