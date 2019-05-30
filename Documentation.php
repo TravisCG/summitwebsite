@@ -51,8 +51,7 @@
 <body lang="hu-HU" text="#00000a" link="#0000ff" dir="ltr" style="background-color:white;">
 <?php show_full_navigation();?>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%"><a name="_GoBack"></a>
-<font color="#000000"><font face="Arial, serif"><font size="5" style="font-size: 20pt"><span lang="en-US"><b>Supplementary
-Material</b></span></font></font></font></p>
+<font color="#000000"><font face="Arial, serif"><font size="5" style="font-size: 20pt"><span lang="en-US"><b>Documentation</b></span></font></font></font></p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
 <font color="#000000"><font size="4" style="font-size: 14pt"><span lang="en-US"><i>ChIPSummitDB
 is a collection of processed ChIP-seq data. It provides information
@@ -256,7 +255,7 @@ this analysis, the semi-processed data</span></font></font><font color="#000000"
 were further analyzed. </span></font></font>
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
- <img src="Documentation_html_7af89e1d585c44f6.gif" name="Kép 27" width="391" height="589"/>
+ <img src="images/documentation1.jpg" name="Kép 27" width="391" height="589"/>
 
 </p>
 <p style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
@@ -300,7 +299,7 @@ et al., 2014; Steven R. Head et al. 2014). </span></font></font>
 
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
-<img src="Documentation_html_c1578e4b886af343.gif" name="Kép 8" hspace="1" vspace="1" width="554" height="266" border="0"/>
+<img src="images/documentation2.jpg" name="Kép 8" hspace="1" vspace="1" width="554" height="266" border="0"/>
 </p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
@@ -350,7 +349,7 @@ step in the ChIP-seq analysis pipeline and </span></font></font><font color="#00
 a Perl script, which classified and filtered the sub&#8209;peaks
 based on their size and shape. </span></span></font></font>
 </p>
-<img src="Documentation_html_d9e109cc72c8c1fa.gif" name="Kép 9" hspace="11" width="348" height="516"/>
+<img src="images/documentation3.jpg" name="Kép 9" hspace="11" width="348" height="516"/>
 <p class="western" align="justify" style="line-height: 100%">
 <span id="Frame2" dir="ltr" style="float: left; width: 3.95in; border: none; padding: 0in; background: #ffffff">
 	<p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
@@ -443,7 +442,7 @@ because in the available human data, no sequence and NGS data were
 available for the rest of motifs (Figure S4).  </span></font></font>
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
-<img src="Documentation_html_2bd541709b6633ba.gif"/>
+<img src="images/documentation4.jpg"/>
 </p>
 <p lang="en-US" align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; font-style: normal; line-height: 100%">
 <br/>
@@ -473,7 +472,7 @@ step maximized the number of specific motif instances, which were
 identified in the next step (Figure S5). </span></font></font>
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
-<img src="Documentation_html_cc5a06d9d857b073.gif"/>
+<img src="images/documentation5.jpg"/>
 </p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
@@ -537,7 +536,7 @@ we get non-redundant global consensus motif sets for 338 JASPAR CORE
 matrices.  </span></font></font>
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
-<img src="Documentation_html_ebc6dfc40766c0ad.gif"/>
+<img src="images/documentation6.jpg"/>
 </p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
@@ -576,7 +575,7 @@ motif centers) if it is physically far from the reference point
 (Figure S7). </span></font></font>
 </p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
-<img src="Documentation_html_a8257659cc51e501.gif" name="Kép 51" width="528" height="503" border="0"/>
+<img src="images/documentation7.jpg" name="Kép 51" width="528" height="503" border="0"/>
 </p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Figure S7:

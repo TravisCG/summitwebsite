@@ -29,7 +29,7 @@ $conn->close();
 <script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
 <script>
-function dochange(target) { window.open(target,"_self");};
+function dochange(target) { window.open(target,"_blank");};
 </script>
 </head>
 <body>

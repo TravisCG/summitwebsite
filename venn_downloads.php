@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include('dbutil.php');
 
 $exp = $_GET['exp1'];
 $exp2 = $_GET['exp2'];
@@ -7,13 +8,10 @@ $exp3 = $_GET['exp3'];
 $motive = $_GET['motive'];
 $motiveName = '\''.$motive.'\'';
 $filename = $exp . '_' . $exp2 . '_' . $exp3 . '_'  . $motive . '.bed' ;
-$header = "track name=$exp" . "_$motive" . " description=\"overlapping $motive consensus motifs with the $exp peaks\"\n";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
 // Check connection
-
-// $con=mysqli_connect($host,$user,$password);
 
 mysqli_select_db($conn,$dbname); 
 //To select the database
@@ -23,6 +21,9 @@ session_start(); //To start the session
 header('Content-Type: text/csv; charset=utf-8');
 header("Content-Disposition: attachment; filename=$filename");
 
+$expnames = sql2array($conn, "select name from experiment where experiment_id in ($exp, $exp2, $exp3);");
+
+$header = "track name=$motive description=\"overlapping $motive consensus motifs with the peaks from " . $expnames[0][0] . " " . $expnames[1][0] . " " . $expnames[2][0] . " experiments\"\n";
 $output = fopen('php://output', 'w');
 
 #fputcsv($output, array('Elso', 'Column 2', 'Column 3', 'Column 4' , $motive, 'colour'));

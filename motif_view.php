@@ -126,7 +126,7 @@ $conn->close();
   gtag('js', new Date());
   gtag('config', 'UA-121648705-1');
 
-  function dochange(target) { window.open(target,"_self");};
+  function dochange(target) { window.open(target,"_blank");};
 </script>
 
 

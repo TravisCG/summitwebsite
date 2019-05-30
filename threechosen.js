@@ -174,7 +174,7 @@ holderthree.append("a")
     .attr("rx", "0.3em")
     .attr("ry", "0.3em")
     .append("title")
-    .text("Download genomic data of the last selected experiemnt in BED format");
+    .text("Download genomic position of " + motive + " motifs which overlap with last selected ChIP-seq experiment in BED format.");
 
 // draw text on the screen
 holderthree.append("text")

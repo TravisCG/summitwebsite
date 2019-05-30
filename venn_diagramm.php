@@ -86,7 +86,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
         document.getElementById("formmotive").value = <?php echo '"'. $motifPart . '"'; ?>; 
     }); 
 
-  function dochange(target) { window.open(target,"_self");};
+  function dochange(target) { window.open(target,"_blank");};
 
 </script>
 </head>
@@ -158,7 +158,7 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
   <button class="paired_button" onclick="">GenomeView</button>
   </a>
   <button class="paired_button" onclick="doSearchShift('_blank', '')">View data in PairedShiftView</button>
-  <button class="paired_button" onclick="vennBed()">Download BED file</button>
+  <button class="paired_button" onclick="vennBed()" title="Download genomic position of motifs which overlap with the selected ChIP-seq experiments in a single BED file. The motifs are labeled with the overlapping experiment's name and color code.">Download BED file</button>
 </div>
 
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object

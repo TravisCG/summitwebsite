@@ -138,7 +138,7 @@ function glossToggle() {
     }
 }
 
-function dochange(target) { window.open(target,"_self");};
+function dochange(target) { window.open(target,"_blank");};
 </script>
 
 

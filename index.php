@@ -32,7 +32,7 @@
   <div class="mySlides fade">
     <div class="numbertext">1 / 4</div>
 	<a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=5000&mxelem=120000&motive=CTCF">
-	    <img src="slide1.png" class="slideimg" >
+	    <img src="images/slide1.png" class="slideimg" >
 	</a>
     <div class="text">Motif view</div>
   </div>
@@ -40,7 +40,7 @@
   <div class="mySlides fade">
     <div class="numbertext">2 / 4</div>
  	<a  target="_blank" href="http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=1666&exp2=2734&exp3=2750&motive=CTCF&motifid=32&limit=25&low_limit=-25&formminid=1&formmaxid=10000&formminelem=5000&formmaxelem=120000">
-	   <img src="slide2.png" class="slideimg">
+	   <img src="images/slide2.png" class="slideimg">
 	</a>
     <div class="text">Paired shift view</div>
   </div>
@@ -48,7 +48,7 @@
   <div class="mySlides fade">
     <div class="numbertext">3 / 4</div>
 	<a  target="_blank" href="http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=1666&exp2=2734&exp3=2750&motive=CTCF&motifid=32">
-	    <img src="slide3.png" class="slideimg">
+	    <img src="images/slide3.png" class="slideimg">
 	</a>
     <div class="text">Venn diagram view</div>
   </div>
@@ -56,7 +56,7 @@
  <div class="mySlides fade">
     <div class="numbertext">4 / 4</div>
 	<a  target="_blank" href="http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=2734">
-	    <img src="exp_view.png" class="slideimg">
+	    <img src="images/exp_view.png" class="slideimg">
 	</a>
     <div class="text">Experiment view</div>
   </div>
