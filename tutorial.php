@@ -781,7 +781,7 @@ tutorial.</font></font></font></p>
 
 </p>
 <p lang="en" style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<img src="images/tutorial32.jpg"  hspace="11">
+<img src="images/tutorial32.png"  hspace="11" width="70%" height="70%">
   <br clear="left"/>
 </img>
 <br/>
@@ -789,21 +789,13 @@ tutorial.</font></font></font></p>
 
 </p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<img src="images/tutorial33.jpg" hspace="11">
-  <br clear="right"/>
-</img>
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">I.
 / 2. In the “Set a motif” dropdown box select POU2F2 and sat
 “</span></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt">Minimum
 overlap number between motifs and peaks of experiment</font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">”
 to 500.</span></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt">
 Than click on “Go to MotifView”</font></font></font></p>
-<p style="margin-top: 0.19in; margin-bottom: 0.1in; line-height: 115%">
-<br/>
-<br/>
-
-</p>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><img src="images/tutorial34.jpg"  hspace="11" vspace="1">
+<p class="western" style="margin-bottom: 0in; line-height: 100%"><img src="images/tutorial33.png"  hspace="11" vspace="1" width="70%" height="70%">
   <br clear="left"/>
 </img>
 <font color="#00000a"><font face="Arial, serif"><span lang="en">I.
@@ -816,11 +808,6 @@ between the different views</span></font></font><font color="#00000a"><font face
 and export them in to the genomeView.</span></font></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt">
 </font></font><font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">This
 is the point where we diverge from the MotifView tutorial.</span></font></font></font></p>
-<p lang="en-US" style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<br/>
-<br/>
-
-</p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">For
 now, please click on the 3 peak-sets shown with red arrows (I.). You
@@ -829,23 +816,25 @@ highlighted and under the plot, some details, from the experiment
 that you clicked on, will appear. Please click on “to the
 GenomeView”, shown with black arrow.</span></font></font></font></p>
 <p lang="en" style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<br/>
-<br/>
-
+<img src="images/tutorial34.png"  hspace="11" vspace="1" width="70%" height="70%">
+  <br clear="left"/>
+</img>
 </p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">I.
 / 6.</span></font></font></font></p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<img src="images/tutorial35.jpg"  hspace="11" vspace="1">
-  <br clear="left"/>
-</img>
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">You
 should see something like the next screenshot. Welcome to GenomeView!
 This is powered by jbrowse v16.3. If you have any familiarity with it
 or any other genome visualizer (gbrowse, IGV or IGB, etc..) you will
 probably navigate it easily. If this is your first time with a genome
 browser the next paragraph will describe how to navigate.</span></font></font></font></p>
+<p>
+<img src="images/tutorial35.jpg"  hspace="11" vspace="1" width="70%" height="70%">
+  <br clear="left"/>
+</img>
+</p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">The
 genome is represented as the X-axis: 5’ to the left and 3’ to the
@@ -868,7 +857,7 @@ the 3 selected experiments (the order you see them may vary).For a
 good example please go to “chr1:157696368..157697135” (You can
 simply enter it at the top).</span></font></font></font></p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<font color="#00000a"><img src="images/tutorial36.jpg" name="Kép 62" align="bottom" hspace="1" vspace="1" width="575" height="281" border="0"/>
+<font color="#00000a"><img src="images/tutorial36.png" name="Kép 62" align="bottom" hspace="1" vspace="1" width="70%" height="70%" border="0"/>
 </font></p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">Here
@@ -884,7 +873,7 @@ two. </span></font></font></font>
 Adding tracks </span></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en"><i>à
 la carte</i></span></font></font></font></p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%"><a name="_GoBack"></a>
-<img src="images/tutorial37.jpg" hspace="11">
+<img src="images/tutorial37.png" hspace="11" width="70%" height="70%">
   <br clear="right"/>
 </img>
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">II.
@@ -912,7 +901,7 @@ As there is an overwhelming amount of experiment tracks you can
 filter these more precisely. At the yellow rectangle you can filter
 expreiments based on the antibody and/or cell line that was used.</font></font></font></p>
 <p lang="en" style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<img src="images/tutorial38.jpg"  hspace="12" vspace="1">
+<img src="images/tutorial38.png"  hspace="12" vspace="1">
   <br clear="left"/>
 </img>
 <br/>
