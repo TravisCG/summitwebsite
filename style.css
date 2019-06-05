@@ -554,3 +554,16 @@ a.cell_unselected  {
 .boldtxt {
   font-weight: bold;
 }
+
+#helpcontent {
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#helpcontent > img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}

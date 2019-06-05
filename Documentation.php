@@ -48,8 +48,9 @@
 		function dochange(target) { window.open(target,"_self");};
 	</script>
 </head>
-<body lang="hu-HU" text="#00000a" link="#0000ff" dir="ltr" style="background-color:white;">
+<body lang="hu-HU" text="#00000a" link="#0000ff" dir="ltr">
 <?php show_full_navigation();?>
+<div id="helpcontent">
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%"><a name="_GoBack"></a>
 <font color="#000000"><font face="Arial, serif"><font size="5" style="font-size: 20pt"><span lang="en-US"><b>Documentation</b></span></font></font></font></p>
 <p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
@@ -254,10 +255,7 @@ The workflow of the procedure is visualized in Figure S1. Following
 this analysis, the semi-processed data</span></font></font><font color="#000000"><font face="Arial, serif"><span lang="en-US">
 were further analyzed. </span></font></font>
 </p>
-<p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
  <img src="images/documentation1.jpg" name="Kép 27" width="50%" height="50%"/>
-
-</p>
 <p style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Figure S1:
 Schematic representation of the initial data processing.</b></span></span><span lang="en-US"><span style="font-style: normal">
@@ -298,9 +296,7 @@ et al., 2014; Steven R. Head et al. 2014). </span></font></font>
 <br/>
 
 </p>
-<p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
 <img src="images/documentation2.jpg" name="Kép 8" hspace="1" vspace="1" width="50%" height="50%" border="0"/>
-</p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
 S2:</b></span></span><font color="#000000"><span lang="en-US"><span style="font-style: normal"><b>
@@ -441,9 +437,7 @@ could allocate only 338 motifs to at least one ChIP-seq experiment,
 because in the available human data, no sequence and NGS data were
 available for the rest of motifs (Figure S4).  </span></font></font>
 </p>
-<p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
 <img src="images/documentation4.jpg"/>
-</p>
 <p lang="en-US" align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; font-style: normal; line-height: 100%">
 <br/>
 <br/>
@@ -471,9 +465,7 @@ ones were paired with the corresponding antibodies (Figure S4). This
 step maximized the number of specific motif instances, which were
 identified in the next step (Figure S5). </span></font></font>
 </p>
-<p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%">
 <img src="images/documentation5.jpg"/>
-</p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
 S5: </b></span></span><span lang="en-US"><span style="font-style: normal"><b>Motif
@@ -535,9 +527,7 @@ duplicates.  </span></font></font><font color="#000000"><font face="Arial, serif
 we get non-redundant global consensus motif sets for 338 JASPAR CORE
 matrices.  </span></font></font>
 </p>
-<p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
 <img src="images/documentation6.jpg"/>
-</p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Fig</b></span></span><span lang="en-US"><span style="font-style: normal"><b>ure</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
 S6:</b></span></span><span lang="en-US"><span style="font-style: normal"><b>
@@ -574,9 +564,7 @@ has a larger standard deviation (in relation to the positions of the
 motif centers) if it is physically far from the reference point
 (Figure S7). </span></font></font>
 </p>
-<p class="western" align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-after: avoid">
 <img src="images/documentation7.jpg" name="Kép 51" width="528" height="503" border="0"/>
-</p>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Figure S7:
 Measuring the distances between motif centers and the surrounding
@@ -675,6 +663,7 @@ Bioinformatics. 2010;26. </font>
 <br/>
 
 </p>
+</div>
 <?php show_footer();?>
 </body>
 </html>

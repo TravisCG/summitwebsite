@@ -32,8 +32,9 @@ include("templates/footer.php");
 		function dochange(target) { window.open(target,"_self");};
 	</script>
 </head>
-<body lang="hu-HU" text="#00000a" dir="ltr" style="background-color: white;">
+<body lang="hu-HU" text="#00000a" dir="ltr">
 <?php show_full_navigation();?>
+<div id="helpcontent">
 <h4>Help page</h4>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>MotifView</b></span></font></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
@@ -415,6 +416,7 @@ The genomic region cannot be larger than 1000bp!</font></p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><br/>
 
 </p>
+</div>
 <?php show_footer();?>
 </body>
 </html>
