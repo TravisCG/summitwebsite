@@ -93,6 +93,7 @@ button. </span></font></font></font>
 	the TF’s name (for example “5 P300”).</span></font> 
 </font></font></p>
 </ol>
+<img src="images/tutorial3b.jpg" />
 <ol start="5">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">For
@@ -331,7 +332,7 @@ will be shown as an example.  </span></font>
 	the CTCF motif under “Set a motif”. </span></font></font></font>
 	</p>
 </ol>
-<img src="images/tutorial21.jpg" name="Kép 29"  width="70%" height="70%" hspace="11" vspace="1" border="0"/>
+<img src="images/tutorial21.jpg" name="Kép 29" hspace="11" vspace="1" border="0"/>
 <ol start="3">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">Click
@@ -514,7 +515,7 @@ same complex.</span></font></font> </font></font>
 on the “Search views” menu and then click the “dbSNPView”
 button. </span></font></font></font>
 </p>
-<img src="images/tutorial26.jpg" name="Image1" width="70%" height="70%" align="bottom" border="0"/>
+<img src="images/tutorial26.jpg" name="Image1" align="bottom" border="0"/>
 <ol start="2">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">There
@@ -524,7 +525,7 @@ button. </span></font></font></font>
 	</span></font>
 </font></font></p>
 </ol>
-<img src="images/tutorial27.jpg" name="Image2" width="70%" height="70%" align="bottom" border="0"/>
+<img src="images/tutorial27.jpg" name="Image2" align="bottom" border="0"/>
 <ol start="3">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">Now
@@ -535,7 +536,7 @@ button. </span></font></font></font>
 	overlapping with any motifs.</span></font> </font></font>
 	</p>
 </ol>
-<img src="images/tutorial28.jpg" name="Image3" width="70%" height="70%" border="0"/>
+<img src="images/tutorial28.jpg" name="Image3" border="0"/>
 <ol start="4">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">This
@@ -548,7 +549,7 @@ button. </span></font></font></font>
 	</font></font>
 	</p>
 </ol>
-<img src="images/tutorial29.jpg" name="Image4" align="bottom" width="70%" height="70%" border="0"/>
+<img src="images/tutorial29.jpg" name="Image4" align="bottom" border="0"/>
 <ol start="5">
 	<li/>
 <p style="margin-bottom: 0in; line-height: 100%"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><span lang="en-US">The
@@ -559,7 +560,7 @@ button. </span></font></font></font>
 	blue and clicking on them will display details about the SNP.</span></font>
 </font></font></p>
 </ol>
-<img src="images/tutorial30.jpg" name="Image5" align="bottom" width="70%" height="70%" border="0"/>
+<img src="images/tutorial30.jpg" name="Image5" align="bottom" border="0"/>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>ExperimentView</b></span></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
@@ -698,7 +699,7 @@ tutorial.</font></font></font></p>
 <br/>
 
 </p>
-<img src="images/tutorial32.png"  hspace="11" width="70%" height="70%" />
+<img src="images/tutorial32.png"  hspace="11" />
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">I.
 / 2. In the “Set a motif” dropdown box select POU2F2 and sat
@@ -706,7 +707,7 @@ tutorial.</font></font></font></p>
 overlap number between motifs and peaks of experiment</font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">”
 to 500.</span></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt">
 Than click on “Go to MotifView”</font></font></font></p>
-<img src="images/tutorial33.png"  hspace="11" vspace="1" width="70%" height="70%" />
+<img src="images/tutorial33.png"  hspace="11" vspace="1" />
 <p class="western" style="margin-bottom: 0in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><span lang="en">I.
 / 3</span></font></font><font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">.
@@ -725,7 +726,7 @@ can notice that after you have clicked on a peak-set it becomes
 highlighted and under the plot, some details, from the experiment
 that you clicked on, will appear. Please click on “to the
 GenomeView”, shown with black arrow.</span></font></font></font></p>
-<img src="images/tutorial34.png"  hspace="11" vspace="1" width="70%" height="70%"/>
+<img src="images/tutorial34.png"  hspace="11" vspace="1" />
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">I.
 / 6.</span></font></font></font></p>
@@ -736,7 +737,7 @@ This is powered by jbrowse v16.3. If you have any familiarity with it
 or any other genome visualizer (gbrowse, IGV or IGB, etc..) you will
 probably navigate it easily. If this is your first time with a genome
 browser the next paragraph will describe how to navigate.</span></font></font></font></p>
-<img src="images/tutorial35.jpg"  hspace="11" vspace="1" width="70%" height="70%" />
+<img src="images/tutorial35.jpg"  hspace="11" vspace="1" />
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">The
 genome is represented as the X-axis: 5’ to the left and 3’ to the
@@ -758,7 +759,7 @@ case that will be for POU2F2. Under this, you will have 3 track for
 the 3 selected experiments (the order you see them may vary).For a
 good example please go to “chr1:157696368..157697135” (You can
 simply enter it at the top).</span></font></font></font></p>
-<img src="images/tutorial36.png" name="Kép 62" align="bottom" hspace="1" vspace="1" width="70%" height="70%" border="0"/>
+<img src="images/tutorial36.png" name="Kép 62" align="bottom" hspace="1" vspace="1" border="0"/>
 
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">Here
@@ -773,7 +774,7 @@ two. </span></font></font></font>
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">II.
 Adding tracks </span></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en"><i>à
 la carte</i></span></font></font></font></p>
-<img src="images/tutorial37.png" hspace="11" width="70%" height="70%" />
+<img src="images/tutorial37.png" hspace="11" />
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">II.
 / 1. Tracks can be added to GenomeView from the “select tracks”
 menu (red arrow). </span></font></font></font>
@@ -798,7 +799,7 @@ arrows).</span></font></font><font face="Arial, serif"><font size="2" style="fon
 As there is an overwhelming amount of experiment tracks you can
 filter these more precisely. At the yellow rectangle you can filter
 expreiments based on the antibody and/or cell line that was used.</font></font></font></p>
-<img src="images/tutorial38.png"  hspace="12" vspace="1" width="70%" height="70%"/>
+<img src="images/tutorial38.png"  hspace="12" vspace="1" />
 <p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
 <br/>
 
