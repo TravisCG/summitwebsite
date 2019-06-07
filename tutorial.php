@@ -37,7 +37,16 @@ include("templates/footer.php");
 <?php show_full_navigation();?>
 <div id="helpcontent">
 <h4>Tutorial</h4>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>MotifView</b></span></font></p>
+<div id="quickmenu">
+<ul>
+<li><a href="#motif">MotifView</a></li>
+<li><a href="#pairshift">PairShiftView</a></li>
+<li><a href="#dbsnp">dbSNPView</a></li>
+<li><a href="#experiment">ExperimentView</a></li>
+<li><a href="#genome">GenomeView</a></li>
+</ul>
+</div>
+<a name="motif"><p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>MotifView</b></span></font></p></a>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
 
@@ -303,8 +312,8 @@ number of their occurrences.</span></font></p>
 
 </p>
 <img src="images/tutorial19.jpg" name="Kép 27" align="bottom" hspace="1" border="0"/>
-<p class="western" style="margin-bottom: 0in; line-height: 100%; page-break-before: always">
-<font face="Arial, serif"><span lang="en-US"><b>PairShiftview</b></span></font></p>
+<a name="pairshift"><p class="western" style="margin-bottom: 0in; line-height: 100%; page-break-before: always">
+<font face="Arial, serif"><span lang="en-US"><b>PairShiftView</b></span></font></p></a>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
 
@@ -499,7 +508,7 @@ same complex.</span></font></font> </font></font>
 	</p>
 </ol>
 <img src="images/tutorial25.jpg" name="Kép 35" align="bottom" border="0"/>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>dbSNPView</b></span></font></p>
+<a name="dbsnp"><p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>dbSNPView</b></span></font></p></a>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
 
@@ -561,7 +570,7 @@ button. </span></font></font></font>
 </font></font></p>
 </ol>
 <img src="images/tutorial30.jpg" name="Image5" align="bottom" border="0"/>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>ExperimentView</b></span></font></p>
+<a name="experiment"><p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Arial, serif"><span lang="en-US"><b>ExperimentView</b></span></font></p></a>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
 <br/>
 
@@ -653,7 +662,7 @@ view. </span></font>
 
 </p>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
-<font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt">GenomeView</font></font></font></p>
+<a name="genome"><font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 12pt; font-weight:bold;">GenomeView</font></font></font></p></a>
 <p style="margin-top: 0.19in; margin-bottom: 0.19in; line-height: 100%">
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt">There
 are two ways to use the GenomeView. After finding some interesting

@@ -564,7 +564,7 @@ has a larger standard deviation (in relation to the positions of the
 motif centers) if it is physically far from the reference point
 (Figure S7). </span></font></font>
 </p>
-<img src="images/documentation7.jpg" name="Kép 51" width="528" height="503" border="0"/>
+<img src="images/documentation7.jpg" name="Kép 51" width="528" border="0"/>
 <p align="justify" style="margin-top: 0.08in; margin-bottom: 0.08in; line-height: 100%">
 <span lang="en-US"><span style="font-style: normal"><b>Figure S7:
 Measuring the distances between motif centers and the surrounding

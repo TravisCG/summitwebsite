@@ -568,3 +568,9 @@ a.cell_unselected  {
   display: block;
   width: 70%;
 }
+
+#quickmenu > ul > li {
+  font-size: 24pt;
+  list-style-type: disc;
+  margin-left: 50px;
+}
