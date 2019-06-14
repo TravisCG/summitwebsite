@@ -101,15 +101,7 @@ displayed dots </span><span lang="en-US">can</span><span lang="en-US">
 </span><span lang="en-US">target</span><span lang="en-US"> </span><span lang="en-US">proteins</span><span lang="en-US">.
 </span></font>
 </p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<img src="images/help1.jpg" name="Kép 52" align="left" hspace="11" vspace="1" border="0"/>
-<br/>
-
-</p>
+<img src="images/help1.jpg" name="Kép 52" border="0" />
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><span lang="en-US">The
 MotifView appears as an interactive scatterplot, which gives
 information about the given JASPAR core motif instances in the genome
@@ -252,12 +244,9 @@ options: </span></font>
 </p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span lang="en-US"><b>PairShift
 View</b></span></font></font></p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
-<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><span lang="en-US">T<img src="images/help2.jpg" name="Kép 53" align="left" hspace="11" border="0"/>
-he
+<img src="images/help2.jpg" name="Kép 53" hspace="11" border="0"/>
+<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Times New Roman, serif"><span lang="en-US">
+The
 MotifView displays the statistical data (occurrence frequency,
 average/median distance related to the motif, and distance standard
 deviation) of all the ChIP-seq experiments, which contain overlapping
