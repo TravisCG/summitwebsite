@@ -132,29 +132,9 @@ $conn->close();
 
 </head>
 <body>
-<?php show_full_navigation();?>
-
-<script>
-// this will toggle the glossary iframe
-function glossToggle() {
-    var x = document.getElementById("glossary");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-</script>
-
-
-
-<br>
- <?php echo " <h4>Consensus motif: ". $motivePart . " </h4>" ?>
-
-<div id="glossary">
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes">
-</iframe>
-</div>
+<?php show_full_navigation();
+echo " <h4>Consensus motif: ". $motivePart . " </h4>"
+?>
 
 <div id="motifchart1"></div>
 <div id="motifchart2"></div>

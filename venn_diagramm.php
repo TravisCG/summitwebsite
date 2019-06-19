@@ -67,18 +67,6 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
     gtag('js', new Date());
     gtag('config', 'UA-121648705-1');
 
-    // this will toggle the glossary iframe
-    function glossToggle() {
-        var x = document.getElementById("glossary");
-        var y = document.getElementById("chart_venn");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            y.style.display = "none";
-        } else {
-            x.style.display = "none";
-            y.style.display = "block";
-        }
-    }
 
     $( document ).ready(function() {
         <?php expJS($allExperiment, $jsonData1start, $jsonData2start, $jsonData3start);?>
@@ -93,11 +81,6 @@ $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 <body>
 <?php show_full_navigation();?>
 <h4>VennView</h4>
-<div id="glossary">
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
-</iframe>
-</div>
-
 <div id="chart_venn" >
 
 <div id="circle" class="venn_circle"></div>

@@ -4,6 +4,8 @@ include("threeexpbox.php");
 include("templates/header.php");
 include("templates/footer.php");
 
+$r1 = microtime(true); // Check performance
+
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
 $motiveName = '\''.$motivePart.'\'';
@@ -57,16 +59,22 @@ $expData1 = getExpCellAntiBody($conn, $exp1);
 $expData2 = getExpCellAntiBody($conn, $exp2);
 $expData3 = getExpCellAntiBody($conn, $exp3);
 
+$r2 = microtime(true); // Check performance
+
 $allExperiment = getAllExpCellAnti($conn, $motifid, $minelem);
 
 $pos1 = getMotifPos($conn, $motifid, $exp1);
 $pos2 = getMotifPos($conn, $motifid, $exp2);
 $pos3 = getMotifPos($conn, $motifid, $exp3);
 
+$r3 = microtime(true); // Check performance
+
 $result = $conn->query($sql);
 $result2 = $conn->query($sql2);
 $result3 = $conn->query($sql3);
 $result6 = $conn->query($sql6);
+
+$r4 = microtime(true); // Check performance
 
 //genrating data into jsondata
 
@@ -128,25 +136,8 @@ Browse the genomic data of selected experiments in genome browser.
 <h4>Shift values are shown using the  <?php echo $motiveName;?> motif's center as point zero.</h4>
 
 <script>
-// this	will toggle the	glossary iframe
-function glossToggle() {
-    var x = document.getElementById("glossary");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-	x.style.display = "none";
-    }
-}
-
 function dochange(target) { window.open(target,"_blank");};
 </script>
-
-
-<div id="glossary" >
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes">
-</iframe>
-</div>
-
 <div id="chart" >
 
 <table class="venntable">
@@ -310,6 +301,16 @@ PairShiftView
 In this mode, the frequencies of the different distance values between the motif and peak summit pairs for a given consensus binding site set are displayed in a histogram. To smooth the graph a 5 bp rolling bin was used. No more than three different experiments can be compared. The height of the curves shows the most frequent distance. In the PairShiftView mode, the data range and the consensus motif binding site can be set. An experiment can be also selected  and displayed in the ExperimentView. 
 </p>
 </div>
-<?php show_footer();?>
+<?php show_footer();
+$r5 = microtime(true); // check performance
+$f = fopen("times.tsv", "a");
+$pid = getmypid();
+fwrite($f, $pid . "\tR1\t" . $r1 . "\n");
+fwrite($f, $pid . "\tR2\t" . $r2 . "\n");
+fwrite($f, $pid . "\tR3\t" . $r3 . "\n");
+fwrite($f, $pid . "\tR4\t" . $r4 . "\n");
+fwrite($f, $pid . "\tR5\t" . $r5 . "\n");
+fclose($f);
+?>
 </body>
 </html>

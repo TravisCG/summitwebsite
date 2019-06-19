@@ -99,29 +99,6 @@ $conn->close();
 <body>
 <?php show_full_navigation("Help");?>
 <h4>The white window will show the details of the selected experiments.</h4>
-<script>
-// this will toggle the glossary iframe
-function glossToggle() {
-    var x = document.getElementById("glossary");
-    var y = document.getElementById("chart_venn");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        y.style.display = "none";
-    } else {
-	x.style.display = "none";
-        y.style.display = "block";
-    }
-}
-</script>
-
-
-<div id="glossary" >
- <iframe id="ifrm" src="http://summit.med.unideb.hu/summitdb/glossary.html"  frameborder="0" scrolling="yes" >
-</iframe>
-</div>
-
-
-
 
 <script>
 var margin = {top: 20, right: 20, bottom: 30, left: 60},
