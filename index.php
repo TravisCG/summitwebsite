@@ -31,7 +31,7 @@
 
   <div class="mySlides fade">
     <div class="numbertext">1 / 4</div>
-	<a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=5000&mxelem=120000&motive=CTCF">
+	<a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=1000&mxelem=120000&motive=CTCF">
 	    <img src="images/slide1.png" class="slideimg" >
 	</a>
     <div class="text">Motif view</div>
@@ -39,7 +39,7 @@
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 4</div>
- 	<a  target="_blank" href="http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=1666&exp2=2734&exp3=2750&motive=CTCF&motifid=32&limit=25&low_limit=-25&formminid=1&formmaxid=10000&formminelem=5000&formmaxelem=120000">
+ 	<a  target="_blank" href="http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=1666&exp2=2734&exp3=2750&motive=CTCF&motifid=32&limit=25&low_limit=-25&formminid=1&formmaxid=10000&formminelem=1000&formmaxelem=120000">
 	   <img src="images/slide2.png" class="slideimg">
 	</a>
     <div class="text">Paired shift view</div>
