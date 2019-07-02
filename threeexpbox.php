@@ -247,7 +247,7 @@ OUT;
 }
 
 function getMotifPos($conn, $motifName, $expName){
-  $sql = "SELECT motif_pos_motifpos_id FROM venn_view WHERE consensus_motif_motif_id = $motifName AND experiment_experiment_id = $expName";
+  $sql = "SELECT distinct(motif_pos_motifpos_id) FROM venn_view WHERE consensus_motif_motif_id = $motifName AND experiment_experiment_id = $expName";
   $res = $conn->query($sql);
   $assoc = fetchAssoc($res);
   return($assoc);

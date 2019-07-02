@@ -44,6 +44,8 @@ $size1 = sizeof($jsonData1, JSON_NUMERIC_CHECK);
 $size2 = sizeof($jsonData2, JSON_NUMERIC_CHECK);
 $size3 = sizeof($jsonData3, JSON_NUMERIC_CHECK);
 
+$link_base = "<a href=\"intersect_dist.php?exp1=" . $exp1Name . "&exp2=" . $exp2Name . "&exp3=" . $exp3Name . "&motive=" . $motifText . "&motifid=" . $motifPart . "&limit=25&low_limit=-25&slice=";
+
 ?>
 
 <!DOCTYPE html>
@@ -241,14 +243,14 @@ var formminelem = getAllUrlParams().mnelem;
 document.getElementById("textboxmnelem").value = formminelem;
 
 //this will generate the venn diagram for us
-
-document.getElementById("data").innerHTML = data - intersect1_2 - intersect1_3 + intersect1_2_3; 
-document.getElementById("data2").innerHTML = data2 - intersect1_2 - intersect2_3 + intersect1_2_3; 
-document.getElementById("data3").innerHTML = data3 - intersect1_3 - intersect2_3 + intersect1_2_3; 
-document.getElementById("data1i2").innerHTML = intersect1_2 - intersect1_2_3; 
-document.getElementById("data1i3").innerHTML = intersect1_3 - intersect1_2_3; 
-document.getElementById("data2i3").innerHTML = intersect2_3 - intersect1_2_3; 
-document.getElementById("data1i2i3").innerHTML = intersect1_2_3; 
+var link  = '<?php echo $link_base; ?>';
+document.getElementById("data").innerHTML = link + 'A">' + (data - intersect1_2 - intersect1_3 + intersect1_2_3) + "</a>"; 
+document.getElementById("data2").innerHTML = link + 'B">' + (data2 - intersect1_2 - intersect2_3 + intersect1_2_3) + "</a>";
+document.getElementById("data3").innerHTML = link + 'C">' + (data3 - intersect1_3 - intersect2_3 + intersect1_2_3) + "</a>";
+document.getElementById("data1i2").innerHTML = link + 'AB">' + (intersect1_2 - intersect1_2_3) + "</a>";
+document.getElementById("data1i3").innerHTML = link + 'AC">' + (intersect1_3 - intersect1_2_3) + "</a>"; 
+document.getElementById("data2i3").innerHTML = link + 'BC">' + (intersect2_3 - intersect1_2_3) + "</a>";
+document.getElementById("data1i2i3").innerHTML = link + 'ABC">' + (intersect1_2_3) + "</a>"; 
 
 </script>
 
