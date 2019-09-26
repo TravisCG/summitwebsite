@@ -21,7 +21,7 @@ include("templates/footer.php");
 	<meta name="ShareDoc" content="false"/>
 	<style type="text/css">
 		@page { size: 8.27in 11.69in; margin-left: 1.25in; margin-right: 1.25in; margin-top: 1in; margin-bottom: 1in }
-		p { margin-bottom: 0.1in; direction: ltr; line-height: 115%; text-align: left; orphans: 2; widows: 2 }
+		p { margin-bottom: 0.1in; direction: ltr; line-height: 115%; text-align: left; orphans: 2; widows: 2; margin-left: 10px; margin-right: 10px; }
 		p.western { font-size: 12pt }
 		p.cjk { font-size: 12pt; so-language: hu-HU }
 		p.ctl { font-size: 12pt }
@@ -784,6 +784,7 @@ two. </span></font></font></font>
 Adding tracks </span></font></font><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en"><i>à
 la carte</i></span></font></font></font></p>
 <img src="images/tutorial37.png" hspace="11" />
+<p>
 <font color="#00000a"><font face="Arial, serif"><font size="2" style="font-size: 11pt"><span lang="en">II.
 / 1. Tracks can be added to GenomeView from the “select tracks”
 menu (red arrow). </span></font></font></font>

@@ -22,7 +22,7 @@ include("templates/footer.php");
 	<style type="text/css">
 		@page { size: 8.27in 11.69in; margin: 0.98in }
 		p { margin-bottom: 0.1in; direction: ltr; color: #000000; line-height: 115%; text-align: left; orphans: 2; widows: 2 }
-		p.western { font-family: "Liberation Serif", serif; so-language: en-US }
+		p.western { font-family: "Liberation Serif", serif; so-language: en-US; margin-left: 10px; margin-right: 10px; }
 		p.cjk { font-family: "Noto Sans CJK SC Regular"; so-language: zh-CN }
 		p.ctl { font-family: "Lohit Devanagari"; so-language: hi-IN }
 	</style>
@@ -207,25 +207,20 @@ the same time) appear below the chart. If you want to investigate the
 appointed highlighted data, you can choose from the following
 options: </span></font>
 </p>
-<ul>
-	<li/>
-<p style="margin-bottom: 0in; line-height: 100%"><font face="Calibri, serif"><font face="Times New Roman, serif"><span lang="en-US">If
+<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Calibri, serif"><font face="Times New Roman, serif"><span lang="en-US">If
 	you click on the “to PairShiftView” button, it will navigate you
 	to the distance distribution chart of the summit positions (of the
 	selected experiments) compared to the adjusted motif (the same
 	motif, which was displayed in the MotifView). </span></font></font>
 	</p>
-	<li/>
-<p style="margin-bottom: 0in; line-height: 100%"><font face="Calibri, serif"><font face="Times New Roman, serif"><span lang="en-US">To
+<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Calibri, serif"><font face="Times New Roman, serif"><span lang="en-US">To
 	browse the genomic locations of peak-motif co-occurrences in the
 	genome browser, click on the “to the GenomeView” button.</span></font></font></p>
-	<li/>
-<p style="margin-bottom: 0in; line-height: 100%"><font face="Calibri, serif"><font face="Times New Roman, serif"><span lang="en-US">You
+<p class="western" style="margin-bottom: 0in; line-height: 100%"><font face="Calibri, serif"><font face="Times New Roman, serif"><span lang="en-US">You
 	can check the frequency of co-occupancy between the selected factors
 	by clicking on the “to Venn diagram” button. This will open a
 	classical logic diagram display mode, where the motif related
 	co-appearance of summits can be seen.</span></font></font></p>
-</ul>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%"><a name="_GoBack"></a>
 <br/>
 

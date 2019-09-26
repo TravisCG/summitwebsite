@@ -4,6 +4,32 @@ include("threeexpbox.php");
 include("templates/header.php");
 include("templates/footer.php");
 
+function getDistr($conn, $motifid, $qexp1, $qexp2, $qexp3, $qoper1, $qoper2, $low_limit, $limit){
+   $sql = "SELECT COUNT(*) as count, distance
+       FROM summit
+       INNER JOIN motif_pos ON motif_pos_motifpos_id = motifpos_id AND motif_pos_motifpos_id IN
+       (
+            SELECT motif_pos_motifpos_id FROM venn_view 
+            WHERE 
+                consensus_motif_motif_id = $motifid AND 
+                experiment_experiment_id = $qexp1 AND
+                motif_pos_motifpos_id $qoper1 ( SELECT motif_pos_motifpos_id FROM venn_view WHERE consensus_motif_motif_id = $motifid AND experiment_experiment_id = $qexp2 ) AND
+                motif_pos_motifpos_id $qoper2 ( SELECT motif_pos_motifpos_id FROM venn_view WHERE consensus_motif_motif_id = $motifid AND experiment_experiment_id = $qexp3 )
+       )
+       INNER JOIN peak ON peak_peak_id = peak_id
+       WHERE 
+          experiment_experiment_id = $qexp1 AND consensus_motif_motif_id = $motifid AND distance > $low_limit AND distance < $limit
+       GROUP BY distance,consensus_motif_motif_id,experiment_experiment_id;";
+
+   $result = $conn->query($sql);
+   //genrating data into jsondata
+
+   while($r = mysqli_fetch_assoc($result)) {
+       $jsonData[] = $r;
+   }
+   return($jsonData);
+}
+
 $motivePart = $_GET['motive'];
 $motifid = $_GET['motifid'];
 $motiveName = '\''.$motivePart.'\'';
@@ -40,29 +66,29 @@ elseif($setop === "C"){
   $qexp1 = $exp3; $qexp2 = $exp2; $qexp3 = $exp1; $qoper1 = "NOT IN"; $qoper2 = "NOT IN";
 }
 elseif($setop === "AB"){
+  $qexp1 = $exp1; $qexp2 = $exp2; $qexp3 = $exp3; $qoper1 = "IN"; $qoper2 = "NOT IN";
 }
 elseif($setop === "AC"){
+  $qexp1 = $exp1; $qexp2 = $exp3; $qexp3 = $exp2; $qoper1 = "IN"; $qoper2 = "NOT IN";
 }
 elseif($setop === "BC"){
+  $qexp1 = $exp2; $qexp2 = $exp3; $qexp3 = $exp1; $qoper1 = "IN"; $qoper2 = "NOT IN";
 }
 else{
+  $qexp1 = $exp1; $qexp2 = $exp2; $qexp3 = $exp3; $qoper1 = "IN"; $qoper2 = "IN";
 }
 
-$sql = "SELECT COUNT(*) as count, distance
-    FROM summit
-    INNER JOIN motif_pos ON motif_pos_motifpos_id = motifpos_id AND motif_pos_motifpos_id IN
-    (
-         SELECT motif_pos_motifpos_id FROM venn_view 
-         WHERE 
-             consensus_motif_motif_id = $motifid AND 
-             experiment_experiment_id = $qexp1 AND
-             motif_pos_motifpos_id $qoper1 ( SELECT motif_pos_motifpos_id FROM venn_view WHERE consensus_motif_motif_id = $motifid AND experiment_experiment_id = $qexp2 ) AND
-             motif_pos_motifpos_id $qoper2 ( SELECT motif_pos_motifpos_id FROM venn_view WHERE consensus_motif_motif_id = $motifid AND experiment_experiment_id = $qexp3 )
-    )
-    INNER JOIN peak ON peak_peak_id = peak_id
-    WHERE 
-       experiment_experiment_id = $qexp1 AND consensus_motif_motif_id = $motifid
-    GROUP BY distance,consensus_motif_motif_id,experiment_experiment_id;";
+$jsonData = getDistr($conn, $motifid, $qexp1, $qexp2, $qexp3, $qoper1, $qoper2, $low_limit, $limit);
+
+if(strlen($setop) > 1){
+   // To draw the second graph, we need to change the first two experiment
+   $jsonData2 = getDistr($conn, $motifid, $qexp2, $qexp1, $qexp3, $qoper1, $qoper2, $low_limit, $limit);
+}
+
+if(strlen($setop) > 2){
+   // To draw the third graph, we need to change the first and third experiment
+   $jsonData3 = getDistr($conn, $motifid, $qexp3, $qexp2, $qexp1, $qoper1, $qoper2, $low_limit, $limit);
+}
 
 //generating results
 $expData1 = getExpCellAntiBody($conn, $exp1);
@@ -73,12 +99,6 @@ $pos1 = getMotifPos($conn, $motifid, $exp1);
 $pos2 = getMotifPos($conn, $motifid, $exp2);
 $pos3 = getMotifPos($conn, $motifid, $exp3);
 
-$result = $conn->query($sql);
-//genrating data into jsondata
-
-while($r = mysqli_fetch_assoc($result)) {
-    $jsonData[] = $r;
-}
 
 $conn->close();
 ?>
@@ -167,8 +187,8 @@ echo '[{"distance":0,"count":0},{"distance":0,"count":0},{"distance":0,"count":0
 echo json_encode($jsonData, JSON_NUMERIC_CHECK);
 };
 ?>;
-var data2 = 0;
-var data3 = 0;
+var data2 = <?php if(isset($jsonData2)){echo json_encode($jsonData2, JSON_NUMERIC_CHECK);} else {echo 0;}; ?>;
+var data3 = <?php if(isset($jsonData3)){echo json_encode($jsonData3, JSON_NUMERIC_CHECK);} else {echo 0;}; ?>;
 </script>
 
 <script src="drawallshift.js">//this draws the canvas itself

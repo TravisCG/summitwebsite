@@ -78,16 +78,13 @@ $result2 = $conn->query($sql2);
 $result6 = $conn->query($sql6);
 
 if ($result->num_rows > 0) {
-    // output data 
+        // output data 
         $jsonData = array();
-//      genrating data into thisrow
+        //      genrating data into thisrow
 
-while($r = mysqli_fetch_assoc($result)) {
-    $jsonData[] = $r;
-}
-
-} else {
-    echo "0 results found";
+        while($r = mysqli_fetch_assoc($result)) {
+                $jsonData[] = $r;
+        }
 }
 
 
