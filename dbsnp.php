@@ -389,10 +389,14 @@ Start position:<input id="inpstart" type="text" name="start" value="<?php echo $
 End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/> <span id="msgbox"></span></p>
 <input type="submit" value="Send" />
 </form>
-<p class="chrpos">
-<?php echo "chr" . $chr . ":" . $start . "-" . $end;?>
-</p>
-<?php
+
+<?php 
+  if($chr != ""){
+    echo "<p class=\"chrpos\">";
+    echo "chr" . $chr . ":" . $start . "-" . $end;
+    echo "</p>";
+  }
+
   if(isset($motifs)){
     if( ($dbsnpid == "" || $overlap == false) && $moview != 1){
       regionView($motifs, SVGH);
