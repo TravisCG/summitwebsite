@@ -98,3 +98,10 @@ html, body {
 a:hover .motifname {
   visibility: visible;
 }
+
+.chrpos {
+  text-align: center;
+  background: lightblue;
+  margin-bottom: 0px;
+  font-weight: bold;
+}

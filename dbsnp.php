@@ -2,6 +2,7 @@
   include('config.php');
   include('dbutil.php');
   include('templates/header.php');
+  include('templates/footer.php');
   define("SVGW", 1200); // SVG viewport X limit
   define("SVGH", 300);  // SVG viewport Y limit
   define("NUCW", 45);   // Nucleotide width in logo
@@ -293,6 +294,9 @@
 
   if($dbsnpid != ""){
     $motifs = motifsbydbsnp($conn, $dbsnpid);
+    $chr    = $motifs["chr"];
+    $start  = $motifs["start"];
+    $end    = $motifs["end"];
   }
   elseif($chr != "" && $start != "" && $end != "" && $end - $start < 1001){
     $motifs = motifsbyregion($conn, $chr, $start, $end);
@@ -385,8 +389,9 @@ Start position:<input id="inpstart" type="text" name="start" value="<?php echo $
 End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/> <span id="msgbox"></span></p>
 <input type="submit" value="Send" />
 </form>
-<!--</div>
-<div id="maincontent"> -->
+<p class="chrpos">
+<?php echo "chr" . $chr . ":" . $start . "-" . $end;?>
+</p>
 <?php
   if(isset($motifs)){
     if( ($dbsnpid == "" || $overlap == false) && $moview != 1){
@@ -398,5 +403,6 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
   }
 ?>
 </div>
+<?php show_footer(); ?>
 </body>
 </html>
