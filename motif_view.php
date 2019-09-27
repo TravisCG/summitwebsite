@@ -77,9 +77,9 @@ $result = $conn->query($sql);
 $result2 = $conn->query($sql2);
 $result6 = $conn->query($sql6);
 
+$jsonData = array();
 if ($result->num_rows > 0) {
         // output data 
-        $jsonData = array();
         //      genrating data into thisrow
 
         while($r = mysqli_fetch_assoc($result)) {
@@ -96,8 +96,6 @@ while($r2 = mysqli_fetch_assoc($result2)) {
 
 while($ew6 = mysqli_fetch_assoc($result6)) {
     $jsonData6[] = $ew6;}
-$conn->close();
-
 
 $conn->close();
 
@@ -178,7 +176,11 @@ var antiagentCount2 = d3.nest()
  * axis - sets up axis
  */ 
 
-
+<?php 
+  if($result->num_rows == 0 ){
+    echo "d3.select('#motifchart1').append('div').style('position', 'relative').style('top', '20%').style('left', '40%').style('border', '5px solid red').style('width', '20%').text('Using this settings there is no results. Please, try to decrease minimum overlap or minimum standard deviation.');";
+  }
+?>
 
 
 </script>
@@ -186,7 +188,6 @@ var antiagentCount2 = d3.nest()
 
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
-
 
 <script src="drawall.js">//this draws the canvas itself
 </script>
