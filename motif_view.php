@@ -156,18 +156,15 @@ var motifid = <?php echo json_encode($jsonData2, JSON_NUMERIC_CHECK);?>;
 //the cubes are named here by the antiagents or the cellines
 var antiagentCount = d3.nest()
   .key(function(d) { return d.antibody; })
- .key(function(d) { return d.colour_hex; })
+  .key(function(d) { return d.colour_hex; })
   .rollup(function(v) { return v.length; })
   .entries(data);
 
 var antiagentCount2 = d3.nest()
   .key(function(d) { return d.cell_line; })
- .rollup(function(r) { return r.length; })
-.key(function(d) { return "#444666"; })
+  .rollup(function(r) { return r.length; })
+  .key(function(d) { return "#444666"; })
   .entries(data);
-
-
-
 
 /* 
  * value accessor - returns the value to encode for a given data object.
@@ -181,10 +178,7 @@ var antiagentCount2 = d3.nest()
     echo "d3.select('#motifchart1').append('div').style('position', 'relative').style('top', '20%').style('left', '40%').style('border', '5px solid red').style('width', '20%').text('Using this settings there is no results. Please, try to decrease minimum overlap or minimum standard deviation.');";
   }
 ?>
-
-
 </script>
-
 
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
 </script>
@@ -209,9 +203,6 @@ choosethree("Not yet selected");
 // this will count the cubes in chart2 so it wont be too long or short
 
 </script>
-
-
-
 
 <script src="dosearch.js">//this searches the brackets and makes the new url THE NEW URL IS HERE? IF IT HAS TO BE MODIFIED!!!! 
 </script>
@@ -285,7 +276,9 @@ var motivefilter = getAllUrlParams().motive;
  <p>Switch the legend to cell line and sort by using the two buttons below.</p>
     <button onclick="update_alphabet_cell()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
     <button onclick="update_nonalphabet_cell()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
-
+ <p>Switch the legend to consensus motif.</p>
+    <button onclick="update_alphabet_motif()" class="cubefiddler"><p>Alphabetical by name</p></button><br><br>
+    <button onclick="update_count_motif()" class="cubefiddler"><p>Number of experiments</p></button><br><br>
 </div>
 
 
@@ -342,9 +335,9 @@ $("#refresh").children().click(function(){
 
 
 $(document).ready(function(){
-$(".legend").click(function(event){
- $('.'+  $(this).data('targets')).fadeToggle("slow");
-});
+   $(".legend").click(function(event){
+      $('.'+  $(this).data('targets')).fadeToggle("slow");
+   });
 });
 
 $(document).ready(function(){

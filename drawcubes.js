@@ -39,7 +39,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
        		.data(antiagentCount)
 
 	    .enter().append("g")
-	      .attr("class", function(d) { return d.key + "leg legend " + isitnew;})
+	      .attr("class", function(d) { return "legend " + isitnew;})
 	      .attr("data-targets", function(d) { return d.key;})
 	      .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
 	}
@@ -48,21 +48,24 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 	       .data(antiagentCount2)
 
 	    .enter().append("g")
-	      .attr("class", function(d) { return d.key + "leg legend " + isitnew;})
+	      .attr("class", function(d) { return "legend " + isitnew;})
 	      .attr("data-targets", function(d) { return d.key;})
 	      .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
 	}
 
 	  //add cube
-	legend.append("g")
-        	.append("rect")
+	legend.append("rect")
+		.attr("x", width - 1300)
+		.attr("width", 18.6 + "em")
+		.attr("height", 1.6 + "em").style("fill", "white");
+	legend.append("rect")
 	        .attr("x", width - 1135)
 		.attr("width", 1.6 + "em")
 		.attr("height", 1.6 + "em")
 		.style("fill", function(d) { return d.values[0].key;})
 		.style("opacity", 0.8);
 	// draw legend text
-	  legend.append("text")
+	legend.append("text")
 	      .attr("x", width - 1145)
 	      .attr("y", 9)
 	      .attr("dy", ".35em")
