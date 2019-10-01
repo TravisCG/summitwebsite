@@ -218,20 +218,6 @@ choosethree("Not yet selected");
 
 <script src="buttons.js">//this will make the buttons work
 </script>
-
-<script>
-//this trims the array in this case for the options
-function trimArray(arr)
-{
-    for(i=0;i<arr.length;i++)
-    {
-        arr[i] = arr[i].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    }
-    return arr;
-}
- 
-</script>
-
 <div id="mbuttons">
 
 <p>Set a motif:</p><br>
@@ -272,28 +258,7 @@ foreach($jsonData6 as $item){
 
 </div>
 
-
-
-
 <script>
-//these scripts will allow to put all the motives in the select area
-//resultz is the uniqued json data
-var resultz = [];
-
-//we must trim them
-var trimresultz = trimArray(resultz);
-
-        function addOptions(){
-            var select = document.getElementById('formmotive');
-            var option;
-            for (var i = 0; i < trimresultz.length; i++) {
-              option = document.createElement('option');
-              option.text = resultz[i];
-              select.add(option);
-            }
-        };
-addOptions();
-
 var motivefilter = getAllUrlParams().motive;
 </script>
 
