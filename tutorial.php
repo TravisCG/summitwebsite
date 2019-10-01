@@ -810,14 +810,11 @@ As there is an overwhelming amount of experiment tracks you can
 filter these more precisely. At the yellow rectangle you can filter
 expreiments based on the antibody and/or cell line that was used.</font></font></font></p>
 <img src="images/tutorial38.png"  hspace="12" vspace="1" />
-<p lang="en-US" style="margin-left: 0.5in; margin-bottom: 0in; line-height: 100%">
-<br/>
+<p class="western"><font face="Arial, sherif" size="2" style="font-size: 11pt" color="#00000a">
+II. / 3.
+</font></p>
+<img src="images/tutorial39.jpg" hspace="12" vspace="1"/>
 
-</p>
-<p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
-<br/>
-
-</p>
 <p class="western" style="margin-bottom: 0in; line-height: 100%; page-break-before: always">
 <font face="Arial, serif"><span lang="en-US"><b>VennDiagramView</b></span></font></p>
 <p lang="en-US" class="western" style="margin-bottom: 0in; line-height: 100%">
