@@ -55,11 +55,9 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 // a kockak nem itt vannak elnevezve
   var cValue = function(d) { return d.antibody;},
     color = d3.scale.category20();
- //   .attr("transform", "translate(100px , 0 )");
 
 // add the graph canvas to the body of the webpage
   var svg = d3.select("#motifchart1").append("svg")
-//    .attr("width", width + margin.left + margin.right + legendtitle)
     .attr("width", "95%")
     .attr("height", "99%")
   .append("g")
@@ -129,7 +127,6 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
             return "circle";
         }}).size(60))
   .style("fill", function(d) { return d.colour_hex;})
-//  .on("click",  window.open("https://www.w3schools.com"))
   .style("opacity", function(d) {
         if(d.factor_type == "Cofactor"){
             return 0.5;

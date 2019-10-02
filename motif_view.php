@@ -18,51 +18,45 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT
-antibody.antibody_id AS antiid, 
 antibody.name AS antibody, 
 average_deviation.average_deviation_name as avg_name,
 average_deviation.deviation_id AS average_deviation_id,
 average_deviation.element_num AS element_num, 
 average_deviation.average AS average, 
-average_deviation.median AS median, 
 average_deviation.experiment_experiment_id AS exp_ID, 
-average_deviation.consensus_motif_motif_id, 
 average_deviation.std_dev AS std_dev, 
-consensus_motif.motif_id, 
-consensus_motif.name AS motive_name, 
-experiment.experiment_id AS exp_IDv2, 
 experiment.name AS exp_name, 
 cell_lines.name AS cell_line,
 s3.avgstd_dev,
 s3.avg_avg,
 s3.avg_elem,
 antibody.is_it_cofactor AS factor_type,
-antibody.colour_hex
+antibody.colour_hex,
+s2.name as cmotifname
 FROM 
 average_deviation
 LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id 
 LEFT JOIN antibody ON experiment.antibody_antibody_id = antibody.antibody_id 
 LEFT JOIN consensus_motif ON average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
 LEFT JOIN cell_lines ON experiment.cell_lines_cellline_id = cell_lines.cellline_id 
-LEFT JOIN (SELECT count(name) AS nameCount,name FROM antibody GROUP BY name) s2 ON s2.name = antibody.name 
+LEFT JOIN (SELECT antibody_antibody_id, name from anti2cons LEFT JOIN consensus_motif ON consensus_motif_motif_id = motif_id) as s2 ON s2.antibody_antibody_id = antibody.antibody_id
 LEFT JOIN (SELECT  experiment.antibody_antibody_id, avg(std_dev) as avgstd_dev, avg(average) as avg_avg, avg(element_num) as avg_elem 
-FROM average_deviation 
-LEFT JOIN experiment on experiment.experiment_id = average_deviation.experiment_experiment_id 
-LEFT JOIN consensus_motif ON average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
-WHERE
-average_deviation.std_dev <= $maxID 
-&& average_deviation.std_dev >= $minID 
-&& average_deviation.element_num >= $minElem 
-&& average_deviation.element_num <= $maxElem 
-&& consensus_motif.name LIKE $motiveName 
-GROUP BY antibody_antibody_id) s3 ON s3.antibody_antibody_id = experiment.antibody_antibody_id 
+           FROM average_deviation 
+           LEFT JOIN experiment on experiment.experiment_id = average_deviation.experiment_experiment_id 
+           LEFT JOIN consensus_motif ON average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
+           WHERE
+              average_deviation.std_dev <= $maxID 
+              && average_deviation.std_dev >= $minID 
+              && average_deviation.element_num >= $minElem 
+              && average_deviation.element_num <= $maxElem 
+              && consensus_motif.name LIKE $motiveName 
+           GROUP BY antibody_antibody_id) s3 ON s3.antibody_antibody_id = experiment.antibody_antibody_id 
 WHERE 
-average_deviation.std_dev <= $maxID 
-&& average_deviation.std_dev >= $minID 
-&& average_deviation.element_num >= $minElem 
-&& average_deviation.element_num <= $maxElem 
-&& consensus_motif.name LIKE $motiveName 
-ORDER BY s2.nameCount DESC, antibody.name ASC";
+  average_deviation.std_dev <= $maxID 
+  && average_deviation.std_dev >= $minID 
+  && average_deviation.element_num >= $minElem 
+  && average_deviation.element_num <= $maxElem 
+  && consensus_motif.name LIKE $motiveName ";
 
 
 
@@ -164,6 +158,11 @@ var antiagentCount2 = d3.nest()
   .key(function(d) { return d.cell_line; })
   .rollup(function(r) { return r.length; })
   .key(function(d) { return "#444666"; })
+  .entries(data);
+
+var consensusCount = d3.nest()
+  .key(function(d) {return d.cmotifname;})
+  .rollup(function(r) {return r.length;})
   .entries(data);
 
 /* 

@@ -13,7 +13,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 				return d3.ascending(x.key, y.key);
 			});
 		}
-	} else {
+	} else if (motiveOrCelline == "cell"){
 		if (howtosort == "data") {
 		        var sorteddata = antiagentCount2.sort(function(x, y){
         		        return d3.descending(x.values[0].values, y.values[0].values);
@@ -23,6 +23,16 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
         		        return d3.ascending(x.key, y.key);
 	        	});
         	}
+	} else {
+		if (howtosort == "data") {
+			var sorteddata = consensusCount.sort(function(x,y){
+				return d3.descending(x.values[0].values, y.values[0].values);
+			});
+		} else {
+			var sorteddata = consensusCount.sort(function(x,y){
+				return d3.ascending(x.key, y.key);
+			});
+		}
 	}
 
 	// add the graph canvas to the body of the webpage
@@ -43,7 +53,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 	      .attr("data-targets", function(d) { return d.key;})
 	      .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
 	}
-	else {
+	else if(motiveOrCelline == "cell"){
 	  var legend = svg.selectAll(".legend")
 	       .data(antiagentCount2)
 
@@ -51,6 +61,13 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 	      .attr("class", function(d) { return "legend " + isitnew;})
 	      .attr("data-targets", function(d) { return d.key;})
 	      .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
+	} else {
+	  var legend = svg.selectAll(".legend")
+                       .data(consensusCount)
+                       .enter().append("g")
+                       .attr("class", function(d) { return "legend " + isitnew;})
+                       .attr("data-targets", function(d) { return d.key;})
+                       .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
 	}
 
 	  //add cube
