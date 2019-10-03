@@ -30,7 +30,6 @@ function redcircle(x) {
 function DrawAllShizStand_dev(argy, argx, namey, namex){
 var width2 = $('#motifchart1').width();
 
-d3.select(window).on('resize', resize); 
 
 function resize() {
     // update width
@@ -38,6 +37,7 @@ function resize() {
 }
 
 
+d3.select(window).on('resize', resize); 
 
 // setup x
 var xValue = function(d) { return d[argx];}, // data -> value
@@ -114,10 +114,9 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 .data(data)
 .enter()
 .append("path")
-.attr("class", function(d) { return "dot " + d.antibody + " " + d.cell_line;})
+.attr("class", function(d) { return "dot " + d.antibody + " " + d.cell_line + " " + d.cmotifname;})
 .attr("id", function(d) { return "dot_" + d.exp_ID;})
-.attr("data-target", function(d) { return d.antibody + " " + d.cell_line;})
-.attr("data-cell_line", function(d) { return d.cell_line;})
+.attr("data-target", function(d) { return d.antibody + " " + d.cell_line + " " + d.cmotifname;})
 .attr("transform", function(d) { return "translate(" + xScale(d[argx]) + "," + yScale(d[argy]) + ")"; })
 .attr("d", d3.svg.symbol().type( function(d) {
 	if(d.factor_type == "Cofactor"){
@@ -125,7 +124,7 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 	}
                 else {
             return "circle";
-        }}).size(60))
+        }}).size(180))
   .style("fill", function(d) { return d.colour_hex;})
   .style("opacity", function(d) {
         if(d.factor_type == "Cofactor"){

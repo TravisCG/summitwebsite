@@ -37,7 +37,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 
 	// add the graph canvas to the body of the webpage
 	  var svg = d3.select("#motifchart2").append("svg")
-	    .attr("width", 250 )
+	    .attr("width", 200 )
 	    .attr("height", 2500 )
 	    .attr("class","cubechart" )
 	    .attr("float","right" )
@@ -72,18 +72,18 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 
 	  //add cube
 	legend.append("rect")
-		.attr("x", width - 1300)
-		.attr("width", 18.6 + "em")
+		.attr("x", 0 /*width - 1300*/)
+		.attr("width", 8 + "em")
 		.attr("height", 1.6 + "em").style("fill", "white");
 	legend.append("rect")
-	        .attr("x", width - 1135)
+	        .attr("x", 105 /*width - 1135*/)
 		.attr("width", 1.6 + "em")
 		.attr("height", 1.6 + "em")
 		.style("fill", function(d) { return d.values[0].key;})
 		.style("opacity", 0.8);
 	// draw legend text
 	legend.append("text")
-	      .attr("x", width - 1145)
+	      .attr("x", 95 /*width - 1145*/)
 	      .attr("y", 9)
 	      .attr("dy", ".35em")
 	      .style("text-anchor", "end")

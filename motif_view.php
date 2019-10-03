@@ -142,9 +142,6 @@ var legendtitle = 420;
 var maxShift = 99;
 var data = <?php echo json_encode($jsonData, JSON_NUMERIC_CHECK);?>;
 var motive = <?php echo "\"" . $motivePart . "\""; ?>;
-var nestedbyantiagent = d3.nest()
-  .key(function(d) { return d.antibody; })
-  .entries(data);
 var motifid = <?php echo json_encode($jsonData2, JSON_NUMERIC_CHECK);?>;
 
 //the cubes are named here by the antiagents or the cellines
@@ -162,6 +159,7 @@ var antiagentCount2 = d3.nest()
 
 var consensusCount = d3.nest()
   .key(function(d) {return d.cmotifname;})
+  .key(function(d) {return "#444666";})
   .rollup(function(r) {return r.length;})
   .entries(data);
 
@@ -265,8 +263,8 @@ var motivefilter = getAllUrlParams().motive;
 </div>
 <div id="refresh">
 
- <button id="nodotz" onclick="trimthemall()" title="Mask all dots out from scatterplot"> <p>Hide all scatter</p></button><br><br>
-  <button id="yesdotz" onclick="" title="Restore all dots to the scatterplot"> <p>Show all scatter</p></button><br><br>
+ <button id="nodotz" title="Mask all dots out from scatterplot"> <p>Hide all scatter</p></button><br><br>
+ <button id="yesdotz" title="Restore all dots to the scatterplot"> <p>Show all scatter</p></button><br><br>
 <h2>Plot options</h2>
  <p>Switch the legend to antibody (default view)  and sort by using the two buttons below.</p>
 <p>Choose a sorting method</p>
@@ -293,15 +291,6 @@ document.getElementById("y3").style.color = "#DDDDDD";
 document.getElementById("y4").style.boxShadow = "1px 2px 3px #555555";
 document.getElementById("y4").style.color = "#DDDDDD";
 
-// this function will bind the enter to the resend button
-$(document).keypress(function(e){
-    if (e.which == 13){
-        $("#resend").click();
-    }
-});
-
-
-
 //here we will set the form boxes to be by default what they were in the url originally
 
 var formmaxid = getAllUrlParams().maxid;
@@ -323,15 +312,11 @@ document.getElementById("formmotive").value = formmotive;
 
 // these will make our legends work (because heroes never die, but the legends sadly do)
 $("#refresh").children().click(function(){
- $(".legend.new").click(function(event){
- $('.'+  $(this).data('targets')).fadeToggle("slow");
+   $(".legend.new").click(function(event){
+      $('.'+  $(this).data('targets')).fadeToggle("slow");
+   });
+   $(".legend").removeClass("new");
 });
-});
-
-$("#refresh").children().click(function(){
-  $(".legend").removeClass("new")
-});
-
 
 $(document).ready(function(){
    $(".legend").click(function(event){
@@ -341,7 +326,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $(".legend").removeClass("new")
-
 });
 
 //these two rows will make the chart2 with the cubes fit like a glove

@@ -811,7 +811,7 @@ filter these more precisely. At the yellow rectangle you can filter
 expreiments based on the antibody and/or cell line that was used.</font></font></font></p>
 <img src="images/tutorial38.png"  hspace="12" vspace="1" />
 <p class="western"><font face="Arial, sherif" size="2" style="font-size: 11pt" color="#00000a">
-II. / 3.
+II. / 3. Examples of all available track types
 </font></p>
 <img src="images/tutorial39.jpg" hspace="12" vspace="1"/>
 
