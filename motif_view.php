@@ -32,15 +32,15 @@ s3.avg_avg,
 s3.avg_elem,
 antibody.is_it_cofactor AS factor_type,
 antibody.colour_hex,
-s2.name as cmotifname
+IFNULL(s2.name, 'Unknown') AS cmotifname
 FROM 
 average_deviation
 LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id 
 LEFT JOIN antibody ON experiment.antibody_antibody_id = antibody.antibody_id 
 LEFT JOIN consensus_motif ON average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
 LEFT JOIN cell_lines ON experiment.cell_lines_cellline_id = cell_lines.cellline_id 
-LEFT JOIN (SELECT antibody_antibody_id, name from anti2cons LEFT JOIN consensus_motif ON consensus_motif_motif_id = motif_id) as s2 ON s2.antibody_antibody_id = antibody.antibody_id
-LEFT JOIN (SELECT  experiment.antibody_antibody_id, avg(std_dev) as avgstd_dev, avg(average) as avg_avg, avg(element_num) as avg_elem 
+LEFT JOIN (SELECT antibody_antibody_id, name from anti2cons LEFT JOIN consensus_motif ON consensus_motif_motif_id = motif_id) AS s2 ON s2.antibody_antibody_id = antibody.antibody_id
+LEFT JOIN (SELECT  experiment.antibody_antibody_id, avg(std_dev) as avgstd_dev, avg(average) AS avg_avg, avg(element_num) AS avg_elem 
            FROM average_deviation 
            LEFT JOIN experiment on experiment.experiment_id = average_deviation.experiment_experiment_id 
            LEFT JOIN consensus_motif ON average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
@@ -159,8 +159,8 @@ var antiagentCount2 = d3.nest()
 
 var consensusCount = d3.nest()
   .key(function(d) {return d.cmotifname;})
-  .key(function(d) {return "#444666";})
   .rollup(function(r) {return r.length;})
+  .key(function(d) {return "#444666";})
   .entries(data);
 
 /* 
@@ -194,7 +194,9 @@ var consensusCount = d3.nest()
 // lets draw the things we need when the page loads
 var nameOfX = "Distance from " + motive + " center (bp)"
 DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
-DrawAllShizCubes("data", "notnew", "motive");
+DrawAllShizCubes("data", "notnew", "cons");
+$(".dot").hide(); // This will be the solution, when I would done.
+$("." + motive.replace("::","")).show();
 choosethree("Not yet selected");
 
 // this will count the cubes in chart2 so it wont be too long or short

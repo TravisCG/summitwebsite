@@ -66,7 +66,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
                        .data(consensusCount)
                        .enter().append("g")
                        .attr("class", function(d) { return "legend " + isitnew;})
-                       .attr("data-targets", function(d) { return d.key;})
+                       .attr("data-targets", function(d) { return d.key.replace("::", "");})
                        .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
 	}
 
