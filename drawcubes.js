@@ -87,7 +87,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 	      .attr("y", 9)
 	      .attr("dy", ".35em")
 	      .style("text-anchor", "end")
-	      .text(function(d) { return d.values[0].values+ " " + d.key;})
+	      .text(function(d) { return d.values[0].values+ " " + d.key.replace("mot_", "");})
 	      .style("pointer-events", "none");
 };
 

@@ -1,6 +1,6 @@
 function doSearch(wname) {
     var max = parseInt(document.getElementById("textboxmax").value) || 100;
-    var min = parseInt(document.getElementById("textboxmin").value) || 1;
+    var min = parseInt(document.getElementById("textboxmin").value);
     var minelem = parseInt(document.getElementById("textboxmnelem").value) || 500;
     var maxelem = parseInt(document.getElementById("textboxmxelem").value) || 100000;
 

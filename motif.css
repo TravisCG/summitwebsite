@@ -25,3 +25,7 @@ div {
 #mfunchelp a {
   color: black;
 }
+
+.selected {
+  fill: red;
+}

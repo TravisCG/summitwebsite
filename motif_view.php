@@ -32,7 +32,7 @@ s3.avg_avg,
 s3.avg_elem,
 antibody.is_it_cofactor AS factor_type,
 antibody.colour_hex,
-IFNULL(s2.name, 'Unknown') AS cmotifname
+concat('mot_',IFNULL(s2.name, 'Unknown')) AS cmotifname
 FROM 
 average_deviation
 LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id 
@@ -197,6 +197,7 @@ DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", na
 DrawAllShizCubes("data", "notnew", "cons");
 $(".dot").hide(); // This will be the solution, when I would done.
 $("." + motive.replace("::","")).show();
+$("[data-targets='"+motive.replace("::","")+"']").toggleClass("selected");
 choosethree("Not yet selected");
 
 // this will count the cubes in chart2 so it wont be too long or short
@@ -316,6 +317,7 @@ document.getElementById("formmotive").value = formmotive;
 $("#refresh").children().click(function(){
    $(".legend.new").click(function(event){
       $('.'+  $(this).data('targets')).fadeToggle("slow");
+      $(this).toggleClass("selected");
    });
    $(".legend").removeClass("new");
 });
@@ -323,6 +325,7 @@ $("#refresh").children().click(function(){
 $(document).ready(function(){
    $(".legend").click(function(event){
       $('.'+  $(this).data('targets')).fadeToggle("slow");
+      $(this).toggleClass("selected");
    });
 });
 

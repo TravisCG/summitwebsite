@@ -70,12 +70,14 @@ function update_count_motif() {
 $(document).ready(function(){
     $("#nodotz").click(function(){
         $(".dot").fadeOut("slow");
+        $(".legend").removeClass("selected");
     });
 });
 
 $(document).ready(function(){
     $("#yesdotz").click(function(){
         $(".dot").fadeIn("slow");
+        $(".legend").addClass("selected");
     });
 });
 
