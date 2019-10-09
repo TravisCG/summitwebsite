@@ -131,7 +131,11 @@ echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 <button id="onlydb">Only direct binding</button>
 </div>
 
-<div id="motifchart1"></div>
+<div id="motifchart1">
+<img src="images/info.png" class="infobutton" id="xaxis" title="The dots are placed depending on the relation between the positioning information and the adjusted motif center. The X axis represents the distance from the center of the adjusted JASPAR CORE motif which can be seen on the right bottom corner of scatterplot. The “0” point is the middle base pair of the motif.   The distance is measured in base pairs." />
+<img src="images/info.png" class="infobutton" id="yaxis" title="The Y axis is adjustable, you can choose to display the element number or the standard deviation of summit positions (with buttons below ”Set Y value”).  Element number means the number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set." />
+<img src="images/info.png" class="infobutton" id="canvas" title="Every dot on the scatterplot represent one ChIP-seq experiment. The dots are colored according to the type of target protein. X axis: A point are placed according to the average position of summits of the experiment relative to the motif centers. The Y axis is adjustable, you can choose to display the number of summit-motif overlaps or the standard deviation of summit positions (with buttons below ”Set Y value”). If you hover the cursor on a given dot, a tool-tip will appear, which gives information about the ChIP-seq experiment, including the name of the experiment, cell type, target protein, and quantified information about summit positions (average/median distance, standard deviation of distances, and overlap number). You can click on experiments (maximum 3) to investigate them in other views or download their corresponding data. The selected experiments are listed below the scatterplot." />
+</div>
 <div id="motifchart2" title="In this panel, you can see a list of proteins which had ChIP-seq signal in proximity to instances of the adjusted motif. The numbers next to the protein names indicate the number of (with the motif) corresponding experiments which were targeted the given protein and had ChIP-seq summits near to the motif instances.  These numbers are equal with the number of dots on scatterplot. The colours of squares also congruent with the fill colour of dots.  Clicking on the name of a factor hide/show its dots on scatterplot. "></div>
 <div id="motifchart3"></div>
 

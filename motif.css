@@ -34,3 +34,22 @@ div {
   float: right;
   margin-right: 5%;
 }
+
+.infobutton {
+  position: relative;
+}
+
+#yaxis {
+  top: 0%;
+  left: 0%;
+}
+
+#xaxis {
+  top: 85%;
+  left: 97%;
+}
+
+#canvas {
+  top: 0%;
+  left: 90%;
+}
