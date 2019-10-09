@@ -57,10 +57,6 @@ whichone = 1;
 
 d3.selectAll(".threechosen").remove();
 
-
-
-
-
 var svgthree = d3.select("#motifchart3").append("text")
 .html(function(d) { return "<div id=\"mfunchelp\" >You flagged the following experiments (cell line, antibody, <a title=\"The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. \">element number</a>): <br/> The blue buttons will help navigating to the other views.<br>Click on the buttons to open <br> the \'experiment view\' for more details <br>about the Chip-seq data. </div>"})
 .attr("class", "threechosen");
@@ -69,19 +65,16 @@ var svgthree = d3.select("#motifchart3").append("text")
 
 var widththree = "15em";
 var heightthree = "4em";
-var word = "download last selected";
 var wordshift = "to paired shifts";
 var wordjbrowse = "to the genome view";
 var wordvenn = "to venn diagram";
-
-
-
 
 var holdertwo = d3.select("#motifchart3")
       .append("svg")
       .attr("width", "15em")
       .attr("height", "8em")
       .attr("class", "threechosen");
+holdertwo.append("title").text("If you click on maximum 3 points on scatterplot, information about the corresponding ChIP-seq experiments will appear. This information consists of the cell type origin, the antibody name and the element number (The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set). If you click on these information boxes, you will be navigated to the Experiment view. You can read detail about the selected experiments in this view.  The selected experiments can be investigated in other views, if you click on the appearing boxes under the scatterplot. The selections can be vanished with „Clear all  selected” button. ");
 // draw a rectangle for the downloads
 holdertwo.append("a")
     .attr("xlink:href", function(d) {
@@ -167,7 +160,7 @@ holderthree.append("a")
     .attr("xlink:href", function(d) { return "http://summit.med.unideb.hu/summitdb/downloads_BE.php?exp=" +  chosenexp  + "&motive=" + motive;})
     .append("rect")  
     .attr("x", "3.1em")
-    .attr("y", "2.9em")
+    .attr("y", "2.7em")
     .attr("height", "2.5em")
     .attr("width", "13.4em")
     .style("fill", "lightblue")
@@ -182,7 +175,6 @@ holderthree.append("text")
     .attr("y", "1em")
     .style("fill", "black")
     .style("font-size", "1em")
-    .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
     .text("More views to browse.");
@@ -207,7 +199,9 @@ holderthree.append("rect")
            point.classList.remove("red" + i);
          }
        }
-    });
+    })
+    .append("title")
+    .text("If you want to modify the list of selected experiments, you can vanish it with this button.");
 
 holderthree.append("text")
     .attr("x", "9.8em")
@@ -223,11 +217,52 @@ holderthree.append("text")
     .attr("y", "4.4em")
     .style("fill", "black")
     .style("font-size", "1em")
-    .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
-    .text(word);
+    .text("Download last selected");
 // paired shift view part
+
+var holderjb = d3.select("#motifchart3")
+      .append("svg")
+      .attr("width", "11em")    
+      .attr("height", "8em")
+      .attr("class", "threechosen");
+holderjb.append("a")
+        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/Help.php";})
+        .attr("target", "blank")
+        .append("rect")
+        .attr("x", "0.1em")
+        .attr("y", "0em")
+        .attr("height", "2.5em")
+        .attr("width", "10em")
+        .style("fill", "lightblue")
+        .attr("rx", "0.3em")
+        .attr("ry", "0.3em");
+holderjb.append("text")
+        .attr("x", "5.05em")
+        .attr("y", "1.65em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "1em")
+        .style("fill", "black")
+        .text("Help");
+holderjb.append("a")
+        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/tutorial.php";})
+        .attr("target", "blank")
+        .append("rect")
+        .attr("x", "0.1em")
+        .attr("y", "2.7em")
+        .attr("height", "2.5em")
+        .attr("width", "10em")
+        .style("fill", "lightblue")
+        .attr("rx", "0.3em")
+        .attr("ry", "0.3em");
+holderjb.append("text")
+        .attr("x", "5.05em")
+        .attr("y", "4.2em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "1em")
+        .style("fill", "black")
+        .text("Tutorial");
 
 var holdershift = d3.select("#motifchart3")
       .append("svg")
@@ -247,7 +282,7 @@ return "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  fir
     .style("stroke", "blue")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
-    .attr("ry", "0.3em")
+    .attr("ry", "0.3em");
 
 // draw text on the screen
 holdershift.append("text")
@@ -258,17 +293,12 @@ holdershift.append("text")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
-    .text(wordshift)
+    .text(wordshift);
 
 holdershift.append("svg:title")
-     .text("Check the distance distribution of selected experiments in frequency histogram. \n \nBrowse the genomic data of selected experiments in genome browser. \n \nDisplay the overlap information between selected experiments as a Venn diagram. Download genomic data of the last selected experiment in BED format.")
+     .text("Check the distance distribution of selected experiments in frequency histogram. \n \nBrowse the genomic data of selected experiments in genome browser. \n \nDisplay the overlap information between selected experiments as a Venn diagram. Download genomic data of the last selected experiment in BED format.");
 //jbrowse part
 
-var holderjb = d3.select("#motifchart3")
-      .append("svg")
-      .attr("width", "11em")    
-      .attr("height", "8em")
-      .attr("class", "threechosen");
 // draw a button for the jbrowse
 holdershift.append("a")
     .attr("xlink:href", function(d) {
@@ -302,17 +332,7 @@ holdershift.append("text")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
     .text(wordjbrowse)
-//holderthree.append("svg:title")
-//     .text("Browse the genomic data of selected experiments in genome browser.")
 
-
-//venn diagramm part
-
-var holdervenn = d3.select("#motifchart3")
-      .append("svg")
-      .attr("width", "13em")
-      .attr("height", "8em")
-      .attr("class", "threechosen");
 // draw a button for the shift views
 holdershift.append("a")
     .attr("xlink:href", function(d) { 
@@ -338,11 +358,5 @@ holdershift.append("text")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
     .text(wordvenn)
-//holdershift.append("svg:title")
-//     .text("Display the overlap information between selected experiments as a Venn diagram. Download genomic data of the last selected experiment in BED format.")
-
-
-
 
 };
-

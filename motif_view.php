@@ -32,7 +32,7 @@ s3.avg_avg,
 s3.avg_elem,
 antibody.is_it_cofactor AS factor_type,
 antibody.colour_hex,
-concat('mot_',IFNULL(s2.name, 'Unknown')) AS cmotifname
+concat('mot_',IFNULL(s2.name, 'Cofactor')) AS cmotifname
 FROM 
 average_deviation
 LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id 
@@ -125,8 +125,14 @@ $conn->close();
 echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 ?>
 
+<div id="topbuttons">
+<button id="nodotz" title="Mask all dots out from scatterplot"> Hide all scatter</button>
+<button id="yesdotz" title="Restore all dots to the scatterplot">Show all scatter</button>
+<button id="onlydb">Only direct binding</button>
+</div>
+
 <div id="motifchart1"></div>
-<div id="motifchart2"></div>
+<div id="motifchart2" title="In this panel, you can see a list of proteins which had ChIP-seq signal in proximity to instances of the adjusted motif. The numbers next to the protein names indicate the number of (with the motif) corresponding experiments which were targeted the given protein and had ChIP-seq summits near to the motif instances.  These numbers are equal with the number of dots on scatterplot. The colours of squares also congruent with the fill colour of dots.  Clicking on the name of a factor hide/show its dots on scatterplot. "></div>
 <div id="motifchart3"></div>
 
 <div name="chart4"  id="motifchart4">
@@ -210,43 +216,36 @@ choosethree("Not yet selected");
 <script src="buttons.js">//this will make the buttons work
 </script>
 <div id="mbuttons">
-
-<p>Set a motif:</p><br>
-  <select id="formmotive" type="text" value="" placeholder="Type to filter">
+<p>Set a motif:</p>
+  <select id="formmotive" type="text" value="" placeholder="Type to filter" title="Select a motif from the dropdown box and click on the ”Refresh Page” button. After updating the page, you can invetigate the occupying proteins on the instances of the adjusted transcription factor motif.">
 <?php
 //this one puts ALL the options in the select area
 foreach($jsonData6 as $item){
      echo "<option>" . $item['name'] . "</option>" ;    // process the line read.
     }
 ?>
-
-
 </select>
-
-<p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> <br> 
+<p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> 
 <p>Minimum standard deviation</p>
-<form action="#" id="form_field"> <input type="text" id="textboxmin" value="integer please"> 
-</form>
+<form action="#" id="form_field" title="These settings can filter the displayed data. You can set the minimum and maximum standard deviation and/or element number. After updating the page with “Refresh Page” button, the experiments with out of range values will be vanishedfrom scatterplot.">
+<input type="text" id="textboxmin" value="integer please"> 
 
 <p>Maximum standard deviation</p>
 
-<form action="#" id="form_field"> <input type="text" id="textboxmax" value="integer please"> 
-</form>
+<input type="text" id="textboxmax" value="integer please"> 
 
 <p>Minimum overlap number between motifs and peaks of experiment</p>
 
-<form action="#" id="form_field"> <input type="text" id="textboxmnelem" value="integer please"> 
-</form>
+<input type="text" id="textboxmnelem" value="integer please"> 
 
 <p>Maximum overlap number between motifs and peaks of experiment</p>
 
-<form action="#" id="form_field"> <input type="text" id="textboxmxelem" value="integer please"> 
-</form>
+<input type="text" id="textboxmxelem" value="integer please"> 
 
 <p>When te parameters have been set, this button will refresh the page.</p>
 
+</form>
 <button id="resend" onclick="doSearch('_self')" ><p>Refresh Page</p></button>
-
 </div>
 
 <script>
@@ -265,20 +264,16 @@ var motivefilter = getAllUrlParams().motive;
 <br>
 </div>
 <div id="refresh">
-
- <button id="nodotz" title="Mask all dots out from scatterplot"> <p>Hide all scatter</p></button><br><br>
- <button id="yesdotz" title="Restore all dots to the scatterplot"> <p>Show all scatter</p></button><br><br>
 <h2>Plot options</h2>
- <p>Switch the legend to antibody (default view)  and sort by using the two buttons below.</p>
+<p>Switch the legend to antibody (default view)  and sort by using the two buttons below.</p>
 <p>Choose a sorting method</p>
-    <button onclick="update_alphabet()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
-    <button onclick="update_nonalphabet()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
+    <button onclick="update_alphabet()" class="cubefiddler" title="Sort the antibodies according to their names (alphabetically)."> <p>Alphabetical by name</p></button><br><br>
+    <button onclick="update_nonalphabet()" class="cubefiddler" title="Sort the antibodies according to the number of experiments."> <p>Number of experiments</p></button><br><br>
  <p>Switch the legend to cell line and sort by using the two buttons below.</p>
+<div title="These buttons will modify the labels. The antibody names will be replaced with cell type names. Following the logic of the previous buttons, the experiment can be sorted by name of the cell line or the number of their occurrences.">
     <button onclick="update_alphabet_cell()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
     <button onclick="update_nonalphabet_cell()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
- <p>Switch the legend to consensus motif.</p>
-    <button onclick="update_alphabet_motif()" class="cubefiddler"><p>Alphabetical by name</p></button><br><br>
-    <button onclick="update_count_motif()" class="cubefiddler"><p>Number of experiments</p></button><br><br>
+</div>
 </div>
 
 

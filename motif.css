@@ -29,3 +29,8 @@ div {
 .selected {
   fill: red;
 }
+
+#topbuttons {
+  float: right;
+  margin-right: 5%;
+}
