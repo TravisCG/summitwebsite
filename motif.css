@@ -35,21 +35,77 @@ div {
   margin-right: 5%;
 }
 
-.infobutton {
-  position: relative;
+#categoryhelp {
+  top: 19em;
+  left: 92%;
 }
 
-#yaxis {
-  top: 0%;
-  left: 0%;
+#sethelp {
+  left: 25%;
 }
 
-#xaxis {
-  top: 85%;
-  left: 97%;
+#plothelp {
+  left: 95%;
 }
 
-#canvas {
-  top: 0%;
-  left: 90%;
+#canvashelp {
+  top: 19em;
+  left: 75%;
+}
+
+#scattertooltip {
+  top: 22em;
+  left: 40%;
+}
+
+#yaxistooltip {
+  top: 19em;
+  left: 5%;
+}
+
+#xaxistooltip {
+  top: 65em;
+  left: 15%;
+}
+
+#categorytooltip {
+  top: 30em;
+  left: 75%;
+}
+
+#threetooltip {
+  top: 70em;
+  left: 18%;
+  z-index: 20;
+}
+
+#cleartooltip {
+  top: 85em;
+  left: 40%;
+  z-index: 20;
+}
+
+#motiftooltip {
+  top: 90em;
+  left: 5%;
+}
+
+#settingtooltip {
+  top: 110em;
+  left: 5%;
+}
+
+#antisort1tooltip {
+  top: 104em;
+  left: 70%;
+}
+
+#antisort2tooltip {
+  top: 110em;
+  left: 70%;
+}
+
+#cellsorttooltip {
+  top: 120em;
+  left: 70%;
 }

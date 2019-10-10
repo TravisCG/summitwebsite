@@ -95,6 +95,7 @@ $conn->close();
 
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="stylesheet" type="text/css" href="master.css" />
+<link rel="stylesheet" type="text/css" href="paired_shift_view.css" />
 <script src="jquery.js"></script>
 <script src="d3.js"></script>
 <script src="threeexpbox.js"></script>
@@ -116,6 +117,24 @@ $conn->close();
 </script>
 </head>
 <body>
+<div class="bootstraptooltip" id="paneltooltip">
+In this panel, you can see some basic information about the adjusted ChIP-seq experiments: name; antibody; cell line and element number (The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set). The background colours indicate the histogram colours of the experiments on the plot.
+</div>
+<div class="bootstraptooltip" id="histogramtooltip">
+The histograms shows the summit distance distributions of the selected ChIP-seq data (a maximum of 3) related to a motif center. 
+The PairShiftView allows users to examine the distribution of individual summi- consensus motif distances for three experiments. To smooth the graph, a 5 bp rolling bin is used in the histogram. Each curve represents one ChIP-seq experiment. 
+The X axis represents the distance (measured in base pairs) from the middle of the given motif, which is marked as the “0” point. The numbering of the axis is consistent with the position weight matrix below the diagram. The Y axis shows the frequency of summit occurrences at the relative position (at a given base pair) relative to the motif center. In the case of well-defined protein topology with high overlap frequency and close DNA localization, the curve has a bell-like pattern (normal distribution-like).
+</div>
+<div class="bootstraptooltip" id="navitooltip">
+These buttons navigate you to other view. You can browse the genomic data in genome viewer or you can check the overlap information between selected experiments.
+</div>
+<div class="bootstraptooltip" id="settingtooltip">
+These setting can filter the displayed data. You can set the minimum and maximum element number. After updating the page with “Refresh Page” button, the experiments with out of range values will be vanished from plot.
+</div>
+<div class="bootstraptooltip" id="motiftooltip">
+Select a motif from the dropdown box and click on the ”Refresh Page” button. After updating the page, you can invetigate the occupying proteins on the instances of the adjusted transcription factor motif.
+</div>
+
 <?php show_full_navigation("Venn diagram>
 Display the overlap information between selected experiments as a Venn diagram. 
 
@@ -162,7 +181,7 @@ function dochange(target) { window.open(target,"_blank");};
     </tr>
   </tbody>
 </table>
-
+<img src="images/info.png" class="infobutton" id="histhelp" />
 </div>
 
 <div name="logo_chart"  id="logo_chart">
@@ -218,8 +237,7 @@ The following buttons will navigate you to different views of currently plotted 
 <a target="_black" href="http://summit.med.unideb.hu/jbrowse/index.html?loc=chr10%3A46391892..47806389&tracks=DNA%2Cucsc-known-genes%2Cmot-<?php echo $motifid;?>%2Cexp-<?php echo $exp1;?>%2Cexp-<?php echo $exp2;?>%2Cexp-<?php echo $exp3;?>&highlight=">
 <button class="paired_button" onclick="">GenomeView</button>
 </a>
-
-
+<img src="images/info.png" class="infobutton" id="sethelp">
 <br>
 <p>Minimum overlap number between motifs and peaks of experiment: <?php echo $minelem;?></p>
 
@@ -285,6 +303,18 @@ document.getElementById("limit").value = limit;
 
 var low_limit = <?php echo  $low_limit ; ?>;
 document.getElementById("low_limit").value = low_limit;
+
+$("#histhelp").click(function(event){
+  $("#paneltooltip").toggle();
+  $("#histogramtooltip").toggle();
+});
+
+$("#sethelp").click(function(event){
+  $("#navitooltip").toggle();
+  $("#settingtooltip").toggle();
+  $("#motiftooltip").toggle();
+});
+
 </script>
 <br>
 <p>

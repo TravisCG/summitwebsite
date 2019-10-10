@@ -105,3 +105,8 @@ a:hover .motifname {
   margin-bottom: 0px;
   font-weight: bold;
 }
+
+#dbsnptooltip {
+  top: 80%;
+  left: 70%;
+}

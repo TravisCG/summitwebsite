@@ -57,6 +57,7 @@ $link_base = "<a href=\"intersect_dist.php?exp1=" . $exp1Name . "&exp2=" . $exp2
 
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="stylesheet" type="text/css" href="master.css" />
+<link rel="stylesheet" type="text/css" href="venn_diagramm.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="threeexpbox.js"></script>
@@ -81,6 +82,24 @@ $link_base = "<a href=\"intersect_dist.php?exp1=" . $exp1Name . "&exp2=" . $exp2
 </script>
 </head>
 <body>
+<div class="bootstraptooltip" id="vennpaneltooltip">
+In this panel, you can see some basic information about the selected ChIP-seq experiments: name; antibody; cell line and consensus motif binding sites (The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set). The background colours indicate the cluster colours of the experiments on the venn diagram.
+</div>
+<div class="bootstraptooltip" id="venntooltip">
+The Venn diagram represents the number of overlaps between the adjusted motif and the peaks of selected ChIP-seq experiments. The sections of sets indicates the number of simultaneous occupancies of peaks on binding sites. The colors of sets are congruent with the information panel above and the dropdown boxes below.
+</div>
+<div class="bootstraptooltip" id="mvtooltip">
+Find the average/median protein positional and occupancy frequency information on a set of given transcription factor binding sites in MotifView.
+</div>
+<div class="bootstraptooltip" id="gbtooltip">
+Browse genomic data of selected experiment in genome browser.
+</div>
+<div class="bootstraptooltip" id="psvtooltip">
+Check the distance distribution of selected experiment as frequency histograms  in PairShiftView.
+</div>
+<div class="bootstraptooltip" id="dtooltip">
+Download genomic data of last selected experiment in BED format.
+</div>
 <?php show_full_navigation();?>
 <h4>VennView</h4>
 <div id="chart_venn" >
@@ -127,6 +146,7 @@ $link_base = "<a href=\"intersect_dist.php?exp1=" . $exp1Name . "&exp2=" . $exp2
     </tr>
   </tbody>
 </table>
+<img src="images/info.png" class="infobutton" id="vennhelp" />
 </div>
 
 <div id="motifbuttons" >
@@ -144,6 +164,7 @@ $link_base = "<a href=\"intersect_dist.php?exp1=" . $exp1Name . "&exp2=" . $exp2
   </a>
   <button class="paired_button" onclick="doSearchShift('_blank', '')">View data in PairedShiftView</button>
   <button class="paired_button" onclick="vennBed()" title="Download genomic position of motifs which overlap with the selected ChIP-seq experiments in a single BED file. The motifs are labeled with the overlapping experiment's name and color code.">Download BED file</button>
+  <img src="images/info.png" class="infobutton" id="buttonhelp" />
 </div>
 
 <script src="urlgetter.js">//this one gets the options out of the url and make them an object
@@ -252,6 +273,17 @@ document.getElementById("data1i3").innerHTML = link + 'AC">' + (intersect1_3 - i
 document.getElementById("data2i3").innerHTML = link + 'BC">' + (intersect2_3 - intersect1_2_3) + "</a>";
 document.getElementById("data1i2i3").innerHTML = link + 'ABC">' + (intersect1_2_3) + "</a>"; 
 
+$("#vennhelp").click(function(event){
+  $("#vennpaneltooltip").toggle();
+  $("#venntooltip").toggle();
+});
+
+$("#buttonhelp").click(function(event){
+  $("#mvtooltip").toggle();
+  $("#gbtooltip").toggle();
+  $("#psvtooltip").toggle();
+  $("#dtooltip").toggle();
+});
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js">

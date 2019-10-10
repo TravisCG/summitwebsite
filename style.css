@@ -574,3 +574,16 @@ a.cell_unselected  {
   list-style-type: disc;
   margin-left: 50px;
 }
+
+.infobutton {
+  position: absolute;
+}
+
+.bootstraptooltip {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 300px;
+  border: solid black;
+  font-size: 10pt;
+}

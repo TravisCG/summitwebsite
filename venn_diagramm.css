@@ -1,0 +1,40 @@
+#vennhelp {
+  top: 39em;
+  left: 80%;
+}
+
+#vennpaneltooltip {
+  top: 15em;
+  left: 60%;
+  z-index: 20;
+}
+
+#venntooltip {
+  top: 30em;
+  left: 40%;
+  z-index: 20;
+}
+
+#mvtooltip {
+  top: 75em;
+  left: 20%;
+  width: 150px;
+}
+
+#gbtooltip {
+  top: 75em;
+  left: 31%;
+  width: 150px;
+}
+
+#psvtooltip {
+  top: 75em;
+  left: 43%;
+  width: 150px;
+}
+
+#dtooltip {
+  top: 75em;
+  left: 54%;
+  width: 150px;
+}

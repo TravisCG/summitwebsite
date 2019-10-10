@@ -117,10 +117,41 @@ $conn->close();
 
   function dochange(target) { window.open(target,"_blank");};
 </script>
-
-
 </head>
 <body>
+<div class="bootstraptooltip" id="scattertooltip">
+Every dot on the scatterplot represent one ChIP-seq experiment. The dots are colored according to the type of target protein. X axis: A point are placed according to the average position of summits of the experiment relative to the motif centers. The Y axis is adjustable, you can choose to display the number of summit-motif overlaps or the standard deviation of summit positions (with buttons below ”Set Y value”). If you hover the cursor on a given dot, a tool-tip will appear, which gives information about the ChIP-seq experiment, including the name of the experiment, cell type, target protein, and quantified information about summit positions (average/median distance, standard deviation of distances, and overlap number). You can click on experiments (maximum 3) to investigate them in other views or download their corresponding data. The selected experiments are listed below the scatterplot.
+</div>
+<div class="bootstraptooltip" id="yaxistooltip">
+The Y axis is adjustable, you can choose to display the element number or the standard deviation of summit positions (with buttons below ”Set Y value”).  Element number means the number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set.
+</div>
+<div class="bootstraptooltip" id="xaxistooltip">
+The dots are placed depending on the relation between the positioning information and the adjusted motif center. The X axis represents the distance from the center of the adjusted JASPAR CORE motif which can be seen on the right bottom corner of scatterplot. The “0” point is the middle base pair of the motif.   The distance is measured in base pairs.
+</div>
+<div class="bootstraptooltip" id="threetooltip">
+If you click on maximum 3 points on scatterplot, information about the corresponding ChIP-seq experiments will appear. This information consists of the cell type origin, the antibody name and the element number (The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set). If you click on these information boxes, you will be navigated to the Experiment view. You can read detail about the selected experiments in this view.  The selected experiments can be investigated in other views, if you click on the appearing boxes under the scatterplot. The selections can be vanished with „Clear all  selected” button. 
+</div>
+<div class="bootstraptooltip" id="motiftooltip">
+Select a motif from the dropdown box and click on the ”Refresh Page” button. After updating the page, you can invetigate the occupying proteins on the instances of the adjusted transcription factor motif.
+</div>
+<div class="bootstraptooltip" id="settingtooltip">
+These settings can filter the displayed data. You can set the minimum and maximum standard deviation and/or element number. After updating the page with “Refresh Page” button, the experiments with out of range values will be vanished from scatterplot.
+</div>
+<div class="bootstraptooltip" id="cleartooltip">
+If you want to modify the list of selected experiments, you can vanish it with this button.
+</div>
+<div class="bootstraptooltip" id="antisort1tooltip">
+Sort the antibodies according to their names (alphabetically)
+</div>
+<div class="bootstraptooltip" id="antisort2tooltip">
+Sort the antibodies according to the number of experiments.
+</div>
+<div class="bootstraptooltip" id="cellsorttooltip">
+These buttons will modify the labels. The antibody names will be replaced with cell type names. Following the logic of the previous buttons, the experiment can be sorted by name of the cell line or the number of their occurrences.
+</div>
+<div class="bootstraptooltip" id="categorytooltip">
+In this panel, you can see a list of proteins which had ChIP-seq signal in proximity to instances of the adjusted motif. The numbers next to the protein names indicate the number of (with the motif) corresponding experiments which were targeted the given protein and had ChIP-seq summits near to the motif instances.  These numbers are equal with the number of dots on scatterplot. The colours of squares also congruent with the fill colour of dots.  Clicking on the name of a factor hide/show its dots on scatterplot.
+</div>
 <?php show_full_navigation();
 echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 ?>
@@ -132,11 +163,11 @@ echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 </div>
 
 <div id="motifchart1">
-<img src="images/info.png" class="infobutton" id="xaxis" title="The dots are placed depending on the relation between the positioning information and the adjusted motif center. The X axis represents the distance from the center of the adjusted JASPAR CORE motif which can be seen on the right bottom corner of scatterplot. The “0” point is the middle base pair of the motif.   The distance is measured in base pairs." />
-<img src="images/info.png" class="infobutton" id="yaxis" title="The Y axis is adjustable, you can choose to display the element number or the standard deviation of summit positions (with buttons below ”Set Y value”).  Element number means the number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set." />
-<img src="images/info.png" class="infobutton" id="canvas" title="Every dot on the scatterplot represent one ChIP-seq experiment. The dots are colored according to the type of target protein. X axis: A point are placed according to the average position of summits of the experiment relative to the motif centers. The Y axis is adjustable, you can choose to display the number of summit-motif overlaps or the standard deviation of summit positions (with buttons below ”Set Y value”). If you hover the cursor on a given dot, a tool-tip will appear, which gives information about the ChIP-seq experiment, including the name of the experiment, cell type, target protein, and quantified information about summit positions (average/median distance, standard deviation of distances, and overlap number). You can click on experiments (maximum 3) to investigate them in other views or download their corresponding data. The selected experiments are listed below the scatterplot." />
+<img src="images/info.png" class="infobutton" id="canvashelp" />
 </div>
-<div id="motifchart2" title="In this panel, you can see a list of proteins which had ChIP-seq signal in proximity to instances of the adjusted motif. The numbers next to the protein names indicate the number of (with the motif) corresponding experiments which were targeted the given protein and had ChIP-seq summits near to the motif instances.  These numbers are equal with the number of dots on scatterplot. The colours of squares also congruent with the fill colour of dots.  Clicking on the name of a factor hide/show its dots on scatterplot. "></div>
+<div id="motifchart2">
+<img src="images/info.png" class="infobutton" id="categoryhelp" />
+</div>
 <div id="motifchart3"></div>
 
 <div name="chart4"  id="motifchart4">
@@ -202,7 +233,12 @@ var consensusCount = d3.nest()
 
 <script>
 // lets draw the things we need when the page loads
-var nameOfX = "Distance from " + motive + " center (bp)"
+var nameOfX = "Distance from " + motive + " center (bp)";
+var formminid = getAllUrlParams().minid;
+var formmaxid = getAllUrlParams().maxid;
+var formminelem = getAllUrlParams().mnelem;
+var formmaxelem = getAllUrlParams().mxelem;
+var formmotive = <?php echo '"'. $motivePart . '"'; ?>;
 DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
 DrawAllShizCubes("data", "notnew", "cons");
 $(".dot").hide(); // This will be the solution, when I would done.
@@ -221,7 +257,7 @@ choosethree("Not yet selected");
 </script>
 <div id="mbuttons">
 <p>Set a motif:</p>
-  <select id="formmotive" type="text" value="" placeholder="Type to filter" title="Select a motif from the dropdown box and click on the ”Refresh Page” button. After updating the page, you can invetigate the occupying proteins on the instances of the adjusted transcription factor motif.">
+  <select id="formmotive" type="text" value="" placeholder="Type to filter">
 <?php
 //this one puts ALL the options in the select area
 foreach($jsonData6 as $item){
@@ -229,9 +265,10 @@ foreach($jsonData6 as $item){
     }
 ?>
 </select>
+<img src="images/info.png" class="infobutton" id="sethelp" />
 <p>This form will change the maximum and minimum average deviation value of the dots shown. Try using integers please. </p> 
 <p>Minimum standard deviation</p>
-<form action="#" id="form_field" title="These settings can filter the displayed data. You can set the minimum and maximum standard deviation and/or element number. After updating the page with “Refresh Page” button, the experiments with out of range values will be vanishedfrom scatterplot.">
+<form action="#" id="form_field" >
 <input type="text" id="textboxmin" value="integer please"> 
 
 <p>Maximum standard deviation</p>
@@ -271,10 +308,11 @@ var motivefilter = getAllUrlParams().motive;
 <h2>Plot options</h2>
 <p>Switch the legend to antibody (default view)  and sort by using the two buttons below.</p>
 <p>Choose a sorting method</p>
-    <button onclick="update_alphabet()" class="cubefiddler" title="Sort the antibodies according to their names (alphabetically)."> <p>Alphabetical by name</p></button><br><br>
-    <button onclick="update_nonalphabet()" class="cubefiddler" title="Sort the antibodies according to the number of experiments."> <p>Number of experiments</p></button><br><br>
+<img src="images/info.png" class="infobutton" id="plothelp" />
+    <button onclick="update_alphabet()" class="cubefiddler" > <p>Alphabetical by name</p></button><br><br>
+    <button onclick="update_nonalphabet()" class="cubefiddler" > <p>Number of experiments</p></button><br><br>
  <p>Switch the legend to cell line and sort by using the two buttons below.</p>
-<div title="These buttons will modify the labels. The antibody names will be replaced with cell type names. Following the logic of the previous buttons, the experiment can be sorted by name of the cell line or the number of their occurrences.">
+<div>
     <button onclick="update_alphabet_cell()" class="cubefiddler"> <p>Alphabetical by name</p></button><br><br>
     <button onclick="update_nonalphabet_cell()" class="cubefiddler"> <p>Number of experiments</p></button><br><br>
 </div>
@@ -295,22 +333,11 @@ document.getElementById("y4").style.color = "#DDDDDD";
 
 //here we will set the form boxes to be by default what they were in the url originally
 
-var formmaxid = getAllUrlParams().maxid;
 document.getElementById("textboxmax").value = formmaxid;
-
-var formminid = getAllUrlParams().minid;
 document.getElementById("textboxmin").value = formminid;
-
-var formminelem = getAllUrlParams().mnelem;
 document.getElementById("textboxmnelem").value = formminelem;
-
-var formmaxelem = getAllUrlParams().mxelem;
 document.getElementById("textboxmxelem").value = formmaxelem;
-
-var formmotive = <?php echo '"'. $motivePart . '"'; ?>;
 document.getElementById("formmotive").value = formmotive;
-
-
 
 // these will make our legends work (because heroes never die, but the legends sadly do)
 $("#refresh").children().click(function(){
@@ -325,6 +352,27 @@ $(document).ready(function(){
    $(".legend").click(function(event){
       $('.'+  $(this).data('targets')).fadeToggle("slow");
       $(this).toggleClass("selected");
+   });
+   $("#canvashelp").click(function(event){
+      $("#scattertooltip").toggle();
+      $("#yaxistooltip").toggle();
+      $("#xaxistooltip").toggle();
+   });
+   $("#categoryhelp").click(function(event){
+      $("#categorytooltip").toggle();
+   });
+   $("#threeexphelp").click(function(event){
+      $("#threetooltip").toggle();
+      $("#cleartooltip").toggle();
+   });
+   $("#sethelp").click(function(event){
+      $("#motiftooltip").toggle();
+      $("#settingtooltip").toggle();
+   });
+   $("#plothelp").click(function(event){
+      $("#antisort1tooltip").toggle();
+      $("#antisort2tooltip").toggle();
+      $("#cellsorttooltip").toggle();
    });
 });
 

@@ -351,16 +351,29 @@
          window.open("expbysnp.php?dbsnp=" + snpid, '_blank');
       }
 
-      document.getElementById("overlaptoggle").onclick = function(){
-         elements = document.getElementsByClassName("single");
-         overlapswitch = !overlapswitch;
-         for(var i = 0; i < elements.length; i++){
-           if(overlapswitch == true){
-             elements[i].style.visibility = "hidden";
-           }
-           else{
-             elements[i].style.visibility = "visible";
-           }
+      var overlapbt = document.getElementById("overlaptoggle");
+      if(overlapbt) {
+         document.getElementById("overlaptoggle").onclick = function(){
+            elements = document.getElementsByClassName("single");
+            overlapswitch = !overlapswitch;
+            for(var i = 0; i < elements.length; i++){
+              if(overlapswitch == true){
+                elements[i].style.visibility = "hidden";
+              }
+              else{
+                elements[i].style.visibility = "visible";
+              }
+            }
+         }
+      }
+
+      document.getElementById("dbsnphelp").onclick = function() {
+         var tooltip = document.getElementById("dbsnptooltip");
+         if(tooltip.style.display == "" || tooltip.style.display == "none"){
+            tooltip.style.display = "block";
+         }
+         else {
+            tooltip.style.display = "none";
          }
       }
     });
@@ -370,6 +383,14 @@
   </script>
 </head>
 <body>
+<div class="bootstraptooltip" id="dbsnptooltip">
+The coordinates of displayed genomic region is presented on the top of this panel.
+The motif logos provide information about the different transcription factor binding sites. If you hover the cursor on a logo, the name of the motif will be displayed. 
+Under the logos, the sequence of reference genome is visible. 
+The corresponding SNPs can be browsed with their dbSNP ID below the reference genome. 
+Hovering the cursor on dbSNP ID will show the nucleotide change of SNP.
+“Toggle overlapping SNPs” button hide/ show the SNPs which do not overlap with motifs.
+</div>
 <?php
   show_full_navigation();
 ?>
@@ -382,12 +403,12 @@
 genomic region manually.</p>
 <p>Caution: The genomic region cannot be larger than 1000bp!</p>
 <form id="dbform" method="get" onsubmit="event.preventDefault();paramcheck();">
-<p>dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/><button id="getexp">Get experiments overlap with this SNP</button></p>
+<p>dbSNP id:<input id="inpdbsnp" type="text" name="dbsnp" value="<?php echo $dbsnpid;?>"/></p>
 <p>or</p>
 <p>Chromosome:<input id="inpchr" type="text" name="chr" value="<?php echo $chr; ?>" size="3" maxlength="2"/>
 Start position:<input id="inpstart" type="text" name="start" value="<?php echo $start; ?>" size="5"/>
 End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>" size="5"/> <span id="msgbox"></span></p>
-<input type="submit" value="Send" />
+<input type="submit" value="Send" /> <button id="getexp">Get experiments overlap with this SNP</button>
 </form>
 
 <?php 
@@ -404,6 +425,7 @@ End position:<input id="inpend" type="text" name="end" value="<?php echo $end ?>
       motifView($conn, $motifs, SVGH);
       echo('<button id="overlaptoggle">Toggle overlapping SNPs</button>');
     }
+    echo('<img src="images/info.png" class="infobutton" id="dbsnphelp" />');
   }
 ?>
 </div>

@@ -58,7 +58,7 @@ whichone = 1;
 d3.selectAll(".threechosen").remove();
 
 var svgthree = d3.select("#motifchart3").append("text")
-.html(function(d) { return "<div id=\"mfunchelp\" >You flagged the following experiments (cell line, antibody, <a title=\"The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. \">element number</a>): <br/> The blue buttons will help navigating to the other views.<br>Click on the buttons to open <br> the \'experiment view\' for more details <br>about the Chip-seq data. </div>"})
+.html(function(d) { return "<div id=\"mfunchelp\" >You flagged the following experiments (cell line, antibody, <a title=\"The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set. \">element number</a>): <br/> The blue buttons will help navigating to the other views.<br>Click on the buttons to open <br> the \'experiment view\' for more details <br>about the Chip-seq data. <br /><img src=\"images/info.png\" class=\"infobutton\" id=\"threeexphelp\" /></div>"})
 .attr("class", "threechosen");
 
 
@@ -222,47 +222,6 @@ holderthree.append("text")
     .text("Download last selected");
 // paired shift view part
 
-var holderjb = d3.select("#motifchart3")
-      .append("svg")
-      .attr("width", "11em")    
-      .attr("height", "8em")
-      .attr("class", "threechosen");
-holderjb.append("a")
-        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/Help.php";})
-        .attr("target", "blank")
-        .append("rect")
-        .attr("x", "0.1em")
-        .attr("y", "0em")
-        .attr("height", "2.5em")
-        .attr("width", "10em")
-        .style("fill", "lightblue")
-        .attr("rx", "0.3em")
-        .attr("ry", "0.3em");
-holderjb.append("text")
-        .attr("x", "5.05em")
-        .attr("y", "1.65em")
-        .attr("text-anchor", "middle")
-        .style("font-size", "1em")
-        .style("fill", "black")
-        .text("Help");
-holderjb.append("a")
-        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/tutorial.php";})
-        .attr("target", "blank")
-        .append("rect")
-        .attr("x", "0.1em")
-        .attr("y", "2.7em")
-        .attr("height", "2.5em")
-        .attr("width", "10em")
-        .style("fill", "lightblue")
-        .attr("rx", "0.3em")
-        .attr("ry", "0.3em");
-holderjb.append("text")
-        .attr("x", "5.05em")
-        .attr("y", "4.2em")
-        .attr("text-anchor", "middle")
-        .style("font-size", "1em")
-        .style("fill", "black")
-        .text("Tutorial");
 
 var holdershift = d3.select("#motifchart3")
       .append("svg")
@@ -289,7 +248,6 @@ holdershift.append("text")
     .attr("x", "5.4em")
     .attr("y", "1.3em")
     .style("fill", "black")
-    //.style("font-size", "1.1em")
     .attr("dy", ".35em")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
@@ -358,5 +316,47 @@ holdershift.append("text")
     .attr("text-anchor", "middle")
     .style("pointer-events", "none")
     .text(wordvenn)
+
+var holderjb = d3.select("#motifchart3")
+      .append("svg")
+      .attr("width", "11em")    
+      .attr("height", "8em")
+      .attr("class", "threechosen");
+holderjb.append("a")
+        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/Help.php";})
+        .attr("target", "blank")
+        .append("rect")
+        .attr("x", "0.1em")
+        .attr("y", "0em")
+        .attr("height", "2.5em")
+        .attr("width", "10em")
+        .style("fill", "lightblue")
+        .attr("rx", "0.3em")
+        .attr("ry", "0.3em");
+holderjb.append("text")
+        .attr("x", "5.05em")
+        .attr("y", "1.65em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "1em")
+        .style("fill", "black")
+        .text("Help");
+holderjb.append("a")
+        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/tutorial.php";})
+        .attr("target", "blank")
+        .append("rect")
+        .attr("x", "0.1em")
+        .attr("y", "2.7em")
+        .attr("height", "2.5em")
+        .attr("width", "10em")
+        .style("fill", "lightblue")
+        .attr("rx", "0.3em")
+        .attr("ry", "0.3em");
+holderjb.append("text")
+        .attr("x", "5.05em")
+        .attr("y", "4.2em")
+        .attr("text-anchor", "middle")
+        .style("font-size", "1em")
+        .style("fill", "black")
+        .text("Tutorial");
 
 };
