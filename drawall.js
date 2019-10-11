@@ -114,9 +114,9 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 .data(data)
 .enter()
 .append("path")
-.attr("class", function(d) { return "dot " + d.antibody + " " + d.cell_line + " " + d.cmotifname.replace("::", "");})
+.attr("class", function(d) { return "dot " + d.antibody + " " + d.cell_line;})
 .attr("id", function(d) { return "dot_" + d.exp_ID;})
-.attr("data-target", function(d) { return d.antibody + " " + d.cell_line + " " + d.cmotifname.replace("::", "");})
+.attr("data-target", function(d) { return d.antibody + " " + d.cell_line;})
 .attr("transform", function(d) { return "translate(" + xScale(d[argx]) + "," + yScale(d[argy]) + ")"; })
 .attr("d", d3.svg.symbol().type( function(d) {
 	if(d.factor_type == "Cofactor"){

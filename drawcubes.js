@@ -23,18 +23,8 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
         		        return d3.ascending(x.key, y.key);
 	        	});
         	}
-	} else {
-		if (howtosort == "data") {
-			var sorteddata = consensusCount.sort(function(x,y){
-				return d3.descending(x.values[0].values, y.values[0].values);
-			});
-		} else {
-			var sorteddata = consensusCount.sort(function(x,y){
-				return d3.ascending(x.key, y.key);
-			});
-		}
 	}
-
+ 
 	// add the graph canvas to the body of the webpage
 	  var svg = d3.select("#motifchart2").append("svg")
 	    .attr("width", 200 )
@@ -61,15 +51,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 	      .attr("class", function(d) { return "legend " + isitnew;})
 	      .attr("data-targets", function(d) { return d.key;})
 	      .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
-	} else {
-	  var legend = svg.selectAll(".legend")
-                       .data(consensusCount)
-                       .enter().append("g")
-                       .attr("class", function(d) { return "legend " + isitnew;})
-                       .attr("data-targets", function(d) { return d.key.replace("::", "");})
-                       .attr("transform", function(d, i) { return "translate( 40," + i * 25 + ")"; });
-	}
-
+	} 
 	  //add cube
 	legend.append("rect")
 		.attr("x", 0 /*width - 1300*/)
@@ -87,7 +69,7 @@ function DrawAllShizCubes(howtosort,isitnew,motiveOrCelline){
 	      .attr("y", 9)
 	      .attr("dy", ".35em")
 	      .style("text-anchor", "end")
-	      .text(function(d) { return d.values[0].values+ " " + d.key.replace("mot_", "");})
+	      .text(function(d) { return d.values[0].values+ " " + d.key;})
 	      .style("pointer-events", "none");
 };
 

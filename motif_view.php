@@ -32,7 +32,7 @@ s3.avg_avg,
 s3.avg_elem,
 antibody.is_it_cofactor AS factor_type,
 antibody.colour_hex,
-concat('mot_',IFNULL(s2.name, 'Cofactor')) AS cmotifname
+s2.name AS cmotifname
 FROM 
 average_deviation
 LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id 
@@ -198,12 +198,6 @@ var antiagentCount2 = d3.nest()
   .key(function(d) { return "#444666"; })
   .entries(data);
 
-var consensusCount = d3.nest()
-  .key(function(d) {return d.cmotifname;})
-  .rollup(function(r) {return r.length;})
-  .key(function(d) {return "#444666";})
-  .entries(data);
-
 /* 
  * value accessor - returns the value to encode for a given data object.
  * scale - maps value to a visual display encoding, such as a pixel position.
@@ -240,7 +234,7 @@ var formminelem = getAllUrlParams().mnelem;
 var formmaxelem = getAllUrlParams().mxelem;
 var formmotive = <?php echo '"'. $motivePart . '"'; ?>;
 DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
-DrawAllShizCubes("data", "notnew", "cons");
+DrawAllShizCubes("data", "notnew", "motive");
 $(".dot").hide(); // This will be the solution, when I would done.
 $("." + motive.replace("::","")).show();
 $("[data-targets='"+motive.replace("::","")+"']").toggleClass("selected");

@@ -54,17 +54,6 @@ function update_nonalphabet_cell() {
     d3.selectAll("#motifchart2 svg", "new").remove();
     DrawAllShizCubes("data", "new", "cell");
 };
-
-function update_alphabet_motif() {
-    d3.selectAll("#motifchart2 svg").remove();
-    DrawAllShizCubes("sorteddata", "new", "cons");
-};
-
-function update_count_motif() {
-    d3.selectAll("#motifchart2 svg").remove();
-    DrawAllShizCubes("data", "new", "cons");
-};
-
 //some lazy jquery to fde out some of the legends
 
 $(document).ready(function(){
