@@ -31,15 +31,13 @@ s3.avgstd_dev,
 s3.avg_avg,
 s3.avg_elem,
 antibody.is_it_cofactor AS factor_type,
-antibody.colour_hex,
-s2.name AS cmotifname
+antibody.colour_hex
 FROM 
 average_deviation
 LEFT JOIN experiment ON experiment.experiment_id = average_deviation.experiment_experiment_id 
 LEFT JOIN antibody ON experiment.antibody_antibody_id = antibody.antibody_id 
 LEFT JOIN consensus_motif ON average_deviation.consensus_motif_motif_id = consensus_motif.motif_id 
 LEFT JOIN cell_lines ON experiment.cell_lines_cellline_id = cell_lines.cellline_id 
-LEFT JOIN (SELECT antibody_antibody_id, name from anti2cons LEFT JOIN consensus_motif ON consensus_motif_motif_id = motif_id) AS s2 ON s2.antibody_antibody_id = antibody.antibody_id
 LEFT JOIN (SELECT  experiment.antibody_antibody_id, avg(std_dev) as avgstd_dev, avg(average) AS avg_avg, avg(element_num) AS avg_elem 
            FROM average_deviation 
            LEFT JOIN experiment on experiment.experiment_id = average_deviation.experiment_experiment_id 
@@ -63,12 +61,15 @@ WHERE
 $sql2 = "SELECT motif_id 
 FROM consensus_motif WHERE name LIKE $motiveName";
 
+$sql3 = "SELECT antibody.name FROM anti2cons LEFT JOIN antibody ON antibody_id = antibody_antibody_id LEFT JOIN consensus_motif ON consensus_motif_motif_id = motif_id WHERE consensus_motif.name = $motiveName";
+
 $sql6 = "SELECT name, motif_id 
 FROM consensus_motif";
 
 
-$result = $conn->query($sql);
+$result  = $conn->query($sql);
 $result2 = $conn->query($sql2);
+$result3 = $conn->query($sql3);
 $result6 = $conn->query($sql6);
 
 $jsonData = array();
@@ -90,6 +91,11 @@ while($r2 = mysqli_fetch_assoc($result2)) {
 
 while($ew6 = mysqli_fetch_assoc($result6)) {
     $jsonData6[] = $ew6;}
+
+$directbind = array();
+while($r = mysqli_fetch_array($result3)){
+  array_push($directbind, $r[0]);
+}
 
 $conn->close();
 
@@ -198,6 +204,7 @@ var antiagentCount2 = d3.nest()
   .key(function(d) { return "#444666"; })
   .entries(data);
 
+var directbinding = <?php echo( json_encode($directbind)); ?>;
 /* 
  * value accessor - returns the value to encode for a given data object.
  * scale - maps value to a visual display encoding, such as a pixel position.
@@ -236,8 +243,11 @@ var formmotive = <?php echo '"'. $motivePart . '"'; ?>;
 DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
 DrawAllShizCubes("data", "notnew", "motive");
 $(".dot").hide(); // This will be the solution, when I would done.
-$("." + motive.replace("::","")).show();
-$("[data-targets='"+motive.replace("::","")+"']").toggleClass("selected");
+for(var i = 0; i < directbinding.length; i++){
+  var cssclass = directbinding[i];
+  $("." + cssclass).show();
+  $("[data-targets='" + cssclass + "']").toggleClass("selected");
+}
 choosethree("Not yet selected");
 
 // this will count the cubes in chart2 so it wont be too long or short

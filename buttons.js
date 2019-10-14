@@ -61,12 +61,20 @@ $(document).ready(function(){
         $(".dot").fadeOut("slow");
         $(".legend").removeClass("selected");
     });
-});
 
-$(document).ready(function(){
     $("#yesdotz").click(function(){
         $(".dot").fadeIn("slow");
         $(".legend").addClass("selected");
+    });
+
+    $("#onlydb").click(function(){
+        $(".dot").hide();
+        $(".legend").removeClass("selected");
+        for(var i = 0; i < directbinding.length; i++){
+            var cssclass = directbinding[i];
+            $("." + cssclass).show();
+            $("[data-targets='" + cssclass + "']").toggleClass("selected");
+        }
     });
 });
 
