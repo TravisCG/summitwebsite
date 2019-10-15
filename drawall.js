@@ -124,7 +124,7 @@ var yValue = function(d) { return d[argy]; }, // data -> value (this is acsi mag
 	}
                 else {
             return "circle";
-        }}).size(180))
+        }}).size(80))
   .style("fill", function(d) { return d.colour_hex;})
   .style("opacity", function(d) {
         if(d.factor_type == "Cofactor"){
@@ -150,8 +150,8 @@ tooltip.transition()
 		+ "<br/> element number: " + d.element_num 
 		+ "<br/> standard deviation: " + d.std_dev 
 		+ ")")
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
+               .style("left", (d3.event.pageX - 45) + "px")
+               .style("top", (d3.event.pageY - 300) + "px")
                //.style("transition: opacity 
 
 
@@ -168,8 +168,8 @@ tooltip.transition()
                 + "<br/> element number: " + d.element_num
                 + "<br/> standard deviation: " + d.std_dev
                 + ")")
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
+               .style("left", (d3.event.pageX - 45) + "px")
+               .style("top", (d3.event.pageY - 300) + "px")
 
 }
 

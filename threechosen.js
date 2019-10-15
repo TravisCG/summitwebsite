@@ -62,7 +62,6 @@ var svgthree = d3.select("#motifchart3").append("text")
 .attr("class", "threechosen");
 
 
-
 var widththree = "15em";
 var heightthree = "4em";
 var wordshift = "to paired shifts";
@@ -331,6 +330,7 @@ holderjb.append("a")
         .attr("height", "2.5em")
         .attr("width", "10em")
         .style("fill", "lightblue")
+        .style("stroke", "blue")
         .attr("rx", "0.3em")
         .attr("ry", "0.3em");
 holderjb.append("text")
@@ -339,6 +339,7 @@ holderjb.append("text")
         .attr("text-anchor", "middle")
         .style("font-size", "1em")
         .style("fill", "black")
+        .style("pointer-events", "none")
         .text("Help");
 holderjb.append("a")
         .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/tutorial.php";})
@@ -349,6 +350,7 @@ holderjb.append("a")
         .attr("height", "2.5em")
         .attr("width", "10em")
         .style("fill", "lightblue")
+        .style("stroke", "blue")
         .attr("rx", "0.3em")
         .attr("ry", "0.3em");
 holderjb.append("text")
@@ -357,6 +359,7 @@ holderjb.append("text")
         .attr("text-anchor", "middle")
         .style("font-size", "1em")
         .style("fill", "black")
+        .style("pointer-events", "none")
         .text("Tutorial");
 
 };

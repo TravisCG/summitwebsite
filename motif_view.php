@@ -125,26 +125,11 @@ $conn->close();
 </script>
 </head>
 <body>
-<div class="bootstraptooltip" id="scattertooltip">
-Every dot on the scatterplot represent one ChIP-seq experiment. The dots are colored according to the type of target protein. X axis: A point are placed according to the average position of summits of the experiment relative to the motif centers. The Y axis is adjustable, you can choose to display the number of summit-motif overlaps or the standard deviation of summit positions (with buttons below ”Set Y value”). If you hover the cursor on a given dot, a tool-tip will appear, which gives information about the ChIP-seq experiment, including the name of the experiment, cell type, target protein, and quantified information about summit positions (average/median distance, standard deviation of distances, and overlap number). You can click on experiments (maximum 3) to investigate them in other views or download their corresponding data. The selected experiments are listed below the scatterplot.
-</div>
-<div class="bootstraptooltip" id="yaxistooltip">
-The Y axis is adjustable, you can choose to display the element number or the standard deviation of summit positions (with buttons below ”Set Y value”).  Element number means the number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set.
-</div>
-<div class="bootstraptooltip" id="xaxistooltip">
-The dots are placed depending on the relation between the positioning information and the adjusted motif center. The X axis represents the distance from the center of the adjusted JASPAR CORE motif which can be seen on the right bottom corner of scatterplot. The “0” point is the middle base pair of the motif.   The distance is measured in base pairs.
-</div>
-<div class="bootstraptooltip" id="threetooltip">
-If you click on maximum 3 points on scatterplot, information about the corresponding ChIP-seq experiments will appear. This information consists of the cell type origin, the antibody name and the element number (The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set). If you click on these information boxes, you will be navigated to the Experiment view. You can read detail about the selected experiments in this view.  The selected experiments can be investigated in other views, if you click on the appearing boxes under the scatterplot. The selections can be vanished with „Clear all  selected” button. 
-</div>
 <div class="bootstraptooltip" id="motiftooltip">
 Select a motif from the dropdown box and click on the ”Refresh Page” button. After updating the page, you can invetigate the occupying proteins on the instances of the adjusted transcription factor motif.
 </div>
 <div class="bootstraptooltip" id="settingtooltip">
 These settings can filter the displayed data. You can set the minimum and maximum standard deviation and/or element number. After updating the page with “Refresh Page” button, the experiments with out of range values will be vanished from scatterplot.
-</div>
-<div class="bootstraptooltip" id="cleartooltip">
-If you want to modify the list of selected experiments, you can vanish it with this button.
 </div>
 <div class="bootstraptooltip" id="antisort1tooltip">
 Sort the antibodies according to their names (alphabetically)
@@ -169,12 +154,29 @@ echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 </div>
 
 <div id="motifchart1">
+<div class="bootstraptooltip" id="scattertooltip">
+Every dot on the scatterplot represent one ChIP-seq experiment. The dots are colored according to the type of target protein. X axis: A point are placed according to the average position of summits of the experiment relative to the motif centers. The Y axis is adjustable, you can choose to display the number of summit-motif overlaps or the standard deviation of summit positions (with buttons below ”Set Y value”). If you hover the cursor on a given dot, a tool-tip will appear, which gives information about the ChIP-seq experiment, including the name of the experiment, cell type, target protein, and quantified information about summit positions (average/median distance, standard deviation of distances, and overlap number). You can click on experiments (maximum 3) to investigate them in other views or download their corresponding data. The selected experiments are listed below the scatterplot.
+</div>
+<div class="bootstraptooltip" id="yaxistooltip">
+The Y axis is adjustable, you can choose to display the element number or the standard deviation of summit positions (with buttons below ”Set Y value”).  Element number means the number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set.
+</div>
+<div class="bootstraptooltip" id="xaxistooltip">
+The dots are placed depending on the relation between the positioning information and the adjusted motif center. The X axis represents the distance from the center of the adjusted JASPAR CORE motif which can be seen on the right bottom corner of scatterplot. The “0” point is the middle base pair of the motif.   The distance is measured in base pairs.
+</div>
+
 <img src="images/info.png" class="infobutton" id="canvashelp" />
 </div>
 <div id="motifchart2">
 <img src="images/info.png" class="infobutton" id="categoryhelp" />
 </div>
-<div id="motifchart3"></div>
+<div id="motifchart3">
+  <div class="bootstraptooltip" id="threetooltip">
+  If you click on maximum 3 points on scatterplot, information about the corresponding ChIP-seq experiments will appear. This information consists of the cell type origin, the antibody name and the element number (The number of peak regions obtained in a ChIP-seq experiment, which overlap with a particular consensus motif binding site set). If you click on these information boxes, you will be navigated to the Experiment view. You can read detail about the selected experiments in this view.  The selected experiments can be investigated in other views, if you click on the appearing boxes under the scatterplot. The selections can be vanished with „Clear all  selected” button. 
+  </div>
+  <div class="bootstraptooltip" id="cleartooltip">
+  If you want to modify the list of selected experiments, you can vanish it with this button.
+  </div>
+</div>
 
 <div name="chart4"  id="motifchart4">
 <p>Position weight matrix for selected motif.</p>
