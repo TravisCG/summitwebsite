@@ -66,8 +66,9 @@ div {
 }
 
 #topbuttons {
-  float: right;
-  margin-right: 5%;
+  float: none;
+  margin: auto;
+  width: 36em;
 }
 
 #categoryhelp {
@@ -145,3 +146,4 @@ div {
   top: 120em;
   left: 70%;
 }
+

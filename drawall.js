@@ -152,6 +152,7 @@ tooltip.transition()
 		+ ")")
                .style("left", (d3.event.pageX - 45) + "px")
                .style("top", (d3.event.pageY - 300) + "px")
+               .style("z-index", "20")
                //.style("transition: opacity 
 
 
@@ -170,6 +171,7 @@ tooltip.transition()
                 + ")")
                .style("left", (d3.event.pageX - 45) + "px")
                .style("top", (d3.event.pageY - 300) + "px")
+               .style("z-index", "20")
 
 }
 

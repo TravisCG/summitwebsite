@@ -148,9 +148,9 @@ echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 ?>
 
 <div id="topbuttons">
-<button id="nodotz" title="Mask all dots out from scatterplot"> Hide all scatter</button>
-<button id="yesdotz" title="Restore all dots to the scatterplot">Show all scatter</button>
-<button id="onlydb">Only direct binding</button>
+<button id="nodotz" title="Mask all dots out from scatterplot"><p> Hide all scatter</p></button>
+<button id="yesdotz" title="Restore all dots to the scatterplot"><p>Show all scatter</p></button>
+<button id="onlydb"><p>Only direct binding</p></button>
 </div>
 
 <div id="motifchart1">
@@ -244,12 +244,7 @@ var formmaxelem = getAllUrlParams().mxelem;
 var formmotive = <?php echo '"'. $motivePart . '"'; ?>;
 DrawAllShizStand_dev("std_dev", "average", "Standard deviation of positions", nameOfX);
 DrawAllShizCubes("data", "notnew", "motive");
-$(".dot").hide(); // This will be the solution, when I would done.
-for(var i = 0; i < directbinding.length; i++){
-  var cssclass = directbinding[i];
-  $("." + cssclass).show();
-  $("[data-targets='" + cssclass + "']").toggleClass("selected");
-}
+$(".legend").addClass("selected");
 choosethree("Not yet selected");
 
 // this will count the cubes in chart2 so it wont be too long or short
