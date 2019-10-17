@@ -149,7 +149,7 @@ echo " <h4>Consensus motif: ". $motivePart . " </h4>"
 
 <div id="topbuttons">
 <button id="nodotz" title="Mask all dots out from scatterplot"><p> Hide all scatter</p></button>
-<button id="yesdotz" title="Restore all dots to the scatterplot"><p>Show all scatter</p></button>
+<button id="yesdotz" class="clicked" title="Restore all dots to the scatterplot"><p>Show all scatter</p></button>
 <button id="onlydb"><p>Only direct binding</p></button>
 </div>
 
@@ -353,6 +353,7 @@ $(document).ready(function(){
    $(".legend").click(function(event){
       $('.'+  $(this).data('targets')).fadeToggle("slow");
       $(this).toggleClass("selected");
+      $(".clicked").removeClass("clicked");
    });
    $("#canvashelp").click(function(event){
       $("#scattertooltip").toggle();

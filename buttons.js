@@ -60,16 +60,22 @@ $(document).ready(function(){
     $("#nodotz").click(function(){
         $(".dot").fadeOut("slow");
         $(".legend").removeClass("selected");
+        $(".clicked").removeClass("clicked");
+        $(this).addClass("clicked");
     });
 
     $("#yesdotz").click(function(){
         $(".dot").fadeIn("slow");
         $(".legend").addClass("selected");
+        $(".clicked").removeClass("clicked");
+        $(this).addClass("clicked");
     });
 
     $("#onlydb").click(function(){
         $(".dot").hide();
         $(".legend").removeClass("selected");
+        $(".clicked").removeClass("clicked");
+        $(this).addClass("clicked");
         for(var i = 0; i < directbinding.length; i++){
             var cssclass = directbinding[i];
             $("." + cssclass).show();
