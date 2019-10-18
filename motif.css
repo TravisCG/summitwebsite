@@ -125,6 +125,7 @@ div {
 #motiftooltip {
   top: 90em;
   left: 5%;
+  z-index: 20;
 }
 
 #settingtooltip {

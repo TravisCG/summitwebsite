@@ -23,8 +23,8 @@ function doSearchShift(wname, suffix) {
     var firstexp1 = parseInt(document.getElementById("formexp1" + suffix).value) || "undefined";
     var secondexp2 = parseInt(document.getElementById("formexp2" + suffix).value) || "undefined";
     var thirdexp3 = parseInt(document.getElementById("formexp3" + suffix).value) || "undefined";
-    var limit = parseInt(document.getElementById("limit").value) || 30;
-    var low_limit = parseInt(document.getElementById("low_limit").value) || -30;
+    var limit = parseInt(document.getElementById("limit").value) || 40;
+    var low_limit = parseInt(document.getElementById("low_limit").value) || -40;
     var minelem = parseInt(document.getElementById("min_field")[0].value) || 25;
 
     //making the input a bit more idiot proof remember to update this link when it goes to a new place

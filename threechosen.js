@@ -230,7 +230,7 @@ var holdershift = d3.select("#motifchart3")
 // draw a button for the shift views
 holdershift.append("a")
     .attr("xlink:href", function(d) { 
-return "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id +"&limit=30&low_limit=-30&formminid=" + formminid + "&formmaxid=" + formmaxid + "&mnelem=" + formminelem + "&formmaxelem=" + formmaxelem;})
+return "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id +"&limit=40&low_limit=-40&formminid=" + formminid + "&formmaxid=" + formmaxid + "&mnelem=" + formminelem + "&formmaxelem=" + formmaxelem;})
     .attr("target", "blank")
     .append("rect")  
     .attr("x", "0.1em")
