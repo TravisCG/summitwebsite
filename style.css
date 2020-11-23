@@ -10,6 +10,15 @@ a.visible {
   display: block;
 }
 
+a.bright {
+color:#000cff;
+font-weight: bold;
+}
+
+a.bright:hover {
+text-decoration: underline;
+}
+
 body {
  background-color: #DDDBF1;
 }
@@ -30,9 +39,9 @@ body {
   display: block;
   clear: both;
   width: 90%;
-  height: 75px;
+  height: 6em;
   margin-left: 5%;
-  background-color: #3C4F76;
+  background-color: #CCDBF1;
   margin-right: 5%;
 }
 

@@ -14,7 +14,7 @@
   gtag('config', 'UA-121648705-1');
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="ChipSEQsummitdb, chipseq, summitdb, summit, bioinformatics, genome, ChIP-seq database">
+<meta name="keywords" content="ChipSEQsummitdb, chipseq, summitdb, ChIP-seq peak summit, ChIP-seq database, transcription factor, consensus motif, motif database, transcription factor complex">
 <title>Welcome to SummitDB</title>
 <link href="favicon.png" rel="icon"  type="image/png" />
 <link href="style.css" rel="stylesheet" type="text/css" />
@@ -82,6 +82,13 @@ function showSlides() {
 </script>
 
 <div>
+<h3><u>Citing ChIPSummitDB</u></h3>
+<p><u>The manuscript describing this database can be found by following these links:</u></p>
+<p> <a class="bright" target="_blank" href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2940-7">Motif oriented high-resolution analysis of ChIP-seq data reveals the topological order of CTCF and cohesin proteins on DNA</a>
+G Nagy, E Czipa, L Steiner, T Nagy, S Pongor, L Nagy… - BMC genomics, 2016</p>
+<p><a target="_blank" class="bright"  href="https://academic.oup.com/database/article/doi/10.1093/database/baz141/5700342">ChIPSummitDB: A ChIP-seq-based database of human transcription factor binding sites and the topological arrangements of the proteins bound to them.</a> E Czipa, M Schiller, T Nagy, L Kontra, L Steiner, J Koller, O Palne-Szen, E Barta - Database, 2020</p>
+
+
 <h3>About ChIPSummitDB</h3>
 <p>
 ChIPSummitDB is a comprehensive database of transcription factor binding sites verified by human ChIP-seq experiments and the distances (positions) of the binding sites relative to the peak summits defined by the ChIP-seq reads.
@@ -101,11 +108,6 @@ The database can predict the topological relationships of different proteins at 
 <h3>Data download</h3>
 <p>Different peak sets can be downloaded in “bedfile” format.</p>
 
-<h3>Citing ChIPSummitDB</h3>
-<p>The manuscript describing this database can be found by following these links.</p>
-<p> <a target="_blank" href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2940-7">Motif oriented high-resolution analysis of ChIP-seq data reveals the topological order of CTCF and cohesin proteins on DNA</a>
-G Nagy, E Czipa, L Steiner, T Nagy, S Pongor, L Nagy… - BMC genomics, 2016</p>
-<p><a target="_blank" href="https://academic.oup.com/database/article/doi/10.1093/database/baz141/5700342">ChIPSummitDB: A ChIP-seq-based database of human transcription factor binding sites and the topological arrangements of the proteins bound to them.</a> E Czipa, M Schiller, T Nagy, L Kontra, L Steiner, J Koller, O Palne-Szen, E Barta - Database, 2020</p>
 
 <h3>Details about the views in ChIPSummitDB</h3>
 
