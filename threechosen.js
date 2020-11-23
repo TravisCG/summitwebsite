@@ -229,7 +229,7 @@ var holdershift = d3.select("#motifchart3")
       .attr("class", "threechosen");
 // draw a button for the shift views
 holdershift.append("a")
-    .attr("xlink:href", function(d) { 
+    .attr("xlink:href", function(d) {
 return "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id +"&limit=40&low_limit=-40&formminid=" + formminid + "&formmaxid=" + formmaxid + "&mnelem=" + formminelem + "&formmaxelem=" + formmaxelem;})
     .attr("target", "blank")
     .append("rect")  
@@ -240,7 +240,8 @@ return "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  fir
     .style("stroke", "blue")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
-    .attr("ry", "0.3em");
+    .attr("ry", "0.3em")
+    .on("click", function(d){if(firstIndexjbrowse == "not_yet_selected"){alert("You need to select at least two experiments in order to get visible results")}});
 
 // draw text on the screen
 holdershift.append("text")
@@ -303,7 +304,12 @@ return "http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" +  firstIn
     .style("stroke", "blue")
     .style("fill", "lightblue")
     .attr("rx", "0.3em")
-    .attr("ry", "0.3em");
+    .attr("ry", "0.3em")
+    .on("click", function(d){
+       if(firstIndexjbrowse == "not_yet_selected" || secondIndexjbrowse == "not_yet_selected") {
+          alert("You need to choose at least two experiments in order to get results")
+       }
+    });
 
 // draw text on the screen
 holdershift.append("text")
