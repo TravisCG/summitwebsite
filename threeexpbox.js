@@ -1,7 +1,7 @@
     //makes the three jump to experiment view buttons work
     function jumptoexp(expelement) {
         var expID = parseInt(document.getElementById(expelement).value) || "undefined";
-        var adresshift = "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(expID);
+        var adresshift = "https://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + encodeURIComponent(expID);
         window.open(adresshift, '_blank');
     }
 

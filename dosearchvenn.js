@@ -17,7 +17,7 @@ function doSearchVenn() {
     //the motif will be in the venn page
     //making the input a bit more idiot proof remember to update this link when it goes to a new place
 
-    window.location = "http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" + encodeURIComponent(formexp1v) + "&exp2=" + encodeURIComponent(formexp2v) + "&exp3=" + encodeURIComponent(formexp3v) +"&motive=" + motive +"&motifid=" + encodeURIComponent(formmotivev) + "&mnelem=" + encodeURIComponent(forminelem)
+    window.location = "https://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" + encodeURIComponent(formexp1v) + "&exp2=" + encodeURIComponent(formexp2v) + "&exp3=" + encodeURIComponent(formexp3v) +"&motive=" + motive +"&motifid=" + encodeURIComponent(formmotivev) + "&mnelem=" + encodeURIComponent(forminelem)
 
     return false; // not entirely necessary, but just in case
 };
@@ -41,7 +41,7 @@ function doSearchVenn2() {
     //the motif will be in the venn page
     //making the input a bit more idiot proof remember to update this link when it goes to a new place
 
-    window.location = "http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" + encodeURIComponent(formexp1v2) + "&exp2=" + encodeURIComponent(formexp2v2) + "&exp3=" + encodeURIComponent(formexp3v2) +"&motive=" + motive2 +"&motifid=" + encodeURIComponent(formmotivev2) + "&mnelem=" + encodeURIComponent(forminelem)
+    window.location = "https://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" + encodeURIComponent(formexp1v2) + "&exp2=" + encodeURIComponent(formexp2v2) + "&exp3=" + encodeURIComponent(formexp3v2) +"&motive=" + motive2 +"&motifid=" + encodeURIComponent(formmotivev2) + "&mnelem=" + encodeURIComponent(forminelem)
 
     return false; // not entirely necessary, but just in case
 };
@@ -70,7 +70,7 @@ function doSearchpreVenn() {
     //the motif will be in the venn page
     //making the input a bit more idiot proof remember to update this link when it goes to a new place
 
-    adressvenn = "http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" + encodeURIComponent(formexp1v) + "&exp2=" + encodeURIComponent(formexp2v) + "&exp3=" + encodeURIComponent(formexp3v) + "&motive=" + motive + "&motifid=" + encodeURIComponent(formmotivev)  + "&mnelem=" + encodeURIComponent(forminelem)
+    adressvenn = "https://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" + encodeURIComponent(formexp1v) + "&exp2=" + encodeURIComponent(formexp2v) + "&exp3=" + encodeURIComponent(formexp3v) + "&motive=" + motive + "&motifid=" + encodeURIComponent(formmotivev)  + "&mnelem=" + encodeURIComponent(forminelem)
     window.open(adressvenn, '_blank');
     return false; // not entirely necessary, but just in case
 

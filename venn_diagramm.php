@@ -59,7 +59,7 @@ $link_base = "<a href=\"intersect_dist.php?exp1=" . $exp1Name . "&exp2=" . $exp2
 <link rel="stylesheet" type="text/css" href="master.css" />
 <link rel="stylesheet" type="text/css" href="venn_diagramm.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="threeexpbox.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -155,11 +155,11 @@ Download genomic data of last selected experiment in BED format.
     <?php echo "<img src=\"./logos/" . $motifText . ".jpg\" alt=\"No picture available!\" > " ?>
   </div>
   The following buttons will navigate you to different views of currently plotted data.<br />
-  <a target="_blank" href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=<?php echo $motifText;?>">
+  <a target="_blank" href="https://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=<?php echo $motifText;?>">
   <button class="paired_button" onclick="">MotifView</button>
   </a>
 
-  <a target="_blank" href="http://summit.med.unideb.hu/jbrowse/index.html?loc=chr10%3A46391892..47806389&tracks=DNA%2Cucsc-known-genes%2Cmot-<?php echo $motifPart;?>%2Cexp-<?php echo $exp1Name;?>%2Cexp-<?php echo $exp2Name;?>%2Cexp-<?php echo $exp3Name;?>&highlight=">
+  <a target="_blank" href="https://summit.med.unideb.hu/jbrowse/index.html?loc=chr10%3A46391892..47806389&tracks=DNA%2Cucsc-known-genes%2Cmot-<?php echo $motifPart;?>%2Cexp-<?php echo $exp1Name;?>%2Cexp-<?php echo $exp2Name;?>%2Cexp-<?php echo $exp3Name;?>&highlight=">
   <button class="paired_button" onclick="">GenomeView</button>
   </a>
   <button class="paired_button" onclick="doSearchShift('_blank', '')">View data in PairedShiftView</button>
@@ -232,7 +232,7 @@ function vennBed() {
     var secondexp2   = parseInt(document.getElementById("formexp2").value) || "undefined";
     var thirdexp3    = parseInt(document.getElementById("formexp3").value) || "undefined";
 
-    window.location = "http://summit.med.unideb.hu/summitdb/venn_downloads.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive);
+    window.location = "https://summit.med.unideb.hu/summitdb/venn_downloads.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive);
 };
 
 </script>

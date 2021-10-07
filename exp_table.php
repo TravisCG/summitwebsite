@@ -67,7 +67,7 @@ $conn->close();
     <td id="antiBod"><?php echo $jsonData[0]["antibody"];?></td>
     <td><?php 
   if($count > 0){
-    echo '<a href="' . 'http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=' . $jsonData[0]["antibody"] . '" id="motview" target="_blank">link to motif view if antibody and consensus motif is the same</a>';
+    echo '<a href="' . 'https://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=' . $jsonData[0]["antibody"] . '" id="motview" target="_blank">link to motif view if antibody and consensus motif is the same</a>';
   } else {
     echo '';
   }
@@ -94,7 +94,7 @@ $conn->close();
   </tr>
   <tr>
     <td>Genome view</td>
-    <td><a href="http://summit.med.unideb.hu/jbrowse/?loc=chr11%3A8937800..115533288&tracks=DNA%2Cucsc-known-genes%2Cexp-<?php echo $expID;?>" target="_blank">link</a></td>
+    <td><a href="https://summit.med.unideb.hu/jbrowse/?loc=chr11%3A8937800..115533288&tracks=DNA%2Cucsc-known-genes%2Cexp-<?php echo $expID;?>" target="_blank">link</a></td>
   </tr>
 
 </table> 
@@ -111,7 +111,7 @@ $conn->close();
 <?php
   foreach($overlapmotifs as $motif){
     echo "<tr>\n";
-    echo "<td><a href=\"http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" . $motif[0] . "\" target=\"_blank\">" . $motif[0] . "</a></td>";
+    echo "<td><a href=\"https://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive=" . $motif[0] . "\" target=\"_blank\">" . $motif[0] . "</a></td>";
     echo "<td>" . $motif[1] . "</td>\n";
     echo "</tr>\n";
   }

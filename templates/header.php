@@ -5,7 +5,7 @@ function show_full_navigation(){
 <div class="container_16">
 <!--topdiv -->
 <a href="https://www.edu.unideb.hu/"><img src="images/University_logo.png" alt="SummitDB"  title="SummitDB" class="logo"/></a>
-<a href="http://summit.med.unideb.hu/summitdb/"><img src="images/logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/></a>
+<a href="https://summit.med.unideb.hu/summitdb/"><img src="images/logo.gif" alt="SummitDB"  title="SummitDB" class="logomid"/></a>
 <a href="http://www.naik.hu/en/"><img src="images/naik-logo.png" alt="SummitDB"  title="SummitDB" class="logo2"/></a>
 </div>                                               
 
@@ -19,7 +19,7 @@ function show_full_navigation(){
       <li><button id="vennbut" class="navbutton" onclick="dochange('venn_diagramm.php?exp1=16&exp2=19&exp3=4&motive=CTCF&motifid=32&mnelem=1000')">VennView</button></li>
       <li><button id="exbut" class="navbutton" onclick="dochange('experiment_preview.php')">ExperimentView</button></li>
       <li><button id="snpbut" class="navbutton" onclick="dochange('dbsnp.php')">dbSNPView</button></li>
-      <a style="padding:0px;" href="http://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">GenomeView</button></li></a>
+      <a style="padding:0px;" href="https://summit.med.unideb.hu/jbrowse" target="_blank"><li><button id="jbrbut">GenomeView</button></li></a>
     </ul></li>
     <li><button id="docbut" class="navbutton" onclick="dochange('Documentation.php')" >Documentation</button></li>
     <li><button id="helbut" class="navbutton" onclick="dochange('Help.php')">Help</button></li>

@@ -9,7 +9,7 @@ function doSearch(wname) {
 
     //making the input a bit more idiot proof remember to update this link when it goes to a new place
 
-    var address = "http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=" + encodeURIComponent(max) + "&minid=" + encodeURIComponent(min) + "&mnelem=" + encodeURIComponent(minelem) + "&mxelem=" + encodeURIComponent(maxelem) +"&motive=" + encodeURIComponent(motive);
+    var address = "https://summit.med.unideb.hu/summitdb/motif_view.php?maxid=" + encodeURIComponent(max) + "&minid=" + encodeURIComponent(min) + "&mnelem=" + encodeURIComponent(minelem) + "&mxelem=" + encodeURIComponent(maxelem) +"&motive=" + encodeURIComponent(motive);
 
     window.open(address, wname);
 
@@ -28,7 +28,7 @@ function doSearchShift(wname, suffix) {
     var minelem = parseInt(document.getElementById("min_field")[0].value) || 25;
 
     //making the input a bit more idiot proof remember to update this link when it goes to a new place
-    var address = "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive) +  "&motifid=" + encodeURIComponent(motifid) + "&limit=" + encodeURIComponent(limit) + "&low_limit=" + encodeURIComponent(low_limit)  + "&mnelem="  + encodeURIComponent(minelem);
+    var address = "https://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" + encodeURIComponent(firstexp1) + "&exp2=" + encodeURIComponent(secondexp2) + "&exp3=" + encodeURIComponent(thirdexp3)  + "&motive=" + encodeURIComponent(motive) +  "&motifid=" + encodeURIComponent(motifid) + "&limit=" + encodeURIComponent(limit) + "&low_limit=" + encodeURIComponent(low_limit)  + "&mnelem="  + encodeURIComponent(minelem);
 ;
 
     window.open(address, wname);

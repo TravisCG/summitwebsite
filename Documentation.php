@@ -17,18 +17,18 @@
 	<meta name="DocSecurity" content="0"/>
 	<meta name="HyperlinksChanged" content="false"/>
 	<meta name="LinksUpToDate" content="false"/>
-	<meta name="Mendeley Citation Style_1" content="http://www.zotero.org/styles/genome-biology"/>
+	<meta name="Mendeley Citation Style_1" content="https://www.zotero.org/styles/genome-biology"/>
 	<meta name="Mendeley Document_1" content="True"/>
-	<meta name="Mendeley Recent Style Id 0_1" content="http://www.zotero.org/styles/american-medical-association"/>
-	<meta name="Mendeley Recent Style Id 1_1" content="http://www.zotero.org/styles/apa"/>
-	<meta name="Mendeley Recent Style Id 2_1" content="http://www.zotero.org/styles/american-sociological-association"/>
-	<meta name="Mendeley Recent Style Id 3_1" content="http://www.zotero.org/styles/chicago-author-date"/>
-	<meta name="Mendeley Recent Style Id 4_1" content="http://www.zotero.org/styles/genome-biology"/>
-	<meta name="Mendeley Recent Style Id 5_1" content="http://www.zotero.org/styles/genomebiology"/>
-	<meta name="Mendeley Recent Style Id 6_1" content="http://www.zotero.org/styles/harvard1"/>
-	<meta name="Mendeley Recent Style Id 7_1" content="http://www.zotero.org/styles/ieee"/>
-	<meta name="Mendeley Recent Style Id 8_1" content="http://www.zotero.org/styles/modern-humanities-research-association"/>
-	<meta name="Mendeley Recent Style Id 9_1" content="http://www.zotero.org/styles/modern-language-association"/>
+	<meta name="Mendeley Recent Style Id 0_1" content="https://www.zotero.org/styles/american-medical-association"/>
+	<meta name="Mendeley Recent Style Id 1_1" content="https://www.zotero.org/styles/apa"/>
+	<meta name="Mendeley Recent Style Id 2_1" content="https://www.zotero.org/styles/american-sociological-association"/>
+	<meta name="Mendeley Recent Style Id 3_1" content="https://www.zotero.org/styles/chicago-author-date"/>
+	<meta name="Mendeley Recent Style Id 4_1" content="https://www.zotero.org/styles/genome-biology"/>
+	<meta name="Mendeley Recent Style Id 5_1" content="https://www.zotero.org/styles/genomebiology"/>
+	<meta name="Mendeley Recent Style Id 6_1" content="https://www.zotero.org/styles/harvard1"/>
+	<meta name="Mendeley Recent Style Id 7_1" content="https://www.zotero.org/styles/ieee"/>
+	<meta name="Mendeley Recent Style Id 8_1" content="https://www.zotero.org/styles/modern-humanities-research-association"/>
+	<meta name="Mendeley Recent Style Id 9_1" content="https://www.zotero.org/styles/modern-language-association"/>
 	<meta name="Mendeley Recent Style Name 0_1" content="American Medical Association"/>
 	<meta name="Mendeley Recent Style Name 1_1" content="American Psychological Association 6th edition"/>
 	<meta name="Mendeley Recent Style Name 2_1" content="American Sociological Association"/>

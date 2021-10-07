@@ -38,7 +38,7 @@
 
     foreach($res as $record){
       echo('<p>');
-      echo('<a href="http://summit.med.unideb.hu/summitdb/experiment_view.php?exp='.$record[0].'">'.$record[1].'</a>');
+      echo('<a href="https://summit.med.unideb.hu/summitdb/experiment_view.php?exp='.$record[0].'">'.$record[1].'</a>');
       echo("</p>\n");
     }
   ?>

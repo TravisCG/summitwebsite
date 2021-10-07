@@ -56,7 +56,7 @@
     if($snp[5] == 1){
       $classl = "overlapl";
       $classt = "overlapt";
-      $href   = "http://summit.med.unideb.hu/summitdb/dbsnp.php?dbsnp=";
+      $href   = "https://summit.med.unideb.hu/summitdb/dbsnp.php?dbsnp=";
     }
     else{
       $classl = "nonoverlapl";
@@ -74,8 +74,8 @@
     $texth = 13;
     $textbline = ($boxh - $texth) / 2;
     $params = "chr=".$motif[1]."&start=".($motif[2]-5)."&end=".($motif[3]+5)."&mv=1";
-    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/dbsnp.php?'.$params.'"><rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" class="motifrect"/></a>'."\n");
-    echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$motif[9].'" xlink:show="new"><text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" class="motiflabel">' . $motif[9] . '</text></a>'."\n");
+    echo('<a xlink:href="https://summit.med.unideb.hu/summitdb/dbsnp.php?'.$params.'"><rect x="' . $pos . '%" y="' . ($halfh - $boxh) . '" width="' . $w . '%" height="' . $boxh . '" class="motifrect"/></a>'."\n");
+    echo('<a xlink:href="https://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$motif[9].'" xlink:show="new"><text x="' . $pos . '%" y="' . ($halfh - $textbline) . '" class="motiflabel">' . $motif[9] . '</text></a>'."\n");
   }
 
   function regionView($feats, $height){
@@ -265,7 +265,7 @@
       $matrix = sql2array($conn, $sql);
       $mstart = $feats["motifs"][$i][2] + 1;
       $mend   = $feats["motifs"][$i][3] + 1;
-      echo('<a xlink:href="http://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$feats["motifs"][$i][9].'" xlink:show="new">');
+      echo('<a xlink:href="https://summit.med.unideb.hu/summitdb/motif_view.php?maxid=10000&minid=1&mnelem=100&mxelem=120000&motive='.$feats["motifs"][$i][9].'" xlink:show="new">');
       drawLogo($matrix, $i, $mstart, $mend, $regstart, $regend);
       drawMotifToolTip($mstart, $i, $regstart, $regend, $feats["motifs"][$i][9]);
       echo('</a>');

@@ -77,7 +77,7 @@ holdertwo.append("title").text("If you click on maximum 3 points on scatterplot,
 // draw a rectangle for the downloads
 holdertwo.append("a")
     .attr("xlink:href", function(d) {
-return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + firstIndexjbrowse ;})
+return "https://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + firstIndexjbrowse ;})
     .attr("target", "blank")
     .append("rect")
     .attr("x", "0.1em")
@@ -90,7 +90,7 @@ return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + firstIn
 
 holdertwo.append("a")
     .attr("xlink:href", function(d) {
-return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + secondIndexjbrowse ;})
+return "https://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + secondIndexjbrowse ;})
     .attr("target", "blank")
     .append("rect")
     .attr("x", "0.1em")
@@ -103,7 +103,7 @@ return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" + secondI
 
 holdertwo.append("a")
     .attr("xlink:href", function(d) {
-return "http://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" +  thirdIndexjbrowse;})
+return "https://summit.med.unideb.hu/summitdb/experiment_view.php?exp=" +  thirdIndexjbrowse;})
     .attr("target", "blank")
     .append("rect")
     .attr("x", "0.1em")
@@ -156,7 +156,7 @@ var holderthree = d3.select("#motifchart3")
       .attr("class", "threechosen");
 // draw a rectangle for the downloads
 holderthree.append("a")
-    .attr("xlink:href", function(d) { return "http://summit.med.unideb.hu/summitdb/downloads_BE.php?exp=" +  chosenexp  + "&motive=" + motive;})
+    .attr("xlink:href", function(d) { return "https://summit.med.unideb.hu/summitdb/downloads_BE.php?exp=" +  chosenexp  + "&motive=" + motive;})
     .append("rect")  
     .attr("x", "3.1em")
     .attr("y", "2.7em")
@@ -230,7 +230,7 @@ var holdershift = d3.select("#motifchart3")
 // draw a button for the shift views
 holdershift.append("a")
     .attr("xlink:href", function(d) {
-return "http://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id +"&limit=40&low_limit=-40&formminid=" + formminid + "&formmaxid=" + formmaxid + "&mnelem=" + formminelem + "&formmaxelem=" + formmaxelem;})
+return "https://summit.med.unideb.hu/summitdb/paired_shift_view.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id +"&limit=40&low_limit=-40&formminid=" + formminid + "&formmaxid=" + formmaxid + "&mnelem=" + formminelem + "&formmaxelem=" + formmaxelem;})
     .attr("target", "blank")
     .append("rect")  
     .attr("x", "0.1em")
@@ -268,7 +268,7 @@ if(typeof thirdAvgName === "undefined"){
   thirdAvgName = secondAvgName;
   thirdIndex = secondIndex;
 }
-return "http://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-" + motifid[0].motif_id + "," + firstAvgName + "," + secondAvgName + "," + thirdAvgName +"&addStores={\"" + firstAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + firstIndex + ".gff3\"},\"" + secondAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + secondIndex + ".gff3\"},\"" + thirdAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + thirdIndex + ".gff3\"}}&addTracks=[{\"label\":\"" + firstAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + firstAvgName + "\"},{\"label\":\"" + secondAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + secondAvgName + "\"},{\"label\":\"" + thirdAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + thirdAvgName + "\"}]";})
+return "https://summit.med.unideb.hu/jbrowse/index.html?tracks=DNA,ucsc-known-genes,mot-" + motifid[0].motif_id + "," + firstAvgName + "," + secondAvgName + "," + thirdAvgName +"&addStores={\"" + firstAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + firstIndex + ".gff3\"},\"" + secondAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + secondIndex + ".gff3\"},\"" + thirdAvgName + "\":{\"type\":\"JBrowse/Store/SeqFeature/GFF3\",\"baseUrl\":\".\",\"urlTemplate\":\"{dataRoot}/gff3/" + thirdIndex + ".gff3\"}}&addTracks=[{\"label\":\"" + firstAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + firstAvgName + "\"},{\"label\":\"" + secondAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + secondAvgName + "\"},{\"label\":\"" + thirdAvgName + "\",\"type\":\"JBrowse/View/Track/CanvasFeatures\",\"store\":\"" + thirdAvgName + "\"}]";})
     .attr("target", "_blank")
     .append("rect")  
     .attr("x", "0.1em")
@@ -294,7 +294,7 @@ holdershift.append("text")
 // draw a button for the shift views
 holdershift.append("a")
     .attr("xlink:href", function(d) { 
-return "http://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id + "&mnelem=" + getAllUrlParams().mnelem ;})
+return "https://summit.med.unideb.hu/summitdb/venn_diagramm.php?exp1=" +  firstIndexjbrowse + "&exp2=" + secondIndexjbrowse  + "&exp3=" + thirdIndexjbrowse + "&motive=" + motive + "&motifid=" + motifid[0].motif_id + "&mnelem=" + getAllUrlParams().mnelem ;})
     .attr("target", "blank")
     .append("rect")  
     .attr("x", "0.1em")
@@ -328,7 +328,7 @@ var holderjb = d3.select("#motifchart3")
       .attr("height", "8em")
       .attr("class", "threechosen");
 holderjb.append("a")
-        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/Help.php";})
+        .attr("xlink:href", function(d){ return "https://summit.med.unideb.hu/summitdb/Help.php";})
         .attr("target", "blank")
         .append("rect")
         .attr("x", "0.1em")
@@ -348,7 +348,7 @@ holderjb.append("text")
         .style("pointer-events", "none")
         .text("Help");
 holderjb.append("a")
-        .attr("xlink:href", function(d){ return "http://summit.med.unideb.hu/summitdb/tutorial.php";})
+        .attr("xlink:href", function(d){ return "https://summit.med.unideb.hu/summitdb/tutorial.php";})
         .attr("target", "blank")
         .append("rect")
         .attr("x", "0.1em")
